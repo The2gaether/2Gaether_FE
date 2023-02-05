@@ -12,6 +12,10 @@ const Home = () => {
       name: "B",
       url: "https://img.newspim.com/news/2021/02/15/2102151712128400.jpg",
     },
+    {
+      name: "C",
+      url: "https://img.newspim.com/news/2021/02/15/2102151712128400.jpg",
+    },
   ]);
 
   useEffect(() => {}, []);
