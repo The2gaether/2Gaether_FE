@@ -120,7 +120,7 @@ const TopBox = styled(WhiteBox)`
     width: 130px;
     height: 30px;
     border-radius: 10px;
-    background-color: #f56753;
+    background-color: gray;
     color: white;
     font-weight: 800;
     font-size: 15px;
