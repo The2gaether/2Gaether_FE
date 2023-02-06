@@ -5,37 +5,39 @@ import TinderCard from "react-tinder-card";
 const Home = () => {
   const [people, setPeople] = useState([
     {
-      name: "A",
+      name: "김태리",
       url: "https://img.newspim.com/news/2021/02/15/2102151712128400.jpg",
     },
     {
-      name: "B",
+      name: "너무",
       url: "https://img.newspim.com/news/2021/02/15/2102151712128400.jpg",
     },
     {
-      name: "C",
+      name: "이뻐요",
       url: "https://img.newspim.com/news/2021/02/15/2102151712128400.jpg",
     },
   ]);
 
-  useEffect(() => {}, []);
+  useEffect(() => {}, [people]);
 
   return (
     <div>
       <Container>
-        {people.map((person) => {
-          return (
-            <TinderCard
-              style={{ position: "absolute" }}
-              key={person.name}
-              preventSwipe={["up", "down"]}
-            >
-              <StPeople style={{ backgroundImage: `url(${person.url})` }}>
-                <h3>{person.name}</h3>
-              </StPeople>
-            </TinderCard>
-          );
-        })}
+        {people.map((person) => (
+          <TinderCard
+            // TinderCard 필수 예제이다
+            className="swipe"
+            //고정 시켜주기위한 스타일
+            style={{ position: "absolute" }}
+            key={person.name}
+            //위 아래로 움직이는 것을 방지해준다
+            preventSwipe={["up", "down"]}
+          >
+            <StPeople style={{ backgroundImage: `url(${person.url})` }}>
+              <StName>{person.name}</StName>
+            </StPeople>
+          </TinderCard>
+        ))}
       </Container>
     </div>
   );
@@ -53,15 +55,20 @@ const StPeople = styled.div`
   background-size: cover;
   background-position: center;
   box-shadow: 0px 18px 53px 0px rgba(0, 0, 0, 0.3);
-  .h3 {
-    position: absolute;
-    bottom: 10px;
-    color: white;
-  }
 `;
 
 const Container = styled.div`
   display: flex;
   justify-content: center;
   margin-top: 5vh;
+  .swipe {
+    position: absolute;
+  }
+`;
+
+const StName = styled.h3`
+  position: absolute;
+  font-size: large;
+  bottom: 30px;
+  color: white;
 `;

@@ -1,14 +1,31 @@
 import React from "react";
 import styled from "styled-components";
 import PersonIcon from "@mui/icons-material/Person";
-import EmailIcon from "@mui/icons-material/Email";
+import ForumIcon from "@mui/icons-material/Forum";
+import IconButton from "@mui/material/IconButton";
+import { useNavigate } from "react-router-dom";
 
 function Header() {
+  const navigate = useNavigate();
+
   return (
     <StHeader>
-      <PersonIcon />
-      <img src="https://image.rocketpunch.com/company/88741/tinder_logo_1546049672.png?s=400x400&t=inside" />
-      <EmailIcon />
+      <IconButton
+        onClick={() => {
+          navigate("/editUser");
+        }}
+      >
+        <PersonIcon className="header_logo" fontSize="large" />
+      </IconButton>
+      <IconButton>
+        <img
+          className="logo"
+          src="https://image.rocketpunch.com/company/88741/tinder_logo_1546049672.png?s=400x400&t=inside"
+        />
+      </IconButton>
+      <IconButton>
+        <ForumIcon className="header_logo" fontSize="large" />
+      </IconButton>
     </StHeader>
   );
 }
@@ -22,6 +39,13 @@ const StHeader = styled.div`
   align-items: center;
   border-bottom: 1px solid #f9f9f9;
   .PersonIcon {
-    size: 10%;
+    /* size: 10%; */
+  }
+  .logo {
+    height: 70px;
+    object-fit: contain;
+  }
+  .header_logo {
+    padding: 20px;
   }
 `;

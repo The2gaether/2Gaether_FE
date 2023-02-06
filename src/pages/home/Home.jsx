@@ -8,7 +8,7 @@ const Home = () => {
     <div>
       <MainHeader />
       <MainCard />
-      {/* <Buttons /> */}
+      <Buttons />
     </div>
   );
 };
