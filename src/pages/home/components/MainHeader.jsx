@@ -21,6 +21,9 @@ function Header() {
         <img
           className="logo"
           src="https://image.rocketpunch.com/company/88741/tinder_logo_1546049672.png?s=400x400&t=inside"
+          onClick={() => {
+            navigate("/");
+          }}
         />
       </IconButton>
       <IconButton>

@@ -7,14 +7,17 @@ const Home = () => {
     {
       name: "김태리",
       url: "https://img.newspim.com/news/2021/02/15/2102151712128400.jpg",
+      id: 1,
     },
     {
       name: "너무",
-      url: "https://img.newspim.com/news/2021/02/15/2102151712128400.jpg",
+      url: "https://image.ajunews.com/content/image/2022/09/21/20220921093319393088.jpg",
+      id: 2,
     },
     {
       name: "이뻐요",
-      url: "https://img.newspim.com/news/2021/02/15/2102151712128400.jpg",
+      url: "https://pds.joongang.co.kr//news/component/htmlphoto_mmdata/201803/19/7232f0dd-daa8-4ffb-b8d3-8dbb60e75442.jpg",
+      id: 3,
     },
   ]);
 

@@ -28,7 +28,7 @@ const Router = () => {
         <Route path="/addDog" element={<AddDog />} />
         <Route path="/editDog" element={<EditDog />} />
         <Route path="/editUser" element={<EditUser />} />
-        <Route path="/myDog" element={<MyDog />} />
+        <Route path="/myDog/:id" element={<MyDog />} />
       </Routes>
     </BrowserRouter>
   );

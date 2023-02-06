@@ -1,24 +1,32 @@
 import React, { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import styled from "styled-components";
+import MainHeader from "../home/components/MainHeader";
 
 const EditUser = () => {
-  const [edit, setEdit] = useState(false);
+  const [editNick, setEditNick] = useState(false);
+  const [editPsw, setEditPsw] = useState(false);
+  const [editAddress, setEditAddress] = useState(false);
   const navigate = useNavigate();
 
   //임시
+
+  const user = { name: "김태리", address: "서울특별시 강서구" };
   const [people, setPeople] = useState([
     {
       name: "김태리",
       url: "https://img.newspim.com/news/2021/02/15/2102151712128400.jpg",
+      id: 1,
     },
     {
       name: "너무",
-      url: "https://img.newspim.com/news/2021/02/15/2102151712128400.jpg",
+      url: "https://image.ajunews.com/content/image/2022/09/21/20220921093319393088.jpg",
+      id: 2,
     },
     {
       name: "이뻐요",
-      url: "https://img.newspim.com/news/2021/02/15/2102151712128400.jpg",
+      url: "https://pds.joongang.co.kr//news/component/htmlphoto_mmdata/201803/19/7232f0dd-daa8-4ffb-b8d3-8dbb60e75442.jpg",
+      id: 3,
     },
   ]);
 
@@ -26,43 +34,43 @@ const EditUser = () => {
 
   return (
     <>
-      {!edit ? (
-        <Container>
-          <StEditNickName placeholder="여기에 닉네임을 입력하세요"></StEditNickName>
-          <StEditNickName placeholder="여기에 변경할 비밀번호을 입력하세요"></StEditNickName>
-          <StEditNickName placeholder="여기에 변경한 비밀번호를 확인하세요"></StEditNickName>
-          <div>주소창 기입 란</div>
-          <StbtnGruop>
-            <button>이전으로</button>
-            <button onClick={() => setEdit(true)}>수정</button>
-          </StbtnGruop>
-          <StImgGroup>
-            {people.map((person) => (
-              <div
-                key={person.id}
-                onClick={() => {
-                  navigate(`/mydog/${person.id}`);
-                }}
-              >
-                <StPeople style={{ backgroundImage: `url(${person.url})` }}>
-                  <StName>{person.name}</StName>
-                </StPeople>
-              </div>
-            ))}
-          </StImgGroup>
-        </Container>
-      ) : (
-        <Container>
-          <StEditNickName placeholder="여기에 닉네임을 입력하세요"></StEditNickName>
-          <StEditNickName placeholder="여기에 변경할 비밀번호을 입력하세요"></StEditNickName>
-          <StEditNickName placeholder="여기에 변경한 비밀번호를 확인하세요"></StEditNickName>
-          <div>주소창 기입 란</div>
-          <StbtnGruop>
-            <button>이전으로</button>
-            <button onClick={() => setEdit(false)}>완료</button>
-          </StbtnGruop>
-        </Container>
-      )}
+      <MainHeader />
+      <Container>
+        {!editNick ? (
+          <StOneInfo onClick={() => setEditNick(true)}>닉네임 : {user.name}</StOneInfo>
+        ) : (
+          <StEditSet>
+            <StEditNickName placeholder={`${user.name}`}></StEditNickName>
+            <button onClick={() => setEditNick(false)}>취소</button>
+          </StEditSet>
+        )}
+        {!editPsw ? (
+          <StOneInfo onClick={() => setEditPsw(true)}>비밀번호 : {user.name}</StOneInfo>
+        ) : (
+          <StEditNickName placeholder={`${user.name}`}></StEditNickName>
+        )}
+        {!editAddress ? (
+          <StOneInfo onClick={() => setEditPsw(true)}>주소 : {user.address}</StOneInfo>
+        ) : (
+          <StEditNickName placeholder={`${user.address}`}></StEditNickName>
+        )}
+
+        <br />
+        <StImgGroup>
+          {people.map((person) => (
+            <div
+              key={person.id}
+              onClick={() => {
+                navigate(`/mydog/${person.id}`);
+              }}
+            >
+              <StPeople style={{ backgroundImage: `url(${person.url})` }}>
+                <StName>{person.name}</StName>
+              </StPeople>
+            </div>
+          ))}
+        </StImgGroup>
+      </Container>
     </>
   );
 };
@@ -82,11 +90,6 @@ const Container = styled.div`
 const StEditNickName = styled.input`
   width: 1000px;
   height: 40px;
-`;
-
-const StbtnGruop = styled.div`
-  display: flex;
-  justify-content: center;
 `;
 
 const StImgGroup = styled.div`
@@ -114,3 +117,11 @@ const StName = styled.h3`
   bottom: 10px;
   color: white;
 `;
+
+const StEditSet = styled.div`
+  display: flex;
+  // 요소들 배열 방식의 방향
+  flex-direction: center;
+`;
+
+const StOneInfo = styled.div``;
