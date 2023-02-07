@@ -19,8 +19,8 @@ function Login() {
   const [user, setUser] = useState(initialState);
 
   // 로그인 체크 전역변수 불러오기
-  const { isLogin } = useSelector((state) => state.user);
-  console.log(isLogin);
+  // const { isLogin } = useSelector((state) => state.user);
+  // console.log(isLogin);
 
   //로그인 핸들러
   const onChangeLoginHandler = (e) => {
@@ -36,9 +36,9 @@ function Login() {
     dispatch(__postLogin(user));
   };
 
-  useEffect(() => {
-    isLogin && navigate("/");
-  }, [isLogin, navigate]);
+  // useEffect(() => {
+  //   isLogin && navigate("/");
+  // }, [isLogin, navigate]);
 
   return (
     <Container>

@@ -1,5 +1,5 @@
 import { configureStore } from "@reduxjs/toolkit";
-import userList from "../modules/KakaoSlice";
+import userList from "../modules/userSlice";
 /**
  * import 해온 것은 slice.reducer 입니다.
  */

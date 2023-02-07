@@ -5,49 +5,36 @@ import axios from "axios";
 const initialState = {
   userList: [
     {
-      phonenum: "",
-      username: "",
-      password: "",
-      confirmpassword: "",
-      brithDate: "",
-      gender: "",
-      togender: "",
-      profile: "",
-      address: "",
+      // 현재 어떤걸 받을지 모름???????,
     },
   ],
   isLoading: false,
   error: null,
-  isLogin: false,
+  isLogin: true,
 };
-//로그아웃 시키기
+// //로그아웃 시키기
 
-export const __logoutUser = createAsyncThunk(
-  "logout",
-  async (payload, thunkAPI) => {
-    try {
-      const { data } = await axios.post("/users/logout", payload, {
-        withCredentials: true,
-      });
-      return thunkAPI.fulfillWithValue(data);
-    } catch (error) {
-      console.log(error);
-    }
-    return thunkAPI.rejectWithValue();
-  }
-);
+// export const __logoutUser = createAsyncThunk(
+//   "logout",
+//   async (payload, thunkAPI) => {
+//     try {
+//       const { data } = await axios.post("/users/logout", payload, {
+//         withCredentials: true,
+//       });
+//       return thunkAPI.fulfillWithValue(data);
+//     } catch (error) {
+//       console.log(error);
+//     }
+//     return thunkAPI.rejectWithValue();
+//   }
+// );
 //로그인 POST요청
-
-// http://43.201.34.54:8080
 
 export const __postLogin = createAsyncThunk(
   "login",
   async (payload, thunkAPI) => {
     try {
-      const res = await axios.post(
-        "http://43.201.34.54:8080/members/login",
-        payload
-      );
+      const res = await axios.post("서버 주소 넣기", payload);
 
       sessionStorage.setItem("access_token", res.headers.authorization);
       // sessionStorage.setItem("refresh_token", res.headers.authorization);
@@ -67,7 +54,7 @@ export const __postUser = createAsyncThunk(
   async (payload, thunkAPI) => {
     try {
       console.log(payload);
-      const { data } = await axios.post("/members/signup", payload);
+      const { data } = await axios.post("서버열리면 주소/users/join", payload);
       return thunkAPI.fulfillWithValue(data);
     } catch (error) {
       return thunkAPI.rejectWithValue(error);
@@ -103,18 +90,18 @@ const userList = createSlice({
       state.isLogin = true;
     },
 
-    [__logoutUser.pending]: (state) => {
-      //보내는 도중, 진행중
-      state.isLoading = true;
-    },
-    [__logoutUser.fulfilled]: (state, action) => {
-      //연결후
-      state.isLoading = false;
-    },
-    [__logoutUser.rejected]: (state, action) => {
-      state.isLoading = false;
-      state.error = action.payload;
-    },
+    // [__logoutUser.pending]: (state) => {
+    //   //보내는 도중, 진행중
+    //   state.isLoading = true;
+    // },
+    // [__logoutUser.fulfilled]: (state, action) => {
+    //   //연결후
+    //   state.isLoading = false;
+    // },
+    // [__logoutUser.rejected]: (state, action) => {
+    //   state.isLoading = false;
+    //   state.error = action.payload;
+    // },
   },
 });
 export default userList.reducer;
