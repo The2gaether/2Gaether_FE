@@ -1,5 +1,5 @@
 import { configureStore } from "@reduxjs/toolkit";
-// import userList from "../modules/loginSlice";
+import userList from "../modules/KakaoSlice";
 /**
  * import 해온 것은 slice.reducer 입니다.
  */
@@ -10,6 +10,6 @@ import { configureStore } from "@reduxjs/toolkit";
 // 이것을 각각 모듈로 구현한 다음에 아래 코드로 2개의 모듈을 스토어에 연결해준 것 입니다.
 
 const store = configureStore({
-  reducer: {},
+  reducer: { userList },
 });
 export default store;
