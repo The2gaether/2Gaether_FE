@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { useNavigate, useParams } from "react-router-dom";
 import styled from "styled-components";
-import MainHeader from "../home/components/MainHeader";
+import MainHeader from "../../shared/MainHeader";
 
 const MyDog = () => {
   const [edit, setEdit] = useState(false);
@@ -26,6 +26,7 @@ const MyDog = () => {
             <StPeople style={{ backgroundImage: `url(${people.url})` }}>
               <StName>{people.name}</StName>
             </StPeople>
+            <div></div>
           </div>
         ) : (
           <div>

@@ -3,6 +3,7 @@ import styled from "styled-components";
 import PersonIcon from "@mui/icons-material/Person";
 import ForumIcon from "@mui/icons-material/Forum";
 import IconButton from "@mui/material/IconButton";
+import FavoriteIcon from "@mui/icons-material/Favorite";
 import { useNavigate } from "react-router-dom";
 
 function Header() {
@@ -26,8 +27,12 @@ function Header() {
           }}
         />
       </IconButton>
-      <IconButton>
-        <ForumIcon className="header_logo" fontSize="large" />
+      <IconButton
+        onClick={() => {
+          navigate("/giveLove");
+        }}
+      >
+        <FavoriteIcon className="header_logo" fontSize="large" />
       </IconButton>
     </StHeader>
   );

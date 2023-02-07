@@ -1,9 +1,9 @@
 import React, { useEffect, useState } from "react";
+import { useNavigate } from "react-router-dom";
 import styled from "styled-components";
-import TinderCard from "react-tinder-card";
 
-const Home = () => {
-  const [people, setPeople] = useState([
+const GiveDogList = () => {
+  const [dog, setDog] = useState([
     {
       name: "김태리",
       url: "https://img.newspim.com/news/2021/02/15/2102151712128400.jpg",
@@ -31,57 +31,52 @@ const Home = () => {
     },
   ]);
 
-  useEffect(() => {}, []);
-
   return (
-    <div>
+    <>
       <Container>
-        {people.map((person) => (
-          <TinderCard
-            // TinderCard 필수 예제이다
-            className="swipe"
-            //고정 시켜주기위한 스타일
-            style={{ position: "absolute" }}
-            key={person.name}
-            //위 아래로 움직이는 것을 방지해준다
-            preventSwipe={["up", "down"]}
-          >
-            <StPeople style={{ backgroundImage: `url(${person.url})` }}>
-              <StName>{person.name}</StName>
-            </StPeople>
-          </TinderCard>
+        {dog.map((dog) => (
+          <OneDog>
+            <StDog style={{ backgroundImage: `url(${dog.url})` }}>
+              <StName>{dog.name}</StName>
+            </StDog>
+            <Space />
+          </OneDog>
         ))}
       </Container>
-    </div>
+    </>
   );
 };
+export default GiveDogList;
 
-export default Home;
-
-const StPeople = styled.div`
+const Container = styled.div`
+  display: flex;
+  justify-content: center;
+  margin-top: 5vh;
+`;
+const StDog = styled.div`
   position: relative;
-  width: 600px;
+  width: 230px;
   padding: 10px;
-  max-width: 85vw;
-  height: 55vh;
+  max-width: 45vw;
+  height: 45vh;
   border-radius: 20px;
   background-size: cover;
   background-position: center;
   box-shadow: 0px 18px 53px 0px rgba(0, 0, 0, 0.3);
 `;
 
-const Container = styled.div`
-  display: flex;
-  justify-content: center;
-  margin-top: 5vh;
-  .swipe {
-    position: absolute;
-  }
-`;
-
 const StName = styled.h3`
   position: absolute;
-  font-size: large;
+  font-size: medium;
   bottom: 30px;
-  color: white;
+  color: beige;
+`;
+
+const OneDog = styled.div`
+  display: flex;
+  justify-content: flex-start;
+`;
+const Space = styled.div`
+  padding-left: 10px;
+  /* background-color: black; */
 `;

@@ -1,17 +1,13 @@
 import React, { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import styled from "styled-components";
-import MainHeader from "../home/components/MainHeader";
+import MainHeader from "../../shared/MainHeader";
+import MyDogList from "./components/MyDogList";
+import EditInfo from "./components/EditInfo";
 
 const EditUser = () => {
-  const [editNick, setEditNick] = useState(false);
-  const [editPsw, setEditPsw] = useState(false);
-  const [editAddress, setEditAddress] = useState(false);
-  const navigate = useNavigate();
-
   //임시
-
-  const user = { name: "김태리", address: "서울특별시 강서구" };
+  const user = { name: "김태리", password: "비밀", address: "서울특별시 강서구" };
   const [people, setPeople] = useState([
     {
       name: "김태리",
@@ -36,38 +32,11 @@ const EditUser = () => {
     <>
       <MainHeader />
       <Container>
-        {!editNick ? (
-          <StOneInfo onClick={() => setEditNick(true)}>닉네임 : {user.name}</StOneInfo>
-        ) : (
-          <StEditSet>
-            <StEditNickName placeholder={`${user.name}`}></StEditNickName>
-            <button onClick={() => setEditNick(false)}>취소</button>
-          </StEditSet>
-        )}
-        {!editPsw ? (
-          <StOneInfo onClick={() => setEditPsw(true)}>비밀번호 : {user.name}</StOneInfo>
-        ) : (
-          <StEditNickName placeholder={`${user.name}`}></StEditNickName>
-        )}
-        {!editAddress ? (
-          <StOneInfo onClick={() => setEditPsw(true)}>주소 : {user.address}</StOneInfo>
-        ) : (
-          <StEditNickName placeholder={`${user.address}`}></StEditNickName>
-        )}
-
+        <EditInfo user={user} />
         <br />
         <StImgGroup>
           {people.map((person) => (
-            <div
-              key={person.id}
-              onClick={() => {
-                navigate(`/mydog/${person.id}`);
-              }}
-            >
-              <StPeople style={{ backgroundImage: `url(${person.url})` }}>
-                <StName>{person.name}</StName>
-              </StPeople>
-            </div>
+            <MyDogList key={person.id} person={person} />
           ))}
         </StImgGroup>
       </Container>
@@ -87,41 +56,8 @@ const Container = styled.div`
   align-items: center;
 `;
 
-const StEditNickName = styled.input`
-  width: 1000px;
-  height: 40px;
-`;
-
 const StImgGroup = styled.div`
   padding-top: 100px;
   display: flex;
   justify-content: center;
 `;
-
-const StPeople = styled.div`
-  margin-left: 20px;
-  position: relative;
-  width: 100px;
-  padding: 30px;
-  max-width: 85vw;
-  height: 18vh;
-  border-radius: 20px;
-  background-size: cover;
-  background-position: center;
-  box-shadow: 0px 18px 53px 0px rgba(0, 0, 0, 0.3);
-`;
-
-const StName = styled.h3`
-  position: absolute;
-  font-size: large;
-  bottom: 10px;
-  color: white;
-`;
-
-const StEditSet = styled.div`
-  display: flex;
-  // 요소들 배열 방식의 방향
-  flex-direction: center;
-`;
-
-const StOneInfo = styled.div``;
