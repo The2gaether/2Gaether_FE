@@ -2,20 +2,24 @@ import React, { useEffect, useState } from "react";
 import { useNavigate, useParams } from "react-router-dom";
 import styled from "styled-components";
 import MainHeader from "../../shared/MainHeader";
+import axios from "axios";
 
 const MyDog = () => {
   const [edit, setEdit] = useState(false);
   const navigate = useNavigate();
   const { id } = useParams();
 
-  //임시
-  const [people, setPeople] = useState({
-    name: "김태리",
-    url: "https://img.newspim.com/news/2021/02/15/2102151712128400.jpg",
-    id: 1,
-  });
+  //임시 작동 안됨
+  const [people, setPeople] = useState({});
+  const fetchList = async () => {
+    const { data } = await axios.get(`${process.env.REACT_APP_DOG}/people/dog/${id}`);
+    console.log(data);
+    setPeople(data);
+  };
 
-  useEffect(() => {}, []);
+  useEffect(() => {
+    fetchList();
+  }, []);
 
   return (
     <div>

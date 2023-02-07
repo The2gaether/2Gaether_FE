@@ -26,7 +26,9 @@ const EditUser = () => {
     },
   ]);
 
-  useEffect(() => {}, []);
+  // useEffect(() => {
+  //   fetchList();
+  // }, []);
 
   return (
     <>
