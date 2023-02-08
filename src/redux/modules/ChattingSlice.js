@@ -1,144 +1,102 @@
-import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
-import axios from "axios";
-
-const accessToken = localStorage.getItem("authorization");
-const refreshToken = localStorage.getItem("refresh-Token");
+import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
+import { axiosInstance } from "../../config/axiosInstance";
 
 const initialState = {
-  roomId: "",
-  chatRoom: [
+  chatcollect: [
     {
-      id: "",
-      name: "",
+      chatRoomId: 1,
+      createdAt: "",
+      modifiedAt: "",
+      friendNickname: "",
+      message: "",
     },
   ],
-  chat: [],
-  users: [
-    {
-      memberId: 0,
-      loginId: "",
-      nickName: "",
-      password: "",
-      phoneNumber: "",
-    },
-  ],
-  isLoading: false,
   error: null,
+  isLoading: false,
 };
 
-//유저 상세 검색
-export const memberInfo = createAsyncThunk(
-  "get/memberinfo",
-  async (payload, { rejectWithValue }) => {
-    try {
-      const response = await axios.get(
-        "https://jossiya.shop/api/member/memberInfo",
-        {
-          headers: {
-            contentType: "application/json",
-            authorization: accessToken,
-            "refresh-Token": refreshToken,
-          },
-        }
-      );
-      return response.data;
-    } catch (error) {
-      return rejectWithValue(error.response.data);
-    }
-  }
-);
+const config = {
+  headers: {
+    Authorization: localStorage.getItem("token"),
+  },
+};
 
-//채팅방 생성
-export const addChatroom = createAsyncThunk(
-  "post/chatroom",
-  async (payload, { rejectWithValue }) => {
+// 채팅방 생성 post
+export const __postChatopenThunk = createAsyncThunk(
+  "CHAT_OPEN",
+  async (payload, thunkAPI) => {
     try {
-      const response = await axios.post(
-        "https://jossiya.shop/api/rooms",
-        payload,
-        {
-          headers: {
-            contentType: "application/json",
-            authorization: accessToken,
-            "refresh-Token": refreshToken,
-          },
-        }
-      );
-      return response.data;
-    } catch (error) {
-      return rejectWithValue(error.response.data);
-    }
-  }
-);
-
-//메시지 불러오기
-export const getMessage = createAsyncThunk(
-  "get/chat",
-  async (payload, { rejectWithValue }) => {
-    try {
-      const response = await axios.get(
-        `https://jossiya.shop/api/${payload}/messages`,
-        {
-          headers: {
-            contentType: "application/json",
-            authorization: accessToken,
-            "refresh-Token": refreshToken,
-          },
-        }
-      );
-      return response.data;
-    } catch (error) {
-      return rejectWithValue(error.response.data);
-    }
-  }
-);
-
-//채팅방 전체 불러오기
-export const getChatRoom = createAsyncThunk(
-  "get/chatroom",
-  async (payload, { rejectWithValue }) => {
-    try {
-      const response = await axios.get("https://jossiya.shop/api/rooms", {
-        headers: {
-          contentType: "application/json",
-          authorization: accessToken,
-          "refresh-Token": refreshToken,
-        },
+      console.log(1111, payload);
+      const friendEmail = payload[0];
+      const Request = await axiosInstance.post("/chats", {
+        config,
+        friendEmail,
       });
-      return response.data;
-    } catch (error) {
-      return rejectWithValue(error.response.data);
+      console.log(1234, Request);
+      return thunkAPI.fulfillWithValue(Request.data);
+    } catch (e) {
+      return console.log(e);
+    }
+  }
+);
+
+// 전체 채팅 GET요청
+export const __getChatListThunk = createAsyncThunk(
+  "GET_CHATS",
+  async (_, thunkAPI) => {
+    try {
+      const Request = await axiosInstance.get("/chats", config);
+      return thunkAPI.fulfillWithValue(Request.data);
+    } catch (e) {
+      return thunkAPI.rejectWithValue(e.code);
+    }
+  }
+);
+
+// 채팅리스트에서 채팅방 삭제요청
+export const __removeChatListThunk = createAsyncThunk(
+  "REMOVE_CHAT",
+  async (payload, thunkAPI) => {
+    try {
+      const chatRoomId = payload;
+      console.log(1111, chatRoomId);
+      const Request = axiosInstance.delete(`/chats/${chatRoomId}`, config);
+      if (Request.status === 200) {
+        thunkAPI.dispatch(__getChatListThunk());
+      }
+      return thunkAPI.fulfillWithValue(payload);
+    } catch (e) {
+      return thunkAPI.rejectWithValue(e.code);
+      // return console.log(e)
     }
   }
 );
 
 export const chatSlice = createSlice({
-  name: "chat",
+  name: "chatcollect",
   initialState,
-  reducers: {
-    addMessage: (state, { payload }) => {
-      state.chat = [...state.chat, payload];
-    },
-  },
+  reducers: {},
   extraReducers: {
-    [addChatroom.fulfilled]: (state, { payload }) => {
-      state.isLoading = false;
-      state.chat = payload;
+    [__postChatopenThunk.fulfilled]: (state, action) => {
+      state.chatcollect = action.payload;
     },
-    [getMessage.fulfilled]: (state, { payload }) => {
+    [__getChatListThunk.fulfilled]: (state, action) => {
       state.isLoading = false;
-      state.chat = payload;
+      state.chatcollect = [action.payload];
     },
-    [getChatRoom.fulfilled]: (state, { payload }) => {
+    [__getChatListThunk.rejected]: (state, action) => {
       state.isLoading = false;
-      state.chatRoom = payload;
+      state.error = action.payload;
     },
-    [memberInfo.fulfilled]: (state, { payload }) => {
-      state.isLoading = false;
-      state.users = payload;
+    [__getChatListThunk.pending]: (state) => {
+      state.isLoading = true;
     },
+    // [__removeChatListThunk.fulfilled]: (state, action) => {
+    //   const target = state.chatcollect.findIndex(
+    //     (chatcollect) => chatcollect.friendNickname === action.payload
+    //   );
+    //   state.chatcollect.splice(target, 1);
+    // },
   },
 });
-
-export const { addMessage } = chatSlice.actions;
 export default chatSlice.reducer;

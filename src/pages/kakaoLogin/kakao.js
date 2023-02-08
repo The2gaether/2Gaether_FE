@@ -1,6 +1,6 @@
 import React, { useEffect } from "react";
 import { useDispatch } from "react-redux";
-import { __postLogin } from "../../redux/modules/KakaoSlice";
+import { __postLogin } from "../../redux/modules/kakaoSlice";
 
 const Kakao = (props) => {
   const dispatch = useDispatch();

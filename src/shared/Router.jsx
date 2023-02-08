@@ -14,6 +14,7 @@ import EditUser from "../pages/editUser/EditUser";
 import MyDog from "../pages/myDog/MyDog";
 import Kakao from "../pages/kakaoLogin/kakao";
 import KakaoLogin from "../pages/kakaoLogin/Kakaologin";
+import ChatRoom from "../pages/chatting/ChatRoom";
 
 const Router = () => {
   return (
@@ -29,6 +30,7 @@ const Router = () => {
         <Route path="/getLove" element={<GetLove />} />
         <Route path="/chattingList" element={<ChattingList />} />
         <Route path="/chatting" element={<Chatting />} />
+        <Route path="/chatroom" element={<ChatRoom />} />
         <Route path="/addDog" element={<AddDog />} />
         <Route path="/editDog" element={<EditDog />} />
         <Route path="/editUser" element={<EditUser />} />

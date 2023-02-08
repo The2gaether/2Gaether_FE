@@ -4,16 +4,14 @@ import { useParams } from "react-router-dom";
 import styled from "styled-components";
 import { useNavigate } from "react-router-dom";
 import { IoChevronBackSharp } from "react-icons/io5";
-
 import SockJS from "sockjs-client";
-
-import Stomp from "stompjs";
+import { Stomp } from "@stomp/stompjs";
 import {
   addMessage,
   getMessage,
   memberInfo,
   getChatRoom,
-} from "../_redux/modules/chatSlice";
+} from "../../redux/modules/chatSlice";
 
 const ChatRoom = () => {
   const navigate = useNavigate();
