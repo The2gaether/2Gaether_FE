@@ -6,6 +6,7 @@ const GivePagination = ({ total, limit, page, setPage }) => {
   return (
     <Nav>
       <Button onClick={() => setPage(page - 1)} disabled={page === 1}>
+        {/* &lt; => 왼쪽꺽새를 의미합니다 */}
         &lt;
       </Button>
       {Array(numPages)
@@ -20,6 +21,7 @@ const GivePagination = ({ total, limit, page, setPage }) => {
           </Button>
         ))}
       <Button onClick={() => setPage(page + 1)} disabled={page === numPages}>
+        {/* &gt; => 오른쪽꺽새를 의미합니다 */}
         &gt;
       </Button>
     </Nav>
