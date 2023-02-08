@@ -1,9 +1,8 @@
-import React, { useEffect, useState } from "react";
+import React from "react";
 import { useNavigate } from "react-router-dom";
 import styled from "styled-components";
 import MainHeader from "../../../shared/MainHeader";
 import GiveDogList from "./components/GiveDogList";
-import GivePagination from "./components/GivePagination";
 
 const GiveLove = () => {
   const navigate = useNavigate();
@@ -24,8 +23,6 @@ const GiveLove = () => {
       </StSelects>
       <br />
       <GiveDogList />
-      <Space />
-      <GivePagination />
     </>
   );
 };
@@ -40,8 +37,4 @@ const StSelects = styled.div`
 const OneSelect = styled.div`
   text-decoration: underline;
   text-underline-offset: 10px;
-`;
-
-const Space = styled.div`
-  padding-top: 100px;
 `;

@@ -1,9 +1,13 @@
 import React, { useEffect, useState } from "react";
 import styled from "styled-components";
 import axios from "axios";
+import GivePagination from "./GivePagination";
 
 const GiveDogList = () => {
   const [dogs, setDogs] = useState([]);
+  const [limit, setLimit] = useState(10);
+  const [page, setPage] = useState(1);
+  const offset = (page - 1) * limit;
 
   const fetchList = async () => {
     const { data } = await axios.get(`${process.env.REACT_APP_DOG}/userList`);
@@ -17,15 +21,23 @@ const GiveDogList = () => {
   return (
     <>
       <Container>
-        {dogs.map((dog) => (
+        {dogs.slice(offset, offset + limit).map(({ url, name }) => (
           <OneDog>
-            <StDog style={{ backgroundImage: `url(${dog.url})` }}>
-              <StName>{dog.name}</StName>
+            <StDog style={{ backgroundImage: `url(${url})` }}>
+              <StName>{name}</StName>
             </StDog>
             <Space />
           </OneDog>
         ))}
       </Container>
+      <Space />
+      <GivePagination
+        //
+        total={dogs.length}
+        limit={limit}
+        page={page}
+        setPage={setPage}
+      />
     </>
   );
 };
