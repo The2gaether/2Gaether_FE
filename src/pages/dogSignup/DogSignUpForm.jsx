@@ -2,7 +2,6 @@ import React, { useState } from "react";
 import styled from "styled-components";
 import { useDispatch, useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
-import { __postDog } from "../../redux/modules/signupSlice";
 import axios from "axios";
 import noImg from "../../src_assets/no-image-found.png";
 

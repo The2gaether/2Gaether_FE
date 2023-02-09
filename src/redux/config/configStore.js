@@ -1,11 +1,9 @@
 import { configureStore } from "@reduxjs/toolkit";
-
 import kakaoList from "../modules/kakaoSlice";
 import chatcollect from "../modules/chatSlice";
 import chat from "../modules/chatSlice";
 import socket from "../modules/socketSlice";
 import messages from "../modules/socketSlice";
-
 import userList from "../modules/userSlice";
 /* import signupSlice from "../modules/signupSlice";
  */
