@@ -18,9 +18,9 @@ function Login() {
   //유저 스테이트 생성
   const [user, setUser] = useState(initialState);
 
-  // 로그인 체크 전역변수 불러오기
-  // const { isLogin } = useSelector((state) => state.user);
-  // console.log(isLogin);
+  //로그인 체크 전역변수 불러오기
+  const loginCheck = useSelector((state) => state.userList.isLogin);
+  console.log(loginCheck);
 
   //로그인 핸들러
   const onChangeLoginHandler = (e) => {
@@ -36,9 +36,9 @@ function Login() {
     dispatch(__postLogin(user));
   };
 
-  // useEffect(() => {
-  //   isLogin && navigate("/");
-  // }, [isLogin, navigate]);
+  useEffect(() => {
+    loginCheck && navigate("/");
+  }, [loginCheck, navigate]);
 
   return (
     <Container>
@@ -58,7 +58,7 @@ function Login() {
           ></StInput>
           <StInput
             required
-            type="text"
+            type="password"
             name="password"
             placeholder="패스워드를 입력하세요"
             onChange={onChangeLoginHandler}

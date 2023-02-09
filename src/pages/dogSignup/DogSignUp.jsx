@@ -1,11 +1,11 @@
 import React from "react";
 import styled from "styled-components";
-import SignUpForm from "../../components/login/SignUpForm";
+import DogSignUpForm from "../../components/login/DogSignUpForm";
 
 function DogSignUp() {
   return (
     <div>
-      <SignUpForm></SignUpForm>
+      <DogSignUpForm></DogSignUpForm>
     </div>
   );
 }

@@ -32,7 +32,7 @@ function SignUp() {
   const regusername = /^[a-z0-9]{4,8}$/;
   const regEmail =
     /^[0-9a-zA-Z]([-_.]?[0-9a-zA-Z])*@[0-9a-zA-Z]([-_.]?[0-9a-zA-Z])*.[a-zA-Z]{2,3}$/;
-  const regPassword = /^(?=.[A-Za-z])(?=.\\d)[A-Za-z\\d@$!%*#?&]{8,16}$/;
+  const regPassword = /^(?=.[A-Za-z])(?=.\\d)[A-Za-z\\d@$!%*#?&]{8,15}$/;
 
   //유효성 검사 및 유저 스테이트 작성
   const onChangeUserHandler = (e) => {
@@ -52,7 +52,7 @@ function SignUp() {
     if (name === "password")
       !regPassword.test(value)
         ? setPassInput(
-            `8~16자의 영문 대소문자와 숫자로 입력해주세요.
+            `8~15자의 영문 대소문자와 숫자로 입력해주세요.
                            특수문자(!@#$%^&*)도 사용 가능합니다.`
           )
         : setPassInput("");
