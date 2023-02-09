@@ -82,18 +82,73 @@ function Chatting() {
     );
     chatRef.current.value = null;
   };
-}
-console.log(9999, messages);
+  console.log(9999, messages);
 
-const scrollRef = useRef();
-console.log(scrollRef);
-useEffect(() => {
-  scrollRef.current.scrollIntoView({
-    behavior: "smooth",
-    block: "start",
-    inline: "nearest",
-  });
-}, [messages]);
+  const scrollRef = useRef();
+  console.log(scrollRef);
+  useEffect(() => {
+    scrollRef.current.scrollIntoView({
+      behavior: "smooth",
+      block: "start",
+      inline: "nearest",
+    });
+  }, [messages]);
+
+  return (
+    <Container>
+      <StchatName>
+        <button
+          fs="30px"
+          color="#000"
+          bc="transparent"
+          hoverC="#fff"
+          onClick={() => {
+            navigate("/chatList");
+          }}
+        />
+      </StchatName>
+
+      <div>
+        <div>
+          <div ref={scrollRef}>
+            {Myname &&
+              messages.map((chating) =>
+                chating.userNickname === Myname ? (
+                  <SendMessage>
+                    <div>
+                      <span>{chating.message}</span>
+                      <img
+                        src={process.env.PUBLIC_URL + "/basic.png"}
+                        alt="로고"
+                      />
+                    </div>
+                  </SendMessage>
+                ) : (
+                  <ReceivedMessage>
+                    <div>
+                      <img
+                        src={process.env.PUBLIC_URL + "/basic.png"}
+                        alt="로고"
+                      />
+                      <Dou>
+                        <h4>{chating.userNickname}님</h4>
+                        <span>{chating.message}</span>
+                      </Dou>
+                    </div>
+                  </ReceivedMessage>
+                )
+              )}
+          </div>
+        </div>
+      </div>
+
+      <Footer>
+        <textarea type="text" ref={chatRef} onKeyDown={handleEnterPress} />
+        <button onClick={myChat}>전송</button>
+      </Footer>
+    </Container>
+  );
+}
 
 export default Chatting;
 const Container = styled.div`

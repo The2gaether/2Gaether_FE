@@ -1,5 +1,5 @@
 import { configureStore } from "@reduxjs/toolkit";
-import userList from "../modules/kakaoSlice";
+import kakaoList from "../modules/kakaoSlice";
 import chatcollect from "../modules/chatSlice";
 import chat from "../modules/chatSlice";
 import socket from "../modules/socketSlice";
@@ -14,6 +14,6 @@ import messages from "../modules/socketSlice";
 // 이것을 각각 모듈로 구현한 다음에 아래 코드로 2개의 모듈을 스토어에 연결해준 것 입니다.
 
 const store = configureStore({
-  reducer: { userList, chatcollect, chat, socket, messages },
+  reducer: { kakaoList, chatcollect, chat, socket, messages },
 });
 export default store;

@@ -3,7 +3,7 @@ import axios from "axios";
 
 axios.defaults.withCredentials = true;
 const initialState = {
-  userList: {},
+  kakaoList: {},
   isLoading: false,
   error: null,
   isLogin: false,
@@ -35,8 +35,8 @@ export const __postLogin = createAsyncThunk(
   }
 );
 
-const userList = createSlice({
-  name: "userList",
+const kakaoList = createSlice({
+  name: "kakaoList",
   initialState,
   reducers: {},
   extraReducers: {
@@ -50,4 +50,4 @@ const userList = createSlice({
   },
 });
 
-export default userList.reducer;
+export default kakaoList.reducer;
