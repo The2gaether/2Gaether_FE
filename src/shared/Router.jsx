@@ -13,7 +13,6 @@ import EditDog from "../pages/editDog/EditDog";
 import EditUser from "../pages/editUser/EditUser";
 import MyDog from "../pages/myDog/MyDog";
 import Kakao from "../pages/kakaoLogin/kakao";
-import KakaoLogin from "../pages/kakaoLogin/Kakaologin";
 import ChatRoom from "../pages/chatting/ChatRoom";
 import WelcomePage from "../pages/welcomepage/WelcomePage";
 
@@ -22,10 +21,18 @@ const Router = () => {
     <BrowserRouter>
       <Routes>
         <Route path="/" element={<Home />} />
-        <Route path="/welcomePage" element={<WelcomePage />} />
+        <Route
+          path="/welcomePag김태리
+        서현진
+        이다희
+        고윤정
+        한소희
+        이주빈
+        e"
+          element={<WelcomePage />}
+        />
         <Route path="/login" element={<Login />} />
         <Route path="/signUp" element={<SignUp />} />
-        <Route path="/kakaologin" element={<KakaoLogin />} />
         <Route path="/oauth/callback/kakao" element={<Kakao />} />
         <Route path="/dogSignUp" element={<DogSignUp />} />
         <Route path="/giveLove" element={<GiveLove />} />
@@ -37,7 +44,6 @@ const Router = () => {
         <Route path="/editDog" element={<EditDog />} />
         <Route path="/editUser" element={<EditUser />} />
         <Route path="/myDog/:id" element={<MyDog />} />
-        <Route path="/kakaologin" element={<KakaoLogin />} />
       </Routes>
     </BrowserRouter>
   );

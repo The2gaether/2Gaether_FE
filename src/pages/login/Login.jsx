@@ -4,6 +4,7 @@ import { useNavigate } from "react-router-dom";
 import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { __postLogin } from "../../redux/modules/userSlice";
+import { KAKAO_AUTH_URL } from "../../shared/OAuth";
 
 function Login() {
   const navigate = useNavigate();
@@ -70,12 +71,8 @@ function Login() {
           <span>Or</span>
           <div></div>
         </Separator>
-        <KakaoSignIn
-          onClick={() => {
-            navigate("/kakaologin");
-          }}
-        >
-          카카오로그인
+        <KakaoSignIn>
+          <a href={KAKAO_AUTH_URL}> 카카오로그인 </a>
         </KakaoSignIn>
         <SignUpBtn
           onClick={() => {

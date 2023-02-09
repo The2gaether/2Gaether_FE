@@ -3,7 +3,7 @@ import styled from "styled-components";
 import { useNavigate } from "react-router-dom";
 import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { __postUser } from "../../redux/modules/userSlice";
+import { __emailCheck, __postUser } from "../../redux/modules/userSlice";
 
 function SignUp() {
   const navigate = useNavigate();
@@ -14,19 +14,23 @@ function SignUp() {
     username: "",
     email: "",
     password: "",
+    check_password: "",
   };
+
+  const [email_check, setemailcheck] = useState("");
 
   //유저 스테이트 생성
   const [user, setUser] = useState(initialState);
 
   //유저 스테이트 구조분해 할당
-  const { username, email, password } = user;
+  const { username, email, password, check_password } = user;
 
   //상태관리 위해 초기값 세팅
 
   const [usernameInput, setusernameInput] = useState("");
   const [emailInput, setEmailInput] = useState("");
   const [passInput, setPassInput] = useState("");
+  const [checkpassInput, setcheckpassInput] = useState("");
 
   //정규식
   const regusername = /^[a-z0-9]{4,8}$/;
@@ -52,10 +56,14 @@ function SignUp() {
     if (name === "password")
       !regPassword.test(value)
         ? setPassInput(
-            `8~15자의 영문 대소문자와 숫자로 입력해주세요.
-                           특수문자(!@#$%^&*)도 사용 가능합니다.`
+            `8~15자의 영문 대소문자와 숫자 그리고
+                           특수문자(!@#$%^&*)를 입력해주세요.`
           )
         : setPassInput("");
+    if (name === "check_password")
+      password !== value
+        ? setcheckpassInput("비밀번호가 불일치합니다")
+        : setcheckpassInput("");
   };
   // 회원가입 POST요청 및 공백 존재 시 경고창 생성
   const onSubmitUserHandler = (e) => {
@@ -66,6 +74,9 @@ function SignUp() {
       password.trim() === ""
     ) {
       return alert("아이디랑 비밀번호를 입력해주세요!");
+    }
+    if (password !== check_password) {
+      return alert("다시 비번좀!");
     }
 
     dispatch(
@@ -109,10 +120,33 @@ function SignUp() {
               placeholder="이메일을 입력해주세요"
               onChange={onChangeUserHandler}
             ></StInput>
+            <button
+              type="button"
+              value={email}
+              onClick={() => {
+                dispatch(
+                  __emailCheck({
+                    email,
+                  })
+                );
+              }}
+            >
+              인증하기
+            </button>
           </div>
           <p id="help-user" className="help">
             {emailInput}
           </p>
+
+          <div>
+            <StInput
+              type="txet"
+              name="email_check"
+              value={email_check}
+              placeholder="인증번호를 입력해주세요"
+              onChange={(e) => setemailcheck(e.target.value)}
+            ></StInput>
+          </div>
 
           <div>
             <StInput
@@ -126,7 +160,18 @@ function SignUp() {
           <p id="help-password1" className="help">
             {passInput}
           </p>
-
+          <div>
+            <StInput
+              type="password"
+              name="check_password"
+              value={check_password}
+              placeholder="비밀번호 확인해주세요"
+              onChange={onChangeUserHandler}
+            ></StInput>
+          </div>
+          <p id="help-password2" className="help">
+            {checkpassInput}
+          </p>
           <LogInBtn>강아지 설정하기</LogInBtn>
         </SignUpBox>
       </Wrapper>

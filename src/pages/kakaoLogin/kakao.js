@@ -1,6 +1,6 @@
 import React, { useEffect } from "react";
 import { useDispatch } from "react-redux";
-import { __postLogin } from "../../redux/modules/kakaoSlice";
+import { __kakaoLogin } from "../../redux/modules/kakaoSlice";
 
 const Kakao = (props) => {
   const dispatch = useDispatch();
@@ -15,7 +15,7 @@ const Kakao = (props) => {
   console.log(code);
   useEffect(() => {
     //백엔드로 쿠키 토큰 전송
-    dispatch(__postLogin(code));
+    dispatch(__kakaoLogin(code));
   }, []);
 
   return (
