@@ -43,7 +43,7 @@ const GiveDogList = () => {
       document.body.scrollTop
     );
     let clientHeight = document.documentElement.clientHeight;
-    if (scrollTop + clientHeight >= scrollHeight - 1000) {
+    if (scrollTop + clientHeight >= scrollHeight - 200) {
       fetchMoreData();
       setPage(page + 1);
     }
@@ -81,6 +81,11 @@ const Container = styled.div`
   flex-wrap: wrap; // 복수의 행
   max-width: 1000px;
   margin-bottom: 1000px;
+  /* align-items: center;
+  justify-content: center; */
+  flex-direction: column;
+  margin-top: 5vh;
+  margin-bottom: 200px;
 `;
 const StDog = styled.div`
   position: relative;
@@ -103,6 +108,6 @@ const StName = styled.h3`
 
 const OneDog = styled.div`
   display: flex;
-  align-items: center;
+  /* align-items: center; */
   justify-content: center;
 `;
