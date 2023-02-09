@@ -1,9 +1,9 @@
 {
   "userList": [
     {
+      "id": 1,
       "name": "김태리",
-      "url": "https://image.ytn.co.kr/general/jpg/2022/0921/202209210939393494_d.jpg",
-      "id": 1
+      "url": "https://image.ytn.co.kr/general/jpg/2022/0921/202209210939393494_d.jpg"
     },
     {
       "name": "서현진",

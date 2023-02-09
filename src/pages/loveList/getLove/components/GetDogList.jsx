@@ -1,27 +1,63 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState, useRef, useCallback } from "react";
 import styled from "styled-components";
 import axios from "axios";
-import GetPagination from "./GetPagination";
 
 const GiveDogList = () => {
-  const [dogs, setDogs] = useState([]);
-  const [limit, setLimit] = useState(2);
-  const [page, setPage] = useState(1);
-  const offset = (page - 1) * limit;
+  //초기 데이터
+  const [result, setResult] = useState([]);
+  const [item, setItem] = useState([]);
+  const [isLoading, setIsLoading] = useState(true);
 
+  //초기강아지 데이터를 불러오는
   const fetchList = async () => {
-    const { data } = await axios.get(`${process.env.REACT_APP_DOG}/userList`);
-    setDogs(data);
+    await axios
+      .get(`${process.env.REACT_APP_DOG}/userList`)
+      .then((r) => {
+        let res = r.data;
+        setResult(res.slice(0, 3));
+        res = res.slice(3);
+        setItem(res);
+        setIsLoading(false);
+      })
+      .catch((error) => {
+        return Promise.reject(error);
+      });
+  };
+  //업데이트 강아지 데이터를 불러오는
+  const fetchMoreData = async () => {
+    setIsLoading(true);
+    setResult(result.concat(item.slice(0, 4)));
+    setItem(item.slice(4));
+    setIsLoading(false);
   };
 
+  //무한스크롤
+  const infiniteScroll = useCallback(() => {
+    let scrollHeight = Math.max(document.documentElement.scrollHeight, document.body.scrollHeight);
+    let scrollTop = Math.max(document.documentElement.scrollTop, document.body.scrollTop);
+    let clientHeight = document.documentElement.clientHeight;
+    scrollHeight -= 100;
+    if (scrollTop + clientHeight >= scrollHeight && isLoading === false) {
+      fetchMoreData();
+    }
+  }, [isLoading]);
+
+  // 초기데이터값
   useEffect(() => {
     fetchList();
+    console.log(item);
   }, []);
+
+  //무한스크롤
+  useEffect(() => {
+    window.addEventListener("scroll", infiniteScroll, true);
+    return () => window.removeEventListener("scroll", infiniteScroll, true);
+  }, [infiniteScroll]);
 
   return (
     <>
       <Container>
-        {dogs.slice(offset, offset + limit).map(({ url, name }) => (
+        {result.map(({ url, name }) => (
           <OneDog>
             <StDog style={{ backgroundImage: `url(${url})` }}>
               <StName>{name}</StName>
@@ -30,14 +66,6 @@ const GiveDogList = () => {
           </OneDog>
         ))}
       </Container>
-      <Space />
-      <GetPagination
-        //
-        total={dogs.length}
-        limit={limit}
-        page={page}
-        setPage={setPage}
-      />
     </>
   );
 };
