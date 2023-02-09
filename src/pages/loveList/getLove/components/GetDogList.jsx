@@ -6,7 +6,8 @@ const GiveDogList = () => {
   //초기 데이터
   const [result, setResult] = useState([]);
   const [item, setItem] = useState([]);
-  const [isLoading, setIsLoading] = useState(true);
+  const [page, setPage] = useState(1);
+  // const [isLoading, setIsLoading] = useState(true);
 
   //초기강아지 데이터를 불러오는
   const fetchList = async () => {
@@ -17,7 +18,7 @@ const GiveDogList = () => {
         setResult(res.slice(0, 2));
         res = res.slice(2);
         setItem(res);
-        setIsLoading(false);
+        // setIsLoading(false);
       })
       .catch((error) => {
         return Promise.reject(error);
@@ -25,10 +26,10 @@ const GiveDogList = () => {
   };
   //업데이트 강아지 데이터를 불러오는
   const fetchMoreData = async () => {
-    setIsLoading(true);
+    // setIsLoading(true);
     setResult(result.concat(item.slice(0, 2)));
     setItem(item.slice(2));
-    setIsLoading(false);
+    // setIsLoading(false);
   };
 
   //무한스크롤
@@ -36,11 +37,11 @@ const GiveDogList = () => {
     let scrollHeight = Math.max(document.documentElement.scrollHeight, document.body.scrollHeight);
     let scrollTop = Math.max(document.documentElement.scrollTop, document.body.scrollTop);
     let clientHeight = document.documentElement.clientHeight;
-    scrollHeight -= 10;
-    if (scrollTop + clientHeight >= scrollHeight && isLoading === false) {
+    if (scrollTop + clientHeight >= scrollHeight - 1000) {
       fetchMoreData();
+      setPage(page + 1);
     }
-  }, [isLoading]);
+  }, [page]);
 
   // 초기데이터값
   useEffect(() => {
@@ -61,7 +62,6 @@ const GiveDogList = () => {
             <StDog style={{ backgroundImage: `url(${url})` }}>
               <StName>{name}</StName>
             </StDog>
-            <Space />
           </OneDog>
         ))}
       </Container>
@@ -72,8 +72,11 @@ export default GiveDogList;
 
 const Container = styled.div`
   display: flex;
-  justify-content: center;
+  /* align-items: center;
+  justify-content: center; */
+  flex-direction: column;
   margin-top: 5vh;
+  margin-bottom: 1000px;
 `;
 const StDog = styled.div`
   position: relative;
@@ -96,9 +99,6 @@ const StName = styled.h3`
 
 const OneDog = styled.div`
   display: flex;
-  justify-content: flex-start;
-`;
-const Space = styled.div`
-  padding-left: 10px;
-  /* background-color: black; */
+  align-items: center;
+  justify-content: center;
 `;
