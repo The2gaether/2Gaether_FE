@@ -34,8 +34,14 @@ const GiveDogList = () => {
 
   //무한스크롤
   const infiniteScroll = useCallback(() => {
-    let scrollHeight = Math.max(document.documentElement.scrollHeight, document.body.scrollHeight);
-    let scrollTop = Math.max(document.documentElement.scrollTop, document.body.scrollTop);
+    let scrollHeight = Math.max(
+      document.documentElement.scrollHeight,
+      document.body.scrollHeight
+    );
+    let scrollTop = Math.max(
+      document.documentElement.scrollTop,
+      document.body.scrollTop
+    );
     let clientHeight = document.documentElement.clientHeight;
     if (scrollTop + clientHeight >= scrollHeight - 1000) {
       fetchMoreData();
@@ -72,15 +78,13 @@ export default GiveDogList;
 
 const Container = styled.div`
   display: flex;
-  /* align-items: center;
-  justify-content: center; */
-  flex-direction: column;
-  margin-top: 5vh;
+  flex-wrap: wrap; // 복수의 행
+  max-width: 1000px;
   margin-bottom: 1000px;
 `;
 const StDog = styled.div`
   position: relative;
-  width: 230px;
+  width: 400px;
   padding: 10px;
   max-width: 45vw;
   height: 45vh;

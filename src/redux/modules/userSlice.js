@@ -25,6 +25,7 @@ export const __postLogin = createAsyncThunk(
 
       sessionStorage.setItem("access_token", res.headers.authorization);
       // sessionStorage.setItem("refresh_token", res.headers.authorization);
+      console.log(res);
       return thunkAPI.fulfillWithValue();
     } catch (error) {
       console.log(error);
@@ -58,14 +59,28 @@ export const __emailCheck = createAsyncThunk(
   "emailcheck",
   async (payload, thunkAPI) => {
     console.log(payload);
-    const data1 = {
-      id: 508,
-      payload,
-    };
     try {
       const { data } = await axios.post(
-        "http://localhost:3001/emailCheck",
-        data1
+        "https://midcon.shop/emailConfirm",
+        payload
+      );
+      console.log(payload);
+      return thunkAPI.fulfillWithValue(data);
+    } catch (error) {
+      return thunkAPI.rejectWithValue(error);
+    }
+  }
+);
+
+//code전송기능
+export const __codeCheck = createAsyncThunk(
+  "codecheck",
+  async (payload, thunkAPI) => {
+    console.log(payload);
+    try {
+      const { data } = await axios.post(
+        "https://midcon.shop/validatEmail",
+        payload
       );
       console.log(payload);
       return thunkAPI.fulfillWithValue(data);
@@ -112,6 +127,16 @@ const userList = createSlice({
       state.isLoading = false;
     },
     [__emailCheck.rejected]: (state, action) => {
+      state.isLoading = false;
+      state.error = action.payload;
+    },
+    [__codeCheck.pending]: (state) => {
+      state.isLoading = true;
+    },
+    [__codeCheck.fulfilled]: (state, action) => {
+      state.isLoading = false;
+    },
+    [__codeCheck.rejected]: (state, action) => {
       state.isLoading = false;
       state.error = action.payload;
     },

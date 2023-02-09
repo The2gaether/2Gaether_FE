@@ -3,7 +3,11 @@ import styled from "styled-components";
 import { useNavigate } from "react-router-dom";
 import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { __emailCheck, __postUser } from "../../redux/modules/userSlice";
+import {
+  __codeCheck,
+  __emailCheck,
+  __postUser,
+} from "../../redux/modules/userSlice";
 
 function SignUp() {
   const navigate = useNavigate();
@@ -16,8 +20,7 @@ function SignUp() {
     password: "",
     check_password: "",
   };
-
-  const [email_check, setemailcheck] = useState("");
+  const [code, setcodecheck] = useState("");
 
   //유저 스테이트 생성
   const [user, setUser] = useState(initialState);
@@ -141,11 +144,24 @@ function SignUp() {
           <div>
             <StInput
               type="txet"
-              name="email_check"
-              value={email_check}
+              name="code"
+              value={code}
               placeholder="인증번호를 입력해주세요"
-              onChange={(e) => setemailcheck(e.target.value)}
+              onChange={(e) => setcodecheck(e.target.value)}
             ></StInput>
+            <button
+              type="button"
+              value={code}
+              onClick={() => {
+                dispatch(
+                  __codeCheck({
+                    code,
+                  })
+                );
+              }}
+            >
+              인증하기
+            </button>
           </div>
 
           <div>
