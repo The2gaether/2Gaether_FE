@@ -14,8 +14,8 @@ const GiveDogList = () => {
       .get(`${process.env.REACT_APP_DOG}/userList`)
       .then((r) => {
         let res = r.data;
-        setResult(res.slice(0, 3));
-        res = res.slice(3);
+        setResult(res.slice(0, 2));
+        res = res.slice(2);
         setItem(res);
         setIsLoading(false);
       })
@@ -26,8 +26,8 @@ const GiveDogList = () => {
   //업데이트 강아지 데이터를 불러오는
   const fetchMoreData = async () => {
     setIsLoading(true);
-    setResult(result.concat(item.slice(0, 4)));
-    setItem(item.slice(4));
+    setResult(result.concat(item.slice(0, 2)));
+    setItem(item.slice(2));
     setIsLoading(false);
   };
 
@@ -36,7 +36,7 @@ const GiveDogList = () => {
     let scrollHeight = Math.max(document.documentElement.scrollHeight, document.body.scrollHeight);
     let scrollTop = Math.max(document.documentElement.scrollTop, document.body.scrollTop);
     let clientHeight = document.documentElement.clientHeight;
-    scrollHeight -= 100;
+    scrollHeight -= 10;
     if (scrollTop + clientHeight >= scrollHeight && isLoading === false) {
       fetchMoreData();
     }
@@ -45,7 +45,6 @@ const GiveDogList = () => {
   // 초기데이터값
   useEffect(() => {
     fetchList();
-    console.log(item);
   }, []);
 
   //무한스크롤
