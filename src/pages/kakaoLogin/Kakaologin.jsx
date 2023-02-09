@@ -2,7 +2,7 @@ import React from "react";
 import kakaologo from "../../assets/img/kakaologo.png";
 import { KAKAO_AUTH_URL } from "../../shared/OAuth";
 
-const KakaoLogin = () => {
+function KakaoLogin() {
   return (
     <>
       <a href={KAKAO_AUTH_URL}>
@@ -10,6 +10,6 @@ const KakaoLogin = () => {
       </a>
     </>
   );
-};
+}
 
 export default KakaoLogin;

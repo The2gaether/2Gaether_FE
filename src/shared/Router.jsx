@@ -15,12 +15,14 @@ import MyDog from "../pages/myDog/MyDog";
 import Kakao from "../pages/kakaoLogin/kakao";
 import KakaoLogin from "../pages/kakaoLogin/Kakaologin";
 import ChatRoom from "../pages/chatting/ChatRoom";
+import WelcomePage from "../pages/welcomepage/WelcomePage";
 
 const Router = () => {
   return (
     <BrowserRouter>
       <Routes>
         <Route path="/" element={<Main />} />
+        <Route path="/welcomePage" element={<WelcomePage />} />
         <Route path="/login" element={<Login />} />
         <Route path="/signUp" element={<SignUp />} />
         <Route path="/kakaologin" element={<KakaoLogin />} />
@@ -35,6 +37,7 @@ const Router = () => {
         <Route path="/editDog" element={<EditDog />} />
         <Route path="/editUser" element={<EditUser />} />
         <Route path="/myDog" element={<MyDog />} />
+        <Route path="/kakaologin" element={<KakaoLogin />} />
       </Routes>
     </BrowserRouter>
   );
