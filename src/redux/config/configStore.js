@@ -1,7 +1,14 @@
 import { configureStore } from "@reduxjs/toolkit";
-import userList from "../modules/userSlice";
-import signupSlice from "../modules/signupSlice";
 
+import kakaoList from "../modules/kakaoSlice";
+import chatcollect from "../modules/chatSlice";
+import chat from "../modules/chatSlice";
+import socket from "../modules/socketSlice";
+import messages from "../modules/socketSlice";
+
+import userList from "../modules/userSlice";
+/* import signupSlice from "../modules/signupSlice";
+ */
 /**
  * import 해온 것은 slice.reducer 입니다.
  */
@@ -10,6 +17,14 @@ import signupSlice from "../modules/signupSlice";
 //  아래 예시는 하나의 프로젝트 안에서 counter 기능과 todos 기능이 모두 있고,
 // 이것을 각각 모듈로 구현한 다음에 아래 코드로 2개의 모듈을 스토어에 연결해준 것 입니다.
 const store = configureStore({
-  reducer: { userList, signupSlice },
+  reducer: {
+    kakaoList,
+    userList,
+    /*    signupSlice, */
+    chatcollect,
+    chat,
+    socket,
+    messages,
+  },
 });
 export default store;

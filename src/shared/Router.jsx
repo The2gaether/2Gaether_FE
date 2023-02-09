@@ -12,8 +12,10 @@ import AddDog from "../pages/addDog/AddDog";
 import EditDog from "../pages/editDog/EditDog";
 import EditUser from "../pages/editUser/EditUser";
 import MyDog from "../pages/myDog/MyDog";
+import Kakao from "../pages/kakaoLogin/kakao";
+import KakaoLogin from "../pages/kakaoLogin/Kakaologin";
+import ChatRoom from "../pages/chatting/ChatRoom";
 import WelcomePage from "../pages/welcomepage/WelcomePage";
-import Kakaologin from "../pages/kakaoLogin/Kakaologin";
 
 const Router = () => {
   return (
@@ -23,16 +25,19 @@ const Router = () => {
         <Route path="/welcomePage" element={<WelcomePage />} />
         <Route path="/login" element={<Login />} />
         <Route path="/signUp" element={<SignUp />} />
+        <Route path="/kakaologin" element={<KakaoLogin />} />
+        <Route path="/oauth/callback/kakao" element={<Kakao />} />
         <Route path="/dogSignUp" element={<DogSignUp />} />
         <Route path="/giveLove" element={<GiveLove />} />
         <Route path="/getLove" element={<GetLove />} />
         <Route path="/chattingList" element={<ChattingList />} />
         <Route path="/chatting" element={<Chatting />} />
+        <Route path="/chatroom" element={<ChatRoom />} />
         <Route path="/addDog" element={<AddDog />} />
         <Route path="/editDog" element={<EditDog />} />
         <Route path="/editUser" element={<EditUser />} />
         <Route path="/myDog" element={<MyDog />} />
-        <Route path="/kakaologin" element={<Kakaologin />} />
+        <Route path="/kakaologin" element={<KakaoLogin />} />
       </Routes>
     </BrowserRouter>
   );

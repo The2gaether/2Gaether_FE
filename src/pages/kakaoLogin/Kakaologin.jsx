@@ -1,5 +1,15 @@
-function Kakaologin() {
-  return <div>카카오로그인창</div>;
+import React from "react";
+import kakaologo from "../../assets/img/kakaologo.png";
+import { KAKAO_AUTH_URL } from "../../shared/OAuth";
+
+function KakaoLogin() {
+  return (
+    <>
+      <a href={KAKAO_AUTH_URL}>
+        <img src={kakaologo} />
+      </a>
+    </>
+  );
 }
 
-export default Kakaologin;
+export default KakaoLogin;
