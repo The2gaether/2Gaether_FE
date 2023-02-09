@@ -1,10 +1,10 @@
 import React from "react";
 import { BrowserRouter, Route, Routes } from "react-router-dom";
-import Main from "../pages/main/Main";
+import Home from "../pages/home/Home";
 import Login from "../pages/login/Login";
 import SignUp from "../pages/signUp/SignUp";
-import GiveLove from "../pages/giveLove/GiveLove";
-import GetLove from "../pages/getLove/GetLove";
+import GiveLove from "../pages/loveList/giveLove/GiveLove";
+import GetLove from "../pages/loveList/getLove/GetLove";
 import DogSignUp from "../pages/dogSignup/DogSignUp";
 import ChattingList from "../pages/chattingList/ChattingList";
 import Chatting from "../pages/chatting/Chatting";
@@ -21,7 +21,7 @@ const Router = () => {
   return (
     <BrowserRouter>
       <Routes>
-        <Route path="/" element={<Main />} />
+        <Route path="/" element={<Home />} />
         <Route path="/welcomePage" element={<WelcomePage />} />
         <Route path="/login" element={<Login />} />
         <Route path="/signUp" element={<SignUp />} />
@@ -36,7 +36,7 @@ const Router = () => {
         <Route path="/addDog" element={<AddDog />} />
         <Route path="/editDog" element={<EditDog />} />
         <Route path="/editUser" element={<EditUser />} />
-        <Route path="/myDog" element={<MyDog />} />
+        <Route path="/myDog/:id" element={<MyDog />} />
         <Route path="/kakaologin" element={<KakaoLogin />} />
       </Routes>
     </BrowserRouter>
