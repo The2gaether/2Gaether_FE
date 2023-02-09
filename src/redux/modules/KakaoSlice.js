@@ -10,7 +10,7 @@ const initialState = {
 };
 
 //로그인 POST요청
-export const __postLogin = createAsyncThunk(
+export const __kakaoLogin = createAsyncThunk(
   "login",
   async (payload, thunkAPI) => {
     try {
@@ -40,10 +40,10 @@ const kakaoList = createSlice({
   initialState,
   reducers: {},
   extraReducers: {
-    [__postLogin.pending]: (state) => {
+    [__kakaoLogin.pending]: (state) => {
       state.isLoading = true;
     },
-    [__postLogin.fulfilled]: (state, action) => {
+    [__kakaoLogin.fulfilled]: (state, action) => {
       state.isLoading = false;
       state.isLogin = true;
     },

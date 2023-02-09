@@ -53,7 +53,27 @@ export const __postUser = createAsyncThunk(
     }
   }
 );
-
+//email전송기능
+export const __emailCheck = createAsyncThunk(
+  "emailcheck",
+  async (payload, thunkAPI) => {
+    console.log(payload);
+    const data1 = {
+      id: 508,
+      payload,
+    };
+    try {
+      const { data } = await axios.post(
+        "http://localhost:3001/emailCheck",
+        data1
+      );
+      console.log(payload);
+      return thunkAPI.fulfillWithValue(data);
+    } catch (error) {
+      return thunkAPI.rejectWithValue(error);
+    }
+  }
+);
 const userList = createSlice({
   name: "userList",
   initialState,
@@ -80,6 +100,20 @@ const userList = createSlice({
     [__postLogin.fulfilled]: (state, action) => {
       state.isLoading = false;
       state.isLogin = true;
+    },
+    [__postLogin.rejected]: (state, action) => {
+      state.isLoading = false;
+      state.error = action.payload;
+    },
+    [__emailCheck.pending]: (state) => {
+      state.isLoading = true;
+    },
+    [__emailCheck.fulfilled]: (state, action) => {
+      state.isLoading = false;
+    },
+    [__emailCheck.rejected]: (state, action) => {
+      state.isLoading = false;
+      state.error = action.payload;
     },
   },
 });
