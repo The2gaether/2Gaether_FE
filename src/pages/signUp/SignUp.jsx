@@ -20,7 +20,6 @@ function SignUp() {
     password: "",
     check_password: "",
   };
-  const [code, setcodecheck] = useState("");
 
   //유저 스테이트 생성
   const [user, setUser] = useState(initialState);
@@ -123,46 +122,10 @@ function SignUp() {
               placeholder="이메일을 입력해주세요"
               onChange={onChangeUserHandler}
             ></StInput>
-            <button
-              type="button"
-              value={email}
-              onClick={() => {
-                dispatch(
-                  __emailCheck({
-                    email,
-                  })
-                );
-              }}
-            >
-              인증하기
-            </button>
           </div>
           <p id="help-user" className="help">
             {emailInput}
           </p>
-
-          <div>
-            <StInput
-              type="txet"
-              name="code"
-              value={code}
-              placeholder="인증번호를 입력해주세요"
-              onChange={(e) => setcodecheck(e.target.value)}
-            ></StInput>
-            <button
-              type="button"
-              value={code}
-              onClick={() => {
-                dispatch(
-                  __codeCheck({
-                    code,
-                  })
-                );
-              }}
-            >
-              인증하기
-            </button>
-          </div>
 
           <div>
             <StInput

@@ -14,7 +14,6 @@ function Chatting() {
   const myEmail = localStorage.getItem("userEmail");
   const Myname = localStorage.getItem("userNickname");
   const chatRef = useRef("");
-  const [message, setMessage] = useState("");
 
   // 소켓 백엔드 서버가져오기
   const socket = new SockJS("https://jossiya.shop/ws-stomp");
@@ -95,58 +94,60 @@ function Chatting() {
   }, [messages]);
 
   return (
-    <Container>
-      <StchatName>
-        <button
-          fs="30px"
-          color="#000"
-          bc="transparent"
-          hoverC="#fff"
-          onClick={() => {
-            navigate("/chatList");
-          }}
-        />
-      </StchatName>
+    <>
+      <Container>
+        <StchatName>
+          <button
+            fs="30px"
+            color="#000"
+            bc="transparent"
+            hoverC="#fff"
+            onClick={() => {
+              navigate("/chatList");
+            }}
+          />
+        </StchatName>
 
-      <div>
-        <div>
-          <div ref={scrollRef}>
-            {Myname &&
-              messages.map((chating) =>
-                chating.userNickname === Myname ? (
-                  <SendMessage>
-                    <div>
-                      <span>{chating.message}</span>
-                      <img
-                        src={process.env.PUBLIC_URL + "/basic.png"}
-                        alt="로고"
-                      />
-                    </div>
-                  </SendMessage>
-                ) : (
-                  <ReceivedMessage>
-                    <div>
-                      <img
-                        src={process.env.PUBLIC_URL + "/basic.png"}
-                        alt="로고"
-                      />
-                      <Dou>
-                        <h4>{chating.userNickname}님</h4>
+        <form>
+          <div>
+            <div ref={scrollRef}>
+              {Myname &&
+                messages.map((chating) =>
+                  chating.userNickname === Myname ? (
+                    <SendMessage>
+                      <div>
                         <span>{chating.message}</span>
-                      </Dou>
-                    </div>
-                  </ReceivedMessage>
-                )
-              )}
+                        <img
+                          src={process.env.PUBLIC_URL + "/basic.png"}
+                          alt="로고"
+                        />
+                      </div>
+                    </SendMessage>
+                  ) : (
+                    <ReceivedMessage>
+                      <div>
+                        <img
+                          src={process.env.PUBLIC_URL + "/basic.png"}
+                          alt="로고"
+                        />
+                        <Dou>
+                          <h4>{chating.userNickname}님</h4>
+                          <span>{chating.message}</span>
+                        </Dou>
+                      </div>
+                    </ReceivedMessage>
+                  )
+                )}
+            </div>
           </div>
-        </div>
-      </div>
+        </form>
 
-      <Footer>
-        <textarea type="text" ref={chatRef} onKeyDown={handleEnterPress} />
-        <button onClick={myChat}>전송</button>
-      </Footer>
-    </Container>
+        <Footer>
+          <textarea type="text" ref={chatRef} onKeyDown={handleEnterPress} />
+          <button onClick={myChat}>전송</button>
+        </Footer>
+      </Container>
+    </>
   );
 }
 

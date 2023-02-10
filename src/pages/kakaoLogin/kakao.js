@@ -14,16 +14,21 @@ const Kakao = (props) => {
   const href = window.location.href;
 
   //현재 url의 파라미터를 가져옴
-  let params = new URL(window.location.href).search;
+  let params = new URL(window.location.href).searchParams;
   console.log(params);
   //params에 저장된 파라미터 안에서 'code'의 값을 가져옴
-  /*   let code = params.get("code");
-  console.log(code); */
+  let code = params.get("code");
+  console.log(code);
 
-  useEffect(() => {
+  /*   useEffect(() => {
     //백엔드로 쿠키 토큰 전송
     dispatch(__kakaoLogin(params));
-  }, []);
+  }, []); */
+  dispatch(
+    __kakaoLogin({
+      code,
+    })
+  );
 
   useEffect(() => {
     loginCheck && navigate("/");
