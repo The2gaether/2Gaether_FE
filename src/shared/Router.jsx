@@ -15,6 +15,7 @@ import MyDog from "../pages/myDog/MyDog";
 import Kakao from "../pages/kakaoLogin/kakao";
 import ChatRoom from "../pages/chatting/ChatRoom";
 import WelcomePage from "../pages/welcomepage/WelcomePage";
+import Address from "../pages/dogSignup/Address";
 
 const Router = () => {
   return (
@@ -44,6 +45,7 @@ const Router = () => {
         <Route path="/editDog" element={<EditDog />} />
         <Route path="/editUser" element={<EditUser />} />
         <Route path="/myDog/:id" element={<MyDog />} />
+        <Route path="/address" element={<Address />} />
       </Routes>
     </BrowserRouter>
   );
