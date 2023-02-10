@@ -6,15 +6,19 @@ import useFetch from "./useFetch";
 const GiveDogList = () => {
   const [query, setQuery] = useState("");
   const [page, setPage] = useState(1);
+  const [hasMore, setHasMore] = useState(true);
   const { loading, error, list, result } = useFetch(query, page);
   const loader = useRef(null);
 
-  const handleObserver = useCallback((entries) => {
-    const target = entries[0];
-    if (target.isIntersecting) {
-      setPage((prev) => prev + 1);
-    }
-  }, []);
+  const handleObserver = useCallback(
+    (entries) => {
+      const target = entries[0];
+      if (target.isIntersecting && hasMore) {
+        setPage((prev) => prev + 1);
+      }
+    },
+    [hasMore]
+  );
 
   useEffect(() => {
     const option = {
@@ -26,17 +30,31 @@ const GiveDogList = () => {
     if (loader.current) observer.observe(loader.current);
   }, [handleObserver]);
 
+  useEffect(() => {
+    if (result.message === "Breed not found (master breed does not exist)") {
+      setHasMore(false);
+    }
+  }, [result]);
+
   return (
     <>
       <Container>
         <StOnePage>
-          {list.map(({ url, name }) => (
-            <OneDog key={name}>
-              <StDog style={{ backgroundImage: `url(${url})` }}>
-                <StName>{name}</StName>
-              </StDog>
-            </OneDog>
-          ))}
+          {list.map((dog, id) => {
+            if (id % 2 === 0) {
+              const group = list.slice(id, id + 2);
+              return (
+                <OneDog key={id}>
+                  {group.map(({ url, name }) => (
+                    <StDog style={{ backgroundImage: `url(${url})` }} key={name}>
+                      <StName>{name}</StName>
+                    </StDog>
+                  ))}
+                </OneDog>
+              );
+            }
+            return null;
+          })}
           {loading && <p>Loading...</p>}
           {error && <p>Error!</p>}
           <div ref={loader} />
@@ -45,13 +63,15 @@ const GiveDogList = () => {
     </>
   );
 };
+
 export default GiveDogList;
 
 const Container = styled.div`
-  display: flex;
+  /* display: flex; */
   /* justify-content: center; */
-  flex-direction: row;
+  /* flex-direction: row; */
   margin-top: 5vh;
+  margin-left: 50vh;
 `;
 
 const StOnePage = styled.div`
@@ -81,4 +101,6 @@ const StName = styled.h3`
 const OneDog = styled.div`
   display: flex;
   justify-content: center;
+  flex-wrap: wrap;
+  width: 50%;
 `;
