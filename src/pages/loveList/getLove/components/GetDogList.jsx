@@ -1,69 +1,46 @@
 import React, { useEffect, useState, useRef, useCallback } from "react";
 import styled from "styled-components";
-import axios from "axios";
+// import axios from "axios";
+import useFetch from "./useFetch";
 
 const GiveDogList = () => {
-  //초기 데이터
-  const [result, setResult] = useState([]);
-  const [item, setItem] = useState([]);
+  const [query, setQuery] = useState("");
   const [page, setPage] = useState(1);
-  // const [isLoading, setIsLoading] = useState(true);
+  const { loading, error, list, result } = useFetch(query, page);
+  const loader = useRef(null);
 
-  //초기강아지 데이터를 불러오는
-  const fetchList = async () => {
-    await axios
-      .get(`${process.env.REACT_APP_DOG}/userList`)
-      .then((r) => {
-        let res = r.data;
-        setResult(res.slice(0, 2));
-        res = res.slice(2);
-        setItem(res);
-        // setIsLoading(false);
-      })
-      .catch((error) => {
-        return Promise.reject(error);
-      });
-  };
-  //업데이트 강아지 데이터를 불러오는
-  const fetchMoreData = async () => {
-    // setIsLoading(true);
-    setResult(result.concat(item.slice(0, 2)));
-    setItem(item.slice(2));
-    // setIsLoading(false);
-  };
-
-  //무한스크롤
-  const infiniteScroll = useCallback(() => {
-    let scrollHeight = Math.max(document.documentElement.scrollHeight, document.body.scrollHeight);
-    let scrollTop = Math.max(document.documentElement.scrollTop, document.body.scrollTop);
-    let clientHeight = document.documentElement.clientHeight;
-    if (scrollTop + clientHeight >= scrollHeight - 200) {
-      fetchMoreData();
-      setPage(page + 1);
+  const handleObserver = useCallback((entries) => {
+    const target = entries[0];
+    if (target.isIntersecting) {
+      setPage((prev) => prev + 1);
     }
-  }, [page]);
-
-  // 초기데이터값
-  useEffect(() => {
-    fetchList();
   }, []);
 
-  //무한스크롤
   useEffect(() => {
-    window.addEventListener("scroll", infiniteScroll, true);
-    return () => window.removeEventListener("scroll", infiniteScroll, true);
-  }, [infiniteScroll]);
+    const option = {
+      root: null,
+      rootMargin: "20px",
+      threshold: 0.25,
+    };
+    const observer = new IntersectionObserver(handleObserver, option);
+    if (loader.current) observer.observe(loader.current);
+  }, [handleObserver]);
 
   return (
     <>
       <Container>
-        {result.map(({ url, name }) => (
-          <OneDog key={name}>
-            <StDog style={{ backgroundImage: `url(${url})` }}>
-              <StName>{name}</StName>
-            </StDog>
-          </OneDog>
-        ))}
+        <StOnePage>
+          {list.map(({ url, name }) => (
+            <OneDog key={name}>
+              <StDog style={{ backgroundImage: `url(${url})` }}>
+                <StName>{name}</StName>
+              </StDog>
+            </OneDog>
+          ))}
+          {loading && <p>Loading...</p>}
+          {error && <p>Error!</p>}
+          <div ref={loader} />
+        </StOnePage>
       </Container>
     </>
   );
@@ -72,9 +49,16 @@ export default GiveDogList;
 
 const Container = styled.div`
   display: flex;
-  flex-direction: column;
+  /* justify-content: center; */
+  flex-direction: row;
   margin-top: 5vh;
 `;
+
+const StOnePage = styled.div`
+  display: flex;
+  flex-direction: column;
+`;
+
 const StDog = styled.div`
   position: relative;
   width: 400px;
@@ -96,6 +80,5 @@ const StName = styled.h3`
 
 const OneDog = styled.div`
   display: flex;
-  /* align-items: center; */
   justify-content: center;
 `;
