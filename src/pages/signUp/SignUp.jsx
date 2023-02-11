@@ -3,11 +3,7 @@ import styled from "styled-components";
 import { useNavigate } from "react-router-dom";
 import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import {
-  __codeCheck,
-  __emailCheck,
-  __postUser,
-} from "../../redux/modules/userSlice";
+import { __postUser } from "../../redux/modules/userSlice";
 
 function SignUp() {
   const navigate = useNavigate();

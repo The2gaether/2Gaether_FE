@@ -6,7 +6,7 @@ import SockJS from "sockjs-client";
 import styled from "styled-components";
 import { subMessage } from "../../redux/modules/socketSlice";
 
-function Chatting() {
+const ChattingDetail = () => {
   const navigate = useNavigate();
   const { id } = useParams();
   const dispatch = useDispatch();
@@ -101,14 +101,13 @@ function Chatting() {
             fs="30px"
             color="#000"
             bc="transparent"
-            hoverC="#fff"
             onClick={() => {
               navigate("/chatList");
             }}
           />
         </StchatName>
 
-        <form>
+        <div>
           <div>
             <div ref={scrollRef}>
               {Myname &&
@@ -117,19 +116,19 @@ function Chatting() {
                     <SendMessage>
                       <div>
                         <span>{chating.message}</span>
-                        <img
+                        {/*      <img
                           src={process.env.PUBLIC_URL + "/basic.png"}
                           alt="로고"
-                        />
+                        /> */}
                       </div>
                     </SendMessage>
                   ) : (
                     <ReceivedMessage>
                       <div>
-                        <img
+                        {/*         <img
                           src={process.env.PUBLIC_URL + "/basic.png"}
                           alt="로고"
-                        />
+                        /> */}
                         <Dou>
                           <h4>{chating.userNickname}님</h4>
                           <span>{chating.message}</span>
@@ -140,7 +139,7 @@ function Chatting() {
                 )}
             </div>
           </div>
-        </form>
+        </div>
 
         <Footer>
           <textarea type="text" ref={chatRef} onKeyDown={handleEnterPress} />
@@ -149,9 +148,9 @@ function Chatting() {
       </Container>
     </>
   );
-}
+};
 
-export default Chatting;
+export default ChattingDetail;
 const Container = styled.div`
   width: 600px;
   height: 900px;

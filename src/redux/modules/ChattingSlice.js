@@ -1,5 +1,5 @@
 import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
-import { axiosInstance } from "../../config/axiosInstance";
+import axios from "axios";
 
 const initialState = {
   chatcollect: [
@@ -28,7 +28,7 @@ export const __postChatopenThunk = createAsyncThunk(
     try {
       console.log(1111, payload);
       const friendEmail = payload[0];
-      const Request = await axiosInstance.post("/chats", {
+      const Request = await axios.post("/chats", {
         config,
         friendEmail,
       });
@@ -45,7 +45,7 @@ export const __getChatListThunk = createAsyncThunk(
   "GET_CHATS",
   async (_, thunkAPI) => {
     try {
-      const Request = await axiosInstance.get("/chats", config);
+      const Request = await axios.get("/chats", config);
       return thunkAPI.fulfillWithValue(Request.data);
     } catch (e) {
       return thunkAPI.rejectWithValue(e.code);
@@ -60,7 +60,7 @@ export const __removeChatListThunk = createAsyncThunk(
     try {
       const chatRoomId = payload;
       console.log(1111, chatRoomId);
-      const Request = axiosInstance.delete(`/chats/${chatRoomId}`, config);
+      const Request = axios.delete(`/chats/${chatRoomId}`, config);
       if (Request.status === 200) {
         thunkAPI.dispatch(__getChatListThunk());
       }

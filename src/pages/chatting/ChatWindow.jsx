@@ -1,62 +1,124 @@
-import React, { useState, useEffect } from "react";
-import SockJS from "sockjs-client";
+import React, { useEffect, useState } from "react";
+import { useSelector, useDispatch } from "react-redux";
+import {
+  fetchMessages,
+  sendMessage,
+} from "../../redux/modules/chatWindowSlice";
+import styled from "styled-components";
 import { Stomp } from "@stomp/stompjs";
+import SockJS from "sockjs-client";
 
 const ChatWindow = () => {
-  // State variables to store the messages and the message input
-  const [messages, setMessages] = useState([]);
-  const [message, setMessage] = useState("");
+  const { messages, isLoading, error } = useSelector((state) => state.messages);
+  const dispatch = useDispatch();
+  const [stompClient, setStompClient] = useState(null);
 
-  // State variable to store the Stomp client
-  const [client, setClient] = useState(null);
-
-  // Connect to the WebSocket server when the component is mounted
   useEffect(() => {
-    const socket = new SockJS("http://localhost:8080/ws");
-    const stompClient = Stomp.over(socket);
-    setClient(stompClient);
-  }, []);
+    dispatch(fetchMessages());
 
-  // Subscribe to the chat topic when the Stomp client is connected
-  useEffect(() => {
-    if (client) {
-      client.connect({}, () => {
-        client.subscribe("/topic/chat", (message) => {
-          setMessages((prevMessages) => [
-            ...prevMessages,
-            JSON.parse(message.body),
-          ]);
-        });
+    // Connect to the websocket
+    const socket = new SockJS("/ws");
+    const client = Stomp.over(socket);
+    setStompClient(client);
+    client.connect({}, (frame) => {
+      console.log(`Connected: ${frame}`);
+      client.subscribe("/topic/public", (message) => {
+        const newMessage = JSON.parse(message.body);
+        dispatch(sendMessage({ message: newMessage }));
       });
-    }
-  }, [client]);
+    });
 
-  // Handle the message input change
-  const handleMessageChange = (event) => {
-    setMessage(event.target.value);
-  };
+    return () => {
+      client.disconnect();
+    };
+  }, [dispatch]);
 
-  // Handle the send button click
-  const handleSendClick = () => {
-    client.send("/app/chat", {}, JSON.stringify({ message }));
-    setMessage("");
+  const handleSendMessage = (message) => {
+    stompClient.send("/app/chat.sendMessage", {}, JSON.stringify({ message }));
   };
 
   return (
-    <div className="chat-window">
-      <div className="message-list">
-        {messages.map((message, index) => (
-          <div key={index} className="message">
-            {message}
-          </div>
-        ))}
-      </div>
-      <div className="message-input">
-        <input type="text" value={message} onChange={handleMessageChange} />
-        <button onClick={handleSendClick}>Send</button>
-      </div>
-    </div>
+    <StyledChatWindow>
+      {error && <p>Error: {error.message}</p>}
+      <Header>
+        <Title>Chat Room</Title>
+      </Header>
+      <ChatHistory>
+        {isLoading ? (
+          <p>Loading...</p>
+        ) : (
+          <MessageList>
+            {messages.map((message) => (
+              <Message key={message.id}>{message.text}</Message>
+            ))}
+          </MessageList>
+        )}
+      </ChatHistory>
+      <ChatInput>
+        <form onSubmit={(e) => e.preventDefault()}>
+          <Input type="text" placeholder="Enter your message" />
+          <button onClick={handleSendMessage}>Send</button>
+        </form>
+      </ChatInput>
+    </StyledChatWindow>
   );
 };
 
 export default ChatWindow;
+
+const StyledChatWindow = styled.div`
+  display: flex;
+  flex-direction: column;
+  background-color: #e6e6e6;
+  border-radius: 10px;
+  width: 500px;
+  height: 500px;
+  padding: 20px;
+`;
+
+const Header = styled.header`
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 20px;
+`;
+
+const Title = styled.h1`
+  font-size: 24px;
+  font-weight: bold;
+  color: #333;
+`;
+
+const ChatHistory = styled.div`
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  height: 80%;
+  overflow-y: auto;
+`;
+
+const MessageList = styled.ul`
+  list-style: none;
+  padding: 0;
+`;
+
+const ChatInput = styled.div`
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-top: 20px;
+`;
+
+const Input = styled.input`
+  font-size: 18px;
+  padding: 10px;
+  border-radius: 10px;
+  border: 1px solid #333;
+  margin-right: 10px;
+`;
+const Message = styled.li`
+  font-size: 18px;
+  color: #333;
+  margin-bottom: 10px;
+`;
