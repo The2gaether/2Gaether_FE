@@ -5,7 +5,7 @@ import GivePagination from "./GivePagination";
 
 const GiveDogList = () => {
   const [dogs, setDogs] = useState([]);
-  const [limit, setLimit] = useState(10);
+  const [limit, setLimit] = useState(4);
   const [page, setPage] = useState(1);
   const offset = (page - 1) * limit;
 

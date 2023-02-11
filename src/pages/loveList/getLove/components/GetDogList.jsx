@@ -1,48 +1,56 @@
-import React, { useEffect, useState, useRef, useCallback } from "react";
+import React, { useState, useEffect, useRef, useCallback } from "react";
+import axios from "axios";
 import styled from "styled-components";
-// import axios from "axios";
-import useFetch from "./useFetch";
 
-const GiveDogList = () => {
-  const [query, setQuery] = useState("");
+const InfiniteScroll = () => {
+  const [data, setData] = useState([]);
   const [page, setPage] = useState(1);
+  const [loading, setLoading] = useState(false);
   const [hasMore, setHasMore] = useState(true);
-  const { loading, error, list, result } = useFetch(query, page);
-  const loader = useRef(null);
+  const observer = useRef();
 
-  const handleObserver = useCallback(
-    (entries) => {
-      const target = entries[0];
-      if (target.isIntersecting && hasMore) {
-        setPage((prev) => prev + 1);
-      }
-    },
-    [hasMore]
-  );
-
-  useEffect(() => {
-    const option = {
-      root: null,
-      rootMargin: "20px",
-      threshold: 0.25,
-    };
-    const observer = new IntersectionObserver(handleObserver, option);
-    if (loader.current) observer.observe(loader.current);
-  }, [handleObserver]);
-
-  useEffect(() => {
-    if (result.message === "Breed not found (master breed does not exist)") {
-      setHasMore(false);
+  const fetchData = useCallback(async () => {
+    setLoading(true);
+    const res = await axios.get(`http://localhost:3001/userList`);
+    // setData((prevData) => [...prevData, ...res.data]);
+    setData(res.data);
+    console.log(data);
+    setLoading(false);
+    setHasMore(res.data.length !== 0);
+    if (res.data.length !== 0) {
+      setPage((num) => num + 1);
     }
-  }, [result]);
+  }, []);
+
+  useEffect(() => {
+    fetchData();
+  }, [fetchData]);
+
+  const handleScroll = useCallback(() => {
+    if (
+      window.innerHeight + document.documentElement.scrollTop !==
+        document.documentElement.offsetHeight ||
+      loading
+    ) {
+      return;
+    }
+    fetchData();
+  }, [loading, fetchData]);
+
+  useEffect(() => {
+    window.addEventListener("scroll", handleScroll);
+    return () => window.removeEventListener("scroll", handleScroll);
+  }, [handleScroll]);
+
+  const remainingData = data.slice(0, page * 2);
 
   return (
     <>
       <Container>
         <StOnePage>
-          {list.map((dog, id) => {
+          {remainingData.map((why, id) => {
             if (id % 2 === 0) {
-              const group = list.slice(id, id + 2);
+              const group = remainingData.slice(id, id + 2);
               return (
                 <OneDog key={id}>
                   {group.map(({ url, name }) => (
@@ -55,34 +63,33 @@ const GiveDogList = () => {
             }
             return null;
           })}
-          {loading && <p>Loading...</p>}
-          {error && <p>Error!</p>}
-          <div ref={loader} />
+          {loading && <div>Loading...</div>}
+          {!loading && !hasMore && <div>더이상 가져올 데이터가 없습니다 ㅠㅠ</div>}
+          <div ref={observer} />
         </StOnePage>
       </Container>
     </>
   );
 };
 
-export default GiveDogList;
+export default InfiniteScroll;
 
 const Container = styled.div`
-  /* display: flex; */
-  /* justify-content: center; */
-  /* flex-direction: row; */
   margin-top: 5vh;
-  margin-left: 50vh;
 `;
 
 const StOnePage = styled.div`
   display: flex;
   flex-direction: column;
+  align-items: center;
+  justify-content: center;
 `;
 
 const StDog = styled.div`
   position: relative;
   width: 400px;
   padding: 10px;
+  margin: 10px 10px 10px 10px;
   max-width: 45vw;
   height: 45vh;
   border-radius: 20px;

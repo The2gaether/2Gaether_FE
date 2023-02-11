@@ -6,7 +6,7 @@ function useFetch(query, page) {
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(false);
   const [list, setList] = useState([]);
-  const [result, setResult] = useState([]);
+  // const [result, setResult] = useState([]);
 
   const sendQuery = useCallback(async () => {
     try {
@@ -24,7 +24,7 @@ function useFetch(query, page) {
     sendQuery(query);
   }, [query, sendQuery, page]);
 
-  return { loading, error, list, result };
+  return { loading, error, list };
 }
 
 export default useFetch;

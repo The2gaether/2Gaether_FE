@@ -29,12 +29,12 @@ const Router = () => {
         <Route path="/dogSignUp" element={<DogSignUp />} />
         <Route path="/giveLove" element={<GiveLove />} />
         <Route path="/getLove" element={<GetLove />} />
-        <Route path="/chattingList" element={<ChattingList />} />
+        {/* <Route path="/chattingList" element={<ChattingList />} /> */}
         <Route path="/chatting" element={<Chatting />} />
         <Route path="/chatroom" element={<ChatRoom />} />
         <Route path="/chatwindow" element={<ChatWindow />} />
-        <Route path="/addDog" element={<AddDog />} />
-        <Route path="/editDog" element={<EditDog />} />
+        {/* <Route path="/addDog" element={<AddDog />} /> */}
+        {/* <Route path="/editDog" element={<EditDog />} /> */}
         <Route path="/editUser" element={<EditUser />} />
         <Route path="/myDog/:id" element={<MyDog />} />
       </Routes>
