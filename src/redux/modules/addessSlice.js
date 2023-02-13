@@ -4,12 +4,10 @@ import axios from "axios";
 
 axios.defaults.withCredentials = true;
 const initialState = {
-  dogInfo: [
+  addressInfo: [
     {
-      dogname: "",
-      dogsex: "",
-      dogimages: "",
-      dogdetails: "",
+      latitude: 128.0,
+      longitude: 35.0,
     },
   ],
   isLoading: false,
@@ -19,17 +17,15 @@ const initialState = {
 
 //강아지 정보입력 post 요청
 
-export const __postDog = createAsyncThunk(
-  "signup",
+export const __patchAddress = createAsyncThunk(
+  "address",
   async (payload, thunkAPI) => {
     try {
       console.log(payload);
-      const { data } = await axios.post("https://midcon.shop/dogs", payload, {
-        //폼데이터로 보내야해서 바꿔줌
-        headers: {
-          "Content-Type": "multipart/form-data",
-        },
-      });
+      const { data } = await axios.patch(
+        "https://midcon.shop/address",
+        payload
+      );
       return thunkAPI.fulfillWithValue(data);
     } catch (error) {
       return thunkAPI.rejectWithValue(error);
@@ -37,25 +33,25 @@ export const __postDog = createAsyncThunk(
   }
 );
 
-const userList = createSlice({
-  name: "userList",
+const addressSlice = createSlice({
+  name: "addressSlice",
   initialState,
   reducers: {},
   extraReducers: {
     //post
-    [__postDog.pending]: (state) => {
+    [__patchAddress.pending]: (state) => {
       //보내는 도중, 진행중
       state.isLoading = true;
     },
-    [__postDog.fulfilled]: (state, action) => {
+    [__patchAddress.fulfilled]: (state, action) => {
       //연결후
       state.isLoading = false;
-      alert("가입이 완료 되셨습니다!");
+      alert("주소 기입이 완료 되셨습니다!");
     },
-    [__postDog.rejected]: (state, action) => {
+    [__patchAddress.rejected]: (state, action) => {
       state.isLoading = false;
       state.error = action.payload;
     }, //post
   },
 });
-export default userList.reducer;
+export default addressSlice.reducer;
