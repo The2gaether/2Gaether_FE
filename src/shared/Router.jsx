@@ -22,16 +22,7 @@ const Router = () => {
     <BrowserRouter>
       <Routes>
         <Route path="/" element={<Home />} />
-        <Route
-          path="/welcomePag김태리
-        서현진
-        이다희
-        고윤정
-        한소희
-        이주빈
-        e"
-          element={<WelcomePage />}
-        />
+        <Route path="/welcomePage" element={<WelcomePage />} />
         <Route path="/login" element={<Login />} />
         <Route path="/signUp" element={<SignUp />} />
         <Route path="/oauth/callback/kakao" element={<Kakao />} />
