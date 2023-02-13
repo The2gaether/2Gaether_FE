@@ -3,41 +3,35 @@ import styled from "styled-components";
 import { useDispatch, useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import { __postDog } from "../../redux/modules/signupSlice";
-import axios from "axios";
 import noImg from "../../src_assets/no-image-found.png";
 
 // 회원가입 form 컴포넌트
 function SignUpForm() {
   const dispatch = useDispatch();
   const navigate = useNavigate();
+
   // 버튼 활성화를 위한 상태관리
   const [formstate, setFormState] = useState(false);
-  const [dogNameState, setDogNameState] = useState(true);
   const [dogSexState, setDogSexState] = useState(false);
   const [dogImagesState, setDogImagesState] = useState(false);
   const [dogDetailsState, setDogDetailsState] = useState(false);
+
   // 보낼 데이터 상태관리
   const [signData, setSignData] = useState({
-    gender: "",
     dogName: "",
     dogSex: "",
-    dogeImages: "",
+    dogImages: "",
     dogDetails: "",
   });
+
   // 조건부 렌더링을 위한 상태관리
   const [signNumber, setSignNumber] = useState(0);
-
-  // input 데이터 저장하기
-  const changeInput = (e) => {
-    const { value, id } = e.target;
-    setSignData({ ...signData, [id]: value });
-    console.log(signData);
-  };
 
   // 파일 업로드를 위한 상태관리
   const [post, setPost] = useState("");
   const [change, setChange] = useState(false);
   const [imageSrc, setImageSrc] = useState();
+  const [imageSrcs, setImageSrcs] = useState();
 
   const readFile = async (fileBlob) => {
     const reader = new FileReader();
@@ -50,6 +44,23 @@ function SignUpForm() {
     });
   };
 
+  function readFileAsText(fileBlob) {
+    return new Promise(function (resolve, reject) {
+      let fr = new FileReader();
+
+      fr.onload = function () {
+        resolve(fr.result);
+      };
+
+      fr.onerror = function () {
+        reject(fr);
+      };
+
+      fr.readAsDataURL(fileBlob);
+    });
+  }
+
+  //next 버튼 조건
   const next = (e) => {
     if (signNumber === 0) {
       if (signData.dogName.length === 0 || signData.dogName.length > 5) {
@@ -65,17 +76,17 @@ function SignUpForm() {
       });
       if (!dogSex) {
         return;
-      } else {
-        setDogImagesState(true);
-        setSignData({ ...signData, dogSex: dogSex });
       }
+      setDogImagesState(true);
+      setSignData({ ...signData, dogSex: dogSex });
     }
 
     if (signNumber === 2) {
-      if (!imageSrc) {
+      if (!imageSrcs) {
         return;
       }
-      setSignData({ ...signData, dogeImages: imageSrc });
+
+      setSignData({ ...signData, dogImages: imageSrcs });
     }
 
     if (signNumber === 3) {
@@ -84,28 +95,44 @@ function SignUpForm() {
     setSignNumber((prevNumber) => prevNumber + 1);
   };
 
+  //핸드러
   const onSubmitHandler = async (event) => {
+    //debugger;
     if (signData.dogDetails === 0 || signData > 20) {
       return;
     }
     event.preventDefault();
-    await axiostest11();
-    setSignNumber((prevNumber) => prevNumber + 1);
+    let frm = new FormData();
+    frm.append("dogname", signData.dogName);
+    frm.append("dogsex", signData.dogSex);
+    frm.append("dogimages", signData.dogImages);
+    frm.append("dogdetails", signData.dogDetails);
+    const checkState = await dispatch(__postDog(frm));
+
+    //const checkState = await dispatch(__postDog(frm));
+    if (checkState.error) {
+      setSignNumber((prevNumber) => prevNumber + 1);
+    }
   };
 
-  //토큰부분 슬라이스로  나눠야함.
-  const axiostest11 = async () => {
-    await axios.post("/dogs", signData, {});
+  //주소로 가는 코드
+  const handleClick = () => {
+    navigate("/address");
+  };
+
+  //합치는 코드(address로가는온클릭, 서브밋코드)
+  const combinedHandler = async (event) => {
+    await onSubmitHandler(event);
+    handleClick();
   };
 
   // 그동안 수집한 회원가입 데이터(signData)를 백에게 보냄
   const submitLogin = async (e) => {
     e.preventDefault();
-    // console.log("login122");
     //const checkState = await dispatch(__signup(signData));
     //if (checkState.payload) {
     // 이후 login페이지로 navigate
-    //navigate("/");
+    navigate("/");
     //}
   };
 
@@ -141,12 +168,11 @@ function SignUpForm() {
               setDogSexState(true);
             }}
           />
-          <button className="on" onClick={next} disabled={!dogNameState}>
+          <button className="on" onClick={next}>
             다음
           </button>
         </div>
       )}
-
       {signNumber === 1 && (
         <div>
           <div> ({signNumber + 1}/5)</div>
@@ -154,7 +180,12 @@ function SignUpForm() {
             강아지의 <br /> 성별은 어떻게 될까요?
           </h2>
           <div>
-            <input type="radio" name="dogSexRadio" value="Male" />
+            <input
+              type="radio"
+              name="dogSexRadio"
+              value="Male"
+              defaultChecked
+            />
             <label>남</label>
           </div>
           <div>
@@ -167,7 +198,6 @@ function SignUpForm() {
           </button>
         </div>
       )}
-
       {signNumber === 2 && (
         <div>
           <div> ({signNumber + 1}/5)</div>
@@ -179,7 +209,16 @@ function SignUpForm() {
           <div className="img_box">
             {change ? (
               // 이미지 선택시에는 선택한 이미지
-              <img src={imageSrc} alt="이미지를 불러올 수 없습니다" />
+              <div>
+                <img
+                  src={imageSrcs && imageSrcs[0]}
+                  alt="이미지를 불러올 수 없습니다"
+                />
+                <img
+                  src={imageSrcs && imageSrcs[1]}
+                  alt="이미지를 불러올 수 없습니다"
+                />
+              </div>
             ) : (
               // 이미지 비선택시에는 기본이미지(noImg.PNG)
               <img src={noImg} alt="이미지를 불러올 수 없습니다" />
@@ -191,6 +230,7 @@ function SignUpForm() {
           <input
             // 파일업로드 부분
             required
+            multiple
             className="file_input"
             id="image_file"
             type="file"
@@ -198,12 +238,26 @@ function SignUpForm() {
             onChange={(e) => {
               // OnFileUpload(e);
               // FileReader와 Promise객체 사용
-              readFile(e.target.files[0]);
-              // 이미지 비선택시 기본이미지를 위한 상태관리
-              setChange(true);
-              // post에 input에서 선택한 파일 넣어줌
-              setPost(e.target.files[0].name);
-              setDogDetailsState(true);
+              // debugger;
+
+              let readers = [];
+              for (let i = 0; i < e.target.files.length; i++) {
+                readers.push(readFileAsText(e.target.files[i]));
+              }
+
+              Promise.all(readers).then((values) => {
+                // Values will be an array that contains an item
+                // with the text of every selected file
+                // ["File1 Content", "File2 Content" ... "FileN Content"]
+
+                setImageSrcs(values.splice(0, 2));
+                //readFile(e.target.files[0]);
+                // 이미지 비선택시 기본이미지를 위한 상태관리
+                setChange(true);
+                // post에 input에서 선택한 파일 넣어줌
+                // setPost(e.target.files[0].name);
+                setDogDetailsState(true);
+              });
             }}
           />
           <div>
@@ -228,20 +282,19 @@ function SignUpForm() {
             required
             onChange={(e) => {
               setSignData({ ...signData, dogDetails: e.target.value });
-              // setGender(true);
             }}
           />
+
           <button
             className="on"
-            onClick={onSubmitHandler}
+            onClick={combinedHandler}
             disabled={!dogDetailsState}
           >
-            회원 가입
+            다음
           </button>
         </div>
       )}
-
-      {signNumber === 4 && (
+      {/* {signNumber === 4 && (
         <div>
           <div>
             가입을 축하드려요! <br /> 이제부터 본격적으로 <br /> 투개더🐶
@@ -251,8 +304,8 @@ function SignUpForm() {
             onClick={submitLogin}
             style={buttonStyle}
           >{`얼른 가자멍!`}</button>
-        </div>
-      )}
+        </div> */}
+      {/* )} */}
     </StForm>
   );
 }
