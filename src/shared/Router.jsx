@@ -14,12 +14,9 @@ import MyDog from "../pages/myDog/MyDog";
 import Kakao from "../pages/kakaoLogin/kakao";
 import ChatRoom from "../pages/chatting/ChatRoom";
 import WelcomePage from "../pages/welcomepage/WelcomePage";
-<<<<<<< HEAD
 import ChatWindow from "../pages/chatting/ChatWindow";
 import ChattingDetail from "../pages/chatting/ChattingDetail";
-=======
 import Address from "../pages/dogSignup/Address";
->>>>>>> 869c7698593095c89044ea84efa8fe4b172c0bd4
 
 const Router = () => {
   return (

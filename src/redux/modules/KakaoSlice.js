@@ -21,7 +21,8 @@ export const __kakaoLogin = createAsyncThunk(
 
         .then((res) => {
           const accessToken = res.headers.authorization;
-          localStorage.setItem("accessToken", accessToken);
+          sessionStorage.setItem("accessToken", accessToken);
+          console.log(res);
           return res;
         });
       console.log(data);
