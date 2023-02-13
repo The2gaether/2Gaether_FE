@@ -33,8 +33,8 @@ const Router = () => {
         <Route path="/chattingdetail" element={<ChattingDetail />} />
         <Route path="/chatroom" element={<ChatRoom />} />
         <Route path="/chatwindow" element={<ChatWindow />} />
-        <Route path="/addDog" element={<AddDog />} />
-        <Route path="/editDog" element={<EditDog />} />
+        {/* <Route path="/addDog" element={<AddDog />} /> */}
+        {/* <Route path="/editDog" element={<EditDog />} /> */}
         <Route path="/editUser" element={<EditUser />} />
         <Route path="/myDog/:id" element={<MyDog />} />
       </Routes>
