@@ -12,7 +12,6 @@ function SignUpForm() {
 
   // 버튼 활성화를 위한 상태관리
   const [formstate, setFormState] = useState(false);
-  // const [dogNameState, setDogNameState] = useState(true);
   const [dogSexState, setDogSexState] = useState(false);
   const [dogImagesState, setDogImagesState] = useState(false);
   const [dogDetailsState, setDogDetailsState] = useState(false);
@@ -27,13 +26,6 @@ function SignUpForm() {
 
   // 조건부 렌더링을 위한 상태관리
   const [signNumber, setSignNumber] = useState(0);
-
-  // input 데이터 저장하기 -> 지워도됨 상관없음
-  // const changeInput = (e) => {
-  //   const { value, id } = e.target;
-  //   setSignData({ ...signData, [id]: value });
-  //   console.log(signData);
-  // };
 
   // 파일 업로드를 위한 상태관리
   const [post, setPost] = useState("");
@@ -94,7 +86,7 @@ function SignUpForm() {
         return;
       }
 
-      setSignData({ ...signData, dogeImages: imageSrcs });
+      setSignData({ ...signData, dogImages: imageSrcs });
     }
 
     if (signNumber === 3) {
@@ -103,23 +95,35 @@ function SignUpForm() {
     setSignNumber((prevNumber) => prevNumber + 1);
   };
 
+  //핸드러
   const onSubmitHandler = async (event) => {
+    //debugger;
     if (signData.dogDetails === 0 || signData > 20) {
       return;
     }
     event.preventDefault();
-    // await axiostest11();
-    const checkState = await dispatch(
-      __postDog({
-        dogname: signData.dogName,
-        dogsex: signData.dogSex,
-        dogimages: signData.dogImages,
-        dogdetails: signData.dogDetails,
-      })
-    );
-    if (checkState.success) {
+    let frm = new FormData();
+    frm.append("dogname", signData.dogName);
+    frm.append("dogsex", signData.dogSex);
+    frm.append("dogimages", signData.dogImages);
+    frm.append("dogdetails", signData.dogDetails);
+    const checkState = await dispatch(__postDog(frm));
+
+    //const checkState = await dispatch(__postDog(frm));
+    if (checkState.error) {
       setSignNumber((prevNumber) => prevNumber + 1);
     }
+  };
+
+  //주소로 가는 코드
+  const handleClick = () => {
+    navigate("/address");
+  };
+
+  //합치는 코드(address로가는온클릭, 서브밋코드)
+  const combinedHandler = async (event) => {
+    await onSubmitHandler(event);
+    handleClick();
   };
 
   // 그동안 수집한 회원가입 데이터(signData)를 백에게 보냄
@@ -169,7 +173,6 @@ function SignUpForm() {
           </button>
         </div>
       )}
-
       {signNumber === 1 && (
         <div>
           <div> ({signNumber + 1}/5)</div>
@@ -195,7 +198,6 @@ function SignUpForm() {
           </button>
         </div>
       )}
-
       {signNumber === 2 && (
         <div>
           <div> ({signNumber + 1}/5)</div>
@@ -282,17 +284,17 @@ function SignUpForm() {
               setSignData({ ...signData, dogDetails: e.target.value });
             }}
           />
+
           <button
             className="on"
-            onClick={onSubmitHandler}
+            onClick={combinedHandler}
             disabled={!dogDetailsState}
           >
-            회원 가입
+            다음
           </button>
         </div>
       )}
-
-      {signNumber === 4 && (
+      {/* {signNumber === 4 && (
         <div>
           <div>
             가입을 축하드려요! <br /> 이제부터 본격적으로 <br /> 투개더🐶
@@ -302,8 +304,8 @@ function SignUpForm() {
             onClick={submitLogin}
             style={buttonStyle}
           >{`얼른 가자멍!`}</button>
-        </div>
-      )}
+        </div> */}
+      {/* )} */}
     </StForm>
   );
 }
