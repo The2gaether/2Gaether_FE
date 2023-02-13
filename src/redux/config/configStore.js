@@ -1,10 +1,12 @@
 import { configureStore } from "@reduxjs/toolkit";
 import kakaoList from "../modules/kakaoSlice";
-import chatcollect from "../modules/chatSlice";
+import chatcollect from "../modules/chattingSlice";
 import chat from "../modules/chatSlice";
 import socket from "../modules/socketSlice";
 import messages from "../modules/socketSlice";
 import userList from "../modules/userSlice";
+import chatting from "../modules/chatWindowSlice";
+
 /* import signupSlice from "../modules/signupSlice";
  */
 /**
@@ -23,6 +25,7 @@ const store = configureStore({
     chat,
     socket,
     messages,
+    chatting,
   },
 });
 export default store;
