@@ -7,7 +7,6 @@ import GiveLove from "../pages/loveList/giveLove/GiveLove";
 import GetLove from "../pages/loveList/getLove/GetLove";
 import DogSignUp from "../pages/dogSignup/DogSignUp";
 import ChattingList from "../pages/chattingList/ChattingList";
-import Chatting from "../pages/chatting/Chatting";
 import AddDog from "../pages/addDog/AddDog";
 import EditDog from "../pages/editDog/EditDog";
 import EditUser from "../pages/editUser/EditUser";
@@ -16,6 +15,7 @@ import Kakao from "../pages/kakaoLogin/kakao";
 import ChatRoom from "../pages/chatting/ChatRoom";
 import WelcomePage from "../pages/welcomepage/WelcomePage";
 import ChatWindow from "../pages/chatting/ChatWindow";
+import ChattingDetail from "../pages/chatting/ChattingDetail";
 
 const Router = () => {
   return (
@@ -29,8 +29,8 @@ const Router = () => {
         <Route path="/dogSignUp" element={<DogSignUp />} />
         <Route path="/giveLove" element={<GiveLove />} />
         <Route path="/getLove" element={<GetLove />} />
-        {/* <Route path="/chattingList" element={<ChattingList />} /> */}
-        <Route path="/chatting" element={<Chatting />} />
+        <Route path="/chattingList" element={<ChattingList />} />
+        <Route path="/chattingdetail" element={<ChattingDetail />} />
         <Route path="/chatroom" element={<ChatRoom />} />
         <Route path="/chatwindow" element={<ChatWindow />} />
         {/* <Route path="/addDog" element={<AddDog />} /> */}
