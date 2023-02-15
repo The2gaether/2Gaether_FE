@@ -3,7 +3,7 @@ import styled from "styled-components";
 import { useNavigate } from "react-router-dom";
 import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { __postUser } from "../../redux/modules/userSlice";
+import { __postUser, __checkId } from "../../redux/modules/userSlice";
 
 function SignUp() {
   const navigate = useNavigate();
@@ -78,7 +78,17 @@ function SignUp() {
     );
     navigate("/login");
   };
-  console.log(email);
+  const onSubmitUserCheckHandler = (e) => {
+    e.preventDefault();
+    if (email.trim() === "") {
+      return alert("이메일 입력스!");
+    }
+    dispatch(
+      __checkId({
+        email,
+      })
+    );
+  };
 
   return (
     <Container>
