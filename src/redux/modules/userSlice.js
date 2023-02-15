@@ -57,7 +57,7 @@ export const __postUser = createAsyncThunk(
     }
   }
 );
-
+//이메일 중복체크
 export const __checkId = createAsyncThunk(
   "account/checkId",
   async (payload, thunkAPI) => {
