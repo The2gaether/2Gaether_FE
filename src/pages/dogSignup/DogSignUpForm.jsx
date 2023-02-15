@@ -137,9 +137,7 @@ function SignUpForm() {
   };
 
   const buttonStyle = {
-    background: formstate
-      ? "linear-gradient(50deg, #ff398c, #ef734a)"
-      : "white",
+    background: formstate ? "linear-gradient(50deg, #ff398c, #ef734a)" : "white",
     color: formstate ? "white" : "black",
     disabled: !formstate,
   };
@@ -180,12 +178,7 @@ function SignUpForm() {
             강아지의 <br /> 성별은 어떻게 될까요?
           </h2>
           <div>
-            <input
-              type="radio"
-              name="dogSexRadio"
-              value="Male"
-              defaultChecked
-            />
+            <input type="radio" name="dogSexRadio" value="Male" defaultChecked />
             <label>남</label>
           </div>
           <div>
@@ -210,14 +203,8 @@ function SignUpForm() {
             {change ? (
               // 이미지 선택시에는 선택한 이미지
               <div>
-                <img
-                  src={imageSrcs && imageSrcs[0]}
-                  alt="이미지를 불러올 수 없습니다"
-                />
-                <img
-                  src={imageSrcs && imageSrcs[1]}
-                  alt="이미지를 불러올 수 없습니다"
-                />
+                <img src={imageSrcs && imageSrcs[0]} alt="이미지를 불러올 수 없습니다" />
+                <img src={imageSrcs && imageSrcs[1]} alt="이미지를 불러올 수 없습니다" />
               </div>
             ) : (
               // 이미지 비선택시에는 기본이미지(noImg.PNG)
@@ -285,11 +272,7 @@ function SignUpForm() {
             }}
           />
 
-          <button
-            className="on"
-            onClick={combinedHandler}
-            disabled={!dogDetailsState}
-          >
+          <button className="on" onClick={combinedHandler} disabled={!dogDetailsState}>
             다음
           </button>
         </div>

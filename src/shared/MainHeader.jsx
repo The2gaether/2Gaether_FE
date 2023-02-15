@@ -1,37 +1,24 @@
 import React from "react";
 import styled from "styled-components";
-import PersonIcon from "@mui/icons-material/Person";
-import ForumIcon from "@mui/icons-material/Forum";
+import ArrowBackIcon from "@mui/icons-material/ArrowBack";
 import IconButton from "@mui/material/IconButton";
 import FavoriteIcon from "@mui/icons-material/Favorite";
-import { useNavigate } from "react-router-dom";
+import { useNavigate } from "react-router";
 
 function Header() {
   const navigate = useNavigate();
 
+  const handleHistory = () => {
+    navigate(-1);
+  };
+
   return (
     <StHeader>
-      <IconButton
-        onClick={() => {
-          navigate("/editUser");
-        }}
-      >
-        <PersonIcon className="header_logo" fontSize="large" />
-      </IconButton>
       <IconButton>
-        <img
-          className="logo"
-          src="https://image.rocketpunch.com/company/88741/tinder_logo_1546049672.png?s=400x400&t=inside"
-          onClick={() => {
-            navigate("/");
-          }}
-        />
+        <ArrowBackIcon className="header_logo" fontSize="large" onClick={handleHistory} />
       </IconButton>
-      <IconButton
-        onClick={() => {
-          navigate("/giveLove");
-        }}
-      >
+
+      <IconButton>
         <FavoriteIcon className="header_logo" fontSize="large" />
       </IconButton>
     </StHeader>

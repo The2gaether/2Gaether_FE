@@ -49,7 +49,6 @@ function Address() {
         <div>
           <input value={inputZipCodeValue}></input>
           <input value={inputAddressValue}></input>
-          {/* <input>상세주소 넣기 </input> */}
         </div>
       )}
     </div>

@@ -1,23 +1,21 @@
 import React, { useEffect, useState } from "react";
 import styled from "styled-components";
-import TinderCard from "react-tinder-card";
 import axios from "axios";
+import IconButton from "@material-ui/core/IconButton";
+import FavoriteBorderIcon from "@mui/icons-material/FavoriteBorder";
+import ClearIcon from "@mui/icons-material/Clear";
 
 const Home = () => {
   const [dogs, setDogs] = useState([]);
-  const [lastDirection, setLastDirection] = useState();
-
-  const swiped = (direction, nameToDelete) => {
-    setLastDirection(direction);
-  };
-
-  const outOfFrame = (name) => {
-    console.log(name + "왼쪽으로 스크린");
-  };
 
   const fetchList = async () => {
     const { data } = await axios.get(`${process.env.REACT_APP_DOG}/userList`);
     setDogs(data);
+  };
+
+  const handleFavoriteClick = (person) => {
+    alert("정말 매치하겠냐멍?");
+    // setDogs(...dogs, person);
   };
 
   useEffect(() => {
@@ -28,27 +26,28 @@ const Home = () => {
 
   return (
     <div>
+      <Space />
       <Container>
         {dogs.map((person) => (
-          <TinderCard
-            // TinderCard 필수 예제이다
-            className="swipe"
-            //key 값을 지정해준다
-            key={person.id}
-            //고정 시켜주기위한 스타일
-            style={{ position: "absolute" }}
-            //위 아래로 움직이는 것을 방지해준다
-            preventSwipe={["up", "down"]}
-            //스와이프 되었을때 나타나는 값
-            onSwipe={(dir) => swiped(dir, person.name)}
-            onCardLeftScreen={() => outOfFrame(person.name)}
-          >
+          <CardContainer key={person.id}>
             <StPeople style={{ backgroundImage: `url(${person.url})` }}>
               <StName>{person.name}</StName>
             </StPeople>
-          </TinderCard>
+            <Space />
+            <div className="btnGruop">
+              <div className="circleBorder">
+                <IconButton onClick={() => handleFavoriteClick()}>
+                  <FavoriteBorderIcon className="icon" />
+                </IconButton>
+              </div>
+              <div className="circleBorder">
+                <IconButton>
+                  <ClearIcon className="icon" />
+                </IconButton>
+              </div>
+            </div>
+          </CardContainer>
         ))}
-        <div className="swipe-info">{lastDirection ? <p>넌 {lastDirection}</p> : <p />}</div>
       </Container>
     </div>
   );
@@ -57,7 +56,7 @@ const Home = () => {
 export default Home;
 
 const StPeople = styled.div`
-  position: relative;
+  //사진파일을 한 위치에 고정
   width: 600px;
   padding: 10px;
   max-width: 85vw;
@@ -66,6 +65,30 @@ const StPeople = styled.div`
   background-size: cover;
   background-position: center;
   box-shadow: 0px 18px 53px 0px rgba(0, 0, 0, 0.3);
+`;
+
+const CardContainer = styled.div`
+  position: absolute;
+  .btnGruop {
+    display: flex;
+    justify-content: flex-start;
+  }
+
+  .circleBorder {
+    margin: 0 auto;
+    width: 100px;
+    height: 100px;
+    border: 15px solid rgb(163, 151, 198);
+    border-radius: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+
+  .icon {
+    color: rgb(163, 151, 198);
+    font-size: xxx-large;
+  }
 `;
 
 const Container = styled.div`
@@ -88,4 +111,9 @@ const StName = styled.h3`
   font-size: xx-large;
   top: 10px;
   color: #9365dd;
+`;
+
+const Space = styled.div`
+  height: 70px;
+  width: 20px;
 `;

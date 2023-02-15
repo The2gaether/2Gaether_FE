@@ -1,14 +1,12 @@
 import React from "react";
 import MainCard from "./components/MainCard";
-import MainHeader from "../../shared/MainHeader";
-import Buttons from "./components/Buttons";
+import Footer from "../../shared/Footer";
 
 const Home = () => {
   return (
     <div>
-      <MainHeader />
       <MainCard />
-      <Buttons />
+      <Footer />
     </div>
   );
 };
