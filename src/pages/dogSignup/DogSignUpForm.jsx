@@ -102,12 +102,12 @@ function SignUpForm() {
       return;
     }
     event.preventDefault();
-    let frm = new FormData();
-    frm.append("dogName", signData.dogName);
-    frm.append("dogSex", signData.dogSex);
-    frm.append("images", signData.dogImages);
-    frm.append("dogDetails", signData.dogDetails);
-    const checkState = await dispatch(__postDog(frm));
+    // let frm = new FormData();
+    // frm.append("dogName", signData.dogName);
+    // frm.append("dogSex", signData.dogSex);
+    // frm.append("images", signData.dogImages);
+    // frm.append("dogDetails", signData.dogDetails);
+    const checkState = await dispatch(__postDog(signData));
 
     //const checkState = await dispatch(__postDog(frm));
     if (checkState.error) {
