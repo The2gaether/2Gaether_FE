@@ -70,6 +70,7 @@ function Address() {
 
   return (
     <div>
+<<<<<<< HEAD
       <AddForm onSubmit={submitLogin}>
         <TopBox>
           <div>간편하게 가입하고</div>
@@ -105,6 +106,21 @@ function Address() {
           </div>
         )}
       </AddForm>
+=======
+      주소찍기
+      <DaumPostcode
+        //style={postCodeStyle}
+        onComplete={onCompletePost}
+      ></DaumPostcode>
+      TEST!!!
+      {!modalState && "ㅇㅇㅇㅇ"}
+      {!modalState && (
+        <div>
+          <input value={inputZipCodeValue}></input>
+          <input value={inputAddressValue}></input>
+        </div>
+      )}
+>>>>>>> a1295c941962e52e350e6f15655186984803c624
     </div>
   );
 }
