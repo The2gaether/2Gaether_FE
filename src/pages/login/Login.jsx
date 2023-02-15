@@ -21,7 +21,6 @@ function Login() {
 
   //로그인 체크 전역변수 불러오기
   const loginCheck = useSelector((state) => state.userList.isLogin);
-  console.log(loginCheck);
 
   //로그인 핸들러
   const onChangeLoginHandler = (e) => {
@@ -38,8 +37,8 @@ function Login() {
   };
 
   useEffect(() => {
-    navigate("/dogsignup");
-  });
+    loginCheck && navigate("/dogsignup");
+  }, [loginCheck, navigate]);
 
   return (
     <Container>
@@ -151,7 +150,7 @@ const SignUpBtn = styled.button`
   border: none;
   border-radius: 50px;
   margin-top: 12px;
-  background-color: #2f58ac;
+  background-color: gray;
   color: white;
   text-align: center;
   padding: 8px 0px;
@@ -163,7 +162,7 @@ const LogInBtn = styled.button`
   border: none;
   border-radius: 50px;
   margin-top: 12px;
-  background-color: #2f58ac;
+  background-color: gray;
   color: white;
   text-align: center;
   padding: 8px 0px;
