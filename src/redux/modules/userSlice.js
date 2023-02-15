@@ -72,6 +72,9 @@ export const __checkId = createAsyncThunk(
       console.log(data);
       return thunkAPI.fulfillWithValue(data);
     } catch (error) {
+      if (400 < error.status < 500) {
+        alert(error.response.data.message);
+      }
       return thunkAPI.rejectWithValue(error);
     }
   }
@@ -90,7 +93,6 @@ const userList = createSlice({
     [__postUser.fulfilled]: (state, action) => {
       //연결후
       state.isLoading = false;
-      alert("가입이 완료 되셨습니다!");
     },
     [__postUser.rejected]: (state, action) => {
       state.isLoading = false;
