@@ -6,10 +6,10 @@ axios.defaults.withCredentials = true;
 const initialState = {
   dogInfo: [
     {
-      dogname: "",
-      dogsex: "",
-      dogimages: "",
-      dogdetails: "",
+      dogName: "",
+      dogSex: "",
+      images: "",
+      dogDetails: "",
     },
   ],
   isLoading: false,
@@ -22,10 +22,12 @@ const initialState = {
 export const __postDog = createAsyncThunk("signup", async (payload, thunkAPI) => {
   try {
     console.log(payload);
+    const Authorization = sessionStorage.setItem("accessToken");
     const { data } = await axios.post("https://midcon.shop/dogs", payload, {
       //폼데이터로 보내야해서 바꿔줌
       headers: {
         "Content-Type": "multipart/form-data",
+        Authorization,
       },
     });
     console.log(data);

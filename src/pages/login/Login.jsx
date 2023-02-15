@@ -150,7 +150,7 @@ const SignUpBtn = styled.button`
   border: none;
   border-radius: 50px;
   margin-top: 12px;
-  background-color: gray;
+  background-color: #2f58ac;
   color: white;
   text-align: center;
   padding: 8px 0px;
@@ -162,7 +162,7 @@ const LogInBtn = styled.button`
   border: none;
   border-radius: 50px;
   margin-top: 12px;
-  background-color: gray;
+  background-color: #4269b4;
   color: white;
   text-align: center;
   padding: 8px 0px;
