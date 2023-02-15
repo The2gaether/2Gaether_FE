@@ -103,10 +103,10 @@ function SignUpForm() {
     }
     event.preventDefault();
     let frm = new FormData();
-    frm.append("dogname", signData.dogName);
-    frm.append("dogsex", signData.dogSex);
-    frm.append("dogimages", signData.dogImages);
-    frm.append("dogdetails", signData.dogDetails);
+    frm.append("dogName", signData.dogName);
+    frm.append("dogSex", signData.dogSex);
+    frm.append("images", signData.dogImages);
+    frm.append("dogDetails", signData.dogDetails);
     const checkState = await dispatch(__postDog(frm));
 
     //const checkState = await dispatch(__postDog(frm));
