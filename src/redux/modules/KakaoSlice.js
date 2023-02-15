@@ -23,12 +23,9 @@ export const __kakaoLogin = createAsyncThunk("login", async (payload, thunkAPI) 
         console.log(res);
         return res;
       });
-    // console.log(data);
-    // return thunkAPI.fulfillWithValue(data.data);
+    console.log(data);
+    return thunkAPI.fulfillWithValue(data.data);
   } catch (error) {
-    // if (400 < error.status < 500) {
-    //   alert(error.response.data.message);
-    // }
     return thunkAPI.rejectWithValue(error);
   }
 });

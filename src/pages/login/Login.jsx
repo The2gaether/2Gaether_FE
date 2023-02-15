@@ -38,8 +38,8 @@ function Login() {
   };
 
   useEffect(() => {
-    loginCheck && navigate("/dogsignup");
-  }, [loginCheck, navigate]);
+    navigate("/dogsignup");
+  });
 
   return (
     <Container>
@@ -163,7 +163,7 @@ const LogInBtn = styled.button`
   border: none;
   border-radius: 50px;
   margin-top: 12px;
-  background-color: #1877f2;
+  background-color: #2f58ac;
   color: white;
   text-align: center;
   padding: 8px 0px;
