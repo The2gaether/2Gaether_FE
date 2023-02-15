@@ -90,7 +90,7 @@ function SignUp() {
   const onSubmitUserCheckHandler = (e) => {
     e.preventDefault();
     if (email.trim() === "") {
-      return alert("이메일 입력해주세요!");
+      return alert("이메일 입력스!");
     }
     dispatch(
       __checkId({
