@@ -30,6 +30,7 @@ export const __postDog = createAsyncThunk(
           "Content-Type": "multipart/form-data",
         },
       });
+      console.log(data);
       return thunkAPI.fulfillWithValue(data);
     } catch (error) {
       return thunkAPI.rejectWithValue(error);

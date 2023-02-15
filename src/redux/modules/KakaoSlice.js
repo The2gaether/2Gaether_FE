@@ -28,9 +28,6 @@ export const __kakaoLogin = createAsyncThunk(
       console.log(data);
       return thunkAPI.fulfillWithValue(data.data);
     } catch (error) {
-      if (400 < error.status < 500) {
-        alert(error.response.data.message);
-      }
       return thunkAPI.rejectWithValue(error);
     }
   }

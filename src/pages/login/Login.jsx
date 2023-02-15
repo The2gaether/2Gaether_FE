@@ -21,7 +21,6 @@ function Login() {
 
   //로그인 체크 전역변수 불러오기
   const loginCheck = useSelector((state) => state.userList.isLogin);
-  console.log(loginCheck);
 
   //로그인 핸들러
   const onChangeLoginHandler = (e) => {
@@ -38,7 +37,7 @@ function Login() {
   };
 
   useEffect(() => {
-    loginCheck && navigate("/");
+    loginCheck && navigate("/dogsignup");
   }, [loginCheck, navigate]);
 
   return (
