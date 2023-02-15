@@ -6,9 +6,6 @@ import { __kakaoLogin } from "../../redux/modules/kakaoSlice";
 const Kakao = () => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
-  //로그인 체크 전역변수 불러오기
-  const loginCheck = useSelector((state) => state.kakaoList.isLogin);
-  console.log(loginCheck);
 
   //현재 url의 파라미터를 가져옴
   let params = new URL(window.location.href).searchParams;
@@ -17,10 +14,6 @@ const Kakao = () => {
   let code = params.get("code");
   console.log(code);
 
-  /*   useEffect(() => {
-    //백엔드로 쿠키 토큰 전송
-    dispatch(__kakaoLogin(params));
-  }, []); */
   dispatch(
     __kakaoLogin({
       code,
@@ -28,8 +21,8 @@ const Kakao = () => {
   );
 
   useEffect(() => {
-    loginCheck && navigate("/dogSignUp");
-  }, [loginCheck, navigate]);
+    navigate("/dogSignUp");
+  });
 
   return (
     <div>

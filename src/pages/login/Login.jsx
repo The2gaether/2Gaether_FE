@@ -38,8 +38,8 @@ function Login() {
   };
 
   useEffect(() => {
-    loginCheck && navigate("/dogsignup");
-  }, [loginCheck, navigate]);
+    navigate("/dogsignup");
+  });
 
   return (
     <Container>

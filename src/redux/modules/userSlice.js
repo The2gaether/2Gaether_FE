@@ -23,7 +23,7 @@ export const __postLogin = createAsyncThunk(
     try {
       const res = await axios.post("https://midcon.shop/users/login", payload);
 
-      sessionStorage.setItem("access_token", res.headers.authorization);
+      sessionStorage.setItem("accessToken", res.headers.authorization);
       // sessionStorage.setItem("refresh_token", res.headers.authorization);
       console.log(res);
       return thunkAPI.fulfillWithValue();
