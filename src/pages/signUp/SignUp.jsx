@@ -3,7 +3,7 @@ import styled from "styled-components";
 import { useNavigate } from "react-router-dom";
 import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { __postUser } from "../../redux/modules/userSlice";
+import { __postUser, __checkId } from "../../redux/modules/userSlice";
 
 function SignUp() {
   const navigate = useNavigate();
@@ -84,9 +84,20 @@ function SignUp() {
         password,
       })
     );
-    navigate("/dogSignUp");
+    navigate("/login");
   };
-  console.log(email);
+
+  const onSubmitUserCheckHandler = (e) => {
+    e.preventDefault();
+    if (email.trim() === "") {
+      return alert("이메일 입력해주세요!");
+    }
+    dispatch(
+      __checkId({
+        email,
+      })
+    );
+  };
 
   return (
     <Container>
@@ -118,6 +129,7 @@ function SignUp() {
               placeholder="이메일을 입력해주세요"
               onChange={onChangeUserHandler}
             ></StInput>
+            <button onClick={onSubmitUserCheckHandler}>중복체크</button>
           </div>
           <p id="help-user" className="help">
             {emailInput}
