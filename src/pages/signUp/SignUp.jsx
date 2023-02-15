@@ -129,7 +129,7 @@ function SignUp() {
               placeholder="이메일을 입력해주세요"
               onChange={onChangeUserHandler}
             ></StInput>
-            <button onClick={onSubmitUserCheckHandler}>중복체크</button>
+            <button onClick={onSubmitUserCheckHandler}>중복</button>
           </div>
           <p id="help-user" className="help">
             {emailInput}
