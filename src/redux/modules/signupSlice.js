@@ -8,7 +8,7 @@ const initialState = {
     {
       dogName: "",
       dogSex: "",
-      images: "",
+      imgFile: "",
       dogDetails: "",
     },
   ],
@@ -19,16 +19,33 @@ const initialState = {
 
 //강아지 정보입력 post 요청
 
+<<<<<<< HEAD
 
+=======
+>>>>>>> a67ef288ab3f55e329b53669cfbb2e75baed1449
 export const __postDog = createAsyncThunk(
   "signup",
   async (payload, thunkAPI) => {
+    console.log(payload);
+    const Authorization = sessionStorage.getItem("accessToken");
+
+    const frm = new FormData();
+
+    Object.values(payload.imgFile).forEach((file) =>
+      frm.append("images", file)
+    );
+    frm.append("dogName", payload.dogName);
+    frm.append("dogSex", payload.dogSex);
+    /*   frm.append("images", payload.images); */
+    frm.append("dogDetails", payload.dogDetails);
+
     try {
-      console.log(payload);
+      console.log(Authorization);
       const { data } = await axios.post("https://midcon.shop/dogs", payload, {
         //폼데이터로 보내야해서 바꿔줌
         headers: {
           "Content-Type": "multipart/form-data",
+          Authorization,
         },
       });
       console.log(data);
@@ -36,6 +53,7 @@ export const __postDog = createAsyncThunk(
     } catch (error) {
       return thunkAPI.rejectWithValue(error);
     }
+<<<<<<< HEAD
 
 export const __postDog = createAsyncThunk("signup", async (payload, thunkAPI) => {
   try {
@@ -53,28 +71,30 @@ export const __postDog = createAsyncThunk("signup", async (payload, thunkAPI) =>
   } catch (error) {
     return thunkAPI.rejectWithValue(error);
 
+=======
+>>>>>>> a67ef288ab3f55e329b53669cfbb2e75baed1449
   }
 
 
-const userList = createSlice({
-  name: "userList",
+const dogInfo = createSlice({
+  name: "dogInfo",
   initialState,
   reducers: {},
   extraReducers: {
-    //post
     [__postDog.pending]: (state) => {
-      //보내는 도중, 진행중
+      state.isSuccess = false;
       state.isLoading = true;
     },
     [__postDog.fulfilled]: (state, action) => {
-      //연결후
+      state.isSuccess = true;
       state.isLoading = false;
-      alert("가입이 완료 되셨습니다!");
+      console.log(action.meta.arg);
+      state.posts.push(action.payload);
     },
     [__postDog.rejected]: (state, action) => {
       state.isLoading = false;
       state.error = action.payload;
-    }, //post
+    },
   },
 });
-export default userList.reducer;
+export default dogInfo.reducer;
