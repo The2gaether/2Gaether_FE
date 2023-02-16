@@ -19,7 +19,7 @@ const initialState = {
 
 //강아지 정보입력 post 요청
 
-<<<<<<< HEAD
+
 export const __postDog = createAsyncThunk(
   "signup",
   async (payload, thunkAPI) => {
@@ -36,7 +36,7 @@ export const __postDog = createAsyncThunk(
     } catch (error) {
       return thunkAPI.rejectWithValue(error);
     }
-=======
+
 export const __postDog = createAsyncThunk("signup", async (payload, thunkAPI) => {
   try {
     console.log(payload);
@@ -52,9 +52,9 @@ export const __postDog = createAsyncThunk("signup", async (payload, thunkAPI) =>
     return thunkAPI.fulfillWithValue(data);
   } catch (error) {
     return thunkAPI.rejectWithValue(error);
->>>>>>> a0b475c6156404d49598124725e15ca07c0070c5
+
   }
-);
+
 
 const userList = createSlice({
   name: "userList",
