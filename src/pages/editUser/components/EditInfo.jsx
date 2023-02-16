@@ -1,22 +1,32 @@
 import React, { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import styled from "styled-components";
+// import EditNick from "./eachForm/EditNick";
 
 const EditInfo = ({ user }) => {
   const [editNick, setEditNick] = useState(false);
   const [editPsw, setEditPsw] = useState(false);
   const [editAddress, setEditAddress] = useState(false);
+  const navigate = useNavigate();
 
   return (
     <>
       <StForm>
         {!editNick ? (
-          <StOneInfo onClick={() => setEditNick(true)}>닉네임 : {user.name}</StOneInfo>
+          <StOneInfo
+            // onClick={() =>setEditNick(true)}
+            onClick={() => navigate("/mypage/editnick")}
+          >
+            닉네임 변경하기
+          </StOneInfo>
         ) : (
           <StEditSet>
-            <StEdit placeholder={`${user.name}`} />
+            <StEdit
+            // placeholder={`${user.username}`}
+            />
             <Stbtn onClick={() => setEditNick(false)}>취소</Stbtn>
           </StEditSet>
+          // <EditNick />
         )}
         {!editPsw ? (
           <StOneInfo onClick={() => setEditPsw(true)}>비밀번호 변경</StOneInfo>
@@ -27,17 +37,21 @@ const EditInfo = ({ user }) => {
           </StEditSet>
         )}
         {!editAddress ? (
-          <StOneInfo onClick={() => setEditAddress(true)}>주소 : {user.address}</StOneInfo>
+          <StOneInfo onClick={() => setEditAddress(true)}>
+            주소변경하기{/* {user.latitude} */}
+          </StOneInfo>
         ) : (
           <StEditSet>
-            <StEdit placeholder={`${user.address}`} />
+            <StEdit
+            //  placeholder={`${user.latitude}`}
+            />
             <Stbtn onClick={() => setEditAddress(false)}>취소</Stbtn>
           </StEditSet>
         )}
-
+        {/* 
         <Stbtn onClick={() => {}} alert={"수정이 완료되었습니다"}>
           저장
-        </Stbtn>
+        </Stbtn> */}
       </StForm>
     </>
   );
@@ -62,7 +76,7 @@ const StEditSet = styled.div`
 
 const StOneInfo = styled.div`
   border: 1px solid black;
-  width: 600px;
+  width: 200px;
   max-width: 85vw;
   height: 5vh;
   display: flex;
@@ -72,7 +86,7 @@ const StOneInfo = styled.div`
 `;
 
 const StEdit = styled.input`
-  width: 600px;
+  width: 200px;
   padding: 10px;
   max-width: 85vw;
   height: 5vh;

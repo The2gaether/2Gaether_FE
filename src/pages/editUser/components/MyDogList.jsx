@@ -2,18 +2,18 @@ import React, { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import styled from "styled-components";
 
-const MyDogList = ({ key, person }) => {
+const MyDogList = ({ key, dog }) => {
   const navigate = useNavigate();
   return (
     <>
       <div
-        key={person.id}
+        key={dog.id}
         onClick={() => {
-          navigate(`/mydog/${person.id}`);
+          navigate(`/mydog/${dog.id}`);
         }}
       >
-        <StPeople style={{ backgroundImage: `url(${person.url})` }}>
-          <StName>{person.name}</StName>
+        <StPeople style={{ backgroundImage: `url(${dog.profileImages})` }}>
+          <StName>{dog.dogName}</StName>
         </StPeople>
       </div>
     </>

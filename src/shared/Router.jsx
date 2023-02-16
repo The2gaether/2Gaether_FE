@@ -17,6 +17,9 @@ import WelcomePage from "../pages/welcomepage/WelcomePage";
 import ChatWindow from "../pages/chatting/ChatWindow";
 import ChattingDetail from "../pages/chatting/ChattingDetail";
 import Address from "../pages/dogSignup/Address";
+import EditNick from "../pages/editUser/components/eachForm/EditNick";
+import EditPsw from "../pages/editUser/components/eachForm/EditPsw";
+
 const Router = () => {
   return (
     <BrowserRouter>
@@ -35,7 +38,9 @@ const Router = () => {
         <Route path="/chatwindow" element={<ChatWindow />} />
         {/* <Route path="/addDog" element={<AddDog />} /> */}
         {/* <Route path="/editDog" element={<EditDog />} /> */}
-        <Route path="/editUser" element={<EditUser />} />
+        <Route path="/mypage" element={<EditUser />} />
+        <Route path="/mypage/editnick" element={<EditNick />} />
+        <Route path="/mypage/editpsw" element={<EditPsw />} />
         <Route path="/myDog/:id" element={<MyDog />} />
         <Route path="/address" element={<Address />} />
       </Routes>
