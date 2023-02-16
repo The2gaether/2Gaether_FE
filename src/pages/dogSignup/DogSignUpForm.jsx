@@ -20,7 +20,7 @@ function SignUpForm() {
   const [signData, setSignData] = useState({
     dogName: "",
     dogSex: "",
-    dogImages: "",
+    images: "",
     dogDetails: "",
   });
 
@@ -32,6 +32,8 @@ function SignUpForm() {
   const [change, setChange] = useState(false);
   const [imageSrc, setImageSrc] = useState();
   const [imageSrcs, setImageSrcs] = useState();
+  const [imgFile, setImgFile] = useState(null); //파일
+  const [imgBase64, setImgBase64] = useState([]); // 파일 base64
 
   const readFile = async (fileBlob) => {
     const reader = new FileReader();
@@ -86,13 +88,30 @@ function SignUpForm() {
         return;
       }
 
-      setSignData({ ...signData, dogImages: imageSrcs });
+      setSignData({ ...signData, images: imageSrcs });
     }
 
     if (signNumber === 3) {
     }
     e.preventDefault();
     setSignNumber((prevNumber) => prevNumber + 1);
+  };
+  const handleChangeFile = (event) => {
+    setImgFile(event.target.files);
+    setImgBase64([]);
+    for (var i = 0; i < event.target.files.length; i++) {
+      if (event.target.files[i]) {
+        let reader = new FileReader();
+        reader.readAsDataURL(event.target.files[i]);
+        reader.onloadend = () => {
+          const base64 = reader.result;
+          if (base64) {
+            var base64Sub = base64.toString();
+            setImgBase64((imgBase64) => [...imgBase64, base64Sub]);
+          }
+        };
+      }
+    }
   };
 
   //핸드러
@@ -102,12 +121,7 @@ function SignUpForm() {
       return;
     }
     event.preventDefault();
-    let frm = new FormData();
-    frm.append("dogName", signData.dogName);
-    frm.append("dogSex", signData.dogSex);
-    frm.append("images", signData.dogImages);
-    frm.append("dogDetails", signData.dogDetails);
-    const checkState = await dispatch(__postDog(frm));
+    const checkState = dispatch(__postDog(signData));
 
     //const checkState = await dispatch(__postDog(frm));
     if (checkState.error) {
@@ -137,7 +151,9 @@ function SignUpForm() {
   };
 
   const buttonStyle = {
-    background: formstate ? "linear-gradient(50deg, #ff398c, #ef734a)" : "white",
+    background: formstate
+      ? "linear-gradient(50deg, #ff398c, #ef734a)"
+      : "white",
     color: formstate ? "white" : "black",
     disabled: !formstate,
   };
@@ -178,7 +194,12 @@ function SignUpForm() {
             강아지의 <br /> 성별은 어떻게 될까요?
           </h2>
           <div>
-            <input type="radio" name="dogSexRadio" value="Male" defaultChecked />
+            <input
+              type="radio"
+              name="dogSexRadio"
+              value="Male"
+              defaultChecked
+            />
             <label>남</label>
           </div>
           <div>
@@ -203,8 +224,14 @@ function SignUpForm() {
             {change ? (
               // 이미지 선택시에는 선택한 이미지
               <div>
-                <img src={imageSrcs && imageSrcs[0]} alt="이미지를 불러올 수 없습니다" />
-                <img src={imageSrcs && imageSrcs[1]} alt="이미지를 불러올 수 없습니다" />
+                <img
+                  src={imageSrcs && imageSrcs[0]}
+                  alt="이미지를 불러올 수 없습니다"
+                />
+                <img
+                  src={imageSrcs && imageSrcs[1]}
+                  alt="이미지를 불러올 수 없습니다"
+                />
               </div>
             ) : (
               // 이미지 비선택시에는 기본이미지(noImg.PNG)
@@ -222,31 +249,19 @@ function SignUpForm() {
             id="image_file"
             type="file"
             accept="image/jpeg, image/jpg, image/png"
-            onChange={(e) => {
-              // OnFileUpload(e);
-              // FileReader와 Promise객체 사용
-              // debugger;
-
-              let readers = [];
-              for (let i = 0; i < e.target.files.length; i++) {
-                readers.push(readFileAsText(e.target.files[i]));
-              }
-
-              Promise.all(readers).then((values) => {
-                // Values will be an array that contains an item
-                // with the text of every selected file
-                // ["File1 Content", "File2 Content" ... "FileN Content"]
-
-                setImageSrcs(values.splice(0, 2));
-                //readFile(e.target.files[0]);
-                // 이미지 비선택시 기본이미지를 위한 상태관리
-                setChange(true);
-                // post에 input에서 선택한 파일 넣어줌
-                // setPost(e.target.files[0].name);
-                setDogDetailsState(true);
-              });
-            }}
+            onChange={handleChangeFile}
           />
+          {imgBase64.map((item) => {
+            return (
+              <img
+                key={Date.now()}
+                src={item}
+                alt="First slide"
+                style={{ width: "100%", height: "100%" }}
+              />
+            );
+          })}
+
           <div>
             <button className="on" onClick={next} disabled={!dogImagesState}>
               다음
@@ -272,7 +287,11 @@ function SignUpForm() {
             }}
           />
 
-          <button className="on" onClick={combinedHandler} disabled={!dogDetailsState}>
+          <button
+            className="on"
+            onClick={combinedHandler}
+            disabled={!dogDetailsState}
+          >
             다음
           </button>
         </div>

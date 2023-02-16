@@ -6,9 +6,7 @@ import socket from "../modules/socketSlice";
 import messages from "../modules/socketSlice";
 import userList from "../modules/userSlice";
 import chatting from "../modules/chatWindowSlice";
-
-/* import signupSlice from "../modules/signupSlice";
- */
+import dogInfo from "../modules/signupSlice";
 /**
  * import 해온 것은 slice.reducer 입니다.
  */
@@ -20,7 +18,7 @@ const store = configureStore({
   reducer: {
     kakaoList,
     userList,
-    /*    signupSlice, */
+    dogInfo,
     chatcollect,
     chat,
     socket,
