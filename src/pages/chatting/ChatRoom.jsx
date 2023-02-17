@@ -5,7 +5,7 @@ import styled from "styled-components";
 import { useNavigate } from "react-router-dom";
 import { IoChevronBackSharp } from "react-icons/io5";
 import SockJS from "sockjs-client";
-import { Stomp } from "@stomp/stompjs";
+import Stomp from "stompjs";
 import {
   addMessage,
   getMessage,
@@ -26,7 +26,7 @@ const ChatRoom = () => {
     "Refresh-Token": localStorage.getItem("refresh-Token"),
   };
 
-  const socket = new SockJS("https://jossiya.shop/ws-stomp");
+  const socket = new SockJS("https://midcon.shop/ws-stomp");
   const client = Stomp.over(socket);
 
   const chatList = useSelector((state) => state.chat.chat);
@@ -91,7 +91,7 @@ const ChatRoom = () => {
         // 소켓서버를 호출하고 header에 토큰을 확인한다
 
         client.subscribe(
-          `/sub/chat/room/${id}`,
+          `/sub/chat/room`,
           (data) => {
             const newMessage = JSON.parse(data.body); //JSON 문자열의 구문을 분석하고, 그 결과에서 JavaScript 값이나 객체를 생성
             dispatch(addMessage(newMessage));
@@ -125,7 +125,6 @@ const ChatRoom = () => {
       <ContentWrapper>
         <HeaderBox>
           <IoChevronBackSharp
-            style={{ margin: "0 0 0 10px", cursor: "pointer" }}
             onClick={() => {
               navigate("/chatList");
             }}
@@ -259,7 +258,7 @@ const ProBox = styled.div`
 const Wrapper = styled.div`
   display: flex;
   flex-direction: column;
-  height: 100%;
+  height: 800;
   background-color: #b2c7d9;
 `;
 
