@@ -5,12 +5,12 @@ import GivePagination from "./GivePagination";
 
 const GiveDogList = () => {
   const [dogs, setDogs] = useState([]);
-  const [limit, setLimit] = useState(4);
+  const [limit, setLimit] = useState(2);
   const [page, setPage] = useState(1);
   const offset = (page - 1) * limit;
 
   const fetchList = async () => {
-    const { data } = await axios.get(`${process.env.REACT_APP_DOG}/userList`);
+    const { data } = await axios.get(`http://localhost:3001/userList`);
     setDogs(data);
   };
 

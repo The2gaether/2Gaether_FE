@@ -30,7 +30,7 @@ function Footer() {
       </IconButton>
       <IconButton
         onClick={() => {
-          navigate("/editUser");
+          navigate("/mypage");
         }}
       >
         <PersonIcon fontSize="large" />

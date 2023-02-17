@@ -4,49 +4,59 @@ import styled from "styled-components";
 import MainHeader from "../../shared/MainHeader";
 import MyDogList from "./components/MyDogList";
 import EditInfo from "./components/EditInfo";
+import axios from "axios";
+import Footer from "../../shared/Footer";
 
 const EditUser = () => {
-  //임시
-  const user = { name: "김태리", password: "비밀", address: "서울특별시 강서구" };
-  const [people, setPeople] = useState([
-    {
-      name: "김태리",
-      url: "https://img.newspim.com/news/2021/02/15/2102151712128400.jpg",
-      id: 1,
-    },
-    {
-      name: "너무",
-      url: "https://image.ajunews.com/content/image/2022/09/21/20220921093319393088.jpg",
-      id: 2,
-    },
-    {
-      name: "이뻐요",
-      url: "https://pds.joongang.co.kr//news/component/htmlphoto_mmdata/201803/19/7232f0dd-daa8-4ffb-b8d3-8dbb60e75442.jpg",
-      id: 3,
-    },
-  ]);
+  const [user, setUser] = useState();
+  const [dogs, setDogs] = useState([]);
 
-  // useEffect(() => {
-  //   fetchList();
-  // }, []);
+  const Authorization = sessionStorage.getItem("accessToken");
+  const fetchList = async () => {
+    const { data } = await axios.get(`${process.env.REACT_APP_DOG}/users/mypage`, {
+      headers: {
+        Authorization,
+      },
+    });
+    console.log(data);
+    console.log(data.myDogs);
+    setUser(data);
+    setDogs(data.myDogs);
+  };
+
+  useEffect(() => {
+    fetchList();
+  }, []);
 
   return (
     <>
       <MainHeader />
+
       <Container>
-        <EditInfo user={user} />
         <br />
+        <div>
+          <h1>안녕하세요{user?.username}님!</h1>
+          <div>{user?.latitude}</div>
+          <div>{user?.email}</div>
+        </div>
         <StImgGroup>
-          {people.map((person) => (
-            <MyDogList key={person.id} person={person} />
+          {dogs.map((dog) => (
+            <MyDogList key={dog.name} dog={dog} />
           ))}
         </StImgGroup>
+        <Space />
+        <EditInfo user={user} />
       </Container>
+      <Footer />
     </>
   );
 };
 
 export default EditUser;
+
+const Space = styled.div`
+  height: 10vh;
+`;
 
 const Container = styled.div`
   display: flex;
