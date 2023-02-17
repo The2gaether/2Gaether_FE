@@ -18,11 +18,6 @@ const initialState = {
 };
 
 //강아지 정보입력 post 요청
-
-<<<<<<< HEAD
-
-=======
->>>>>>> a67ef288ab3f55e329b53669cfbb2e75baed1449
 export const __postDog = createAsyncThunk(
   "signup",
   async (payload, thunkAPI) => {
@@ -31,50 +26,31 @@ export const __postDog = createAsyncThunk(
 
     const frm = new FormData();
 
-    Object.values(payload.imgFile).forEach((file) =>
-      frm.append("images", file)
-    );
+    Object.values(payload.images).forEach((file) => frm.append("images", file));
     frm.append("dogName", payload.dogName);
     frm.append("dogSex", payload.dogSex);
-    /*   frm.append("images", payload.images); */
     frm.append("dogDetails", payload.dogDetails);
 
     try {
       console.log(Authorization);
-      const { data } = await axios.post("https://midcon.shop/dogs", payload, {
-        //폼데이터로 보내야해서 바꿔줌
+      var config = {
+        method: "post",
+        maxBodyLength: Infinity,
+        url: "https://midcon.shop/dogs",
         headers: {
+          Authorization: Authorization,
           "Content-Type": "multipart/form-data",
-          Authorization,
         },
-      });
+        data: frm,
+      };
+      const { data } = await axios(config);
       console.log(data);
       return thunkAPI.fulfillWithValue(data);
     } catch (error) {
       return thunkAPI.rejectWithValue(error);
     }
-<<<<<<< HEAD
-
-export const __postDog = createAsyncThunk("signup", async (payload, thunkAPI) => {
-  try {
-    console.log(payload);
-    const Authorization = sessionStorage.setItem("accessToken");
-    const { data } = await axios.post("https://midcon.shop/dogs", payload, {
-      //폼데이터로 보내야해서 바꿔줌
-      headers: {
-        "Content-Type": "multipart/form-data",
-        Authorization,
-      },
-    });
-    console.log(data);
-    return thunkAPI.fulfillWithValue(data);
-  } catch (error) {
-    return thunkAPI.rejectWithValue(error);
-
-=======
->>>>>>> a67ef288ab3f55e329b53669cfbb2e75baed1449
   }
-
+);
 
 const dogInfo = createSlice({
   name: "dogInfo",
