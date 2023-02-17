@@ -31,7 +31,7 @@ const MyDog = () => {
             <StPeople style={{ backgroundImage: `url(${dog.url})` }}>
               <StName>{dog.name}</StName>
             </StPeople>
-            <div></div>
+            <button onClick={() => setEdit(true)}>변경</button>
           </div>
         ) : (
           <div>
