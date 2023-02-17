@@ -7,7 +7,7 @@ import GiveLove from "../pages/loveList/giveLove/GiveLove";
 import GetLove from "../pages/loveList/getLove/GetLove";
 import DogSignUp from "../pages/dogSignup/DogSignUp";
 import ChattingList from "../pages/chattingList/ChattingList";
-import EditUser from "../pages/editUser/EditUser";
+import EditUser from "../pages/myPage/MyPage";
 import MyDog from "../pages/myDog/MyDog";
 import Kakao from "../pages/kakaoLogin/kakao";
 import ChatRoom from "../pages/chatting/ChatRoom";
@@ -15,9 +15,9 @@ import WelcomePage from "../pages/welcomepage/WelcomePage";
 import ChatWindow from "../pages/chatting/ChatWindow";
 import ChattingDetail from "../pages/chatting/ChattingDetail";
 import Address from "../pages/dogSignup/Address";
-import EditNick from "../pages/editUser/components/eachForm/EditNick";
-import EditPsw from "../pages/editUser/components/eachForm/EditPsw";
-import AddDog from "../pages/editUser/components/eachForm/AddDog";
+import EditNick from "../pages/myPage/components/eachForm/EditNick";
+import EditPsw from "../pages/myPage/components/eachForm/EditPsw";
+import AddDog from "../pages/myPage/components/eachForm/AddDog";
 
 const Router = () => {
   const Authorization = sessionStorage.getItem("accessToken");

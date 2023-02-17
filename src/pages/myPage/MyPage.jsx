@@ -68,7 +68,7 @@ const Container = styled.div`
 `;
 
 const StImgGroup = styled.div`
-  padding-top: 100px;
+  padding-top: 5vh;
   display: flex;
   justify-content: center;
 `;

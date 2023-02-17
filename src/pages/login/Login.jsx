@@ -48,7 +48,6 @@ function Login() {
             <div>간편하게 로그인하고</div>
             <div>투개더를 이용해보세요</div>
           </TopBox>
-
           <StInput
             required
             type="text"
