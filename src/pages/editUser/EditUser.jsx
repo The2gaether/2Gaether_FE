@@ -18,7 +18,6 @@ const EditUser = () => {
         Authorization,
       },
     });
-    console.log(data);
     console.log(data.myDogs);
     setUser(data);
     setDogs(data.myDogs);
@@ -31,17 +30,17 @@ const EditUser = () => {
   return (
     <>
       <MainHeader />
-
       <Container>
         <br />
         <div>
-          <h1>안녕하세요{user?.username}님!</h1>
-          <div>{user?.latitude}</div>
-          <div>{user?.email}</div>
+          <div style={{ fontSize: "20px", fontWeight: "bold" }}>안녕하세요 {user?.username}님!</div>
+          <br />
+          <div>주소:{user?.latitude}</div>
+          <div style={{ fontSize: "15px" }}>{user?.email}</div>
         </div>
         <StImgGroup>
           {dogs.map((dog) => (
-            <MyDogList key={dog.name} dog={dog} />
+            <MyDogList key={dog.dogId} dog={dog} />
           ))}
         </StImgGroup>
         <Space />

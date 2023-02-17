@@ -3,6 +3,7 @@ import { useNavigate, useParams } from "react-router-dom";
 import styled from "styled-components";
 import MainHeader from "../../shared/MainHeader";
 import axios from "axios";
+import EditDog from "./editDog/EditDog";
 
 const MyDog = () => {
   const [edit, setEdit] = useState(false);
@@ -10,11 +11,11 @@ const MyDog = () => {
   const { id } = useParams();
 
   //임시 작동 안됨
-  const [people, setPeople] = useState({});
+  const [dog, setDog] = useState({});
   const fetchList = async () => {
-    const { data } = await axios.get(`${process.env.REACT_APP_DOG}/people/dog/${id}`);
+    const { data } = await axios.get(`${process.env.REACT_APP_DOG}/dogs/${id}`);
     console.log(data);
-    setPeople(data);
+    setDog(data);
   };
 
   useEffect(() => {
@@ -27,14 +28,14 @@ const MyDog = () => {
       <Container>
         {!edit ? (
           <div>
-            <StPeople style={{ backgroundImage: `url(${people.url})` }}>
-              <StName>{people.name}</StName>
+            <StPeople style={{ backgroundImage: `url(${dog.url})` }}>
+              <StName>{dog.name}</StName>
             </StPeople>
             <div></div>
           </div>
         ) : (
           <div>
-            <div>바이</div>
+            <EditDog />
           </div>
         )}
       </Container>
