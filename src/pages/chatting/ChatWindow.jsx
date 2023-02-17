@@ -5,8 +5,8 @@ import {
   sendMessage,
 } from "../../redux/modules/chatWindowSlice";
 import styled from "styled-components";
-import { Stomp } from "@stomp/stompjs";
 import SockJS from "sockjs-client";
+import Stomp from "stompjs";
 
 const ChatWindow = () => {
   // Redux 스토어에서 메시지, isLoading 및 오류 값을 가져옵니다
@@ -20,13 +20,13 @@ const ChatWindow = () => {
     dispatch(fetchMessages());
 
     // 웹 소켓에 연결
-    const socket = new SockJS("/ws");
+    const socket = new SockJS("https://midcon.shop/ws-stomp");
     const client = Stomp.over(socket);
     setStompClient(client);
-    client.connect({}, (frame) => {
-      console.log(`Connected: ${frame}`);
+    client.connect({}, (roomid) => {
+      console.log(`Connected: ${roomid}`);
       // 공개 주제를 구독하고 메시지 수신
-      client.subscribe("/topic/public", (message) => {
+      client.subscribe(`/sub/chat/room/${roomid}`, (message) => {
         // 메시지를 보낼 작업 발송
         const newMessage = JSON.parse(message.body);
         // 메시지를 보낼 작업 발송
