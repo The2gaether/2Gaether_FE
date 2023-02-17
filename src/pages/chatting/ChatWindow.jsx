@@ -11,6 +11,7 @@ import Stomp from "stompjs";
 const ChatWindow = () => {
   // Redux 스토어에서 메시지, isLoading 및 오류 값을 가져옵니다
   const { messages, isLoading, error } = useSelector((state) => state.messages);
+  console.log(messages);
   // Redux 스토어에서 디스패치 기능 가져오기
   const dispatch = useDispatch();
   // stompClient 상태를 null로 초기화합니다
@@ -40,7 +41,7 @@ const ChatWindow = () => {
   }, [dispatch]);
   // 서버에 메시지를 보내는 기능
   const handleSendMessage = (message) => {
-    stompClient.send("/app/chat.sendMessage", {}, JSON.stringify({ message }));
+    stompClient.send(`/pub/chat/message`, {}, JSON.stringify({ message }));
   };
 
   return (
