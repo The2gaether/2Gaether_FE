@@ -28,39 +28,8 @@ function SignUpForm() {
   const [signNumber, setSignNumber] = useState(0);
 
   // 파일 업로드를 위한 상태관리
-  const [post, setPost] = useState("");
-  const [change, setChange] = useState(false);
-  const [imageSrc, setImageSrc] = useState();
-  const [imageSrcs, setImageSrcs] = useState();
-  const [imgFile, setImgFile] = useState(null); //파일
-  const [imgBase64, setImgBase64] = useState([]); // 파일 base64
-
-  const readFile = async (fileBlob) => {
-    const reader = new FileReader();
-    reader.readAsDataURL(fileBlob);
-    return new Promise((resolve) => {
-      reader.onload = () => {
-        setImageSrc(reader.result);
-        resolve();
-      };
-    });
-  };
-
-  function readFileAsText(fileBlob) {
-    return new Promise(function (resolve, reject) {
-      let fr = new FileReader();
-
-      fr.onload = function () {
-        resolve(fr.result);
-      };
-
-      fr.onerror = function () {
-        reject(fr);
-      };
-
-      fr.readAsDataURL(fileBlob);
-    });
-  }
+  const [imageSrcs, setImageSrcs] = useState([]);
+  const [imageSrcsText, setImageSrcsText] = useState([]);
 
   //next 버튼 조건
   const next = (e) => {
@@ -87,7 +56,7 @@ function SignUpForm() {
       if (!imageSrcs) {
         return;
       }
-
+      setDogDetailsState(true);
       setSignData({ ...signData, images: imageSrcs });
     }
 
@@ -97,42 +66,45 @@ function SignUpForm() {
     setSignNumber((prevNumber) => prevNumber + 1);
   };
   const handleChangeFile = (event) => {
-    setImgFile(event.target.files);
-    setImgBase64([]);
-    for (var i = 0; i < event.target.files.length; i++) {
-      if (event.target.files[i]) {
-        let reader = new FileReader();
-        reader.readAsDataURL(event.target.files[i]);
-        reader.onloadend = () => {
-          const base64 = reader.result;
-          if (base64) {
-            var base64Sub = base64.toString();
-            setImgBase64((imgBase64) => [...imgBase64, base64Sub]);
-          }
-        };
-      }
+    let imageSrcTemp = imageSrcs;
+    let readers = [];
+    for (let i = 0; i < event.target.files.length; i++) {
+      readers.push(readFileAsText(event.target.files[i]));
+      imageSrcTemp.push(event.target.files[i]);
     }
+    Promise.all(readers).then((values) => {
+      let imageTemp = imageSrcsText;
+      values.forEach((value) => {
+        imageTemp = [...imageTemp, value];
+      });
+      setImageSrcsText(imageTemp.splice(0, 2));
+    });
+    setImageSrcs(imageSrcTemp.splice(0, 2));
   };
+
+  function readFileAsText(fileBlob) {
+    return new Promise(function (resolve, reject) {
+      let fr = new FileReader();
+
+      fr.onload = function () {
+        resolve(fr.result);
+      };
+
+      fr.onerror = function () {
+        reject(fr);
+      };
+
+      fr.readAsDataURL(fileBlob);
+    });
+  }
 
   //핸드러
   const onSubmitHandler = async (event) => {
-    //debugger;
     if (signData.dogDetails === 0 || signData > 20) {
       return;
     }
     event.preventDefault();
-
-    // let frm = new FormData();
-    // frm.append("dogName", signData.dogName);
-    // frm.append("dogSex", signData.dogSex);
-    // frm.append("images", signData.dogImages);
-    // frm.append("dogDetails", signData.dogDetails);
-    const checkState = await dispatch(__postDog(signData));
-
-    //const checkState = await dispatch(__postDog(frm));
-    if (checkState.error) {
-      setSignNumber((prevNumber) => prevNumber + 1);
-    }
+    const checkState = dispatch(__postDog(signData));
   };
 
   //주소로 가는 코드
@@ -146,31 +118,25 @@ function SignUpForm() {
     handleClick();
   };
 
-  // 그동안 수집한 회원가입 데이터(signData)를 백에게 보냄
-  const submitLogin = async (e) => {
-    e.preventDefault();
-    //const checkState = await dispatch(__signup(signData));
-    //if (checkState.payload) {
-    // 이후 login페이지로 navigate
-    navigate("/");
-    //}
-  };
-
   const buttonStyle = {
-    background: formstate ? "linear-gradient(50deg, #ff398c, #ef734a)" : "white",
+    background: formstate
+      ? "linear-gradient(50deg, #ff398c, #ef734a)"
+      : "white",
     color: formstate ? "white" : "black",
     disabled: !formstate,
   };
 
   return (
-    <StForm onSubmit={submitLogin}>
+    <StForm>
       <h2>
+        {" "}
         간편하게 가입하고 <br /> 투개더를 이용해보세요.{" "}
       </h2>
       {signNumber === 0 && (
         <div>
           <div> ({signNumber + 1}/5)</div>
           <h3>
+            {" "}
             반가워요!
             <br /> 강아지 이름은 어떻게 되나요?
           </h3>
@@ -187,7 +153,6 @@ function SignUpForm() {
           <button className="on" onClick={next}>
             다음
           </button>
-          <button onClick={() => navigate("/mypage")}>홈으로</button>
         </div>
       )}
       {signNumber === 1 && (
@@ -197,7 +162,12 @@ function SignUpForm() {
             강아지의 <br /> 성별은 어떻게 될까요?
           </h2>
           <div>
-            <input type="radio" name="dogSexRadio" value="Male" defaultChecked />
+            <input
+              type="radio"
+              name="dogSexRadio"
+              value="Male"
+              defaultChecked
+            />
             <label>남</label>
           </div>
           <div>
@@ -219,16 +189,11 @@ function SignUpForm() {
             사진을 2장 이상 추가해주세요!
           </h3>
           <div className="img_box">
-            {change ? (
-              // 이미지 선택시에는 선택한 이미지
-              <div>
-                <img src={imageSrcs && imageSrcs[0]} alt="이미지를 불러올 수 없습니다" />
-                <img src={imageSrcs && imageSrcs[1]} alt="이미지를 불러올 수 없습니다" />
-              </div>
-            ) : (
-              // 이미지 비선택시에는 기본이미지(noImg.PNG)
-              <img src={noImg} alt="이미지를 불러올 수 없습니다" />
-            )}
+            <div>
+              {(imageSrcsText || []).map((url) => (
+                <img src={url} alt="..." />
+              ))}
+            </div>
           </div>
           <label className="button_type on" htmlFor="image_file">
             이미지 업로드
@@ -243,16 +208,6 @@ function SignUpForm() {
             accept="image/jpeg, image/jpg, image/png"
             onChange={handleChangeFile}
           />
-          {imgBase64.map((item) => {
-            return (
-              <img
-                key={Date.now()}
-                src={item}
-                alt="First slide"
-                style={{ width: "100%", height: "100%" }}
-              />
-            );
-          })}
 
           <div>
             <button className="on" onClick={next} disabled={!dogImagesState}>
@@ -279,23 +234,15 @@ function SignUpForm() {
             }}
           />
 
-          <button className="on" onClick={combinedHandler} disabled={!dogDetailsState}>
+          <button
+            className="on"
+            onClick={combinedHandler}
+            disabled={!dogDetailsState}
+          >
             다음
           </button>
         </div>
       )}
-      {/* {signNumber === 4 && (
-        <div>
-          <div>
-            가입을 축하드려요! <br /> 이제부터 본격적으로 <br /> 투개더🐶
-            할까요?
-          </div>
-          <button
-            onClick={submitLogin}
-            style={buttonStyle}
-          >{`얼른 가자멍!`}</button>
-        </div> */}
-      {/* )} */}
     </StForm>
   );
 }
