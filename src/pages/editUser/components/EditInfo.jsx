@@ -1,57 +1,33 @@
 import React, { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import styled from "styled-components";
-// import EditNick from "./eachForm/EditNick";
+import EditIcon from "@mui/icons-material/Edit";
+import LockIcon from "@mui/icons-material/Lock";
+import EditLocationIcon from "@mui/icons-material/EditLocation";
+import AddCircleIcon from "@mui/icons-material/AddCircle";
 
-const EditInfo = ({ user }) => {
-  const [editNick, setEditNick] = useState(false);
-  const [editPsw, setEditPsw] = useState(false);
-  const [editAddress, setEditAddress] = useState(false);
+const EditInfo = () => {
   const navigate = useNavigate();
 
   return (
     <>
       <StForm>
-        {!editNick ? (
-          <StOneInfo
-            // onClick={() =>setEditNick(true)}
-            onClick={() => navigate("/mypage/editnick")}
-          >
-            닉네임 변경하기
-          </StOneInfo>
-        ) : (
-          <StEditSet>
-            <StEdit
-            // placeholder={`${user.username}`}
-            />
-            <Stbtn onClick={() => setEditNick(false)}>취소</Stbtn>
-          </StEditSet>
-          // <EditNick />
-        )}
-        {!editPsw ? (
-          <StOneInfo onClick={() => setEditPsw(true)}>비밀번호 변경</StOneInfo>
-        ) : (
-          <StEditSet>
-            <StEdit placeholder={`${user.password}`} />
-            <Stbtn onClick={() => setEditPsw(false)}>취소</Stbtn>
-          </StEditSet>
-        )}
-        {!editAddress ? (
-          <StOneInfo onClick={() => setEditAddress(true)}>
-            주소변경하기{/* {user.latitude} */}
-          </StOneInfo>
-        ) : (
-          <StEditSet>
-            <StEdit
-            //  placeholder={`${user.latitude}`}
-            />
-            <Stbtn onClick={() => setEditAddress(false)}>취소</Stbtn>
-          </StEditSet>
-        )}
-        {/* 
-        <Stbtn onClick={() => {}} alert={"수정이 완료되었습니다"}>
-          저장
-        </Stbtn> */}
+        <StOneInfoWhite onClick={() => navigate("/mypage/editnick")}>
+          <EditIcon />
+          닉네임 변경하기
+        </StOneInfoWhite>
+        <StOneInfoBlack onClick={() => navigate("/mypage/editpsw")}>
+          <LockIcon />
+          비밀번호 변경
+        </StOneInfoBlack>
+        <StOneInfoWhite onClick={() => navigate("/mypage/editaddress")}>
+          <EditLocationIcon />
+          주소변경하기
+        </StOneInfoWhite>
+        <StOneInfoBlack onClick={() => navigate("/mypage/editpsw")}>
+          <AddCircleIcon />
+          강아지 추가하기
+        </StOneInfoBlack>
       </StForm>
     </>
   );
@@ -74,15 +50,24 @@ const StEditSet = styled.div`
   flex-direction: center;
 `;
 
-const StOneInfo = styled.div`
-  border: 1px solid black;
-  width: 200px;
+const StOneInfoWhite = styled.div`
+  width: 100vh;
   max-width: 85vw;
   height: 5vh;
   display: flex;
   align-items: center;
   justify-content: center;
-  /* padding: 10px 10px 10px 10px; */
+  background-color: #eaeef6;
+`;
+
+const StOneInfoBlack = styled.div`
+  width: 100vh;
+  max-width: 85vw;
+  height: 5vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: #aabcdd;
 `;
 
 const StEdit = styled.input`

@@ -1,6 +1,5 @@
 import axios from "axios";
 import React, { useState } from "react";
-import styled from "styled-components";
 import MainHeader from "../../../../shared/MainHeader";
 
 const EditNick = ({ Authorization }) => {
@@ -20,7 +19,7 @@ const EditNick = ({ Authorization }) => {
       <form onSubmit={onSubmitHadler()}>
         <h3>
           반가워요!
-          <br /> 닉네임을 변경 하시겠나요?
+          <br /> 비밀번호를 변경 하시겠나요?
         </h3>
         <input
           autoComplete="off"

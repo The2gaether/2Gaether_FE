@@ -31,18 +31,20 @@ const EditUser = () => {
   return (
     <>
       <MainHeader />
-      {/* <StHeaderName>설정</StHeaderName> */}
-      <div>안녕하세요{user?.username}님!</div>
-      <div>{user?.latitude}</div>
-      <div>{user?.email}</div>
+
       <Container>
         <br />
+        <div>
+          <h1>안녕하세요{user?.username}님!</h1>
+          <div>{user?.latitude}</div>
+          <div>{user?.email}</div>
+        </div>
         <StImgGroup>
           {dogs.map((dog) => (
             <MyDogList key={dog.name} dog={dog} />
           ))}
         </StImgGroup>
-        <br />
+        <Space />
         <EditInfo user={user} />
       </Container>
       <Footer />
@@ -52,7 +54,9 @@ const EditUser = () => {
 
 export default EditUser;
 
-const StHeaderName = styled.div``;
+const Space = styled.div`
+  height: 10vh;
+`;
 
 const Container = styled.div`
   display: flex;
