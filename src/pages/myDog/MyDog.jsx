@@ -7,14 +7,18 @@ import EditDog from "./editDog/EditDog";
 
 const MyDog = () => {
   const [edit, setEdit] = useState(false);
-  const navigate = useNavigate();
   const { id } = useParams();
+  const Authorization = sessionStorage.getItem("accessToken");
 
   //임시 작동 안됨
   const [dog, setDog] = useState({});
   const fetchList = async () => {
-    const { data } = await axios.get(`${process.env.REACT_APP_DOG}/dogs/${id}`);
-    console.log(data);
+    const { data } = await axios.get(`${process.env.REACT_APP_DOG}/dogs/${id}`, {
+      headers: {
+        Authorization,
+      },
+    });
+    console.log(dog.images[0].imageUrls);
     setDog(data);
   };
 
@@ -27,12 +31,24 @@ const MyDog = () => {
       <MainHeader />
       <Container>
         {!edit ? (
-          <div>
-            <StPeople style={{ backgroundImage: `url(${dog.url})` }}>
-              <StName>{dog.name}</StName>
-            </StPeople>
+          <StBefore>
+            <StBox>이름</StBox>
+            <br />
+            <StName>{dog.dogName}</StName>
+            <Space />
+            <StBox>성별</StBox>
+            <br />
+            <StName>{dog.dogSex}</StName>
+            <Space />
+            <StBox>사진</StBox>
+            <br />
+            <div>
+              {dog.images.map((dog) => (
+                <StPeople style={{ backgroundImage: `url(${dog.imageUrls})` }} />
+              ))}
+            </div>
             <button onClick={() => setEdit(true)}>변경</button>
-          </div>
+          </StBefore>
         ) : (
           <div>
             <EditDog />
@@ -54,8 +70,27 @@ const Container = styled.div`
   align-items: center;
 `;
 
+const StBefore = styled.div`
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+`;
+
+const StBox = styled.div`
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 6vh;
+  height: 3vh;
+  margin-top: 2vh
+  margin-bottom: 1vh;
+  background: #ffffff;
+  border: 1px solid #4269b4;
+  border-radius: 20px;
+`;
+
 const StPeople = styled.div`
-  margin-left: 20px;
   position: relative;
   width: 100px;
   padding: 30px;
@@ -68,8 +103,10 @@ const StPeople = styled.div`
 `;
 
 const StName = styled.h3`
-  position: absolute;
   font-size: large;
-  bottom: 10px;
-  color: white;
+  color: black;
+`;
+
+const Space = styled.div`
+  height: 4vh;
 `;

@@ -5,7 +5,7 @@ import GivePagination from "./GivePagination";
 
 const GiveDogList = () => {
   const [dogs, setDogs] = useState([]);
-  const [limit, setLimit] = useState(2);
+  const [limit, setLimit] = useState(1);
   const [page, setPage] = useState(1);
   const offset = (page - 1) * limit;
 
@@ -30,14 +30,15 @@ const GiveDogList = () => {
           </OneDog>
         ))}
       </Container>
-      <Space />
-      <GivePagination
-        //
-        total={dogs.length}
-        limit={limit}
-        page={page}
-        setPage={setPage}
-      />
+      <Space>
+        <GivePagination
+          //
+          total={dogs.length}
+          limit={limit}
+          page={page}
+          setPage={setPage}
+        />
+      </Space>
     </>
   );
 };
@@ -50,10 +51,8 @@ const Container = styled.div`
 `;
 const StDog = styled.div`
   position: relative;
-  width: 230px;
-  padding: 10px;
-  max-width: 45vw;
-  height: 45vh;
+  width: 37vh;
+  height: 60vh;
   border-radius: 20px;
   background-size: cover;
   background-position: center;
@@ -72,6 +71,7 @@ const OneDog = styled.div`
   justify-content: flex-start;
 `;
 const Space = styled.div`
-  padding-left: 10px;
+  margin-top: -35vh;
+
   /* background-color: black; */
 `;
