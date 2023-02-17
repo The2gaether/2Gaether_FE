@@ -1,14 +1,15 @@
-import React, { useEffect, useState } from "react";
-import { useNavigate } from "react-router-dom";
+import React from "react";
+import { useNavigate, useParams } from "react-router";
 import styled from "styled-components";
 
-const MyDogList = ({ key, dog }) => {
+const MyDogList = ({ dog }) => {
   const navigate = useNavigate();
+
   return (
     <>
-      <Container key={dog.id}>
+      <Container>
         <StImg style={{ backgroundImage: `url(${dog.profileImages})` }}></StImg>
-        <StEditBtn>수정</StEditBtn>
+        <StEditBtn onClick={() => navigate(`/myDog/${dog.dogId}`)}>수정</StEditBtn>
         <StName>{dog.dogName}</StName>
       </Container>
     </>
@@ -21,6 +22,7 @@ const Container = styled.div`
   display: flex;
   flex-direction: column;
   align-items: center;
+  margin-right: 1vh;
 `;
 
 const StImg = styled.div`

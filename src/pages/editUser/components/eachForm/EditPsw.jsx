@@ -2,17 +2,50 @@ import axios from "axios";
 import React, { useState } from "react";
 import MainHeader from "../../../../shared/MainHeader";
 import styled from "styled-components";
-import { borderBottom, color } from "@mui/system";
 
-const EditNick = ({ Authorization }) => {
-  const [data, setData] = useState("");
+const EditNick = () => {
+  const Authorization = sessionStorage.getItem("accessToken");
+  //기초 데이터 생성
+  const initialState = {
+    nowPassword: "",
+    password: "",
+    check_password: "",
+  };
+  //유저 스테이트 생성
+  const [psw, setPsw] = useState(initialState);
+  //유저 스테이트 구조분해 할당
+  const { password, check_password, nowPassword } = psw;
+  //상태관리 위해 초기값 세팅
+  const [passInput, setPassInput] = useState("");
+  const [checkpassInput, setcheckpassInput] = useState("");
+  //정규식
+  const regPassword = /^(?=.[A-Za-z])(?=.\\d)[A-Za-z\\d@$!%*#?&]{8,16}$/;
+  //유효성 검사 및 유저 스테이트 작성
+  const onChangeUserHandler = (e) => {
+    const { name, value } = e.target;
+    setPsw({ ...psw, [name]: value });
+    if (name === "password")
+      !regPassword.test(value)
+        ? setPassInput(
+            `8~16자의 영문 대소문자와 숫자로 입력해주세요.
+                         특수문자(!@#$%^&*)도 사용 가능합니다.`
+          )
+        : setPassInput("");
+
+    if (name === "check_password")
+      password !== value ? setcheckpassInput("비밀번호가 불일치합니다") : setcheckpassInput("");
+  };
 
   const onSubmitHadler = async () => {
-    await axios.patch(`${process.env.REACT_APP_DOG}/dogs`, data, {
-      headers: {
-        Authorization,
-      },
-    });
+    await axios
+      .patch(`${process.env.REACT_APP_DOG}/users/mypage`, psw, {
+        headers: {
+          Authorization,
+        },
+      })
+      .then((res) => {
+        return res;
+      });
   };
 
   const onDeleteUserHandler = () => {};
@@ -21,32 +54,46 @@ const EditNick = ({ Authorization }) => {
     <>
       <MainHeader />
       <Container>
-        <StForm onSubmit={onSubmitHadler()}>
+        <StForm
+          onSubmit={(e) => {
+            e.preventDefault();
+            onSubmitHadler();
+          }}
+        >
           <div style={{ fontSize: "20px", fontWeight: "bold" }}>비밀번호 변경</div>
           <StInput
             placeholder="현재 비밀번호를 입력해주세요"
             required
-            onChange={(e) => {
-              setData(e);
-            }}
+            name="nowPassword"
+            value={nowPassword}
+            onChange={onChangeUserHandler}
           />
+
           <Space />
           <div style={{ fontSize: "20px", fontWeight: "bold" }}>새 비밀번호</div>
           <StInput
+            type="password"
             placeholder="영문, 숫자, 특수문자 포함 8자 이상 입력해주세요"
             required
-            onChange={(e) => {
-              setData(e);
-            }}
+            name="password"
+            value={password}
+            onChange={onChangeUserHandler}
           />
+          <p style={{ fontSize: "10px", fontWeight: "bold" }} id="help-password1" className="help">
+            {passInput}
+          </p>
           <br />
           <StInput
+            type="password"
             placeholder="비밀번호를 재입력해주세요"
             required
-            onChange={(e) => {
-              setData(e);
-            }}
+            name="check_password"
+            value={check_password}
+            onChange={onChangeUserHandler}
           />
+          <p id="help-password2" className="help">
+            {checkpassInput}
+          </p>
           <Space />
           <StButton>변경하기</StButton>
         </StForm>
