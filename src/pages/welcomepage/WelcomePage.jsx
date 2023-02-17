@@ -6,33 +6,23 @@ function WelcomePage() {
   const navigate = useNavigate();
 
   return (
-    <Stimg>
-      <StContainer>
-        <p>근처의 강아지 친구와 교류하며 산책도 같이해요!</p>
-        <button onClick={() => navigate("/login")}>시작하기</button>
-      </StContainer>
-    </Stimg>
+    <StContainer>
+      <button onClick={() => navigate("/login")}>로그인 창으로</button>
+    </StContainer>
   );
 }
 
 export default WelcomePage;
-const Stimg = styled.div`
-  background-image: linear-gradient(
-      0deg,
-      rgba(0, 0, 0, 0.5),
-      rgba(0, 0, 0, 0.5)
-    ),
-    url("http://res.heraldm.com/phpwas/restmb_allidxmake.php?idx=5&simg=201902211639012219160_20190221164308_01.jpg");
-  background-position: center 30%;
-  background-size: cover;
-`;
 
 const StContainer = styled.div`
-  height: 80vh;
+  height: 100vh;
   display: flex;
   justify-content: center;
   align-items: center;
   flex-direction: column;
+  background-image: url("welecome.png");
+  /* background-position: center; */
+  background-size: cover;
   p {
     font-size: 116px;
     font-weight: 800;
@@ -51,6 +41,7 @@ const StContainer = styled.div`
     border: none;
     width: 260px;
     height: 44px;
+    margin-top: 30vh;
     border-radius: 30px;
     background: linear-gradient(to right, #eeeeee, #656463);
     opacity: 0.8;
