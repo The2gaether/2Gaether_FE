@@ -47,22 +47,30 @@ function SignUp() {
         : setusernameInput("");
 
     if (name === "email")
-      !regEmail.test(value) ? setEmailInput("이메일 형식으로 입력해주세요.") : setEmailInput("");
+      !regEmail.test(value)
+        ? setEmailInput("이메일 형식으로 입력해주세요.")
+        : setEmailInput("");
 
     if (name === "password")
       !regPassword.test(value)
         ? setPassInput(
             `8~15자의 영문 대소문자와 숫자 그리고
-                           특수문자(!@#$%^&*)를 입력해주세요.`
+             특수문자(!@#$%^&*)를 입력해주세요.`
           )
         : setPassInput("");
     if (name === "check_password")
-      password !== value ? setcheckpassInput("비밀번호가 불일치합니다") : setcheckpassInput("");
+      password !== value
+        ? setcheckpassInput("비밀번호가 불일치합니다")
+        : setcheckpassInput("");
   };
   // 회원가입 POST요청 및 공백 존재 시 경고창 생성
   const onSubmitUserHandler = (e) => {
     e.preventDefault();
-    if (username.trim() === "" || email.trim() === "" || password.trim() === "") {
+    if (
+      username.trim() === "" ||
+      email.trim() === "" ||
+      password.trim() === ""
+    ) {
       return alert("아이디랑 비밀번호를 입력해주세요!");
     }
     if (password !== check_password) {
