@@ -5,7 +5,7 @@ import IconButton from "@mui/material/IconButton";
 import FavoriteIcon from "@mui/icons-material/Favorite";
 import { useNavigate } from "react-router";
 
-function Header() {
+function Header({ children }) {
   const navigate = useNavigate();
 
   const handleHistory = () => {
@@ -17,10 +17,10 @@ function Header() {
       <IconButton>
         <ArrowBackIcon className="header_logo" fontSize="large" onClick={handleHistory} />
       </IconButton>
-
-      <IconButton>
+      {children}
+      {/* <IconButton>
         <FavoriteIcon className="header_logo" fontSize="large" />
-      </IconButton>
+      </IconButton> */}
     </StHeader>
   );
 }

@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { useNavigate, useParams } from "react-router-dom";
+import { useParams } from "react-router-dom";
 import styled from "styled-components";
 import MainHeader from "../../shared/MainHeader";
 import axios from "axios";
@@ -18,8 +18,15 @@ const MyDog = () => {
         Authorization,
       },
     });
-    console.log(dog.images[0].imageUrls);
     setDog(data);
+  };
+
+  const onDeleteDog = () => {
+    axios.delete(`${process.env.REACT_APP_DOG}/dogs/${id}`, {
+      headers: {
+        Authorization,
+      },
+    });
   };
 
   useEffect(() => {
@@ -43,11 +50,12 @@ const MyDog = () => {
             <StBox>사진</StBox>
             <br />
             <div>
-              {dog.images.map((dog) => (
+              {/* {dog.images.map((dog) => (
                 <StPeople style={{ backgroundImage: `url(${dog.imageUrls})` }} />
-              ))}
+              ))} */}
             </div>
             <button onClick={() => setEdit(true)}>변경</button>
+            <button onClick={() => onDeleteDog()}>삭제</button>
           </StBefore>
         ) : (
           <div>
