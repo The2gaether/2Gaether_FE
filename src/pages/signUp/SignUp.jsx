@@ -104,20 +104,24 @@ function SignUp() {
         <SignUpBox onSubmit={onSubmitUserHandler}>
           <TopBox>
             <div>간편하게 가입하고</div>
-            <div>투개더를 이용해보세요</div>
+            <br />
+            <StP1>투개더를 이용해보세요</StP1>
           </TopBox>
           <div>
+            <StP2>이름</StP2>
             <StInput
               type="text"
               name="username"
               value={username}
-              placeholder="아이디를 입력하세요"
+              placeholder="이름을 입력하세요(강아지 이름X)"
               onChange={onChangeUserHandler}
             ></StInput>
           </div>
-          <p id="help-password2" className="help">
+          <StP3 id="help-password2" className="help">
             {usernameInput}
-          </p>
+          </StP3>
+
+          <StP2>이메일</StP2>
 
           <div>
             <StInput
@@ -126,13 +130,17 @@ function SignUp() {
               value={email}
               placeholder="이메일을 입력해주세요"
               onChange={onChangeUserHandler}
-            ></StInput>
-            <button onClick={onSubmitUserCheckHandler}>중복</button>
+            />
           </div>
-          <p id="help-user" className="help">
+          <StP3 id="help-user" className="help">
             {emailInput}
-          </p>
-
+          </StP3>
+          <StButton onClick={onSubmitUserCheckHandler}>
+            이메일 중복확인
+          </StButton>
+          <br />
+          <br />
+          <StP2>비밀번호</StP2>
           <div>
             <StInput
               type="password"
@@ -142,10 +150,11 @@ function SignUp() {
               onChange={onChangeUserHandler}
             ></StInput>
           </div>
-          <p id="help-password1" className="help">
+          <StP3 id="help-password1" className="help">
             {passInput}
-          </p>
+          </StP3>
           <div>
+            <StP2>비밀번호 확인</StP2>
             <StInput
               type="password"
               name="check_password"
@@ -154,10 +163,12 @@ function SignUp() {
               onChange={onChangeUserHandler}
             ></StInput>
           </div>
-          <p id="help-password2" className="help">
+          <StP3 id="help-password2" className="help">
             {checkpassInput}
-          </p>
-          <LogInBtn>강아지 설정하기</LogInBtn>
+          </StP3>
+          <br />
+          <br />
+          <StDogButton>강아지 설정하기</StDogButton>
         </SignUpBox>
       </Wrapper>
     </Container>
@@ -168,18 +179,29 @@ export default SignUp;
 
 const Container = styled.div`
   display: flex;
-  height: 100vh;
+  margin-top: 15%;
+  height: 90vh;
   justify-content: center;
   align-items: center;
   flex-direction: column;
   border-radius: 100px;
 `;
-const WhiteBox = styled.div`
-  background-color: white;
-  border: 1px solid rgb(219, 219, 219);
-  border-radius: 10px;
+const StP1 = styled.div`
+  font-size: 20px;
 `;
-const TopBox = styled(WhiteBox)`
+const StP2 = styled.div`
+  padding-left: 5px;
+  font-weight: 600;
+`;
+const StP3 = styled.div`
+  margin-top: 2%;
+  max-width: 90%;
+  margin-left: 5%;
+  font-size: 12px;
+  margin-bottom: 5%;
+`;
+
+const TopBox = styled.div`
   display: flex;
   justify-content: center;
   align-items: center;
@@ -206,69 +228,42 @@ const Wrapper = styled.div`
   max-width: 350px;
   width: 100%;
 `;
-const Separator = styled.div`
-  margin: 10px 0px 30px 0px;
-  margin-top: 10px;
-  text-transform: uppercase;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  width: 100%;
-  div {
-    width: 100%;
-    height: 2px;
-    background-color: rgb(219, 219, 219);
-  }
-  span {
-    margin: 0px 10px;
-    color: #8e8e8e;
-    font-weight: 600;
-  }
-`;
-const SignUpBtn = styled.button`
-  border: none;
-  border-radius: 50px;
-  margin-top: 12px;
-  background-color: gray;
+const StButton = styled.button`
+  background-color: #2f58ac;
   color: white;
   text-align: center;
-  padding: 8px 0px;
-  font-weight: 600;
-  width: 100%;
-  opacity: gray;
+  height: 34px;
+  width: 300px;
+  margin-left: 8%;
+  font-size: 15px;
+  border-radius: 18px;
+  margin-bottom: 1%;
 `;
-const LogInBtn = styled.button`
-  border: none;
-  border-radius: 50px;
-  margin-top: 12px;
-  background-color: gray;
+const StDogButton = styled.button`
+  position: relative;
+  background-color: #2f58ac;
   color: white;
   text-align: center;
-  padding: 8px 0px;
-  font-weight: 600;
-  width: 100%;
-  opacity: gray;
-`;
-const KakaoSignIn = styled.button`
-  border: none;
-  border-radius: 50px;
-  margin-top: 12px;
-  background-color: gray;
-  color: white;
-  text-align: center;
-  padding: 8px 0px;
-  font-weight: 600;
-  width: 100%;
-  opacity: gray;
+  height: 40px;
+  width: 300px;
+  margin-left: 8%;
+  font-size: 15px;
+  border-radius: 20px;
+
+  margin-top: 25%;
 `;
 const StInput = styled.input`
   width: 100%;
   border-radius: 3px;
   padding: 7px;
+  margin-bottom: 3%;
   background-color: #fafafa;
-  border: 0.5px solid;
+  border: 2px solid;
   margin-top: 10px;
   box-sizing: border-box;
+  border-top-style: none;
+  border-left-style: none;
+  border-right-style: none;
   &::placeholder {
     font-size: 12px;
     &:focus {

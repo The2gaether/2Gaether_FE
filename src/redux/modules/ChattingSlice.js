@@ -45,7 +45,7 @@ export const __getChatListThunk = createAsyncThunk(
   "GET_CHATS",
   async (_, thunkAPI) => {
     try {
-      const Request = await axios.get("/chats", config);
+      const Request = await axios.get("https://midcon.shop/chat/room", config);
       return thunkAPI.fulfillWithValue(Request.data);
     } catch (e) {
       return thunkAPI.rejectWithValue(e.code);

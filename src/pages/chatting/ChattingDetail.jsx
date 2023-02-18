@@ -1,10 +1,10 @@
-import { Stomp } from "@stomp/stompjs";
 import React, { useState, useEffect, useRef } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useNavigate, useParams } from "react-router-dom";
 import SockJS from "sockjs-client";
 import styled from "styled-components";
 import { subMessage } from "../../redux/modules/socketSlice";
+import Stomp from "stompjs";
 
 const ChattingDetail = () => {
   const navigate = useNavigate();
@@ -16,7 +16,7 @@ const ChattingDetail = () => {
   const chatRef = useRef("");
 
   // 소켓 백엔드 서버가져오기
-  const socket = new SockJS("https://jossiya.shop/ws-stomp");
+  const socket = new SockJS("https://midcon.shop/ws-stomp");
   const client = Stomp.over(socket);
 
   //토큰 얻어오기

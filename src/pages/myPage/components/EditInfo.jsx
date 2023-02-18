@@ -24,7 +24,7 @@ const EditInfo = () => {
           <EditLocationIcon />
           주소변경하기
         </StOneInfoWhite>
-        <StOneInfoBlack onClick={() => navigate("/mypage/editpsw")}>
+        <StOneInfoBlack onClick={() => navigate("/mypage/adddog")}>
           <AddCircleIcon />
           강아지 추가하기
         </StOneInfoBlack>
@@ -42,12 +42,6 @@ const StForm = styled.form`
   // 요소들의 배열 위치
   justify-content: center;
   align-items: center;
-`;
-
-const StEditSet = styled.div`
-  display: flex;
-  // 요소들 배열 방식의 방향
-  flex-direction: center;
 `;
 
 const StOneInfoWhite = styled.div`
@@ -68,22 +62,4 @@ const StOneInfoBlack = styled.div`
   align-items: center;
   justify-content: center;
   background-color: #aabcdd;
-`;
-
-const StEdit = styled.input`
-  width: 200px;
-  padding: 10px;
-  max-width: 85vw;
-  height: 5vh;
-`;
-
-const Stbtn = styled.button`
-  width: 60px;
-  height: 5vh;
-  padding: 10px;
-  max-width: 85vw;
-  /* max-height: 10vw; */
-  display: flex;
-  align-items: center;
-  justify-content: center;
 `;
