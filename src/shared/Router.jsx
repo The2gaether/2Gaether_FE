@@ -32,6 +32,7 @@ const Router = () => {
             <Route path="/oauth/callback/kakao" element={<Kakao />} />
             <Route path="/dogSignUp" element={<DogSignUp />} />
             <Route path="/selectpage" element={<SelectPage />} />
+            <Route path="/address" element={<Address />} />
           </>
         ) : (
           <>

@@ -29,7 +29,9 @@ const EditUser = () => {
 
   return (
     <>
-      <MainHeader />
+      <MainHeader>
+        <div>안녕</div>
+      </MainHeader>
       <Container>
         <br />
         <div>

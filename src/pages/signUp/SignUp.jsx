@@ -55,7 +55,7 @@ function SignUp() {
       !regPassword.test(value)
         ? setPassInput(
             `8~15자의 영문 대소문자와 숫자 그리고
-                           특수문자(!@#$%^&*)를 입력해주세요.`
+             특수문자(!@#$%^&*)를 입력해주세요.`
           )
         : setPassInput("");
     if (name === "check_password")
