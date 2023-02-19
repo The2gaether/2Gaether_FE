@@ -18,7 +18,7 @@ import Address from "../pages/dogSignup/Address";
 import EditNick from "../pages/myPage/components/eachForm/EditNick";
 import EditPsw from "../pages/myPage/components/eachForm/EditPsw";
 import AddDog from "../pages/myPage/components/eachForm/AddDog";
-
+import SelectPage from "../pages/selectPage/SelectPage";
 const Router = () => {
   const Authorization = sessionStorage.getItem("accessToken");
   return (
@@ -31,6 +31,7 @@ const Router = () => {
             <Route path="/signUp" element={<SignUp />} />
             <Route path="/oauth/callback/kakao" element={<Kakao />} />
             <Route path="/dogSignUp" element={<DogSignUp />} />
+            <Route path="/selectpage" element={<SelectPage />} />
           </>
         ) : (
           <>

@@ -61,7 +61,9 @@ function Address() {
   //완료버튼에 따른 색깔변화
   const [formstate, setFormState] = useState(false);
   const buttonStyle = {
-    background: formstate ? "linear-gradient(50deg, #ff398c, #ef734a)" : "white",
+    background: formstate
+      ? "linear-gradient(50deg, #ff398c, #ef734a)"
+      : "white",
     color: formstate ? "white" : "black",
     disabled: !formstate,
   };
@@ -93,9 +95,13 @@ function Address() {
         {signNumber === 1 && (
           <div>
             <div>
-              가입을 축하드려요! <br /> 이제부터 본격적으로 <br /> 투개더🐶 할까요?
+              가입을 축하드려요! <br /> 이제부터 본격적으로 <br /> 투개더🐶
+              할까요?
             </div>
-            <button onClick={submitLogin} style={buttonStyle}>{`얼른 가자멍!`}</button>
+            <button
+              onClick={submitLogin}
+              style={buttonStyle}
+            >{`얼른 가자멍!`}</button>
           </div>
         )}
       </AddForm>
