@@ -21,6 +21,7 @@ function Header({ children }) {
       {/* <IconButton>
         <FavoriteIcon className="header_logo" fontSize="large" />
       </IconButton> */}
+      <Space />
     </StHeader>
   );
 }
@@ -43,4 +44,8 @@ const StHeader = styled.div`
   .header_logo {
     padding: 20px;
   }
+`;
+
+const Space = styled.div`
+  margin-left: 11vh;
 `;
