@@ -38,7 +38,7 @@ function Login() {
   };
 
   useEffect(() => {
-    loginCheck && navigate("/dogsignup");
+    loginCheck && navigate("/selectpage");
   }, [loginCheck, navigate]);
 
   return (
