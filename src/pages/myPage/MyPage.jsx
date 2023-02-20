@@ -30,7 +30,7 @@ const EditUser = () => {
   return (
     <>
       <MainHeader>
-        <div>안녕</div>
+        <div style={{ fontSize: "20px", fontWeight: "bold" }}>설정</div>
       </MainHeader>
       <Container>
         <br />

@@ -78,10 +78,16 @@ function Login() {
               placeholder="패스워드를 입력하세요"
               onChange={onChangeLoginHandler}
             ></StInput>
+<<<<<<< HEAD
           </div>{" "}
           <LogInBtn onClick={onSubmitLoginHandler}>로그인</LogInBtn>
         </LoginBox>
 
+=======
+          </div>
+          <LogInBtn onClick={onSubmitLoginHandler}>로그인</LogInBtn>
+        </LoginBox>
+>>>>>>> 47f1f333f4a1e5c824542f501a9c2affe8268331
         <SignUpBtn
           onClick={() => {
             navigate("/signup");

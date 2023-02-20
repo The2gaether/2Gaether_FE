@@ -42,7 +42,7 @@ const InfiniteScroll = () => {
     return () => window.removeEventListener("scroll", handleScroll);
   }, [handleScroll]);
 
-  const remainingData = data.slice(0, page * 3);
+  const remainingData = data.slice(0, page * 2);
 
   return (
     <>
@@ -54,9 +54,15 @@ const InfiniteScroll = () => {
               return (
                 <OneDog key={id}>
                   {group.map(({ url, name }) => (
-                    <StDog style={{ backgroundImage: `url(${url})` }} key={name}>
-                      <StName>{name}</StName>
-                    </StDog>
+                    <Stgroup>
+                      <StDog style={{ backgroundImage: `url(${url})` }} key={name}>
+                        <StName>{name}</StName>
+                      </StDog>
+                      <div>
+                        <button>수락</button>
+                        <button>거절</button>
+                      </div>
+                    </Stgroup>
                   ))}
                 </OneDog>
               );
@@ -81,6 +87,12 @@ const StOnePage = styled.div`
   flex-direction: column;
   align-items: center;
   /* justify-content: center; */
+`;
+
+const Stgroup = styled.div`
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 `;
 
 const StDog = styled.div`

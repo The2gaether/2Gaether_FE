@@ -57,7 +57,9 @@ const EditNick = () => {
 
   return (
     <>
-      <MainHeader />
+      <MainHeader>
+        <div style={{ fontSize: "20px", fontWeight: "bold" }}>비밀번호 변경</div>
+      </MainHeader>
       <Container>
         <StForm
           onSubmit={(e) => {
