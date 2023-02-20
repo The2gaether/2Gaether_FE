@@ -73,8 +73,9 @@ function Login() {
               onChange={onChangeLoginHandler}
             ></StInput>
           </div>
+          <LogInBtn onClick={onSubmitLoginHandler}>로그인</LogInBtn>
         </LoginBox>
-        <LogInBtn onClick={onSubmitLoginHandler}>로그인</LogInBtn>
+
         <SignUpBtn
           onClick={() => {
             navigate("/signup");

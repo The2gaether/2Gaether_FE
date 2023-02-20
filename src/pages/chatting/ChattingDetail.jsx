@@ -5,14 +5,15 @@ import SockJS from "sockjs-client";
 import styled from "styled-components";
 import { subMessage } from "../../redux/modules/socketSlice";
 import Stomp from "stompjs";
+import { __postChatopenThunk } from "../../redux/modules/chattingSlice";
 
 const ChattingDetail = () => {
   const navigate = useNavigate();
-  const { id } = useParams();
+  const { roomId } = useParams();
   const dispatch = useDispatch();
 
-  const myEmail = localStorage.getItem("userEmail");
-  const Myname = localStorage.getItem("userNickname");
+  const myEmail = sessionStorage.getItem("userEmail");
+  const Myname = sessionStorage.getItem("userNickname");
   const chatRef = useRef("");
 
   // 소켓 백엔드 서버가져오기
@@ -21,8 +22,7 @@ const ChattingDetail = () => {
 
   //토큰 얻어오기
   const headers = {
-    Authorization: localStorage.getItem("authorization"),
-    "Refresh-Token": localStorage.getItem("refresh-Token"),
+    Authorization: sessionStorage.getItem("authorization"),
   };
 
   const { chatcollect } = useSelector((state) => state.chatcollect);
@@ -38,17 +38,21 @@ const ChattingDetail = () => {
   };
 
   useEffect(() => {
+    dispatch(__postChatopenThunk({}));
+  }, []);
+
+  useEffect(() => {
     // 소켓 연결
-    console.log(chatcollect.chatRoomId);
-    if (chatcollect.chatRoomId) {
-      console.log(chatcollect.chatRoomId);
+    console.log(chatcollect.roomId);
+    if (chatcollect.roomId) {
+      console.log(chatcollect.roomId);
       try {
         client.connect(
           {},
           () => {
-            console.log(chatcollect.chatRoomId);
+            console.log(chatcollect.roomId);
             // 채팅방 구독
-            client.subscribe(`/sub/chats/${chatcollect.chatRoomId}`, (res) => {
+            client.subscribe(`/sub/chat/room/${chatcollect.roomId}`, (res) => {
               console.log(res.body);
               const receive = JSON.parse(res.body);
               console.log(receive);
@@ -70,12 +74,12 @@ const ChattingDetail = () => {
       return;
     }
     client.send(
-      "/pub/chat/message",
+      `/pub/chat/message`,
       headers,
       JSON.stringify({
         type: "TALK",
-        chatRoomId: chatcollect.chatRoomId,
-        userEmail: myEmail,
+        roomId: chatcollect.roomId,
+        sender: chatcollect.roomId,
         message: message,
       })
     );

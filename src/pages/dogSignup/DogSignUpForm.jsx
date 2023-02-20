@@ -184,7 +184,12 @@ function SignUpForm() {
             <StImg src={female} />
             <StDiv4>
               <StDiv5>
-                <input type="radio" name="dogSexRadio" value="Male" defaultChecked />
+                <input
+                  type="radio"
+                  name="dogSexRadio"
+                  value="Male"
+                  defaultChecked
+                />
                 <label>남</label>
               </StDiv5>
               <StDiv6>
@@ -220,6 +225,7 @@ function SignUpForm() {
                   accept="image/jpeg, image/jpg, image/png"
                   onChange={handleChangeFile}
                   multiple
+                  required
                 />
                 <StImg1 src={plusbutton} />
               </InputContainer>
@@ -232,6 +238,7 @@ function SignUpForm() {
               </ImagePreviewContainer>
               <InputContainer hasImage={imageSrcs2.length > 0}>
                 <input
+                  required
                   type="file"
                   accept="image/jpeg, image/jpg, image/png"
                   onChange={handleChangeFile1}
@@ -265,7 +272,11 @@ function SignUpForm() {
             }}
           />
 
-          <StBtn className="on" onClick={combinedHandler} disabled={!dogDetailsState}>
+          <StBtn
+            className="on"
+            onClick={combinedHandler}
+            disabled={!dogDetailsState}
+          >
             다음
           </StBtn>
         </div>

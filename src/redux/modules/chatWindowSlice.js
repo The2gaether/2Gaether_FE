@@ -12,7 +12,7 @@ export const fetchMessages = createAsyncThunk(
   "chat/fetchMessages",
   async (payload, thunkAPI) => {
     try {
-      const response = await axios.get("http://localhost:8080/app/chat");
+      const response = await axios.get("/chat/room");
       return thunkAPI.fulfillWithValue(response.data);
     } catch (error) {
       return thunkAPI.rejectWithValue(error);
