@@ -160,6 +160,7 @@ function SignUpForm() {
               setDogSexState(true);
             }}
           />
+
           <StBtn className="on" onClick={next}>
             다음
           </StBtn>
@@ -179,12 +180,7 @@ function SignUpForm() {
             <StImg src={female} />
             <StDiv4>
               <StDiv5>
-                <input
-                  type="radio"
-                  name="dogSexRadio"
-                  value="Male"
-                  defaultChecked
-                />
+                <input type="radio" name="dogSexRadio" value="Male" defaultChecked />
                 <label>남</label>
               </StDiv5>
               <StDiv6>
@@ -193,6 +189,14 @@ function SignUpForm() {
               </StDiv6>
             </StDiv4>
           </div>
+          <StBtn
+            className="on"
+            onClick={() => {
+              formstate(false);
+            }}
+          >
+            뒤로
+          </StBtn>
           <StBtn className="on" onClick={next} disabled={!dogSexState}>
             다음
           </StBtn>
@@ -267,12 +271,16 @@ function SignUpForm() {
               setSignData({ ...signData, dogDetails: e.target.value });
             }}
           />
+<<<<<<< HEAD
 
           <StBtn
             className="on"
             onClick={combinedHandler}
             disabled={!dogDetailsState}
           >
+=======
+          <StBtn className="on" onClick={combinedHandler} disabled={!dogDetailsState}>
+>>>>>>> 74341d3a7b9e2fca57fbe9d9bb3cffa89e5ca4ab
             다음
           </StBtn>
         </div>
