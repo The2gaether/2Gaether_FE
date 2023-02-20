@@ -6,8 +6,8 @@ import male from "../../../../assets/img/male.PNG";
 import female from "../../../../assets/img/female.PNG";
 import plusbutton from "../../../../assets/img/plusbutton.PNG";
 import { __postDog } from "../../../../redux/modules/signupSlice";
-import MainHeader from "../../../../shared/MainHeader";
-import Footer from "../../../../shared/Footer";
+// import MainHeader from "../../../../shared/MainHeader";
+// import Footer from "../../../../shared/Footer";
 
 // 회원가입 form 컴포넌트
 function SignUpForm() {

@@ -1,8 +1,8 @@
 import React from "react";
 import styled from "styled-components";
 import { useNavigate } from "react-router-dom";
-import { useEffect, useState } from "react";
-import { useDispatch, useSelector } from "react-redux";
+import { useState } from "react";
+import { useDispatch } from "react-redux";
 import { __postUser, __checkId } from "../../redux/modules/userSlice";
 
 function SignUp() {
@@ -47,9 +47,7 @@ function SignUp() {
         : setusernameInput("");
 
     if (name === "email")
-      !regEmail.test(value)
-        ? setEmailInput("이메일 형식으로 입력해주세요.")
-        : setEmailInput("");
+      !regEmail.test(value) ? setEmailInput("이메일 형식으로 입력해주세요.") : setEmailInput("");
 
     if (name === "password")
       !regPassword.test(value)
@@ -59,18 +57,12 @@ function SignUp() {
           )
         : setPassInput("");
     if (name === "check_password")
-      password !== value
-        ? setcheckpassInput("비밀번호가 불일치합니다")
-        : setcheckpassInput("");
+      password !== value ? setcheckpassInput("비밀번호가 불일치합니다") : setcheckpassInput("");
   };
   // 회원가입 POST요청 및 공백 존재 시 경고창 생성
   const onSubmitUserHandler = (e) => {
     e.preventDefault();
-    if (
-      username.trim() === "" ||
-      email.trim() === "" ||
-      password.trim() === ""
-    ) {
+    if (username.trim() === "" || email.trim() === "" || password.trim() === "") {
       return alert("아이디랑 비밀번호를 입력해주세요!");
     }
     if (password !== check_password) {
@@ -135,9 +127,7 @@ function SignUp() {
           <StP3 id="help-user" className="help">
             {emailInput}
           </StP3>
-          <StButton onClick={onSubmitUserCheckHandler}>
-            이메일 중복확인
-          </StButton>
+          <StButton onClick={onSubmitUserCheckHandler}>이메일 중복확인</StButton>
           <br />
           <br />
           <StP2>비밀번호</StP2>

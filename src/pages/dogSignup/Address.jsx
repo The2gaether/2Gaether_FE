@@ -59,23 +59,13 @@ function Address() {
   // };
 
   //완료버튼에 따른 색깔변화
-<<<<<<< HEAD
-  // const [formstate, setFormState] = useState(false);
-  // const buttonStyle = {
-  //   background: formstate
-  //     ? "linear-gradient(50deg, #ff398c, #ef734a)"
-  //     : "white",
-  //   color: formstate ? "white" : "black",
-  //   disabled: !formstate,
-  // };
-=======
+
   const [formstate, setFormState] = useState(false);
   const buttonStyle = {
     background: formstate ? "linear-gradient(50deg, #ff398c, #ef734a)" : "white",
     color: formstate ? "white" : "black",
     disabled: !formstate,
   };
->>>>>>> 47f1f333f4a1e5c824542f501a9c2affe8268331
 
   //위치공유 허락하러가기 하는 버튼
   const onPermitHadler = () => {
