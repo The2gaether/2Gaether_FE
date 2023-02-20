@@ -184,12 +184,7 @@ function SignUpForm() {
             <StImg src={female} />
             <StDiv4>
               <StDiv5>
-                <input
-                  type="radio"
-                  name="dogSexRadio"
-                  value="Male"
-                  defaultChecked
-                />
+                <input type="radio" name="dogSexRadio" value="Male" defaultChecked />
                 <label>남</label>
               </StDiv5>
               <StDiv6>
@@ -270,11 +265,7 @@ function SignUpForm() {
             }}
           />
 
-          <StBtn
-            className="on"
-            onClick={combinedHandler}
-            disabled={!dogDetailsState}
-          >
+          <StBtn className="on" onClick={combinedHandler} disabled={!dogDetailsState}>
             다음
           </StBtn>
         </div>
@@ -387,8 +378,8 @@ const StNum = styled.div`
   margin-bottom: 23%;
 `;
 const StImg = styled.img`
-  width: 118px;
-  height: 100px;
+  width: 108px;
+  height: 96px;
   margin-left: 5%;
 `;
 

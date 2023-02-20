@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { useParams } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 import styled from "styled-components";
 import MainHeader from "../../shared/MainHeader";
 import axios from "axios";
@@ -9,6 +9,7 @@ const MyDog = () => {
   const [edit, setEdit] = useState(false);
   const { id } = useParams();
   const Authorization = sessionStorage.getItem("accessToken");
+  const navigate = useNavigate();
 
   //임시 작동 안됨
   const [dog, setDog] = useState({});
@@ -18,7 +19,9 @@ const MyDog = () => {
         Authorization,
       },
     });
+
     setDog(data);
+    console.log(dog);
   };
 
   const onDeleteDog = () => {
@@ -27,6 +30,8 @@ const MyDog = () => {
         Authorization,
       },
     });
+    alert("성공적으로 삭제되었습니다!");
+    navigate(-1);
   };
 
   useEffect(() => {

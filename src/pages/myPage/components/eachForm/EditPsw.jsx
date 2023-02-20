@@ -2,8 +2,10 @@ import axios from "axios";
 import React, { useState } from "react";
 import MainHeader from "../../../../shared/MainHeader";
 import styled from "styled-components";
+import { useNavigate } from "react-router";
 
 const EditNick = () => {
+  const navigate = useNavigate();
   const Authorization = sessionStorage.getItem("accessToken");
   //기초 데이터 생성
   const initialState = {
@@ -38,14 +40,17 @@ const EditNick = () => {
 
   const onSubmitHadler = async () => {
     await axios
-      .patch(`${process.env.REACT_APP_DOG}/users/mypage`, psw, {
+      .patch(`${process.env.REACT_APP_DOG}/users/mypage`, passInput, {
         headers: {
           Authorization,
         },
       })
       .then((res) => {
+        console.log(res);
         return res;
       });
+    alert("성공적으로 변경되었습니다!");
+    navigate(-1);
   };
 
   const onDeleteUserHandler = () => {};
