@@ -9,14 +9,14 @@ const EditNick = () => {
   const Authorization = sessionStorage.getItem("accessToken");
   //기초 데이터 생성
   const initialState = {
-    nowPassword: "",
+    newPassword: "",
     password: "",
     check_password: "",
   };
   //유저 스테이트 생성
   const [psw, setPsw] = useState(initialState);
   //유저 스테이트 구조분해 할당
-  const { password, check_password, nowPassword } = psw;
+  const { password, check_password, newPassword } = psw;
   //상태관리 위해 초기값 세팅
   const [passInput, setPassInput] = useState("");
   const [checkpassInput, setcheckpassInput] = useState("");
@@ -40,11 +40,15 @@ const EditNick = () => {
 
   const onSubmitHadler = async () => {
     await axios
-      .patch(`${process.env.REACT_APP_DOG}/users/mypage`, passInput, {
-        headers: {
-          Authorization,
-        },
-      })
+      .patch(
+        `${process.env.REACT_APP_DOG}/users/passwoed`,
+        { password, newPassword },
+        {
+          headers: {
+            Authorization,
+          },
+        }
+      )
       .then((res) => {
         console.log(res);
         return res;
@@ -57,7 +61,9 @@ const EditNick = () => {
 
   return (
     <>
-      <MainHeader />
+      <MainHeader>
+        <div style={{ fontSize: "20px", fontWeight: "bold" }}>비밀번호 변경</div>
+      </MainHeader>
       <Container>
         <StForm
           onSubmit={(e) => {
@@ -69,11 +75,10 @@ const EditNick = () => {
           <StInput
             placeholder="현재 비밀번호를 입력해주세요"
             required
-            name="nowPassword"
-            value={nowPassword}
+            name="newPassword"
+            value={newPassword}
             onChange={onChangeUserHandler}
           />
-
           <Space />
           <div style={{ fontSize: "20px", fontWeight: "bold" }}>새 비밀번호</div>
           <StInput

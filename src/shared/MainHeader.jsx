@@ -2,7 +2,7 @@ import React from "react";
 import styled from "styled-components";
 import ArrowBackIcon from "@mui/icons-material/ArrowBack";
 import IconButton from "@mui/material/IconButton";
-import FavoriteIcon from "@mui/icons-material/Favorite";
+// import FavoriteIcon from "@mui/icons-material/Favorite";
 import { useNavigate } from "react-router";
 
 function Header({ children }) {
@@ -21,6 +21,7 @@ function Header({ children }) {
       {/* <IconButton>
         <FavoriteIcon className="header_logo" fontSize="large" />
       </IconButton> */}
+      <Space />
     </StHeader>
   );
 }
@@ -43,4 +44,8 @@ const StHeader = styled.div`
   .header_logo {
     padding: 20px;
   }
+`;
+
+const Space = styled.div`
+  margin-left: 11vh;
 `;

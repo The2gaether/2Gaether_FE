@@ -1,9 +1,8 @@
 import React, { useState } from "react";
-import styled, { css } from "styled-components";
-import { useDispatch, useSelector } from "react-redux";
+import styled from "styled-components";
+import { useDispatch } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import { __postDog } from "../../redux/modules/signupSlice";
-import imageaddbox from "../../assets/img/imageaddbox.PNG";
 import male from "../../assets/img/male.PNG";
 import female from "../../assets/img/female.PNG";
 import plusbutton from "../../assets/img/plusbutton.PNG";
@@ -86,7 +85,6 @@ function SignUpForm() {
     });
     setImageSrcs(imageSrcTemp.splice(0, 1));
   };
-
   const handleChangeFile1 = (event) => {
     let imageSrcTemp = imageSrcs;
     let readers = [];
@@ -103,7 +101,6 @@ function SignUpForm() {
     });
     setImageSrcs2(imageSrcTemp.splice(0, 1));
   };
-
   const readFileAsText = (fileBlob) => {
     return new Promise(function (resolve, reject) {
       let fr = new FileReader();
@@ -119,7 +116,6 @@ function SignUpForm() {
       fr.readAsDataURL(fileBlob);
     });
   };
-
   //핸드러
   const onSubmitHandler = async (event) => {
     if (signData.dogDetails === 0 || signData > 20) {
@@ -128,12 +124,10 @@ function SignUpForm() {
     event.preventDefault();
     const checkState = dispatch(__postDog(signData));
   };
-
   //주소로 가는 코드
   const handleClick = () => {
     navigate("/address");
   };
-
   //합치는 코드(address로가는온클릭, 서브밋코드)
   const combinedHandler = async (event) => {
     await onSubmitHandler(event);
@@ -206,7 +200,6 @@ function SignUpForm() {
       {signNumber === 2 && (
         <Container>
           <StNum> ({signNumber + 1}/5)</StNum>
-
           <StDiv3>
             <StP3> 강아지의</StP3>
             <br />
@@ -221,11 +214,11 @@ function SignUpForm() {
               </ImagePreviewContainer>
               <InputContainer hasImage={imageSrcs.length > 0}>
                 <input
+                  required
                   type="file"
                   accept="image/jpeg, image/jpg, image/png"
                   onChange={handleChangeFile}
                   multiple
-                  required
                 />
                 <StImg1 src={plusbutton} />
               </InputContainer>

@@ -41,17 +41,23 @@ function Login() {
     loginCheck && navigate("/selectpage");
   }, [loginCheck, navigate]);
 
+  // const onCheckEnter = (e) => {
+  //   if (e.key === "Enter") {
+  //     onSubmitLoginHandler();
+  //   }
+  // };
+
   return (
     <Container>
       <Wrapper>
         <StLogo src={Logo} />
+
         <LoginBox>
           <TopBox>
             <div>간편하게 로그인하고</div>
             <br />
             <StP1>투개더를 이용해보세요</StP1>
           </TopBox>
-
           <div>
             <p>이메일</p>
             <StInput
@@ -206,3 +212,4 @@ const StInput = styled.input`
   }
 `;
 const LoginBox = styled.form``;
+const Form = styled.form``;

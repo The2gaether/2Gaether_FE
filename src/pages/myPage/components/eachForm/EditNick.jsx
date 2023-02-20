@@ -30,7 +30,9 @@ const EditNick = () => {
   };
   return (
     <>
-      <MainHeader />
+      <MainHeader>
+        <div style={{ fontSize: "20px", fontWeight: "bold" }}>닉네임 변경</div>
+      </MainHeader>
       <Container>
         <StForm
           onSubmit={(e) => {
