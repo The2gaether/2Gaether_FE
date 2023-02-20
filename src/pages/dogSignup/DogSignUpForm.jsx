@@ -268,15 +268,11 @@ function SignUpForm() {
             }}
           />
 
-<<<<<<< HEAD
-          <StBtn className="on" onClick={combinedHandler}>
-=======
           <StBtn
             className="on"
             onClick={combinedHandler}
             disabled={!dogDetailsState}
           >
->>>>>>> 54cb7565c98c49d336ac89ecc0feb55fe2748e5a
             다음
           </StBtn>
         </div>
