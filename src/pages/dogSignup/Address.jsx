@@ -14,12 +14,12 @@ function Address() {
   const [longitude, setLongitude] = useState(0);
 
   //주소 모달창
-  // const [modalState, setModalState] = useState(true);
-  // const [inputAddressValue, setInputAddressValue] = useState();
-  // const [inputZipCodeValue, setInputZipCodeValue] = useState();
+  const [modalState, setModalState] = useState(true);
+  const [inputAddressValue, setInputAddressValue] = useState();
+  const [inputZipCodeValue, setInputZipCodeValue] = useState();
 
   // 조건부 렌더링을 위한 상태관리
-  // const [signNumber, setSignNumber] = useState(0);
+  const [signNumber, setSignNumber] = useState(0);
 
   //위도 경도 나타내는 식
   navigator.geolocation.getCurrentPosition(async function (position) {
@@ -37,67 +37,91 @@ function Address() {
     console.log(longitude);
   });
 
-  //주소입력 창
-  // const onCompletePost = (data) => {
-  //   console.log("complete");
-  //   setModalState(false);
-  //   setInputAddressValue(data.address);
-  //   setInputZipCodeValue(data.zonecode);
-  // };
+  // 주소입력 창
+  const onCompletePost = (data) => {
+    console.log("complete");
+    setModalState(false);
+    setInputAddressValue(data.address);
+    setInputZipCodeValue(data.zonecode);
+  };
 
-  //next 회원가입 완료로 가는 버튼
-  // const next = (e) => {
-  //   if (signNumber === 0) {
-  //   }
-  //   e.preventDefault();
-  //   setSignNumber((prevNumber) => prevNumber + 1);
-  // };
+  // next 회원가입 완료로 가는 버튼
+  const next = (e) => {
+    if (signNumber === 0) {
+    }
+    e.preventDefault();
+    setSignNumber((prevNumber) => prevNumber + 1);
+  };
 
-  //얼른가자 멍 이후 메인페이지로
-  // const submitLogin = () => {
-  //   navigate("/");
-  // };
+  // 얼른가자 멍 이후 메인페이지로
+  const submitLogin = () => {
+    navigate("/");
+  };
 
-  //완료버튼에 따른 색깔변화
-<<<<<<< HEAD
-  // const [formstate, setFormState] = useState(false);
-  // const buttonStyle = {
-  //   background: formstate
-  //     ? "linear-gradient(50deg, #ff398c, #ef734a)"
-  //     : "white",
-  //   color: formstate ? "white" : "black",
-  //   disabled: !formstate,
-  // };
-=======
+  // 완료버튼에 따른 색깔변화
   const [formstate, setFormState] = useState(false);
   const buttonStyle = {
-    background: formstate ? "linear-gradient(50deg, #ff398c, #ef734a)" : "white",
+    background: formstate
+      ? "linear-gradient(50deg, #ff398c, #ef734a)"
+      : "white",
     color: formstate ? "white" : "black",
     disabled: !formstate,
   };
->>>>>>> 47f1f333f4a1e5c824542f501a9c2affe8268331
 
   //위치공유 허락하러가기 하는 버튼
   const onPermitHadler = () => {
+    //navigate("/");
+
+    const options = {
+      enableHighAccuracy: true,
+      timeout: 5000,
+      maximumAge: 0,
+    };
+
+    function success(pos) {
+      const crd = pos.coords;
+
+      console.log("Your current position is:");
+      console.log(`Latitude : ${crd.latitude}`);
+      console.log(`Longitude: ${crd.longitude}`);
+      console.log(`More or less ${crd.accuracy} meters.`);
+    }
+
+    function error(err) {
+      console.warn(`ERROR(${err.code}): ${err.message}`);
+    }
+
+    navigator.permissions
+      .query({
+        name: "geolocation",
+      })
+      .then(function (result) {
+        if (result.state == "granted") {
+        } else if (result.state == "prompt") {
+          navigator.geolocation.getCurrentPosition(success, error, options);
+        } else if (result.state == "denied") {
+        }
+        result.onchange = function () {};
+      });
+    // window.location.replace("chrome://settings/content/location");
     // chrome://settings/content/location
   };
 
   return (
     <div>
-      {/* <AddForm onSubmit={submitLogin}>
+      <AddForm onSubmit={submitLogin}>
         <TopBox>
           <div>간편하게 가입하고</div>
           <div>투개더를 이용해보세요</div>
         </TopBox>
         {signNumber === 0 && (
           <div>
-            <DaumPostcode onComplete={onCompletePost}></DaumPostcode>
+            {/* <DaumPostcode onComplete={onCompletePost}></DaumPostcode> */}
             {latitude}
             <br />
             {longitude}
             <br />
-            <button onClick={() => onPermitHadler()}>위치공유 허용하기 버튼 </button>
-            {!modalState && "ㅇㅇㅇㅇ"}
+            {/* {!modalState && "ㅇㅇㅇㅇ"}
             {!modalState && (
               <div>
                 <input value={inputZipCodeValue}></input>
@@ -106,19 +130,26 @@ function Address() {
                   다음
                 </button>
               </div>
-            )}
+            )} */}
+            <button onClick={() => onPermitHadler()}>
+              위치공유 허용하기 버튼{" "}
+            </button>
           </div>
         )}
 
         {signNumber === 1 && (
           <div>
             <div>
-              가입을 축하드려요! <br /> 이제부터 본격적으로 <br /> 투개더🐶 할까요?
+              가입을 축하드려요! <br /> 이제부터 본격적으로 <br /> 투개더🐶
+              할까요?
             </div>
-            <button onClick={submitLogin} style={buttonStyle}>{`얼른 가자멍!`}</button>
+            <button
+              onClick={submitLogin}
+              style={buttonStyle}
+            >{`얼른 가자멍!`}</button>
           </div>
         )}
-      </AddForm> */}
+      </AddForm>
     </div>
   );
 }
@@ -147,5 +178,4 @@ const TopBox = styled.div`
     cursor: pointer;
   }
 `;
-
 const AddForm = styled.form``;
