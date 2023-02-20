@@ -7,10 +7,13 @@ function WelcomePage() {
 
   return (
     <StContainer>
-      <SignUpBtn onClick={() => navigate("/dogsignup")}>
-        첫 반려견 추가
-      </SignUpBtn>
-      <SignUpBtn onClick={() => navigate("/home")}>
+      <SignUpBtn onClick={() => navigate("/dogsignup")}>첫 반려견 추가</SignUpBtn>
+      <SignUpBtn
+        onClick={() => {
+          navigate("/");
+          window.location.reload();
+        }}
+      >
         산책 메이트 만들기
       </SignUpBtn>
     </StContainer>
