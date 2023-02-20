@@ -14,12 +14,12 @@ function Address() {
   const [longitude, setLongitude] = useState(0);
 
   //주소 모달창
-  const [modalState, setModalState] = useState(true);
-  const [inputAddressValue, setInputAddressValue] = useState();
-  const [inputZipCodeValue, setInputZipCodeValue] = useState();
+  // const [modalState, setModalState] = useState(true);
+  // const [inputAddressValue, setInputAddressValue] = useState();
+  // const [inputZipCodeValue, setInputZipCodeValue] = useState();
 
   // 조건부 렌더링을 위한 상태관리
-  const [signNumber, setSignNumber] = useState(0);
+  // const [signNumber, setSignNumber] = useState(0);
 
   //위도 경도 나타내는 식
   navigator.geolocation.getCurrentPosition(async function (position) {
@@ -38,39 +38,39 @@ function Address() {
   });
 
   //주소입력 창
-  const onCompletePost = (data) => {
-    console.log("complete");
-    setModalState(false);
-    setInputAddressValue(data.address);
-    setInputZipCodeValue(data.zonecode);
-  };
+  // const onCompletePost = (data) => {
+  //   console.log("complete");
+  //   setModalState(false);
+  //   setInputAddressValue(data.address);
+  //   setInputZipCodeValue(data.zonecode);
+  // };
 
   //next 회원가입 완료로 가는 버튼
-  const next = (e) => {
-    if (signNumber === 0) {
-    }
-    e.preventDefault();
-    setSignNumber((prevNumber) => prevNumber + 1);
-  };
+  // const next = (e) => {
+  //   if (signNumber === 0) {
+  //   }
+  //   e.preventDefault();
+  //   setSignNumber((prevNumber) => prevNumber + 1);
+  // };
 
   //얼른가자 멍 이후 메인페이지로
-  const submitLogin = () => {
-    navigate("/");
-  };
+  // const submitLogin = () => {
+  //   navigate("/");
+  // };
 
   //완료버튼에 따른 색깔변화
-  const [formstate, setFormState] = useState(false);
-  const buttonStyle = {
-    background: formstate
-      ? "linear-gradient(50deg, #ff398c, #ef734a)"
-      : "white",
-    color: formstate ? "white" : "black",
-    disabled: !formstate,
-  };
+  // const [formstate, setFormState] = useState(false);
+  // const buttonStyle = {
+  //   background: formstate
+  //     ? "linear-gradient(50deg, #ff398c, #ef734a)"
+  //     : "white",
+  //   color: formstate ? "white" : "black",
+  //   disabled: !formstate,
+  // };
 
   return (
     <div>
-      <AddForm onSubmit={submitLogin}>
+      {/* <AddForm onSubmit={submitLogin}>
         <TopBox>
           <div>간편하게 가입하고</div>
           <div>투개더를 이용해보세요</div>
@@ -104,7 +104,7 @@ function Address() {
             >{`얼른 가자멍!`}</button>
           </div>
         )}
-      </AddForm>
+      </AddForm> */}
     </div>
   );
 }
