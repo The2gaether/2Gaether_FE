@@ -19,7 +19,6 @@ const MyDog = () => {
         Authorization,
       },
     });
-
     setDog(data);
     console.log(dog);
   };

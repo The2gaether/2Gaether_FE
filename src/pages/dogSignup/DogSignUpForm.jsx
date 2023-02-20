@@ -202,7 +202,6 @@ function SignUpForm() {
       {signNumber === 2 && (
         <Container>
           <StNum> ({signNumber + 1}/5)</StNum>
-
           <StDiv3>
             <StP3> 강아지의</StP3>
             <br />
@@ -217,6 +216,7 @@ function SignUpForm() {
               </ImagePreviewContainer>
               <InputContainer hasImage={imageSrcs.length > 0}>
                 <input
+                  required
                   type="file"
                   accept="image/jpeg, image/jpg, image/png"
                   onChange={handleChangeFile}
@@ -233,6 +233,7 @@ function SignUpForm() {
               </ImagePreviewContainer>
               <InputContainer hasImage={imageSrcs2.length > 0}>
                 <input
+                  required
                   type="file"
                   accept="image/jpeg, image/jpg, image/png"
                   onChange={handleChangeFile1}
@@ -267,7 +268,15 @@ function SignUpForm() {
             }}
           />
 
+<<<<<<< HEAD
           <StBtn className="on" onClick={combinedHandler}>
+=======
+          <StBtn
+            className="on"
+            onClick={combinedHandler}
+            disabled={!dogDetailsState}
+          >
+>>>>>>> 54cb7565c98c49d336ac89ecc0feb55fe2748e5a
             다음
           </StBtn>
         </div>

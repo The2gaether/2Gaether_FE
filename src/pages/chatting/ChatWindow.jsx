@@ -7,6 +7,7 @@ import {
 import styled from "styled-components";
 import SockJS from "sockjs-client";
 import Stomp from "stompjs";
+import { __postChatopenThunk } from "../../redux/modules/chattingSlice";
 
 const ChatWindow = () => {
   // Redux 스토어에서 메시지, isLoading 및 오류 값을 가져옵니다

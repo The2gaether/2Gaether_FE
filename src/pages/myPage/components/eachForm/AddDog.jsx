@@ -6,8 +6,8 @@ import male from "../../../../assets/img/male.PNG";
 import female from "../../../../assets/img/female.PNG";
 import plusbutton from "../../../../assets/img/plusbutton.PNG";
 import { __postDog } from "../../../../redux/modules/signupSlice";
-import MainHeader from "../../../../shared/MainHeader";
-import Footer from "../../../../shared/Footer";
+// import MainHeader from "../../../../shared/MainHeader";
+// import Footer from "../../../../shared/Footer";
 
 // 회원가입 form 컴포넌트
 function SignUpForm() {
@@ -197,7 +197,6 @@ function SignUpForm() {
       {signNumber === 2 && (
         <Container>
           <StNum> ({signNumber + 1}/4)</StNum>
-
           <StDiv3>
             <StP3> 강아지의</StP3>
             <br />
@@ -212,6 +211,7 @@ function SignUpForm() {
               </ImagePreviewContainer>
               <InputContainer hasImage={imageSrcs.length > 0}>
                 <input
+                  required
                   type="file"
                   accept="image/jpeg, image/jpg, image/png"
                   onChange={handleChangeFile}

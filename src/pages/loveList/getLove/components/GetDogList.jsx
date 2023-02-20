@@ -42,7 +42,7 @@ const InfiniteScroll = () => {
     return () => window.removeEventListener("scroll", handleScroll);
   }, [handleScroll]);
 
-  const remainingData = data.slice(0, page * 2);
+  const remainingData = data.slice(0, page * 3);
 
   return (
     <>
