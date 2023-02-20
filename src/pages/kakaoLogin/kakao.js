@@ -21,7 +21,7 @@ const Kakao = () => {
   );
 
   useEffect(() => {
-    navigate("/dogSignUp");
+    navigate("/selectpage");
   });
 
   return (
