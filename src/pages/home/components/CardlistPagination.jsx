@@ -9,18 +9,6 @@ const CardlistPagination = ({ total, limit, page, setPage }) => {
         {/* &lt; => 왼쪽꺽새를 의미합니다 */}
         &lt;
       </Button>
-      {/* 페이지네이션 쪽수 보여주게 하는것 */}
-      {/* {Array(numPages)
-        .fill()
-        .map((_, i) => (
-          <Button
-            key={i + 1}
-            onClick={() => setPage(i + 1)}
-            aria-current={page === i + 1 ? "page" : null}
-          >
-            {i + 1}
-          </Button>
-        ))} */}
       <Button onClick={() => setPage(page + 1)} disabled={page === numPages}>
         {/* &gt; => 오른쪽꺽새를 의미합니다 */}
         &gt;

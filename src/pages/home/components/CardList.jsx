@@ -36,13 +36,7 @@ const CardList = () => {
           </OneDog>
         ))}
         <Space>
-          <CardlistPagination
-            //
-            total={dogs.length}
-            limit={limit}
-            page={page}
-            setPage={setPage}
-          />
+          <CardlistPagination total={dogs.length} limit={limit} page={page} setPage={setPage} />
         </Space>
         <div className="btnGruop">
           <div className="circleBorder">
