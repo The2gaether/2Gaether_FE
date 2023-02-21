@@ -9,7 +9,8 @@ const GivePagination = ({ total, limit, page, setPage }) => {
         {/* &lt; => 왼쪽꺽새를 의미합니다 */}
         &lt;
       </Button>
-      {Array(numPages)
+      {/* 페이지네이션 쪽수 보여주게 하는것 */}
+      {/* {Array(numPages)
         .fill()
         .map((_, i) => (
           <Button
@@ -19,7 +20,7 @@ const GivePagination = ({ total, limit, page, setPage }) => {
           >
             {i + 1}
           </Button>
-        ))}
+        ))} */}
       <Button onClick={() => setPage(page + 1)} disabled={page === numPages}>
         {/* &gt; => 오른쪽꺽새를 의미합니다 */}
         &gt;
@@ -30,14 +31,19 @@ const GivePagination = ({ total, limit, page, setPage }) => {
 export default GivePagination;
 
 const Nav = styled.nav`
+  width: 80vw;
   display: flex;
-  justify-content: center;
-  align-items: center;
+  justify-content: space-between;
   gap: 4px;
   margin: 16px;
 `;
 
 const Button = styled.button`
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 7vh;
+  width: 5vw;
   border: none;
   border-radius: 8px;
   padding: 8px;

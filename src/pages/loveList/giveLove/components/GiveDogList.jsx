@@ -21,24 +21,24 @@ const GiveDogList = () => {
   return (
     <>
       <Container>
-        {dogs.slice(offset, offset + limit).map(({ url, name }) => (
-          <OneDog>
+        {dogs.slice(offset, offset + limit).map(({ url, name, id }) => (
+          <OneDog key={id}>
             <StDog style={{ backgroundImage: `url(${url})` }}>
               <StName>{name}</StName>
             </StDog>
             <Space />
           </OneDog>
         ))}
+        <Space>
+          <GivePagination
+            //
+            total={dogs.length}
+            limit={limit}
+            page={page}
+            setPage={setPage}
+          />
+        </Space>
       </Container>
-      <Space>
-        <GivePagination
-          //
-          total={dogs.length}
-          limit={limit}
-          page={page}
-          setPage={setPage}
-        />
-      </Space>
     </>
   );
 };
@@ -46,7 +46,9 @@ export default GiveDogList;
 
 const Container = styled.div`
   display: flex;
+  align-items: center;
   justify-content: center;
+  flex-direction: column;
   margin-top: 5vh;
 `;
 const StDog = styled.div`
@@ -67,11 +69,10 @@ const StName = styled.h3`
 `;
 
 const OneDog = styled.div`
-  display: flex;
   justify-content: flex-start;
 `;
 const Space = styled.div`
-  margin-top: -35vh;
-
-  /* background-color: black; */
+  margin-top: -15vh;
+  display: flex;
+  z-index: 1;
 `;
