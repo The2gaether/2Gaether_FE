@@ -58,10 +58,6 @@ function Address() {
     navigate("/");
   };
 
-<<<<<<< HEAD
-  // 완료버튼에 따른 색깔변화
-=======
->>>>>>> 74341d3a7b9e2fca57fbe9d9bb3cffa89e5ca4ab
   const [formstate, setFormState] = useState(false);
   const buttonStyle = {
     background: formstate ? "linear-gradient(50deg, #ff398c, #ef734a)" : "white",

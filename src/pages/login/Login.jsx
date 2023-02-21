@@ -80,10 +80,6 @@ function Login() {
           </div>
           <LogInBtn onClick={onSubmitLoginHandler}>로그인</LogInBtn>
         </LoginBox>
-<<<<<<< HEAD
-=======
-
->>>>>>> 54cb7565c98c49d336ac89ecc0feb55fe2748e5a
         <SignUpBtn
           onClick={() => {
             navigate("/signup");

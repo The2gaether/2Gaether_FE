@@ -271,16 +271,8 @@ function SignUpForm() {
               setSignData({ ...signData, dogDetails: e.target.value });
             }}
           />
-<<<<<<< HEAD
 
-          <StBtn
-            className="on"
-            onClick={combinedHandler}
-            disabled={!dogDetailsState}
-          >
-=======
           <StBtn className="on" onClick={combinedHandler} disabled={!dogDetailsState}>
->>>>>>> 74341d3a7b9e2fca57fbe9d9bb3cffa89e5ca4ab
             다음
           </StBtn>
         </div>
