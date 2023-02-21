@@ -1,9 +1,12 @@
 import React, { useEffect, useState } from "react";
 import styled from "styled-components";
 import axios from "axios";
-import GivePagination from "./GivePagination";
+import CardlistPagination from "./CardlistPagination";
+import IconButton from "@material-ui/core/IconButton";
+import FavoriteBorderIcon from "@mui/icons-material/FavoriteBorder";
+import ClearIcon from "@mui/icons-material/Clear";
 
-const GiveDogList = () => {
+const CardList = () => {
   const [dogs, setDogs] = useState([]);
   const [limit, setLimit] = useState(1);
   const [page, setPage] = useState(1);
@@ -13,7 +16,10 @@ const GiveDogList = () => {
     const { data } = await axios.get(`http://localhost:3001/userList`);
     setDogs(data);
   };
-
+  const handleFavoriteClick = (person) => {
+    alert("정말 매치하겠냐멍?");
+    // setDogs(...dogs, person);
+  };
   useEffect(() => {
     fetchList();
   }, []);
@@ -30,19 +36,25 @@ const GiveDogList = () => {
           </OneDog>
         ))}
         <Space>
-          <GivePagination
-            //
-            total={dogs.length}
-            limit={limit}
-            page={page}
-            setPage={setPage}
-          />
+          <CardlistPagination total={dogs.length} limit={limit} page={page} setPage={setPage} />
         </Space>
+        <div className="btnGruop">
+          <div className="circleBorder">
+            <IconButton onClick={() => handleFavoriteClick()}>
+              <FavoriteBorderIcon className="icon" />
+            </IconButton>
+          </div>
+          <div className="circleBorder">
+            <IconButton>
+              <ClearIcon className="icon" />
+            </IconButton>
+          </div>
+        </div>
       </Container>
     </>
   );
 };
-export default GiveDogList;
+export default CardList;
 
 const Container = styled.div`
   display: flex;
@@ -50,6 +62,11 @@ const Container = styled.div`
   justify-content: center;
   flex-direction: column;
   margin-top: 5vh;
+  .btnGruop {
+    display: flex;
+    justify-content: flex-start;
+    margin-top: 20vh;
+  }
 `;
 const StDog = styled.div`
   position: relative;

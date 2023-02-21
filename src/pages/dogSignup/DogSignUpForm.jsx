@@ -271,7 +271,12 @@ function SignUpForm() {
               setSignData({ ...signData, dogDetails: e.target.value });
             }}
           />
-          <StBtn className="on" onClick={next}>
+
+          <StBtn
+            className="on"
+            onClick={combinedHandler}
+            disabled={!dogDetailsState}
+          >
             다음
           </StBtn>
           <StBtn onClick={() => setSignNumber(signNumber - 1)}>뒤로</StBtn>

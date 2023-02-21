@@ -51,7 +51,6 @@ function Login() {
     <Container>
       <Wrapper>
         <StLogo src={Logo} />
-
         <LoginBox>
           <TopBox>
             <div>간편하게 로그인하고</div>
