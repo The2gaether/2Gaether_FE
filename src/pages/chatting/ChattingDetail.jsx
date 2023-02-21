@@ -29,9 +29,9 @@ const ChattingDetail = () => {
   console.log(chatcollect);
   const { messages } = useSelector((state) => state.messages);
 
-  // 채팅 엔터키/shif+enter 막기
   const handleEnterPress = (e) => {
     if (e.keyCode === 13 && e.shiftKey == false) {
+      e.preventDefault(); // Enter 키 동작 막기
       window.scrollTo(0, 0);
       // sendMessage();
     }
@@ -57,12 +57,24 @@ const ChattingDetail = () => {
               const receive = JSON.parse(res.body);
               console.log(123456, receive);
               dispatch(subMessage(receive));
-              //dispatch(subMessage(receive))를 사용하는 이유는
-              //WebSocket을 통해 수신된 채팅 메시지를 Redux store의
-              //상태로 업데이트하고, 이를 바탕으로 앱의 뷰를 업데이트하기
-              //위함입니다.
+              /* 
+               여기서 dispatch(subMessage(receive))는 Redux store의 messages state를 
+               업데이트하기 위한 action을 dispatch 하는 것입니다. 
+               subMessage는 socketSlice.js에서 생성된 Redux slice의 action creator입니다.
+               이 코드에서는 Stomp을 사용하여 WebSocket을 통해 메시지를 주고받는 채팅 기능을 
+               구현하고 있습니다. 
+               메시지를 받으면, subMessage 액션을 dispatch하여 messages state를 업데이트합니다. 
+               이후, messages state를 이용하여 UI를 업데이트합니다.
+
+               Redux store를 사용하면, state 관리를 중앙에서 처리할 수 있으며, 여러 컴포넌트에서 
+               동일한 state를 공유할 수 있습니다. 이를 통해 코드의 유지보수성과 확장성을 향상시킬 
+               수 있습니다.
+
+               따라서 dispatch(subMessage(receive))를 통해 Redux store의 messages state를 
+               업데이트하고, 이를 이용하여 UI를 업데이트하는 것이 이 코드에서 선택된 방법입니다. */
             });
           },
+
           {}
         );
       } catch (e) {
@@ -104,8 +116,8 @@ const ChattingDetail = () => {
 
   return (
     <>
-      <Container>
-        <StchatName>
+      <StyledChatWindow>
+        <div>
           <button
             fs="30px"
             color="#000"
@@ -114,116 +126,87 @@ const ChattingDetail = () => {
               navigate("/chatList");
             }}
           />
-        </StchatName>
-
-        <div>
-          <div>
-            <div ref={scrollRef}>
-              {messages.map((chating) => (
-                <SendMessage>
-                  <span>{chating.message}</span>
-                </SendMessage>
-              ))}
-            </div>
-          </div>
         </div>
+        <Header>
+          <Title>Chat Room</Title>
+        </Header>
 
-        <Footer>
-          <textarea type="text" ref={chatRef} onKeyDown={handleEnterPress} />
-          <button onClick={myChat}>전송</button>
-        </Footer>
-      </Container>
+        <ChatHistory>
+          <div ref={scrollRef}>
+            {messages.map((chating) => (
+              <MessageList>
+                <span>{chating.message}</span>
+              </MessageList>
+            ))}
+          </div>
+        </ChatHistory>
+
+        <ChatInput>
+          <form onSubmit={(e) => e.preventDefault()}>
+            <Input type="text" ref={chatRef} onKeyDown={handleEnterPress} />
+            <button onClick={myChat}>전송</button>
+          </form>
+        </ChatInput>
+      </StyledChatWindow>
     </>
   );
 };
 
 export default ChattingDetail;
-const Container = styled.div`
-  width: 600px;
-  height: 900px;
+
+const StyledChatWindow = styled.div`
+  display: flex;
+  flex-direction: column;
+  background-color: #e6e6e6;
   border-radius: 10px;
-  background-color: #c2c1c1;
-  display: flex;
-  flex-direction: column;
-  justify-content: flex-start;
-  align-items: center;
-  margin: auto;
+  width: 500px;
+  height: 500px;
+  padding: 20px;
 `;
 
-const StchatName = styled.div`
+const Header = styled.header`
   display: flex;
   align-items: center;
-  justify-content: flex-start;
-  margin: 15px 210px 0px 0px;
-
-  h4 {
-    margin: 0px 0px 0px 100px;
-  }
+  justify-content: center;
+  margin-bottom: 20px;
 `;
 
-const Dou = styled.div`
+const Title = styled.h1`
+  font-size: 24px;
+  font-weight: bold;
+  color: #333;
+`;
+
+const ChatHistory = styled.div`
   display: flex;
   flex-direction: column;
-  line-height: 10px;
-  h4 {
-    margin-top: 10px;
-  }
+  align-items: center;
+  justify-content: center;
+  height: 80%;
+  overflow-y: auto;
 `;
 
-const ReceivedMessage = styled.div`
-  display: inline-block;
-  width: 100%;
-  margin-top: 10px;
-  margin-bottom: 10px;
-  text-align: left;
-  div {
-    display: flex;
-  }
-
-  img {
-    width: 50px;
-    height: 50px;
-    border-radius: 5%;
-    margin-top: 5px;
-  }
+const MessageList = styled.ul`
+  list-style: none;
+  padding: 0;
 `;
 
-const SendMessage = styled.div`
-  display: inline-block;
-  width: 100%;
-  margin-top: 10px;
-  margin-bottom: 10px;
-  text-align: right;
-  div {
-    display: flex;
-    justify-content: flex-end;
-  }
+const ChatInput = styled.div`
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-top: 20px;
 `;
 
-const ReceivedMessageBox = styled.div`
-  display: inline-block;
-  background: #2f80ed;
-  color: #f2f2f2;
-  max-width: 80%;
-  text-align: left;
+const Input = styled.input`
+  font-size: 18px;
   padding: 10px;
-  margin-right: 20px;
-  border-radius: 22px 0px 22px 22px;
-  img {
-    width: 50px;
-    height: 50px;
-    border-radius: 5%;
-  }
+  border-radius: 10px;
+  border: 1px solid #333;
+  margin-right: 10px;
 `;
-
-const Footer = styled.div`
-  display: flex;
-  flex-direction: row;
-  background-color: #eeeeee;
-  margin-top: 673px;
-  textarea {
-    width: 495px;
-    height: 170px;
-    border-radius: 10px;
-  }
+const Message = styled.li`
+  font-size: 18px;
+  color: #333;
+  margin-bottom: 10px;
 `;

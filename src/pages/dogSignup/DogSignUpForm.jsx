@@ -6,6 +6,7 @@ import { __postDog } from "../../redux/modules/signupSlice";
 import male from "../../assets/img/male.PNG";
 import female from "../../assets/img/female.PNG";
 import plusbutton from "../../assets/img/plusbutton.PNG";
+import LoginModal from "./LoginModal";
 
 // 회원가입 form 컴포넌트
 function SignUpForm() {
@@ -134,6 +135,10 @@ function SignUpForm() {
     navigate("/address");
   };
 
+  //모달창 띄우기
+  const [signup, setSignup] = useState(false);
+  const handleBack = () => {};
+
   return (
     <StForm>
       <StDiv>
@@ -164,6 +169,20 @@ function SignUpForm() {
           <StBtn className="on" onClick={next}>
             다음
           </StBtn>
+<<<<<<< HEAD
+          <StBtn onClick={() => setSignup(!signup)}>뒤로</StBtn>
+          {signup && (
+            <LoginModal closeModal={() => setSignup(!signup)}>
+              "뒤로가기"를 누르셨군요!
+              <br></br>강아지 등록을 안하시면
+              <br></br>투개더 이용이 어렵답니다.
+              <br></br>
+              <button onClick={handleBack}>네,알겠습니다.</button>
+            </LoginModal>
+          )}
+=======
+          <StBtn onClick={() => setSignNumber(signNumber - 1)}>뒤로</StBtn>
+>>>>>>> 75806b1955423a07d3fd0d7db2d53e79f9b15cd1
         </div>
       )}
 
@@ -180,7 +199,12 @@ function SignUpForm() {
             <StImg src={female} />
             <StDiv4>
               <StDiv5>
-                <input type="radio" name="dogSexRadio" value="Male" defaultChecked />
+                <input
+                  type="radio"
+                  name="dogSexRadio"
+                  value="Male"
+                  defaultChecked
+                />
                 <label>남</label>
               </StDiv5>
               <StDiv6>
@@ -189,21 +213,72 @@ function SignUpForm() {
               </StDiv6>
             </StDiv4>
           </div>
-          <StBtn
-            className="on"
-            onClick={() => {
-              formstate(false);
-            }}
-          >
-            뒤로
-          </StBtn>
+<<<<<<< HEAD
+
+          <StBtn onClick={() => setSignNumber(signNumber - 1)}>뒤로</StBtn>
           <StBtn className="on" onClick={next} disabled={!dogSexState}>
+=======
+          <StBtn className="on" onClick={next}>
+>>>>>>> 75806b1955423a07d3fd0d7db2d53e79f9b15cd1
             다음
           </StBtn>
+          <StBtn onClick={() => setSignNumber(signNumber - 1)}>뒤로</StBtn>
         </div>
       )}
 
       {signNumber === 2 && (
+<<<<<<< HEAD
+        <div>
+          <Container>
+            <StNum> ({signNumber + 1}/5)</StNum>
+            <StDiv3>
+              <StP3> 강아지의</StP3>
+              <br />
+              <StP2>사진을 2장까지 추가 할 수있습니다.</StP2>
+            </StDiv3>
+            <StDiv4>
+              <div>
+                <ImagePreviewContainer>
+                  {(imageSrcsText || []).map((url) => (
+                    <ImagePreview src={url} alt="..." />
+                  ))}
+                </ImagePreviewContainer>
+                <InputContainer hasImage={imageSrcs.length > 0}>
+                  <input
+                    required
+                    type="file"
+                    accept="image/jpeg, image/jpg, image/png"
+                    onChange={handleChangeFile}
+                    multiple
+                  />
+                  <StImg1 src={plusbutton} />
+                </InputContainer>
+              </div>
+              <div>
+                <ImagePreviewContainer>
+                  {(imageSrcsText2 || []).map((url) => (
+                    <ImagePreview src={url} alt="..." />
+                  ))}
+                </ImagePreviewContainer>
+                <InputContainer hasImage={imageSrcs2.length > 0}>
+                  <input
+                    required
+                    type="file"
+                    accept="image/jpeg, image/jpg, image/png"
+                    onChange={handleChangeFile1}
+                    multiple
+                  />
+                  <StImg1 src={plusbutton} />
+                </InputContainer>
+              </div>
+            </StDiv4>
+            <StBtn onClick={() => setSignNumber(signNumber - 1)}>뒤로</StBtn>
+            <StBtn onClick={next} disabled={!imageSrcs}>
+              다음
+            </StBtn>
+          </Container>
+        </div>
+=======
         <Container>
           <StNum> ({signNumber + 1}/5)</StNum>
           <StDiv3>
@@ -247,10 +322,12 @@ function SignUpForm() {
               </InputContainer>
             </div>
           </StDiv4>
-          <StBtn onClick={next} disabled={!imageSrcs}>
+          <StBtn className="on" onClick={next}>
             다음
           </StBtn>
+          <StBtn onClick={() => setSignNumber(signNumber - 1)}>뒤로</StBtn>
         </Container>
+>>>>>>> 75806b1955423a07d3fd0d7db2d53e79f9b15cd1
       )}
 
       {signNumber === 3 && (
@@ -271,10 +348,19 @@ function SignUpForm() {
               setSignData({ ...signData, dogDetails: e.target.value });
             }}
           />
+<<<<<<< HEAD
+          <StBtn onClick={() => setSignNumber(signNumber - 1)}>뒤로</StBtn>
+=======
 
-          <StBtn className="on" onClick={combinedHandler} disabled={!dogDetailsState}>
+>>>>>>> 75806b1955423a07d3fd0d7db2d53e79f9b15cd1
+          <StBtn
+            className="on"
+            onClick={combinedHandler}
+            disabled={!dogDetailsState}
+          >
             다음
           </StBtn>
+          <StBtn onClick={() => setSignNumber(signNumber - 1)}>뒤로</StBtn>
         </div>
       )}
     </StForm>
@@ -318,10 +404,10 @@ const StDiv4 = styled.div`
   flex-direction: row;
 `;
 const StDiv5 = styled.div`
-  margin-left: 22%;
+  margin-left: 18%;
 `;
 const StDiv6 = styled.div`
-  margin-left: 35%;
+  margin-left: 31%;
   margin-bottom: 25%;
 `;
 
@@ -420,7 +506,7 @@ const StInput = styled.input`
   }
 `;
 
-const StTextarea = styled.input`
+const StTextarea = styled.textarea`
   width: 100%;
   height: 140px;
   border: 2px solid #000000;

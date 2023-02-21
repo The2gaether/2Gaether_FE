@@ -58,9 +58,16 @@ function Address() {
     navigate("/");
   };
 
+<<<<<<< HEAD
+=======
+  // 완료버튼에 따른 색깔변화
+
+>>>>>>> 75806b1955423a07d3fd0d7db2d53e79f9b15cd1
   const [formstate, setFormState] = useState(false);
   const buttonStyle = {
-    background: formstate ? "linear-gradient(50deg, #ff398c, #ef734a)" : "white",
+    background: formstate
+      ? "linear-gradient(50deg, #ff398c, #ef734a)"
+      : "white",
     color: formstate ? "white" : "black",
     disabled: !formstate,
   };
@@ -128,16 +135,22 @@ function Address() {
                 </button>
               </div>
             )} */}
-            <button onClick={() => onPermitHadler()}>위치공유 허용하기 버튼 </button>
+            <button onClick={() => onPermitHadler()}>
+              위치공유 허용하기 버튼{" "}
+            </button>
           </div>
         )}
 
         {signNumber === 1 && (
           <div>
             <div>
-              가입을 축하드려요! <br /> 이제부터 본격적으로 <br /> 투개더🐶 할까요?
+              가입을 축하드려요! <br /> 이제부터 본격적으로 <br /> 투개더🐶
+              할까요?
             </div>
-            <button onClick={submitLogin} style={buttonStyle}>{`얼른 가자멍!`}</button>
+            <button
+              onClick={submitLogin}
+              style={buttonStyle}
+            >{`얼른 가자멍!`}</button>
           </div>
         )}
       </AddForm>
