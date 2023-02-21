@@ -55,8 +55,12 @@ const ChattingDetail = () => {
             client.subscribe(`/sub/chat/room/${chatcollect.roomId}`, (res) => {
               console.log(res.body);
               const receive = JSON.parse(res.body);
-              console.log(receive);
+              console.log(123456, receive);
               dispatch(subMessage(receive));
+              //dispatch(subMessage(receive))를 사용하는 이유는
+              //WebSocket을 통해 수신된 채팅 메시지를 Redux store의
+              //상태로 업데이트하고, 이를 바탕으로 앱의 뷰를 업데이트하기
+              //위함입니다.
             });
           },
           {}
@@ -96,6 +100,7 @@ const ChattingDetail = () => {
       inline: "nearest",
     });
   }, [messages]);
+  console.log(987654, messages);
 
   return (
     <>
@@ -114,33 +119,11 @@ const ChattingDetail = () => {
         <div>
           <div>
             <div ref={scrollRef}>
-              {Myname &&
-                messages.map((chating) =>
-                  chating.userNickname === Myname ? (
-                    <SendMessage>
-                      <div>
-                        <span>{chating.message}</span>
-                        {/*      <img
-                          src={process.env.PUBLIC_URL + "/basic.png"}
-                          alt="로고"
-                        /> */}
-                      </div>
-                    </SendMessage>
-                  ) : (
-                    <ReceivedMessage>
-                      <div>
-                        {/*         <img
-                          src={process.env.PUBLIC_URL + "/basic.png"}
-                          alt="로고"
-                        /> */}
-                        <Dou>
-                          <h4>{chating.userNickname}님</h4>
-                          <span>{chating.message}</span>
-                        </Dou>
-                      </div>
-                    </ReceivedMessage>
-                  )
-                )}
+              {messages.map((chating) => (
+                <SendMessage>
+                  <span>{chating.message}</span>
+                </SendMessage>
+              ))}
             </div>
           </div>
         </div>
@@ -214,12 +197,6 @@ const SendMessage = styled.div`
   div {
     display: flex;
     justify-content: flex-end;
-  }
-
-  img {
-    width: 50px;
-    height: 50px;
-    border-radius: 5%;
   }
 `;
 
