@@ -169,6 +169,7 @@ function SignUpForm() {
           <StBtn className="on" onClick={next}>
             다음
           </StBtn>
+<<<<<<< HEAD
           <StBtn onClick={() => setSignup(!signup)}>뒤로</StBtn>
           {signup && (
             <LoginModal closeModal={() => setSignup(!signup)}>
@@ -179,6 +180,9 @@ function SignUpForm() {
               <button onClick={handleBack}>네,알겠습니다.</button>
             </LoginModal>
           )}
+=======
+          <StBtn onClick={() => setSignNumber(signNumber - 1)}>뒤로</StBtn>
+>>>>>>> 75806b1955423a07d3fd0d7db2d53e79f9b15cd1
         </div>
       )}
 
@@ -209,15 +213,21 @@ function SignUpForm() {
               </StDiv6>
             </StDiv4>
           </div>
+<<<<<<< HEAD
 
           <StBtn onClick={() => setSignNumber(signNumber - 1)}>뒤로</StBtn>
           <StBtn className="on" onClick={next} disabled={!dogSexState}>
+=======
+          <StBtn className="on" onClick={next}>
+>>>>>>> 75806b1955423a07d3fd0d7db2d53e79f9b15cd1
             다음
           </StBtn>
+          <StBtn onClick={() => setSignNumber(signNumber - 1)}>뒤로</StBtn>
         </div>
       )}
 
       {signNumber === 2 && (
+<<<<<<< HEAD
         <div>
           <Container>
             <StNum> ({signNumber + 1}/5)</StNum>
@@ -268,6 +278,56 @@ function SignUpForm() {
             </StBtn>
           </Container>
         </div>
+=======
+        <Container>
+          <StNum> ({signNumber + 1}/5)</StNum>
+          <StDiv3>
+            <StP3> 강아지의</StP3>
+            <br />
+            <StP2>사진을 2장까지 추가 할 수있습니다.</StP2>
+          </StDiv3>
+          <StDiv4>
+            <div>
+              <ImagePreviewContainer>
+                {(imageSrcsText || []).map((url) => (
+                  <ImagePreview src={url} alt="..." />
+                ))}
+              </ImagePreviewContainer>
+              <InputContainer hasImage={imageSrcs.length > 0}>
+                <input
+                  required
+                  type="file"
+                  accept="image/jpeg, image/jpg, image/png"
+                  onChange={handleChangeFile}
+                  multiple
+                />
+                <StImg1 src={plusbutton} />
+              </InputContainer>
+            </div>
+            <div>
+              <ImagePreviewContainer>
+                {(imageSrcsText2 || []).map((url) => (
+                  <ImagePreview src={url} alt="..." />
+                ))}
+              </ImagePreviewContainer>
+              <InputContainer hasImage={imageSrcs2.length > 0}>
+                <input
+                  required
+                  type="file"
+                  accept="image/jpeg, image/jpg, image/png"
+                  onChange={handleChangeFile1}
+                  multiple
+                />
+                <StImg1 src={plusbutton} />
+              </InputContainer>
+            </div>
+          </StDiv4>
+          <StBtn className="on" onClick={next}>
+            다음
+          </StBtn>
+          <StBtn onClick={() => setSignNumber(signNumber - 1)}>뒤로</StBtn>
+        </Container>
+>>>>>>> 75806b1955423a07d3fd0d7db2d53e79f9b15cd1
       )}
 
       {signNumber === 3 && (
@@ -288,7 +348,11 @@ function SignUpForm() {
               setSignData({ ...signData, dogDetails: e.target.value });
             }}
           />
+<<<<<<< HEAD
           <StBtn onClick={() => setSignNumber(signNumber - 1)}>뒤로</StBtn>
+=======
+
+>>>>>>> 75806b1955423a07d3fd0d7db2d53e79f9b15cd1
           <StBtn
             className="on"
             onClick={combinedHandler}
@@ -296,6 +360,7 @@ function SignUpForm() {
           >
             다음
           </StBtn>
+          <StBtn onClick={() => setSignNumber(signNumber - 1)}>뒤로</StBtn>
         </div>
       )}
     </StForm>

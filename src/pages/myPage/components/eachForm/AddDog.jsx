@@ -2,12 +2,10 @@ import React, { useState } from "react";
 import styled from "styled-components";
 import { useDispatch } from "react-redux";
 import { useNavigate } from "react-router-dom";
+import { __postDog } from "../../..//../redux/modules/signupSlice";
 import male from "../../../../assets/img/male.PNG";
 import female from "../../../../assets/img/female.PNG";
 import plusbutton from "../../../../assets/img/plusbutton.PNG";
-import { __postDog } from "../../../../redux/modules/signupSlice";
-// import MainHeader from "../../../../shared/MainHeader";
-// import Footer from "../../../../shared/Footer";
 
 // 회원가입 form 컴포넌트
 function SignUpForm() {
@@ -39,6 +37,7 @@ function SignUpForm() {
 
   //next 버튼 조건
   const next = (e) => {
+    e.preventDefault();
     if (signNumber === 0) {
       if (signData.dogName.length === 0 || signData.dogName.length > 5) {
         return;
@@ -59,7 +58,7 @@ function SignUpForm() {
     }
 
     if (signNumber === 2) {
-      if (!imageSrcs) {
+      if (imageSrcs.length == 0) {
         return;
       }
       setDogDetailsState(true);
@@ -68,9 +67,11 @@ function SignUpForm() {
 
     if (signNumber === 3) {
     }
-    e.preventDefault();
+
     setSignNumber((prevNumber) => prevNumber + 1);
   };
+
+  //이미지파일 업로드 핸들러
   const handleChangeFile = (event) => {
     let imageSrcTemp = imageSrcs;
     let readers = [];
@@ -87,6 +88,7 @@ function SignUpForm() {
     });
     setImageSrcs(imageSrcTemp.splice(0, 1));
   };
+
   const handleChangeFile1 = (event) => {
     let imageSrcTemp = imageSrcs;
     let readers = [];
@@ -103,6 +105,7 @@ function SignUpForm() {
     });
     setImageSrcs2(imageSrcTemp.splice(0, 1));
   };
+
   const readFileAsText = (fileBlob) => {
     return new Promise(function (resolve, reject) {
       let fr = new FileReader();
@@ -118,58 +121,55 @@ function SignUpForm() {
       fr.readAsDataURL(fileBlob);
     });
   };
-  //핸드러
-  const onSubmitHandler = async (event) => {
-    if (signData.dogDetails === 0 || signData > 20) {
-      return;
-    }
-    event.preventDefault();
-    const checkState = dispatch(__postDog(signData));
-  };
-  //주소로 가는 코드
-  const handleClick = () => {
-    navigate("/address");
-  };
+
   //합치는 코드(address로가는온클릭, 서브밋코드)
   const combinedHandler = async (event) => {
-    await onSubmitHandler(event);
-    handleClick();
+    event.preventDefault();
+    if (signNumber === 3) {
+      if (signData.dogDetails.length === 0 || signData.dogDetails.length > 20) {
+        return;
+      }
+    }
+    const checkState = dispatch(__postDog(signData));
+    navigate("/address");
   };
 
   return (
     <StForm>
       <StDiv>
-        <StP1>이게</StP1>
+        <StP1>간편하게 가입하고</StP1>
         <br />
-        <StP2>왜 있을까여?</StP2>
+        <StP2>투개더를 이용해보세요.</StP2>
       </StDiv>
 
       {signNumber === 0 && (
         <div>
-          <StNum> ({signNumber + 1}/4)</StNum>
+          <StNum> ({signNumber + 1}/5)</StNum>
           <StDiv2>
-            <StP3> 추가하실</StP3>
+            <StP3> 반가워요!</StP3>
             <br />
             <StP2>강아지 이름은 어떻게 되나요?</StP2>
           </StDiv2>
           <StInput
             autoComplete="off"
             id="dogName"
-            placeholder="5글자 이내로 입력해주세요."
             required
+            placeholder="5글자 이내로 입력해주세요."
             onChange={(e) => {
               setSignData({ ...signData, dogName: e.target.value });
               setDogSexState(true);
             }}
           />
+
           <StBtn className="on" onClick={next}>
             다음
           </StBtn>
         </div>
       )}
+
       {signNumber === 1 && (
         <div>
-          <StNum> ({signNumber + 1}/4)</StNum>
+          <StNum> ({signNumber + 1}/5)</StNum>
           <StDiv3>
             <StP3> 강아지의</StP3>
             <br />
@@ -189,18 +189,27 @@ function SignUpForm() {
               </StDiv6>
             </StDiv4>
           </div>
+          <StBtn
+            className="on"
+            onClick={() => {
+              formstate(false);
+            }}
+          >
+            뒤로
+          </StBtn>
           <StBtn className="on" onClick={next} disabled={!dogSexState}>
             다음
           </StBtn>
         </div>
       )}
+
       {signNumber === 2 && (
         <Container>
-          <StNum> ({signNumber + 1}/4)</StNum>
+          <StNum> ({signNumber + 1}/5)</StNum>
           <StDiv3>
             <StP3> 강아지의</StP3>
             <br />
-            <StP2>사진을 2장 이상 추가해주세요</StP2>
+            <StP2>사진을 2장까지 추가 할 수있습니다.</StP2>
           </StDiv3>
           <StDiv4>
             <div>
@@ -228,6 +237,7 @@ function SignUpForm() {
               </ImagePreviewContainer>
               <InputContainer hasImage={imageSrcs2.length > 0}>
                 <input
+                  required
                   type="file"
                   accept="image/jpeg, image/jpg, image/png"
                   onChange={handleChangeFile1}
@@ -242,9 +252,10 @@ function SignUpForm() {
           </StBtn>
         </Container>
       )}
+
       {signNumber === 3 && (
         <div>
-          <StNum> ({signNumber + 1}/4)</StNum>
+          <StNum> ({signNumber + 1}/5)</StNum>
           <StDiv3>
             <StP3> 강아지의</StP3>
             <br />
@@ -252,7 +263,7 @@ function SignUpForm() {
           </StDiv3>
           <StTextarea
             autoComplete="off"
-            id="dogName"
+            id="dogDetails"
             placeholder=" 친구를 사귀는데에 큰 도움이 되니 
             최대한 자세히 적어주세요 :)"
             required
@@ -260,7 +271,6 @@ function SignUpForm() {
               setSignData({ ...signData, dogDetails: e.target.value });
             }}
           />
-
           <StBtn className="on" onClick={combinedHandler} disabled={!dogDetailsState}>
             다음
           </StBtn>
@@ -409,7 +419,7 @@ const StInput = styled.input`
   }
 `;
 
-const StTextarea = styled.textarea`
+const StTextarea = styled.input`
   width: 100%;
   height: 140px;
   border: 2px solid #000000;
