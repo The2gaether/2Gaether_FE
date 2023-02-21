@@ -9,8 +9,8 @@ const Home = () => {
   const [dogs, setDogs] = useState([]);
 
   const fetchList = async () => {
-    const { data } = await axios.get(`${process.env.REACT_APP_DOG}/userList`);
-    setDogs(data);
+    // const { data } = await axios.get(`${process.env.REACT_APP_DOG}/userList`);
+    // setDogs(data);
   };
 
   const handleFavoriteClick = (person) => {
