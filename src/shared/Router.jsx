@@ -14,7 +14,6 @@ import ChatRoom from "../pages/chatting/ChatRoom";
 import WelcomePage from "../pages/welcomepage/WelcomePage";
 import ChattingDetail from "../pages/chatting/ChattingDetail";
 import Address from "../pages/dogSignup/Address";
-import DifferentAddress from "../pages/dogSignup/DifferentAddress";
 import EditNick from "../pages/myPage/components/eachForm/EditNick";
 import EditPsw from "../pages/myPage/components/eachForm/EditPsw";
 import AddDog from "../pages/myPage/components/eachForm/AddDog";
@@ -37,7 +36,6 @@ const Router = () => {
             <Route path="/dogSignUp" element={<DogSignUp />} />
             <Route path="/address" element={<Address />} />
             <Route path="/newaddress" element={<NewAddress />} />
-            <Route path="/differntaddress" element={<DifferentAddress />} />
           </>
         ) : (
           <>
@@ -56,7 +54,6 @@ const Router = () => {
             <Route path="/mypage/adddog" element={<AddDog />} />
             <Route path="/myDog/:id" element={<MyDog />} />
             <Route path="/address" element={<Address />} />
-            <Route path="/differntaddress" element={<DifferentAddress />} />
             <Route path="/newaddress" element={<NewAddress />} />
           </>
         )}
