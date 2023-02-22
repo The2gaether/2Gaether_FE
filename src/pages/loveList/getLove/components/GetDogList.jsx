@@ -58,6 +58,8 @@ const InfiniteScroll = () => {
                       <StDog style={{ backgroundImage: `url(${url})` }} key={name}>
                         <StName>{name}</StName>
                       </StDog>
+                      <br />
+                      <br />
                       <div>
                         <button>수락</button>
                         <button>거절</button>
@@ -108,10 +110,11 @@ const StDog = styled.div`
 `;
 
 const StName = styled.h3`
+  margin-bottom: -7vh;
   position: absolute;
   font-size: medium;
   bottom: 30px;
-  color: beige;
+  color: #000000;
 `;
 
 const OneDog = styled.div`

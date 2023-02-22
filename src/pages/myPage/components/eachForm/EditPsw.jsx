@@ -41,7 +41,7 @@ const EditNick = () => {
   const onSubmitHadler = async () => {
     await axios
       .patch(
-        `${process.env.REACT_APP_DOG}/users/passwoed`,
+        `${process.env.REACT_APP_DOG}/users/password`,
         { password, newPassword },
         {
           headers: {
