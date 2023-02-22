@@ -19,8 +19,9 @@ const CardList = () => {
         Authorization,
       },
     });
-    console.log(data);
+
     setDogs(data);
+    console.log(data);
   };
   const handleFavoriteClick = (person) => {
     alert("정말 매치하겠냐멍?");
@@ -33,17 +34,24 @@ const CardList = () => {
   return (
     <>
       <Container>
-        {dogs.slice(offset, offset + limit).map(({ url, username, userId, distance }) => (
-          <OneDog key={userId}>
-            <StDog style={{ backgroundImage: `url(${url})` }}>
-              <StName>{username}</StName>
-              <StName>{distance}</StName>
-            </StDog>
-            <Space />
-          </OneDog>
-        ))}
+        {dogs
+          .slice(offset, offset + limit)
+          .map(({ url, username, userId, distance }) => (
+            <OneDog key={userId}>
+              <StDog style={{ backgroundImage: `url(${url})` }}>
+                <StName>{username}</StName>
+                <StName>{distance}</StName>
+              </StDog>
+              <Space />
+            </OneDog>
+          ))}
         <Space>
-          <CardlistPagination total={dogs.length} limit={limit} page={page} setPage={setPage} />
+          <CardlistPagination
+            total={dogs.length}
+            limit={limit}
+            page={page}
+            setPage={setPage}
+          />
         </Space>
         <div className="btnGruop">
           <div className="circleBorder">

@@ -120,16 +120,6 @@ const ChattingDetail = () => {
   return (
     <>
       <StyledChatWindow>
-        <div>
-          <button
-            fs="30px"
-            color="#000"
-            bc="transparent"
-            onClick={() => {
-              navigate("/chatList");
-            }}
-          />
-        </div>
         <Header>
           <Title>Chat Room</Title>
         </Header>
@@ -189,9 +179,11 @@ const MessageList = styled.div`
   margin: 5px 0;
   padding: 10px;
   border-radius: 5px;
-  max-width: 30%;
+  max-width: 40%;
   word-break: break-all;
   display: flex;
+  text-align: left;
+
   /* 글자 수에 따라 스타일 조정 */
   ${({ messageLength }) =>
     messageLength > 10 &&
@@ -204,15 +196,11 @@ const MessageList = styled.div`
   ${({ isMine }) =>
     isMine
       ? `
-      flex-direction: column-reverse;
-
       align-self: flex-end;
       background-color: #b2d8ff;
      
     `
       : `
-      flex-direction: column-reverse;
-
       align-self: flex-start;
       background-color: #f5f5f5;
 
