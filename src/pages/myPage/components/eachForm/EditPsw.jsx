@@ -35,26 +35,22 @@ const EditNick = () => {
         : setPassInput("");
 
     if (name === "check_password")
-      password !== value ? setcheckpassInput("비밀번호가 불일치합니다") : setcheckpassInput("");
+      newPassword !== value ? setcheckpassInput("비밀번호가 불일치합니다") : setcheckpassInput("");
   };
 
   const onSubmitHadler = async () => {
     await axios
-      .patch(
-        `${process.env.REACT_APP_DOG}/users/passwoed`,
-        { password, newPassword },
-        {
-          headers: {
-            Authorization,
-          },
-        }
-      )
+      .patch(`${process.env.REACT_APP_DOG}/users/mypage`, psw, {
+        headers: {
+          Authorization,
+        },
+      })
       .then((res) => {
         console.log(res);
         return res;
       });
     alert("성공적으로 변경되었습니다!");
-    navigate(-1);
+    // navigate(-1);
   };
 
   const onDeleteUserHandler = () => {};
@@ -75,8 +71,8 @@ const EditNick = () => {
           <StInput
             placeholder="현재 비밀번호를 입력해주세요"
             required
-            name="newPassword"
-            value={newPassword}
+            name="password"
+            value={password}
             onChange={onChangeUserHandler}
           />
           <Space />
@@ -85,8 +81,8 @@ const EditNick = () => {
             type="password"
             placeholder="영문, 숫자, 특수문자 포함 8자 이상 입력해주세요"
             required
-            name="password"
-            value={password}
+            name="newPassword"
+            value={newPassword}
             onChange={onChangeUserHandler}
           />
           <p style={{ fontSize: "10px", fontWeight: "bold" }} id="help-password1" className="help">

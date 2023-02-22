@@ -12,14 +12,18 @@ import MyDog from "../pages/myDog/MyDog";
 import Kakao from "../pages/kakaoLogin/kakao";
 import ChatRoom from "../pages/chatting/ChatRoom";
 import WelcomePage from "../pages/welcomepage/WelcomePage";
-import ChatWindow from "../pages/chatting/ChatWindow";
 import ChattingDetail from "../pages/chatting/ChattingDetail";
 import Address from "../pages/dogSignup/Address";
+import DifferentAddress from "../pages/dogSignup/DifferentAddress";
 import EditNick from "../pages/myPage/components/eachForm/EditNick";
 import EditPsw from "../pages/myPage/components/eachForm/EditPsw";
 import AddDog from "../pages/myPage/components/eachForm/AddDog";
 import SelectPage from "../pages/selectPage/SelectPage";
+<<<<<<< HEAD
 
+=======
+import NewAddress from "../pages/dogSignup/NewAddress";
+>>>>>>> af6a8d2936a822e3f711c930654306b85f1c0e53
 const Router = () => {
   const Authorization = sessionStorage.getItem("accessToken");
   return (
@@ -34,7 +38,12 @@ const Router = () => {
             <Route path="/selectpage" element={<SelectPage />} />
             <Route path="/dogSignUp" element={<DogSignUp />} />
             <Route path="/address" element={<Address />} />
+<<<<<<< HEAD
             <Route path="/jinAddress" element={<JinAddress />} />
+=======
+            <Route path="/newaddress" element={<NewAddress />} />
+            <Route path="/differntaddress" element={<DifferentAddress />} />
+>>>>>>> af6a8d2936a822e3f711c930654306b85f1c0e53
           </>
         ) : (
           <>
@@ -45,13 +54,14 @@ const Router = () => {
             <Route path="/chattingList" element={<ChattingList />} />
             <Route path="/chattingdetail" element={<ChattingDetail />} />
             <Route path="/chatroom" element={<ChatRoom />} />
-            <Route path="/chatwindow" element={<ChatWindow />} />
             <Route path="/mypage" element={<EditUser />} />
             <Route path="/mypage/editnick" element={<EditNick />} />
             <Route path="/mypage/editpsw" element={<EditPsw />} />
             <Route path="/mypage/adddog" element={<AddDog />} />
             <Route path="/myDog/:id" element={<MyDog />} />
             <Route path="/address" element={<Address />} />
+            <Route path="/differntaddress" element={<DifferentAddress />} />
+            <Route path="/newaddress" element={<NewAddress />} />
           </>
         )}
       </Routes>

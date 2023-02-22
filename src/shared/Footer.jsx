@@ -11,7 +11,11 @@ function Footer() {
   const navigate = useNavigate();
   return (
     <StButtons>
-      <IconButton>
+      <IconButton
+        onClick={() => {
+          navigate("/differntaddress");
+        }}
+      >
         <AndroidIcon fontSize="large" />
       </IconButton>
       <IconButton
@@ -41,7 +45,8 @@ function Footer() {
 export default Footer;
 
 const StButtons = styled.div`
-  background-color: gray;
+  background-color: #ffffff;
+  border-top-style: 1px;
   position: fixed;
   bottom: 0;
   width: 100%;

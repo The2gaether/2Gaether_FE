@@ -7,14 +7,21 @@ import FavoriteBorderIcon from "@mui/icons-material/FavoriteBorder";
 import ClearIcon from "@mui/icons-material/Clear";
 
 const CardList = () => {
+  const Authorization = sessionStorage.getItem("accessToken");
   const [dogs, setDogs] = useState([]);
   const [limit, setLimit] = useState(1);
   const [page, setPage] = useState(1);
   const offset = (page - 1) * limit;
 
   const fetchList = async () => {
-    const { data } = await axios.get(`http://localhost:3001/userList`);
+    const { data } = await axios.get(`${process.env.REACT_APP_DOG}/match`, {
+      headers: {
+        Authorization,
+      },
+    });
+
     setDogs(data);
+    console.log(data);
   };
   const handleFavoriteClick = (person) => {
     alert("정말 매치하겠냐멍?");
@@ -27,16 +34,24 @@ const CardList = () => {
   return (
     <>
       <Container>
-        {dogs.slice(offset, offset + limit).map(({ url, name, id }) => (
-          <OneDog key={id}>
-            <StDog style={{ backgroundImage: `url(${url})` }}>
-              <StName>{name}</StName>
-            </StDog>
-            <Space />
-          </OneDog>
-        ))}
+        {dogs
+          .slice(offset, offset + limit)
+          .map(({ url, username, userId, distance }) => (
+            <OneDog key={userId}>
+              <StDog style={{ backgroundImage: `url(${url})` }}>
+                <StName>{username}</StName>
+                <StName>{distance}</StName>
+              </StDog>
+              <Space />
+            </OneDog>
+          ))}
         <Space>
-          <CardlistPagination total={dogs.length} limit={limit} page={page} setPage={setPage} />
+          <CardlistPagination
+            total={dogs.length}
+            limit={limit}
+            page={page}
+            setPage={setPage}
+          />
         </Space>
         <div className="btnGruop">
           <div className="circleBorder">
