@@ -14,22 +14,27 @@ const NewAddress = () => {
         extraAddress += data.bname;
       }
       if (data.buildingName !== "") {
-        extraAddress +=
-          extraAddress !== "" ? `, ${data.buildingName}` : data.buildingName;
+        extraAddress += extraAddress !== "" ? `, ${data.buildingName}` : data.buildingName;
       }
       address += extraAddress !== "" ? ` (${extraAddress})` : "";
     }
-
-    // Daum API 사용
-    const geocoder = new window.daum.maps.services.Geocoder();
-    geocoder.addressSearch(address, function (result, status) {
-      if (status === window.daum.maps.services.Status.OK) {
-        const latitude = result[0].y; // 위도
-        const longitude = result[0].x; // 경도
-        console.log(latitude, longitude);
-      }
-    });
-
+    if (
+      typeof window !== "undefined" &&
+      window.daum &&
+      window.daum.maps &&
+      window.daum.maps.services &&
+      window.daum.maps.services.Geocoder
+    ) {
+      // Daum API 사용
+      const geocoder = new window.daum.maps.services.Geocoder();
+      geocoder.addressSearch(address, function (result, status) {
+        if (status === window.daum.maps.services.Status.OK) {
+          const latitude = result[0].y; // 위도
+          const longitude = result[0].x; // 경도
+          console.log(latitude, longitude);
+        }
+      });
+    }
     setFullAddress(address);
     setIsOpen(false);
   };

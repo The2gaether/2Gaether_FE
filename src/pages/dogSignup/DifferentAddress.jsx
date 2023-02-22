@@ -53,7 +53,8 @@ const DifferntAddress = () => {
   };
 
   const handleComplete = (data: Address) => {
-    console.log(data);
+    let address = data.address;
+    console.log(address);
     onToggleModal(); // 주소창은 자동으로 사라지므로 모달만 꺼주면 된다.
   };
 
@@ -62,17 +63,15 @@ const DifferntAddress = () => {
       <button type="primary" onClick={onToggleModal}>
         Open Modal
       </button>
-      <>
-        {isOpen && (
-          <div
-            visible={true}
-            onOk={onToggleModal}
-            onCancel={onToggleModal} // isOpen이 false가 되고 화면이 리렌더되면서 모달이 뜨지 않는다.
-          >
-            <DaumPostcode onComplete={handleComplete} />
-          </div>
-        )}
-      </>
+      {isOpen && (
+        <div
+          visible={true}
+          onOk={onToggleModal}
+          onCancel={onToggleModal} // isOpen이 false가 되고 화면이 리렌더되면서 모달이 뜨지 않는다.
+        >
+          <DaumPostcode onComplete={handleComplete} />
+        </div>
+      )}
       <div id="map" style={{ width: "300px", height: "200px" }}></div>
       <div id="clickLatlng"></div>
     </Container>

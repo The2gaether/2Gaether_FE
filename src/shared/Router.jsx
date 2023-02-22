@@ -35,6 +35,7 @@ const Router = () => {
             <Route path="/dogSignUp" element={<DogSignUp />} />
             <Route path="/address" element={<Address />} />
             <Route path="/newaddress" element={<NewAddress />} />
+            <Route path="/differntaddress" element={<DifferentAddress />} />
           </>
         ) : (
           <>
@@ -52,6 +53,7 @@ const Router = () => {
             <Route path="/myDog/:id" element={<MyDog />} />
             <Route path="/address" element={<Address />} />
             <Route path="/differntaddress" element={<DifferentAddress />} />
+            <Route path="/newaddress" element={<NewAddress />} />
           </>
         )}
       </Routes>
