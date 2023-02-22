@@ -19,7 +19,7 @@ import EditNick from "../pages/myPage/components/eachForm/EditNick";
 import EditPsw from "../pages/myPage/components/eachForm/EditPsw";
 import AddDog from "../pages/myPage/components/eachForm/AddDog";
 import SelectPage from "../pages/selectPage/SelectPage";
-import JinAddress from "../pages/dogSignup/JinAddress";
+
 const Router = () => {
   const Authorization = sessionStorage.getItem("accessToken");
   return (
