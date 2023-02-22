@@ -57,10 +57,6 @@ function Address() {
   const submitLogin = () => {
     navigate("/");
   };
-<<<<<<< HEAD
-
-=======
->>>>>>> 91026a07876fc246782844e161392c1067cc8f11
   const [formstate, setFormState] = useState(false);
   const buttonStyle = {
     background: formstate ? "linear-gradient(50deg, #ff398c, #ef734a)" : "white",
