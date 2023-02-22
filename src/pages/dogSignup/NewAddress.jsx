@@ -1,13 +1,17 @@
 import React, { useState } from "react";
 import styled from "styled-components";
 import DaumPostCode from "react-daum-postcode";
-
+import { __patchAddress } from "../../redux/modules/addessSlice";
+import { useDispatch } from "react-redux";
 const NewAddress = () => {
   const [isOpen, setIsOpen] = useState(false);
-  const [fullAddress, setFullAddress] = useState("");
+  const [address, setAddress] = useState("");
+  const [latitude, setLatitude] = useState("");
+  const [longitude, setLongitude] = useState("");
 
+  const dispatch = useDispatch();
   const handleComplete = (data) => {
-    let address = data.address;
+    let newAddress = data.address;
     let extraAddress = "";
     if (data.addressType === "R") {
       if (data.bname !== "") {
@@ -17,27 +21,29 @@ const NewAddress = () => {
         extraAddress +=
           extraAddress !== "" ? `, ${data.buildingName}` : data.buildingName;
       }
-      address += extraAddress !== "" ? ` (${extraAddress})` : "";
+      newAddress += extraAddress !== "" ? ` (${extraAddress})` : "";
     }
 
     // Daum API 사용
     const geocoder = new window.daum.maps.services.Geocoder();
-    geocoder.addressSearch(address, function (result, status) {
+    geocoder.addressSearch(newAddress, function (result, status) {
       if (status === window.daum.maps.services.Status.OK) {
-        const latitude = result[0].y; // 위도
-        const longitude = result[0].x; // 경도
-        console.log(latitude, longitude);
+        const lat = result[0].y; // 위도
+        const lng = result[0].x; // 경도
+        setLatitude(lat);
+        setLongitude(lng);
       }
     });
 
-    setFullAddress(address);
-    setIsOpen(false);
+    setAddress(newAddress);
   };
+  dispatch(__patchAddress({ latitude, longitude, address }));
 
   return (
     <Wrapper>
-      <AddressInput onClick={() => setIsOpen(true)} value={fullAddress} />
+      <AddressInput onClick={() => setIsOpen(true)} value={address} />
       {isOpen && <DaumPostCode onComplete={handleComplete} />}
+      <button type="submit">전송</button>
     </Wrapper>
   );
 };

@@ -140,7 +140,7 @@ function SignUpForm() {
       }
     }
     const checkState = dispatch(__postDog(signData));
-    navigate("/address");
+    navigate("/newaddress");
   };
 
   //모달창 띄우기

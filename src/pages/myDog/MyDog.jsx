@@ -14,11 +14,14 @@ const MyDog = () => {
   //임시 작동 안됨
   const [dog, setDog] = useState({});
   const fetchList = async () => {
-    const { data } = await axios.get(`${process.env.REACT_APP_DOG}/dogs/${id}`, {
-      headers: {
-        Authorization,
-      },
-    });
+    const { data } = await axios.get(
+      `${process.env.REACT_APP_DOG}/dogs/${id}`,
+      {
+        headers: {
+          Authorization,
+        },
+      }
+    );
     setDog(data);
     console.log(dog);
   };
@@ -95,7 +98,7 @@ const StBox = styled.div`
   align-items: center;
   width: 6vh;
   height: 3vh;
-  margin-top: 2vh
+  margin-top: 2vh;
   margin-bottom: 1vh;
   background: #ffffff;
   border: 1px solid #4269b4;

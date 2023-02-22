@@ -38,7 +38,9 @@ const Router = () => {
           </>
         ) : (
           <>
+            <Route path="/newaddress" element={<NewAddress />} />
             <Route path="/" element={<Home />} />
+            <Route path="/selectpage" element={<SelectPage />} />
             <Route path="/dogSignUp" element={<DogSignUp />} />
             <Route path="/giveLove" element={<GiveLove />} />
             <Route path="/getLove" element={<GetLove />} />
