@@ -29,9 +29,10 @@ const ChattingDetail = () => {
   console.log(chatcollect);
   const { messages } = useSelector((state) => state.messages);
 
+  // 채팅 엔터키/shif+enter 막기
   const handleEnterPress = (e) => {
     if (e.keyCode === 13 && e.shiftKey == false) {
-      e.preventDefault(); // Enter 키 동작 막기
+      e.preventDefault();
       window.scrollTo(0, 0);
       // sendMessage();
     }
@@ -57,6 +58,7 @@ const ChattingDetail = () => {
               const receive = JSON.parse(res.body);
               console.log(123456, receive);
               dispatch(subMessage(receive));
+
               /* 
                여기서 dispatch(subMessage(receive))는 Redux store의 messages state를 
                업데이트하기 위한 action을 dispatch 하는 것입니다. 
@@ -95,17 +97,18 @@ const ChattingDetail = () => {
       JSON.stringify({
         type: "TALK",
         roomId: chatcollect.roomId,
-        sender: chatcollect.roomId,
+        sender: Myname, // 보내는 사용자의 이름 설정
         message: message,
       })
     );
     chatRef.current.value = null;
   };
   console.log(9999, messages);
-
+  console.log(typeof messages);
   const scrollRef = useRef();
   console.log(scrollRef);
   useEffect(() => {
+    // 메시지 초기화시 스크롤 이동
     scrollRef.current.scrollIntoView({
       behavior: "smooth",
       block: "start",
@@ -133,9 +136,14 @@ const ChattingDetail = () => {
 
         <ChatHistory>
           <div ref={scrollRef}>
-            {messages.map((chating) => (
-              <MessageList>
-                <span>{chating.message}</span>
+            {messages.map((message) => (
+              <MessageList
+                messageLength={message.message.length}
+                isMine={message.sender === Myname}
+              >
+                {/*                 // 사용자에 따라 메시지 위치 조정
+                 */}
+                <span>{message.message}</span>
               </MessageList>
             ))}
           </div>
@@ -177,33 +185,60 @@ const Title = styled.h1`
   color: #333;
 `;
 
-const ChatHistory = styled.div`
+const MessageList = styled.div`
+  margin: 5px 0;
+  padding: 10px;
+  border-radius: 5px;
+  max-width: 30%;
+  word-break: break-all;
   display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  height: 80%;
-  overflow-y: auto;
-`;
+  /* 글자 수에 따라 스타일 조정 */
+  ${({ messageLength }) =>
+    messageLength > 10 &&
+    `
+    height: auto;
+    padding: 10px;
+    white-space: pre-wrap;
+  `}
+  /* 보내는 사용자의 메시지는 오른쪽에, 수신하는 사용자의 메시지는 왼쪽에 위치 */
+  ${({ isMine }) =>
+    isMine
+      ? `
+      flex-direction: column-reverse;
 
-const MessageList = styled.ul`
-  list-style: none;
-  padding: 0;
-`;
+      align-self: flex-end;
+      background-color: #b2d8ff;
+     
+    `
+      : `
+      flex-direction: column-reverse;
 
+      align-self: flex-start;
+      background-color: #f5f5f5;
+
+    `}
+`;
 const ChatInput = styled.div`
   display: flex;
   align-items: center;
   justify-content: center;
   margin-top: 20px;
 `;
-
+const ChatHistory = styled.div`
+  display: flex;
+  width: 100%;
+  flex-direction: column-reverse;
+  height: calc(100% - 200px);
+  overflow-y: scroll;
+  padding: 10px;
+`;
 const Input = styled.input`
   font-size: 18px;
   padding: 10px;
   border-radius: 10px;
   border: 1px solid #333;
   margin-right: 10px;
+  transition: height 0.2s;
 `;
 const Message = styled.li`
   font-size: 18px;
