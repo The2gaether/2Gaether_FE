@@ -20,7 +20,6 @@ const CardList = () => {
       },
     });
 
-    console.log(data);
     setDogs(data);
     console.log(data);
   };

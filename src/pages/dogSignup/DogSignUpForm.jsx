@@ -7,7 +7,6 @@ import male from "../../assets/img/male.PNG";
 import female from "../../assets/img/female.PNG";
 import plusbutton from "../../assets/img/plusbutton.PNG";
 import LoginModal from "./LoginModal";
-import i
 
 // 회원가입 form 컴포넌트
 function SignUpForm() {

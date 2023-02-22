@@ -120,16 +120,6 @@ const ChattingDetail = () => {
   return (
     <>
       <StyledChatWindow>
-        <div>
-          <button
-            fs="30px"
-            color="#000"
-            bc="transparent"
-            onClick={() => {
-              navigate("/chatList");
-            }}
-          />
-        </div>
         <Header>
           <Title>Chat Room</Title>
         </Header>
