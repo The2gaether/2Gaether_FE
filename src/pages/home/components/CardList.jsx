@@ -7,13 +7,19 @@ import FavoriteBorderIcon from "@mui/icons-material/FavoriteBorder";
 import ClearIcon from "@mui/icons-material/Clear";
 
 const CardList = () => {
+  const Authorization = sessionStorage.getItem("accessToken");
   const [dogs, setDogs] = useState([]);
   const [limit, setLimit] = useState(1);
   const [page, setPage] = useState(1);
   const offset = (page - 1) * limit;
 
   const fetchList = async () => {
-    const { data } = await axios.get(`http://localhost:3001/userList`);
+    const { data } = await axios.get(`${process.env.REACT_APP_DOG}/match`, {
+      headers: {
+        Authorization,
+      },
+    });
+    console.log(data);
     setDogs(data);
   };
   const handleFavoriteClick = (person) => {
@@ -27,10 +33,11 @@ const CardList = () => {
   return (
     <>
       <Container>
-        {dogs.slice(offset, offset + limit).map(({ url, name, id }) => (
-          <OneDog key={id}>
+        {dogs.slice(offset, offset + limit).map(({ url, username, userId, distance }) => (
+          <OneDog key={userId}>
             <StDog style={{ backgroundImage: `url(${url})` }}>
-              <StName>{name}</StName>
+              <StName>{username}</StName>
+              <StName>{distance}</StName>
             </StDog>
             <Space />
           </OneDog>

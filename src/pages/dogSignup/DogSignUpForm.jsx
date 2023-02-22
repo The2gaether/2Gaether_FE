@@ -58,6 +58,9 @@ function SignUpForm() {
       setSignData({ ...signData, images: imageSrcs });
     }
     if (signNumber === 3) {
+      if (signData.dogDetails.length === 0 || signData.dogDetails.length > 20) {
+        return;
+      }
     }
     setSignNumber((prevNumber) => prevNumber + 1);
   };
