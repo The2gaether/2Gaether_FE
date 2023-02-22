@@ -46,6 +46,7 @@ export const socketSlice = createSlice({
   reducers: {
     subMessage(state, action) {
       state.messages.push(action.payload);
+      //새로 고침이 될때 2개씩 보내짐 이거 고쳐야함
       // state.messages = action.payload;
     },
   },

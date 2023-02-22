@@ -7,6 +7,7 @@ import male from "../../assets/img/male.PNG";
 import female from "../../assets/img/female.PNG";
 import plusbutton from "../../assets/img/plusbutton.PNG";
 import LoginModal from "./LoginModal";
+import Layout from "../../components/Layout";
 
 // 회원가입 form 컴포넌트
 function SignUpForm() {
@@ -140,95 +141,87 @@ function SignUpForm() {
   const handleBack = () => {};
 
   return (
-    <StForm>
-      <StDiv>
-        <StP1>간편하게 가입하고</StP1>
-        <br />
-        <StP2>투개더를 이용해보세요.</StP2>
-      </StDiv>
+    <Layout>
+      <StForm>
+        <StDiv>
+          <StP1>간편하게 가입하고</StP1>
+          <br />
+          <StP2>투개더를 이용해보세요.</StP2>
+        </StDiv>
 
-      {signNumber === 0 && (
-        <div>
-          <StNum> ({signNumber + 1}/5)</StNum>
-          <StDiv2>
-            <StP3> 반가워요!</StP3>
-            <br />
-            <StP2>강아지 이름은 어떻게 되나요?</StP2>
-          </StDiv2>
-          <StInput
-            autoComplete="off"
-            id="dogName"
-            required
-            placeholder="5글자 이내로 입력해주세요."
-            onChange={(e) => {
-              setSignData({ ...signData, dogName: e.target.value });
-              setDogSexState(true);
-            }}
-          />
-
-          <StBtn className="on" onClick={next}>
-            다음
-          </StBtn>
-<<<<<<< HEAD
-          <StBtn onClick={() => setSignup(!signup)}>뒤로</StBtn>
-          {signup && (
-            <LoginModal closeModal={() => setSignup(!signup)}>
-              "뒤로가기"를 누르셨군요!
-              <br></br>강아지 등록을 안하시면
-              <br></br>투개더 이용이 어렵답니다.
-              <br></br>
-              <button onClick={handleBack}>네,알겠습니다.</button>
-            </LoginModal>
-          )}
-=======
-          <StBtn onClick={() => setSignNumber(signNumber - 1)}>뒤로</StBtn>
->>>>>>> 75806b1955423a07d3fd0d7db2d53e79f9b15cd1
-        </div>
-      )}
-
-      {signNumber === 1 && (
-        <div>
-          <StNum> ({signNumber + 1}/5)</StNum>
-          <StDiv3>
-            <StP3> 강아지의</StP3>
-            <br />
-            <StP2>강아지 성별은 어떻게 될까요?</StP2>
-          </StDiv3>
+        {signNumber === 0 && (
           <div>
-            <StImg src={male} />
-            <StImg src={female} />
-            <StDiv4>
-              <StDiv5>
-                <input
-                  type="radio"
-                  name="dogSexRadio"
-                  value="Male"
-                  defaultChecked
-                />
-                <label>남</label>
-              </StDiv5>
-              <StDiv6>
-                <input type="radio" name="dogSexRadio" value="Female" />
-                <label>여</label>
-              </StDiv6>
-            </StDiv4>
+            <StNum> ({signNumber + 1}/5)</StNum>
+            <StDiv2>
+              <StP3> 반가워요!</StP3>
+              <br />
+              <StP2>강아지 이름은 어떻게 되나요?</StP2>
+            </StDiv2>
+            <StInput
+              autoComplete="off"
+              id="dogName"
+              required
+              placeholder="5글자 이내로 입력해주세요."
+              onChange={(e) => {
+                setSignData({ ...signData, dogName: e.target.value });
+                setDogSexState(true);
+              }}
+            />
+
+            <StBtn className="on" onClick={next}>
+              다음
+            </StBtn>
+
+            {signup && (
+              <LoginModal closeModal={() => setSignup(!signup)}>
+                "뒤로가기"를 누르셨군요!
+                <br></br>강아지 등록을 안하시면
+                <br></br>투개더 이용이 어렵답니다.
+                <br></br>
+                <button onClick={handleBack}>네,알겠습니다.</button>
+              </LoginModal>
+            )}
+
+            <StBtn onClick={() => setSignNumber(signNumber - 1)}>뒤로</StBtn>
           </div>
-<<<<<<< HEAD
+        )}
 
-          <StBtn onClick={() => setSignNumber(signNumber - 1)}>뒤로</StBtn>
-          <StBtn className="on" onClick={next} disabled={!dogSexState}>
-=======
-          <StBtn className="on" onClick={next}>
->>>>>>> 75806b1955423a07d3fd0d7db2d53e79f9b15cd1
-            다음
-          </StBtn>
-          <StBtn onClick={() => setSignNumber(signNumber - 1)}>뒤로</StBtn>
-        </div>
-      )}
+        {signNumber === 1 && (
+          <div>
+            <StNum> ({signNumber + 1}/5)</StNum>
+            <StDiv3>
+              <StP3> 강아지의</StP3>
+              <br />
+              <StP2>강아지 성별은 어떻게 될까요?</StP2>
+            </StDiv3>
+            <div>
+              <StImg src={male} />
+              <StImg src={female} />
+              <StDiv4>
+                <StDiv5>
+                  <input
+                    type="radio"
+                    name="dogSexRadio"
+                    value="Male"
+                    defaultChecked
+                  />
+                  <label>남</label>
+                </StDiv5>
+                <StDiv6>
+                  <input type="radio" name="dogSexRadio" value="Female" />
+                  <label>여</label>
+                </StDiv6>
+              </StDiv4>
+            </div>
 
-      {signNumber === 2 && (
-<<<<<<< HEAD
-        <div>
+            <StBtn className="on" onClick={next}>
+              다음
+            </StBtn>
+            <StBtn onClick={() => setSignNumber(signNumber - 1)}>뒤로</StBtn>
+          </div>
+        )}
+
+        {signNumber === 2 && (
           <Container>
             <StNum> ({signNumber + 1}/5)</StNum>
             <StDiv3>
@@ -272,98 +265,44 @@ function SignUpForm() {
                 </InputContainer>
               </div>
             </StDiv4>
-            <StBtn onClick={() => setSignNumber(signNumber - 1)}>뒤로</StBtn>
-            <StBtn onClick={next} disabled={!imageSrcs}>
+            <StBtn className="on" onClick={next}>
               다음
             </StBtn>
+            <StBtn onClick={() => setSignNumber(signNumber - 1)}>뒤로</StBtn>
           </Container>
-        </div>
-=======
-        <Container>
-          <StNum> ({signNumber + 1}/5)</StNum>
-          <StDiv3>
-            <StP3> 강아지의</StP3>
-            <br />
-            <StP2>사진을 2장까지 추가 할 수있습니다.</StP2>
-          </StDiv3>
-          <StDiv4>
-            <div>
-              <ImagePreviewContainer>
-                {(imageSrcsText || []).map((url) => (
-                  <ImagePreview src={url} alt="..." />
-                ))}
-              </ImagePreviewContainer>
-              <InputContainer hasImage={imageSrcs.length > 0}>
-                <input
-                  required
-                  type="file"
-                  accept="image/jpeg, image/jpg, image/png"
-                  onChange={handleChangeFile}
-                  multiple
-                />
-                <StImg1 src={plusbutton} />
-              </InputContainer>
-            </div>
-            <div>
-              <ImagePreviewContainer>
-                {(imageSrcsText2 || []).map((url) => (
-                  <ImagePreview src={url} alt="..." />
-                ))}
-              </ImagePreviewContainer>
-              <InputContainer hasImage={imageSrcs2.length > 0}>
-                <input
-                  required
-                  type="file"
-                  accept="image/jpeg, image/jpg, image/png"
-                  onChange={handleChangeFile1}
-                  multiple
-                />
-                <StImg1 src={plusbutton} />
-              </InputContainer>
-            </div>
-          </StDiv4>
-          <StBtn className="on" onClick={next}>
-            다음
-          </StBtn>
-          <StBtn onClick={() => setSignNumber(signNumber - 1)}>뒤로</StBtn>
-        </Container>
->>>>>>> 75806b1955423a07d3fd0d7db2d53e79f9b15cd1
-      )}
+        )}
 
-      {signNumber === 3 && (
-        <div>
-          <StNum> ({signNumber + 1}/5)</StNum>
-          <StDiv3>
-            <StP3> 강아지의</StP3>
-            <br />
-            <StP2>성격을 20자 이하로 적어주세요.</StP2>
-          </StDiv3>
-          <StTextarea
-            autoComplete="off"
-            id="dogDetails"
-            placeholder=" 친구를 사귀는데에 큰 도움이 되니 
+        {signNumber === 3 && (
+          <div>
+            <StNum> ({signNumber + 1}/5)</StNum>
+            <StDiv3>
+              <StP3> 강아지의</StP3>
+              <br />
+              <StP2>성격을 20자 이하로 적어주세요.</StP2>
+            </StDiv3>
+            <StTextarea
+              autoComplete="off"
+              id="dogDetails"
+              placeholder=" 친구를 사귀는데에 큰 도움이 되니 
             최대한 자세히 적어주세요 :)"
-            required
-            onChange={(e) => {
-              setSignData({ ...signData, dogDetails: e.target.value });
-            }}
-          />
-<<<<<<< HEAD
-          <StBtn onClick={() => setSignNumber(signNumber - 1)}>뒤로</StBtn>
-=======
-
->>>>>>> 75806b1955423a07d3fd0d7db2d53e79f9b15cd1
-          <StBtn
-            className="on"
-            onClick={combinedHandler}
-            disabled={!dogDetailsState}
-          >
-            다음
-          </StBtn>
-          <StBtn onClick={() => setSignNumber(signNumber - 1)}>뒤로</StBtn>
-        </div>
-      )}
-    </StForm>
+              required
+              onChange={(e) => {
+                setSignData({ ...signData, dogDetails: e.target.value });
+              }}
+            />
+            s
+            <StBtn
+              className="on"
+              onClick={combinedHandler}
+              disabled={!dogDetailsState}
+            >
+              다음
+            </StBtn>
+            <StBtn onClick={() => setSignNumber(signNumber - 1)}>뒤로</StBtn>
+          </div>
+        )}
+      </StForm>
+    </Layout>
   );
 }
 

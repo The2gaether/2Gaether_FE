@@ -49,3 +49,24 @@ const StContainer = styled.div`
     cursor: pointer;
   }
 `;
+
+/* function WelcomePage() {
+  const navigate = useNavigate();
+
+  return (
+    <Layout>
+      <div>
+        <StImg src={Welecome} />
+        <button onClick={() => navigate("/login")}>로그인 창으로</button>
+      </div>
+    </Layout>
+  );
+}
+
+export default WelcomePage;
+
+const StImg = styled.img`
+  width: 100%;
+  height: 100%;
+`;
+ */

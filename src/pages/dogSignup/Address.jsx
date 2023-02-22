@@ -58,11 +58,8 @@ function Address() {
     navigate("/");
   };
 
-<<<<<<< HEAD
-=======
   // 완료버튼에 따른 색깔변화
 
->>>>>>> 75806b1955423a07d3fd0d7db2d53e79f9b15cd1
   const [formstate, setFormState] = useState(false);
   const buttonStyle = {
     background: formstate
