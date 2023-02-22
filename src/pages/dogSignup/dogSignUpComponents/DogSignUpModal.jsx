@@ -1,7 +1,7 @@
 import React from "react";
 import styled from "styled-components";
 
-function LoginModal(props) {
+function DogSignUpModal(props) {
   function closeModal() {
     props.closeModal();
   }
@@ -16,7 +16,7 @@ function LoginModal(props) {
   );
 }
 
-export default LoginModal;
+export default DogSignUpModal;
 
 const ModalBg = styled.div`
   position: fixed;
@@ -35,7 +35,7 @@ const ModalBody = styled.div`
   height: 100px;
   padding: 40px;
   text-align: center;
-  background-color: rgba(255, 255, 255, 0.972);
+  background-color: rgb(255, 255, 255);
   border-radius: 10px;
   box-shadow: 0 2px 3px 0 rgba(34, 36, 38, 0.15);
 `;
