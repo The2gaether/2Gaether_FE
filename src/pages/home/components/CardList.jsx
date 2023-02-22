@@ -13,7 +13,8 @@ const CardList = () => {
   const offset = (page - 1) * limit;
 
   const fetchList = async () => {
-    const { data } = await axios.get(`http://localhost:3001/userList`);
+    const { data } = await axios.get("https://midcon.shop/match");
+    console.log(data);
     setDogs(data);
   };
   const handleFavoriteClick = (person) => {
@@ -36,7 +37,12 @@ const CardList = () => {
           </OneDog>
         ))}
         <Space>
-          <CardlistPagination total={dogs.length} limit={limit} page={page} setPage={setPage} />
+          <CardlistPagination
+            total={dogs.length}
+            limit={limit}
+            page={page}
+            setPage={setPage}
+          />
         </Space>
         <div className="btnGruop">
           <div className="circleBorder">
