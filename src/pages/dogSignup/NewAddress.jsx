@@ -66,7 +66,7 @@ const NewAddress = () => {
 
   // 얼른가자 멍 이후 메인페이지로
   const submitLogin = () => {
-    navigate("/home");
+    navigate("/main");
   };
 
   return (
