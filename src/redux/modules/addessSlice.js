@@ -22,9 +22,16 @@ export const __patchAddress = createAsyncThunk(
   async (payload, thunkAPI) => {
     try {
       console.log(payload);
+      const Authorization = sessionStorage.getItem("accessToken");
+      console.log(Authorization);
       const { data } = await axios.patch(
-        "https://midcon.shop/address",
-        payload
+        "https://midcon.shop/users/mypage",
+        payload,
+        {
+          headers: {
+            Authorization,
+          },
+        }
       );
       return thunkAPI.fulfillWithValue(data);
     } catch (error) {
