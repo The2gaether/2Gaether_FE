@@ -6,8 +6,8 @@ import { useDispatch } from "react-redux";
 const NewAddress = () => {
   const [isOpen, setIsOpen] = useState(false);
   const [address, setAddress] = useState("");
-  const [latitude, setLatitude] = useState("");
-  const [longitude, setLongitude] = useState("");
+  const [latitude, setLatitude] = useState("37.537187");
+  const [longitude, setLongitude] = useState("127.005476");
 
   const dispatch = useDispatch();
   const handleComplete = (data) => {
@@ -18,8 +18,7 @@ const NewAddress = () => {
         extraAddress += data.bname;
       }
       if (data.buildingName !== "") {
-        extraAddress +=
-          extraAddress !== "" ? `, ${data.buildingName}` : data.buildingName;
+        extraAddress += extraAddress !== "" ? `, ${data.buildingName}` : data.buildingName;
       }
       newAddress += extraAddress !== "" ? ` (${extraAddress})` : "";
     }
@@ -28,13 +27,14 @@ const NewAddress = () => {
     const geocoder = new window.daum.maps.services.Geocoder();
     geocoder.addressSearch(newAddress, function (result, status) {
       if (status === window.daum.maps.services.Status.OK) {
-        const lat = result[0].y; // 위도
-        const lng = result[0].x; // 경도
+        const lat = result[0]?.y; // 위도
+        const lng = result[0]?.x; // 경도
+        console.log("위도", lat);
+        console.log("경도", lng);
         setLatitude(lat);
         setLongitude(lng);
       }
     });
-
     setAddress(newAddress);
   };
   dispatch(__patchAddress({ latitude, longitude, address }));
