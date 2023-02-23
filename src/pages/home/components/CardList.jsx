@@ -1,16 +1,18 @@
 import React, { useEffect, useState } from "react";
 import styled from "styled-components";
 import axios from "axios";
-import CardlistPagination from "./CardlistPagination";
+
 import IconButton from "@material-ui/core/IconButton";
 import FavoriteBorderIcon from "@mui/icons-material/FavoriteBorder";
 import ClearIcon from "@mui/icons-material/Clear";
+import Image from "./Image";
 
 const CardList = () => {
   const Authorization = sessionStorage.getItem("accessToken");
   const [dogs, setDogs] = useState([]);
   const [limit, setLimit] = useState(1);
   const [page, setPage] = useState(1);
+  const [mainImage, setMainImage] = useState([]);
   const offset = (page - 1) * limit;
 
   const fetchList = async () => {
@@ -19,9 +21,11 @@ const CardList = () => {
         Authorization,
       },
     });
-
     setDogs(data);
+    setMainImage(data.images);
     console.log(data);
+    console.log(mainImage);
+    console.log(data.images[0].imageUrl);
   };
   const handleFavoriteClick = (person) => {
     alert("정말 매치하겠냐멍?");
@@ -34,25 +38,8 @@ const CardList = () => {
   return (
     <>
       <Container>
-        {dogs
-          .slice(offset, offset + limit)
-          .map(({ url, username, userId, distance }) => (
-            <OneDog key={userId}>
-              <StDog style={{ backgroundImage: `url(${url})` }}>
-                <StName>{username}</StName>
-                <StName>{distance}</StName>
-              </StDog>
-              <Space />
-            </OneDog>
-          ))}
-        <Space>
-          <CardlistPagination
-            total={dogs.length}
-            limit={limit}
-            page={page}
-            setPage={setPage}
-          />
-        </Space>
+        <Image images={mainImage} />
+        <Space></Space>
         <div className="btnGruop">
           <div className="circleBorder">
             <IconButton onClick={() => handleFavoriteClick()}>
