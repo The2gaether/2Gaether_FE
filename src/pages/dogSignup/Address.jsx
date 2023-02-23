@@ -5,6 +5,7 @@ import styled from "styled-components";
 import DaumPostcode from "react-daum-postcode";
 import { __patchAddress } from "../../redux/modules/addessSlice";
 import { useNavigate } from "react-router-dom";
+import DogSignUpTop from "./dogSignUpComponents/DogSignUpTop";
 
 function Address() {
   const navigate = useNavigate();
@@ -16,7 +17,7 @@ function Address() {
   //주소 모달창
   const [modalState, setModalState] = useState(true);
   const [inputAddressValue, setInputAddressValue] = useState();
-  const [inputZipCodeValue, setInputZipCodeValue] = useState();
+  // const [inputZipCodeValue, setInputZipCodeValue] = useState();
 
   // 조건부 렌더링을 위한 상태관리
   const [signNumber, setSignNumber] = useState(0);
@@ -42,7 +43,7 @@ function Address() {
     console.log("complete");
     setModalState(false);
     setInputAddressValue(data.address);
-    setInputZipCodeValue(data.zonecode);
+    // setInputZipCodeValue(data.zonecode);
   };
 
   // next 회원가입 완료로 가는 버튼
@@ -67,45 +68,6 @@ function Address() {
     disabled: !formstate,
   };
 
-  //위치공유 허락하러가기 하는 버튼
-  const onPermitHadler = () => {
-    //navigate("/");
-
-    const options = {
-      enableHighAccuracy: true,
-      timeout: 5000,
-      maximumAge: 0,
-    };
-
-    function success(pos) {
-      const crd = pos.coords;
-
-      console.log("Your current position is:");
-      console.log(`Latitude : ${crd.latitude}`);
-      console.log(`Longitude: ${crd.longitude}`);
-      console.log(`More or less ${crd.accuracy} meters.`);
-    }
-
-    function error(err) {
-      console.warn(`ERROR(${err.code}): ${err.message}`);
-    }
-
-    navigator.permissions
-      .query({
-        name: "geolocation",
-      })
-      .then(function (result) {
-        if (result.state == "granted") {
-        } else if (result.state == "prompt") {
-          navigator.geolocation.getCurrentPosition(success, error, options);
-        } else if (result.state == "denied") {
-        }
-        result.onchange = function () {};
-      });
-    // window.location.replace("chrome://settings/content/location");
-    // chrome://settings/content/location
-  };
-
   return (
     <div>
       <AddForm onSubmit={submitLogin}>
@@ -113,26 +75,23 @@ function Address() {
           <div>간편하게 가입하고</div>
           <div>투개더를 이용해보세요</div>
         </TopBox>
+
         {signNumber === 0 && (
           <div>
-            {/* <DaumPostcode onComplete={onCompletePost}></DaumPostcode> */}
-            {latitude}
+            <DaumPostcode onComplete={onCompletePost}></DaumPostcode>
+
             <br />
-            {longitude}
             <br />
-            {/* {!modalState && "ㅇㅇㅇㅇ"}
+
             {!modalState && (
               <div>
-                <input value={inputZipCodeValue}></input>
+                {/* <input value={inputZipCodeValue}></input> */}
                 <input value={inputAddressValue}></input>
                 <button className="on" onClick={next}>
                   다음
                 </button>
               </div>
-            )} */}
-            <button onClick={() => onPermitHadler()}>
-              위치공유 허용하기 버튼{" "}
-            </button>
+            )}
           </div>
         )}
 
@@ -142,10 +101,7 @@ function Address() {
               가입을 축하드려요! <br /> 이제부터 본격적으로 <br /> 투개더🐶
               할까요?
             </div>
-            <button
-              onClick={submitLogin}
-              style={buttonStyle}
-            >{`얼른 가자멍!`}</button>
+            <button onClick={submitLogin}>{`얼른 가자멍!`}</button>
           </div>
         )}
       </AddForm>
