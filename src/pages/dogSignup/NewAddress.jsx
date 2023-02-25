@@ -176,6 +176,7 @@ const AddForm = styled.form`
   flex-direction: column;
   padding: 35px 40px 25px 40px;
   margin-bottom: 10px;
+  margin-top: -5vh;
 `;
 
 const StBackBtn = styled.button`

@@ -15,7 +15,7 @@ function WelcomePage() {
 export default WelcomePage;
 
 const StContainer = styled.div`
-  max-width: 375px;
+  max-width: 417px;
   max-height: 879px;
   height: 100vh;
   display: flex;
