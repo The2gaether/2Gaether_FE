@@ -36,6 +36,7 @@ const Router = () => {
             <Route path="/dogSignUp" element={<DogSignUp />} />
             <Route path="/address" element={<Address />} />
             <Route path="/newaddress" element={<NewAddress />} />
+            <Route path="/chattingList" element={<ChattingList />} />
           </>
         ) : (
           <>
