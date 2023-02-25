@@ -20,7 +20,7 @@ const EditInfo = () => {
           <LockIcon />
           비밀번호 변경
         </StOneInfoBlack>
-        <StOneInfoWhite onClick={() => navigate("/mypage/editaddress")}>
+        <StOneInfoWhite onClick={() => navigate("/newaddress")}>
           <EditLocationIcon />
           주소변경하기
         </StOneInfoWhite>

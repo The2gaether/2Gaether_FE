@@ -167,10 +167,10 @@ function SignUpForm() {
           <StBtn className="on" onClick={next}>
             다음
           </StBtn>
-          <StBtn onClick={() => setSignup(!signup)}>뒤로</StBtn>
+          <StBackBtn onClick={() => setSignup(!signup)}>뒤로</StBackBtn>
           {signup && (
             <DogSignUpModal closeModal={() => setSignup(!signup)}>
-              <DogModalDetail></DogModalDetail>
+              <DogModalDetail />
             </DogSignUpModal>
           )}
         </div>
@@ -185,12 +185,7 @@ function SignUpForm() {
             <StImg src={female} />
             <StDiv4>
               <StDiv5>
-                <input
-                  type="radio"
-                  name="dogSexRadio"
-                  value="Male"
-                  defaultChecked
-                />
+                <input type="radio" name="dogSexRadio" value="Male" defaultChecked />
                 <label>남</label>
               </StDiv5>
               <StDiv6>
@@ -199,10 +194,10 @@ function SignUpForm() {
               </StDiv6>
             </StDiv4>
           </div>
-          <StBtn onClick={() => setSignNumber(signNumber - 1)}>뒤로</StBtn>
           <StBtn className="on" onClick={next} disabled={!dogSexState}>
             다음
-          </StBtn>
+          </StBtn>{" "}
+          <StBackBtn onClick={() => setSignNumber(signNumber - 1)}>뒤로</StBackBtn>
         </div>
       )}
 
@@ -247,37 +242,32 @@ function SignUpForm() {
                 </InputContainer>
               </div>
             </StDiv4>
-            <StBtn onClick={() => setSignNumber(signNumber - 1)}>뒤로</StBtn>
             <StBtn onClick={next} disabled={!imageSrcs}>
               다음
-            </StBtn>
+            </StBtn>{" "}
+            <StBackBtn onClick={() => setSignNumber(signNumber - 1)}>뒤로</StBackBtn>
           </Container>
         </div>
       )}
 
       {signNumber === 3 && (
         <div>
-          <StNum> ({signNumber + 1}/5)</StNum>
+          <StNum> (거의 다 왔어요!) </StNum>
           <DogSignUpDetail></DogSignUpDetail>
           <StTextarea
             autoComplete="off"
             id="dogDetails"
             placeholder=" 친구를 사귀는데에 큰 도움이 되니 
             최대한 자세히 적어주세요 :)"
-            required
             onChange={(e) => {
               setSignData({ ...signData, dogDetails: e.target.value });
             }}
           />
-          <StBtn
-            className="on"
-            onClick={combinedHandler}
-            disabled={!dogDetailsState}
-          >
+          <StBtn className="on" onClick={combinedHandler} disabled={!dogDetailsState}>
             다음
           </StBtn>
 
-          <StBtn onClick={() => setSignNumber(signNumber - 1)}>뒤로</StBtn>
+          <StBackBtn onClick={() => setSignNumber(signNumber - 1)}>뒤로</StBackBtn>
         </div>
       )}
     </StForm>
@@ -432,4 +422,19 @@ const StForm = styled.form`
   position: absolute;
   top: 0;
   left: 0;
+`;
+
+const StBackBtn = styled.button`
+  border: none;
+  border-radius: 50px;
+  margin-top: 15px;
+  background-color: #aeaeb2;
+  color: white;
+  text-align: center;
+  padding: 8px 0px;
+  font-size: 15px;
+  margin-left: 5%;
+  width: 90%;
+  height: 45px;
+  opacity: gray;
 `;
