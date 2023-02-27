@@ -76,7 +76,7 @@ const StImg = styled.img`
   }
 
   @media (max-height: 812px) {
-    margin-bottom: 80%;
+    margin-bottom: 85%;
   }
 `;
 
