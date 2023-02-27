@@ -23,7 +23,7 @@ const Image = ({ images, data }) => {
         {data.dogSex === "female" ? (
           <StNameSex> {data.dogName} (여)</StNameSex>
         ) : (
-          <StNameSex>이름 : {data.dogName} (남)</StNameSex>
+          <StNameSex>{data.dogName} (남)</StNameSex>
         )}
         <br />
         <StDecs>설명 : {data.dogDetails}</StDecs>

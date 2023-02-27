@@ -48,24 +48,22 @@ const CardList = () => {
   }, []);
 
   return (
-    <>
-      <Container>
-        <Image key={dogs.dogId} images={mainImage} data={dogs} />
-        <Space />
-        <div className="btnGruop">
-          <STCircleBorder>
-            <IconButton onClick={() => handleFavoriteClick()}>
-              <FavoriteBorderIcon className="icon" />
-            </IconButton>
-          </STCircleBorder>
-          <div className="circleBorder">
-            <IconButton onClick={() => handleHateClick()}>
-              <ClearIcon className="icon" />
-            </IconButton>
-          </div>
+    <Container>
+      <Image key={dogs.dogId} images={mainImage} data={dogs} />
+      <Space />
+      <div className="btnGruop">
+        <STCircleBorder>
+          <IconButton onClick={() => handleFavoriteClick()}>
+            <FavoriteBorderIcon className="icon" />
+          </IconButton>
+        </STCircleBorder>
+        <div className="circleBorder">
+          <IconButton onClick={() => handleHateClick()}>
+            <ClearIcon className="icon" />
+          </IconButton>
         </div>
-      </Container>
-    </>
+      </div>
+    </Container>
   );
 };
 export default CardList;
@@ -77,15 +75,14 @@ const Container = styled.div`
   flex-direction: column;
   margin-top: 5vh;
   .btnGruop {
+    z-index: 1;
     display: flex;
     justify-content: flex-start;
-    margin-top: 20vh;
   }
 `;
 
 const Space = styled.div`
   margin-top: 1vh;
-  display: flex;
 `;
 
 const STCircleBorder = styled.div`

@@ -47,10 +47,18 @@ const InfiniteScroll = () => {
     return () => window.removeEventListener("scroll", handleScroll);
   }, [handleScroll]);
 
-  const remainingData = data.slice(0, page * 3);
+  const sliceData = data.slice(0, page * 3);
 
+  //chatroom 으로 가야하는지 좋아요로 가야하는지?
   const onSubmitHandler = (id) => {
     axios.post(`${process.env.REACT_APP_DOG}/chat/room`, id, {
+      headers: {
+        Authorization,
+      },
+    });
+  };
+  const onRejectHandler = (id) => {
+    axios.post(`${process.env.REACT_APP_DOG}//match/reject/${id}`, {
       headers: {
         Authorization,
       },
@@ -61,17 +69,20 @@ const InfiniteScroll = () => {
     <>
       <Container>
         <StOnePage>
-          {remainingData.map((why, id) => {
+          {sliceData.map((why, id) => {
             if (id % 2 === 0) {
-              const group = remainingData.slice(id, id + 2);
+              const group = sliceData.slice(id, id + 2);
               return (
                 <OneDog key={id}>
-                  {group.map(({ imageUrl, name }) => (
+                  {group.map(({ imageUrl, dogName, userId, dogSex }) => (
                     <Stgroup>
-                      <StDog style={{ backgroundImage: `url(${imageUrl})` }} key={name}>
-                        <StName>{name}</StName>
+                      <StDog style={{ backgroundImage: `url(${imageUrl})` }} key={userId}>
+                        {dogSex === "female" ? (
+                          <StName> {dogName} (여)</StName>
+                        ) : (
+                          <StName> {dogName} (남)</StName>
+                        )}
                       </StDog>
-                      <br />
                       <br />
                       <div>
                         <button
@@ -81,7 +92,13 @@ const InfiniteScroll = () => {
                         >
                           수락
                         </button>
-                        <button>거절</button>
+                        <button
+                          onClick={() => {
+                            onRejectHandler(id);
+                          }}
+                        >
+                          거절
+                        </button>
                       </div>
                     </Stgroup>
                   ))}
@@ -129,11 +146,11 @@ const StDog = styled.div`
 `;
 
 const StName = styled.h3`
-  margin-bottom: -7vh;
   position: absolute;
   font-size: medium;
   bottom: 30px;
-  color: #000000;
+  background-color: black;
+  color: #ffffff;
 `;
 
 const OneDog = styled.div`
