@@ -8,10 +8,10 @@ const InfiniteScroll = () => {
   const [loading, setLoading] = useState(false);
   const [hasMore, setHasMore] = useState(true);
   const observer = useRef();
+  const Authorization = sessionStorage.getItem("accessToken");
 
   const fetchData = useCallback(async () => {
     setLoading(true);
-    const Authorization = sessionStorage.getItem("accessToken");
     const res = await axios.get(`${process.env.REACT_APP_DOG}/loves/received`, {
       headers: {
         Authorization,
@@ -19,7 +19,7 @@ const InfiniteScroll = () => {
     });
     // setData((prevData) => [...prevData, ...res.data]);
     setData(res.data);
-    console.log(res);
+    console.log(res.data);
     setLoading(false);
     setHasMore(res.data.length !== 0);
     if (res.data.length !== 0) {
@@ -49,6 +49,14 @@ const InfiniteScroll = () => {
 
   const remainingData = data.slice(0, page * 3);
 
+  const onSubmitHandler = (id) => {
+    axios.post(`${process.env.REACT_APP_DOG}/chat/room`, id, {
+      headers: {
+        Authorization,
+      },
+    });
+  };
+
   return (
     <>
       <Container>
@@ -58,15 +66,21 @@ const InfiniteScroll = () => {
               const group = remainingData.slice(id, id + 2);
               return (
                 <OneDog key={id}>
-                  {group.map(({ url, name }) => (
+                  {group.map(({ imageUrl, name }) => (
                     <Stgroup>
-                      <StDog style={{ backgroundImage: `url(${url})` }} key={name}>
+                      <StDog style={{ backgroundImage: `url(${imageUrl})` }} key={name}>
                         <StName>{name}</StName>
                       </StDog>
                       <br />
                       <br />
                       <div>
-                        <button>수락</button>
+                        <button
+                          onClick={() => {
+                            onSubmitHandler(id);
+                          }}
+                        >
+                          수락
+                        </button>
                         <button>거절</button>
                       </div>
                     </Stgroup>
@@ -104,8 +118,8 @@ const Stgroup = styled.div`
 
 const StDog = styled.div`
   position: relative;
-  width: 15vh;
-  height: 40vh;
+  width: 14vh;
+  height: 20vh;
   padding: 10px;
   margin: 10px 10px 10px 10px;
   border-radius: 20px;

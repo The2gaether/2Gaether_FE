@@ -71,7 +71,7 @@ const StP1 = styled.p`
 const StImg = styled.img`
   width: 196.65px;
   height: 107.16px;
-  @media (min-height: 813px) {
+  @media (min-height: 900px) {
     margin-bottom: 110%;
   }
 
