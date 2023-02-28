@@ -24,23 +24,36 @@ const CardList = () => {
     setMainImage(data.images);
     console.log(dogs);
   };
+  //좋아요 클릭
   const handleFavoriteClick = () => {
-    axios.get(`${process.env.REACT_APP_DOG}/match/love/${dogs.dogId}`, {
-      headers: {
-        Authorization,
-      },
-    });
+    const Authorization = sessionStorage.getItem("accessToken");
+    axios.post(
+      `${process.env.REACT_APP_DOG}/match/love/${dogs.dogId}`,
+      {},
+      {
+        headers: {
+          Authorization,
+        },
+      }
+    );
     alert("좋아요를 눌렀습니다.");
-    window.location.reload();
+    console.log(dogs);
+    console.log(Authorization);
+    // window.location.reload();
   };
+  //싫어요 클릭
   const handleHateClick = () => {
-    axios.get(`${process.env.REACT_APP_DOG}/match/reject/${dogs.dogId}`, {
-      headers: {
-        Authorization,
-      },
-    });
+    axios.post(
+      `${process.env.REACT_APP_DOG}/match/reject/${dogs.dogId}`,
+      {},
+      {
+        headers: {
+          Authorization,
+        },
+      }
+    );
     alert("싫어요를 눌렀습니다.");
-    window.location.reload();
+    // window.location.reload();
   };
 
   useEffect(() => {
@@ -69,6 +82,7 @@ const CardList = () => {
 export default CardList;
 
 const Container = styled.div`
+  background-color: black;
   display: flex;
   align-items: center;
   justify-content: center;
