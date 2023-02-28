@@ -1,41 +1,47 @@
 import React from "react";
 import styled from "styled-components";
-import background from "../assets/img/background.png";
+import { Outlet } from "react-router-dom";
+/* import Header from "./header/screen/Header";
+import Footer from "./footer/screen/Footer"; */
+// import useScrollPosition from "../hooks/useScrollPosition";
 
-function Layout({ children }) {
+const Layout = (props) => {
   return (
-    <StBackground>
-      <StLayout>{children}</StLayout>
-    </StBackground>
+    <Container>
+      <PageContainer>
+        <Header />
+        <PageContainerBox>
+          <Outlet>{props.children}</Outlet>
+        </PageContainerBox>
+        <Footer />
+      </PageContainer>
+    </Container>
   );
-}
+};
 
 export default Layout;
 
-const StBackground = styled.div`
-  width: 100%;
-  height: 100vh;
-  background-image: url(${background});
-  background-repeat: no-repeat;
-  background-size: contain;
-  background-position: center;
-
-  @media screen and (max-width: 450px) {
-    background: none;
-  }
-`;
-
-const StLayout = styled.div`
-  width: 100%;
-  max-width: 375px;
-  height: 100%;
-  background-color: transparent;
-  border: 1px solid #ecf3ff;
-  border-radius: 30px;
+const Container = styled.div`
   display: flex;
-  justify-content: center;
   align-items: center;
+  justify-content: center;
   flex-direction: column;
-  margin: 0 auto;
+  width: 100%;
+  height: 100%;
+  background-color: var(--color-light-gray);
 `;
-/* 위 코드에서는 @media 미디어 쿼리를 사용해서 뷰포트 가로 길이가 450px 이하일 때, 배경 이미지를 none 처리하도록 스타일을 변경합니다. */
+const PageContainer = styled.div`
+  width: 360px;
+  height: 740px;
+  box-shadow: rgba(0, 0, 0, 0.1) 0px 20px 25px -5px,
+    rgba(0, 0, 0, 0.04) 0px 10px 10px -5px;
+  background-color: white;
+`;
+
+const PageContainerBox = styled.div`
+  width: 360px;
+  height: 616px;
+  background-color: white;
+  padding: 0 2%;
+  overflow: auto;
+`;

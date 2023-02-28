@@ -24,9 +24,8 @@ const CardList = () => {
     setMainImage(data.images);
     console.log(dogs);
   };
-  //좋아요 클릭
+
   const handleFavoriteClick = () => {
-    const Authorization = sessionStorage.getItem("accessToken");
     axios.post(
       `${process.env.REACT_APP_DOG}/match/love/${dogs.dogId}`,
       {},
