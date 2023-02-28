@@ -24,12 +24,18 @@ const CardList = () => {
     setDogs(data);
     setMainImage(data.images);
   };
+
   const handleFavoriteClick = () => {
-    axios.get(`${process.env.REACT_APP_DOG}/match/love/${dogs.dogId}`, {
-      headers: {
-        Authorization,
-      },
-    });
+    axios.post(
+      `${process.env.REACT_APP_DOG}/match/love/${dogs.dogId}`,
+      {},
+      {
+        headers: {
+          Authorization,
+        },
+      }
+    );
+    console.log(Authorization);
     alert("좋아요를 눌렀습니다.");
     // window.location.reload();
   };
