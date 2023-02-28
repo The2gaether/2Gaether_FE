@@ -28,11 +28,11 @@ const Container = styled.div`
 const ContainerDiv = styled.div`
   display: flex;
   align-items: center;
-  justify-content: center;
   flex-direction: column;
   background-color: white;
   color: var(--color-main);
   width: 375px;
   height: 812px;
-  border-radius: 60px;
+  border: 2px solid black;
+  border-radius: 30px;
 `;

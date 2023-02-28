@@ -1,23 +1,22 @@
 import React from "react";
 import styled from "styled-components";
-import { Outlet } from "react-router-dom";
-/* import Header from "./header/screen/Header";
-import Footer from "./footer/screen/Footer"; */
-// import useScrollPosition from "../hooks/useScrollPosition";
+import Header from "../shared/MainHeader";
+import Footer from "../shared/Footer";
+import background from "../assets/img/background.png";
 
-const Layout = (props) => {
+function Layout({ children }) {
   return (
     <Container>
-      <PageContainer>
+      <ContainerDiv>
         <Header />
-        <PageContainerBox>
-          <Outlet>{props.children}</Outlet>
-        </PageContainerBox>
-        <Footer />
-      </PageContainer>
+        <Content>{children}</Content>
+        <FooterWrapper>
+          <Footer />
+        </FooterWrapper>
+      </ContainerDiv>
     </Container>
   );
-};
+}
 
 export default Layout;
 
@@ -27,21 +26,35 @@ const Container = styled.div`
   justify-content: center;
   flex-direction: column;
   width: 100%;
-  height: 100%;
-  background-color: var(--color-light-gray);
-`;
-const PageContainer = styled.div`
-  width: 360px;
-  height: 740px;
-  box-shadow: rgba(0, 0, 0, 0.1) 0px 20px 25px -5px,
-    rgba(0, 0, 0, 0.04) 0px 10px 10px -5px;
-  background-color: white;
+  height: 100vh;
+  background-image: url(${background});
+  background-repeat: no-repeat;
+  background-size: contain;
+  background-position: center;
 `;
 
-const PageContainerBox = styled.div`
-  width: 360px;
-  height: 616px;
+const ContainerDiv = styled.div`
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-between;
   background-color: white;
-  padding: 0 2%;
+  width: 375px;
+  height: 812px;
+  border: 2px solid black;
+  border-radius: 30px;
+  position: relative;
+`;
+
+const Content = styled.div`
+  flex: 1;
+  width: 100%;
+  height: 100%;
   overflow: auto;
+`;
+
+const FooterWrapper = styled.div`
+  width: 100%;
+  display: flex;
+  justify-content: flex-end;
 `;
