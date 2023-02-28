@@ -1,19 +1,19 @@
 import React from "react";
 import styled from "styled-components";
 import { Outlet } from "react-router-dom";
-/* import Header from "./header/screen/Header";
-import Footer from "./footer/screen/Footer"; */
+// import Header from "./header/screen/Header";
+// import Footer from "./footer/screen/Footer";
 // import useScrollPosition from "../hooks/useScrollPosition";
 
 const Layout = (props) => {
   return (
     <Container>
       <PageContainer>
-        <Header />
+        {/* <Header /> */}
         <PageContainerBox>
           <Outlet>{props.children}</Outlet>
         </PageContainerBox>
-        <Footer />
+        {/* <Footer /> */}
       </PageContainer>
     </Container>
   );
