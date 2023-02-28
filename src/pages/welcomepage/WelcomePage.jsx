@@ -65,6 +65,7 @@ const StP1 = styled.p`
 const StImg = styled.img`
   width: 196.65px;
   height: 107.16px;
+
   margin-bottom: 308px;
 `;
 
