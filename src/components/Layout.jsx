@@ -1,9 +1,5 @@
 import React from "react";
 import styled from "styled-components";
-<<<<<<< HEAD
-
-=======
->>>>>>> 3f001b4a856a8b9c2b1ea53f3209e386e6e6d1e8
 import Header from "../shared/MainHeader";
 import Footer from "../shared/Footer";
 import background from "../assets/img/background.png";
