@@ -8,6 +8,8 @@ import { useNavigate } from "react-router-dom";
 import Logo from "../../assets/img/logo.png";
 import Cong from "../../assets/img/cong.png";
 import Cong2 from "../../assets/img/cong2.png";
+import StartLayout from "../../components/StartLayout";
+
 const NewAddress = () => {
   const navigate = useNavigate();
   const dispatch = useDispatch();
@@ -77,50 +79,58 @@ const NewAddress = () => {
       <BgBox>
         <AddForm>
           {signNumber === 0 && (
-            <Wrapper>
-              <AddForm>
-                <DogSignUpTop></DogSignUpTop>
-                <br></br>
-                <br></br>
-                <StNum>(마지막이에요!)</StNum>
-                <span> 회원님의 주소를 설정해 주세요 </span>
-                <span> 도로명 주소를 입력해 주세요!</span>
-                <span> 예)강남대로(O),강남동(X)</span>
-                <br></br>
-                {<DaumPostCode onComplete={handleComplete} />}
-                {!modalState && (
-                  <div>
-                    <AddressInput
-                      onClick={() => setIsOpen(true)}
-                      value={address}
-                    />
-                    <StBtn type="submit" onClick={next}>
-                      다음
-                    </StBtn>
-                    <StBackBtn onClick={() => setSignNumber(signNumber - 1)}>
-                      뒤로
-                    </StBackBtn>
-                  </div>
-                )}
-              </AddForm>
-            </Wrapper>
+            <StartLayout>
+              <Wrapper>
+                <AddForm>
+                  <DogSignUpTop></DogSignUpTop>
+                  <br></br>
+                  <br></br>
+                  <StNum>(마지막이에요!)</StNum>
+                  <span> 회원님의 주소를 설정해 주세요 </span>
+                  <span> 도로명 주소를 입력해 주세요!</span>
+                  <span> 예)강남대로(O),강남동(X)</span>
+                  <br></br>
+                  {<DaumPostCode onComplete={handleComplete} />}
+                  {!modalState && (
+                    <div>
+                      <AddressInput
+                        onClick={() => setIsOpen(true)}
+                        value={address}
+                      />
+                      <StBtnDiv>
+                        <StBtn type="submit" onClick={next}>
+                          다음
+                        </StBtn>
+                        <StBackBtn
+                          onClick={() => setSignNumber(signNumber - 1)}
+                        >
+                          뒤로
+                        </StBackBtn>
+                      </StBtnDiv>
+                    </div>
+                  )}
+                </AddForm>
+              </Wrapper>
+            </StartLayout>
           )}
           {signNumber === 1 && (
-            <Container>
-              <Wrapper>
-                <StLogo src={Logo} />
-                <div>
-                  가입을 축하드려요! <br /> 이제부터 본격적으로 <br /> 투개더🐶
-                  할까요?
-                </div>
-                <StLogo2 src={Cong} />
-                <br></br>
-                <br></br>
-                <br></br>
-                <br></br>
-                <StBtn onClick={submitLogin}>{`얼른 가자멍!`}</StBtn>
-              </Wrapper>
-            </Container>
+            <StartLayout>
+              <Container>
+                <Wrapper>
+                  <StLogo src={Logo} />
+                  <div>
+                    가입을 축하드려요! <br /> 이제부터 본격적으로 <br />{" "}
+                    투개더🐶 할까요?
+                  </div>
+                  <StLogo2 src={Cong} />
+                  <br></br>
+                  <br></br>
+                  <br></br>
+                  <br></br>
+                  <StBtn onClick={submitLogin}>{`얼른 가자멍!`}</StBtn>
+                </Wrapper>
+              </Container>
+            </StartLayout>
           )}
         </AddForm>
       </BgBox>
@@ -129,6 +139,11 @@ const NewAddress = () => {
 };
 
 export default NewAddress;
+
+const StBtnDiv = styled.div`
+  margin-top: 52px;
+  margin-right: 11px;
+`;
 
 const BgBox = styled.div`
   width: 100%;
