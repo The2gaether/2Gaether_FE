@@ -1,28 +1,13 @@
 import React from "react";
 import styled from "styled-components";
-<<<<<<< HEAD
-import { Outlet } from "react-router-dom";
-// import Header from "./header/screen/Header";
-// import Footer from "./footer/screen/Footer";
-// import useScrollPosition from "../hooks/useScrollPosition";
-=======
+
 import Header from "../shared/MainHeader";
 import Footer from "../shared/Footer";
 import background from "../assets/img/background.png";
->>>>>>> 94dc9ec5547f91d01c06c47b0537b8dd5b82c9c9
 
 function Layout({ children }) {
   return (
     <Container>
-<<<<<<< HEAD
-      <PageContainer>
-        {/* <Header /> */}
-        <PageContainerBox>
-          <Outlet>{props.children}</Outlet>
-        </PageContainerBox>
-        {/* <Footer /> */}
-      </PageContainer>
-=======
       <ContainerDiv>
         <Header />
         <Content>{children}</Content>
@@ -30,7 +15,6 @@ function Layout({ children }) {
           <Footer />
         </FooterWrapper>
       </ContainerDiv>
->>>>>>> 94dc9ec5547f91d01c06c47b0537b8dd5b82c9c9
     </Container>
   );
 }
