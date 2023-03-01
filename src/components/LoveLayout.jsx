@@ -4,11 +4,13 @@ import Header from "../shared/MainHeader";
 import Footer from "../shared/Footer";
 import background from "../assets/img/background.png";
 
-function Layout({ children, title }) {
+function Layout({ children }) {
   return (
     <Container>
       <ContainerDiv>
-        <Header title={title} />
+        <Header>
+          <h3>좋아요</h3>
+        </Header>
         <Content>{children}</Content>
         <FooterWrapper>
           <Footer />
@@ -31,10 +33,6 @@ const Container = styled.div`
   background-repeat: no-repeat;
   background-size: contain;
   background-position: center;
-
-  @media screen and (max-width: 500px) {
-    background-image: none;
-  }
 `;
 
 const ContainerDiv = styled.div`

@@ -1,7 +1,6 @@
 import React from "react";
 import styled from "styled-components";
 import ArrowIcon from "../assets/img/ArrowIcon.png";
-
 // import FavoriteIcon from "@mui/icons-material/Favorite";
 import { useNavigate } from "react-router";
 
@@ -25,6 +24,9 @@ export default Header;
 const StHeader = styled.div`
   display: flex;
   flex-direction: row;
+
+  justify-content: flex-start;
+
   align-items: center;
   width: 371px;
   height: 60px;
@@ -34,6 +36,7 @@ const StHeader = styled.div`
 const StImg = styled.img`
   width: 24px;
   height: 24px;
+  padding-right: 120px;
 `;
 
 const StDiv = styled.div`
