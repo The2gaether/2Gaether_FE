@@ -1,6 +1,7 @@
 import React, { useState, useEffect, useRef, useCallback } from "react";
 import axios from "axios";
 import styled from "styled-components";
+import ChattingDetail from "../../../chatting/ChattingDetail";
 
 const InfiniteScroll = () => {
   const [data, setData] = useState([]);
@@ -12,11 +13,14 @@ const InfiniteScroll = () => {
 
   const fetchData = useCallback(async () => {
     setLoading(true);
-    const { data } = await axios.get(`${process.env.REACT_APP_DOG}/loves/received`, {
-      headers: {
-        Authorization,
-      },
-    });
+    const { data } = await axios.get(
+      `${process.env.REACT_APP_DOG}/loves/received`,
+      {
+        headers: {
+          Authorization,
+        },
+      }
+    );
     // setData((prevData) => [...prevData, ...data]);
     setData(data);
     console.log(data);
@@ -75,7 +79,10 @@ const InfiniteScroll = () => {
               <OneDog key={id}>
                 {group.map(({ imageUrl, dogName, userId, dogSex }) => (
                   <Stgroup>
-                    <StDog style={{ backgroundImage: `url(${imageUrl})` }} key={userId}>
+                    <StDog
+                      style={{ backgroundImage: `url(${imageUrl})` }}
+                      key={userId}
+                    >
                       {dogSex === "female" ? (
                         <StName> {dogName} (여)</StName>
                       ) : (

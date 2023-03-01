@@ -27,7 +27,7 @@ export const __postChatopenThunk = createAsyncThunk(
   async (payload, thunkAPI) => {
     try {
       const Request = await axios.post(
-        `${process.env.REACT_APP_DOGS}/chat/rooms`
+        `${process.env.REACT_APP_DOG}/chat/rooms`
       );
       console.log(1234, Request.data);
       return thunkAPI.fulfillWithValue(Request.data);
@@ -42,7 +42,9 @@ export const __getChatListThunk = createAsyncThunk(
   "GET_CHATS",
   async (_, thunkAPI) => {
     try {
-      const Request = await axios.get("/chat/room");
+      const Request = await axios.get(
+        `${process.env.REACT_APP_DOG}/chat/rooms`
+      );
       return thunkAPI.fulfillWithValue(Request.data);
     } catch (e) {
       return thunkAPI.rejectWithValue(e.code);

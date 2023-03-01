@@ -7,7 +7,7 @@ import { subMessage } from "../../redux/modules/socketSlice";
 import Stomp from "stompjs";
 import { __postChatopenThunk } from "../../redux/modules/chattingSlice";
 
-const ChattingDetail = () => {
+const ChattingDetail = ({ userId }) => {
   const navigate = useNavigate();
   const { roomId } = useParams();
   const dispatch = useDispatch();
@@ -39,7 +39,7 @@ const ChattingDetail = () => {
   };
 
   useEffect(() => {
-    dispatch(__postChatopenThunk({}));
+    dispatch(__postChatopenThunk());
   }, []);
 
   useEffect(() => {
