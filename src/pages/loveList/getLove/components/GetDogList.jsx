@@ -125,7 +125,7 @@ const InfiniteScroll = () => {
 export default InfiniteScroll;
 
 const Container = styled.div`
-  margin-top: 5vh;
+  margin-top: 30px;
 `;
 
 const StOnePage = styled.div`
@@ -143,8 +143,8 @@ const Stgroup = styled.div`
 
 const StDog = styled.div`
   position: relative;
-  width: 14vh;
-  height: 20vh;
+  width: 100px;
+  height: 100px;
   padding: 10px;
   margin: 10px 10px 10px 10px;
   border-radius: 20px;
@@ -165,5 +165,5 @@ const OneDog = styled.div`
   display: flex;
   justify-content: center;
   flex-wrap: wrap;
-  width: 80vh;
+  width: 375px;
 `;
