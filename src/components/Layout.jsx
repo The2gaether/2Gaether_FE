@@ -5,11 +5,11 @@ import Header from "../shared/MainHeader";
 import Footer from "../shared/Footer";
 import background from "../assets/img/background.png";
 
-function Layout({ children }) {
+function Layout({ children, title }) {
   return (
     <Container>
       <ContainerDiv>
-        <Header />
+        <Header title={title} />
         <Content>{children}</Content>
         <FooterWrapper>
           <Footer />
@@ -32,6 +32,10 @@ const Container = styled.div`
   background-repeat: no-repeat;
   background-size: contain;
   background-position: center;
+
+  @media screen and (max-width: 500px) {
+    background-image: none;
+  }
 `;
 
 const ContainerDiv = styled.div`

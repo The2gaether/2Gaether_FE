@@ -23,6 +23,10 @@ const Container = styled.div`
   background-repeat: no-repeat;
   background-size: contain;
   background-position: center;
+
+  @media screen and (max-width: 500px) {
+    background-image: none;
+  }
 `;
 
 const ContainerDiv = styled.div`
