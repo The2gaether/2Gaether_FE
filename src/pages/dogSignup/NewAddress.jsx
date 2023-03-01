@@ -134,15 +134,12 @@ const BgBox = styled.div`
   width: 100%;
   height: 100%;
   background-color: #fff;
-
   padding: 0 26px;
   box-sizing: border-box;
-
   display: flex;
   flex-flow: column;
   align-items: center;
   gap: 16px;
-
   position: absolute;
   top: 0;
   left: 0;
