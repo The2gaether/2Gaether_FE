@@ -81,7 +81,6 @@ const CardList = () => {
 export default CardList;
 
 const Container = styled.div`
-  background-color: black;
   display: flex;
   align-items: center;
   justify-content: center;
