@@ -1,7 +1,6 @@
 import React from "react";
 import styled from "styled-components";
 import ArrowIcon from "../assets/img/ArrowIcon.png";
-// import FavoriteIcon from "@mui/icons-material/Favorite";
 import { useNavigate } from "react-router";
 
 function Header({ title }) {
@@ -15,6 +14,7 @@ function Header({ title }) {
     <StHeader>
       <StImg src={ArrowIcon} onClick={handleHistory} />
       <StDiv style={{ fontSize: "20px", fontWeight: "bold" }}>{title}</StDiv>
+      <StEmpty />
     </StHeader>
   );
 }
@@ -23,10 +23,7 @@ export default Header;
 
 const StHeader = styled.div`
   display: flex;
-  flex-direction: row;
-
-  justify-content: flex-start;
-
+  justify-content: space-between;
   align-items: center;
   width: 371px;
   height: 60px;
@@ -36,11 +33,11 @@ const StHeader = styled.div`
 const StImg = styled.img`
   width: 24px;
   height: 24px;
-  padding-right: 120px;
+`;
+const StEmpty = styled.div`
+  width: 24px;
+  height: 24px;
+  margin-right: 20px;
 `;
 
-const StDiv = styled.div`
-  width: 371px;
-  height: 24px;
-  margin-left: 100px;
-`;
+const StDiv = styled.div``;

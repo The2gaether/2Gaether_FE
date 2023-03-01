@@ -1,29 +1,21 @@
 import React, { useEffect, useState } from "react";
-import { useNavigate } from "react-router-dom";
 import styled from "styled-components";
-import MainHeader from "../../shared/MainHeader";
 import MyDogList from "./components/MyDogList";
 import EditInfo from "./components/EditInfo";
 import axios from "axios";
-import Footer from "../../shared/Footer";
 import Layout from "../../components/Layout";
-import Header from "../../shared/MainHeader";
+
 const EditUser = () => {
   const [user, setUser] = useState();
   const [dogs, setDogs] = useState([]);
 
   const Authorization = sessionStorage.getItem("accessToken");
   const fetchList = async () => {
-    const { data } = await axios.get(
-      `${process.env.REACT_APP_DOG}/users/mypage`,
-      {
-        headers: {
-          Authorization,
-        },
-      }
-    );
-    console.log(data.myDogs);
-    console.log(data);
+    const { data } = await axios.get(`${process.env.REACT_APP_DOG}/users/mypage`, {
+      headers: {
+        Authorization,
+      },
+    });
     setUser(data);
     setDogs(data.myDogs);
   };
@@ -37,9 +29,7 @@ const EditUser = () => {
       <Container>
         <br />
         <div>
-          <div style={{ fontSize: "20px", fontWeight: "bold" }}>
-            안녕하세요 {user?.username}님!
-          </div>
+          <div style={{ fontSize: "20px", fontWeight: "bold" }}>안녕하세요 {user?.username}님!</div>
           <br />
           <div>주소:{user?.latitude}</div>
           <div style={{ fontSize: "15px" }}>{user?.email}</div>
@@ -49,7 +39,6 @@ const EditUser = () => {
             <MyDogList key={dog.dogId} dog={dog} />
           ))}
         </StImgGroup>
-        <Space />
         <EditInfo user={user} />
       </Container>
     </Layout>
@@ -57,10 +46,6 @@ const EditUser = () => {
 };
 
 export default EditUser;
-
-const Space = styled.div`
-  height: 10vh;
-`;
 
 const Container = styled.div`
   display: flex;
@@ -74,6 +59,7 @@ const Container = styled.div`
 
 const StImgGroup = styled.div`
   padding-top: 5vh;
+  margin-bottom: 30px;
   display: flex;
   justify-content: center;
 `;
