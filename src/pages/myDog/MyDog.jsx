@@ -64,8 +64,8 @@ const MyDog = () => {
             <br />
             <StBtnGroup>
               {/* 아직 페이지 수정 안함 */}
-              {/* <button onClick={() => setEdit(true)}>변경</button> */}
-              <button onClick={() => onDeleteDog()}>삭제</button>
+              <StButton onClick={() => setEdit(true)}>강아지 수정</StButton>
+              <StButton onClick={() => onDeleteDog()}>강아지 삭제</StButton>
             </StBtnGroup>
           </StBefore>
         ) : (
@@ -123,6 +123,20 @@ const StPeople = styled.div`
 const StName = styled.h3`
   font-size: large;
   color: black;
+`;
+
+const StButton = styled.div`
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100px;
+  height: 30px;
+  margin-top: 20px;
+  margin-bottom: 5px;
+  color: white;
+  background: #4269b4;
+  border: 1px solid white;
+  border-radius: 20px;
 `;
 
 const Space = styled.div`

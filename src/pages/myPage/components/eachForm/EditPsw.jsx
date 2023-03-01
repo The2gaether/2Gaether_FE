@@ -53,7 +53,9 @@ const EditNick = () => {
     // navigate(-1);
   };
 
-  const onDeleteUserHandler = () => {};
+  const onDeleteUserHandler = () => {
+    alert("진짜 삭제할거예요?");
+  };
 
   return (
     <Layout title="설정">
@@ -101,9 +103,10 @@ const EditNick = () => {
           <StButton>변경하기</StButton>
         </StForm>
         <UnderLine />
-        <Space />
         <StDeleteUser onClick={() => onDeleteUserHandler()}>
-          <div style={{ fontSize: "20px", fontWeight: "bold" }}>회원탈퇴</div>
+          <div style={{ fontSize: "20px", fontWeight: "bold" }} onClick={onDeleteUserHandler}>
+            회원탈퇴
+          </div>
           <br />
           <div style={{ fontSize: "15px", color: "#c6c6c6" }}>
             개인정보 및 설정이 모두 삭제됩니다.
@@ -157,6 +160,7 @@ const UnderLine = styled.div`
   width: 330px;
   height: 5px;
   background-color: #c6c6c6;
+  margin-bottom: 50px;
 `;
 
 const StDeleteUser = styled.div`
