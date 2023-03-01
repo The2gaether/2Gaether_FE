@@ -80,18 +80,14 @@ const CardList = () => {
 export default CardList;
 
 const Container = styled.div`
-  /* display: flex; */
-  /* align-items: center; */
-  /* justify-content: center; */
-  /* flex-direction: column; */
-  height: 640px;
+  height: 605px;
 `;
 
 const StBtnGroup = styled.div`
   z-index: 1;
   display: flex;
   justify-content: center;
-  /* background-color: pink; */
+  margin-top: 20px;
 `;
 const STCircleBorder = styled.div`
   margin-right: 80px;

@@ -32,10 +32,9 @@ export default Image;
 
 const Container = styled.div`
   display: flex;
-  /* align-items: center; */
   justify-content: center;
   flex-direction: column;
-  margin-top: 30px;
+  margin-top: 5px;
 `;
 
 const StDog = styled.div`
@@ -44,7 +43,7 @@ const StDog = styled.div`
   justify-content: center;
   margin-left: 10.5px;
   width: 340px;
-  height: 540px;
+  height: 500px;
   border-radius: 20px;
   background-size: cover;
   background-position: center;

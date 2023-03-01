@@ -26,6 +26,6 @@ const Container = styled.div`
 `;
 const StLogo = styled.img`
   margin-top: 30px;
-  width: 120px;
-  height: 70px;
+  width: 162px;
+  height: 107px;
 `;
