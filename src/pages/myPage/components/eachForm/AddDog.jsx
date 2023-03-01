@@ -318,8 +318,8 @@ const ImagePreview = styled.img`
 `;
 const InputContainer = styled.div`
   position: relative;
-  width: 118px;
-  height: 160px;
+  width: 200px;
+  height: 280px;
   border: 3px solid black;
   border-radius: 5px;
   overflow: hidden;
@@ -329,7 +329,6 @@ const InputContainer = styled.div`
   border-radius: 25px;
   align-items: center;
   display: ${(props) => (props.hasImage ? "none" : "flex")};
-  margin-bottom: 30%;
   &:hover {
     cursor: pointer;
   }
@@ -337,8 +336,8 @@ const InputContainer = styled.div`
   input {
     opacity: 0;
     position: absolute;
-    width: 100%;
-    height: 100%;
+    width: 200px;
+    height: 280px;
     top: 0;
     left: 0;
   }
@@ -362,11 +361,11 @@ const StImg2 = styled.img`
   margin-left: 15px;
 `;
 const StImg1 = styled.img`
-  width: 30px;
-  height: 30px;
+  width: 40px;
+  height: 40px;
   position: relative;
-  margin-left: 80px;
-  margin-top: 120px;
+  margin-left: 160px;
+  margin-top: 240px;
 `;
 const StInput = styled.input`
   margin-left: 15px;
@@ -392,9 +391,8 @@ const StTextarea = styled.textarea`
   border: 2px solid #000000;
   border-radius: 20px;
   margin-bottom: 34px;
-  padding-left: 5px;
+  padding: 15px 15px 15px 15px;
   margin-left: 6px;
-  padding-top: 5px;
 
   &::placeholder {
     font-size: 12px;

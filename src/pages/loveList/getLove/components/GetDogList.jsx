@@ -19,7 +19,6 @@ const InfiniteScroll = () => {
     });
     // setData((prevData) => [...prevData, ...data]);
     setData(data);
-    console.log(data);
     setLoading(false);
     setHasMore(data.length !== 0);
     if (data.length !== 0) {
@@ -61,7 +60,6 @@ const InfiniteScroll = () => {
         },
       }
     );
-    console.log(id);
   };
   const onRejectHandler = (id) => {
     axios.post(
@@ -84,8 +82,8 @@ const InfiniteScroll = () => {
             return (
               <OneDog key={id}>
                 {group.map(({ imageUrl, dogName, userId, dogSex }) => (
-                  <Stgroup>
-                    <StDog style={{ backgroundImage: `url(${imageUrl})` }} key={userId}>
+                  <Stgroup key={userId}>
+                    <StDog style={{ backgroundImage: `url(${imageUrl})` }}>
                       {dogSex === "female" ? (
                         <StName> {dogName} (여)</StName>
                       ) : (
