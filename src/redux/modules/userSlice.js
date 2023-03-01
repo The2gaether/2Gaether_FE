@@ -20,9 +20,11 @@ const initialState = {
 export const __postLogin = createAsyncThunk(
   "login",
   async (payload, thunkAPI) => {
+    console.log(payload);
     try {
       const res = await axios.post(
-        `${process.env.REACT_APP_DOGS}/users/login`,
+        `${process.env.REACT_APP_DOG}/users/login`,
+        // "http://54.85.166.118/users/login",
         payload
       );
 

@@ -1,7 +1,6 @@
 import React from "react";
 import styled from "styled-components";
 import { useNavigate } from "react-router-dom";
-import Layout from "../../components/Layout";
 import StartLayout from "../../components/StartLayout";
 import welecome from "../../assets/img/welecome.jpg";
 import whitetogather from "../../assets/img/whitetogather.png";
@@ -41,7 +40,7 @@ const StContainer = styled.div`
   background-repeat: no-repeat;
   background-size: cover;
   background-position: center;
-  border-radius: 60px;
+  border-radius: 30px;
 `;
 const StP1 = styled.p`
   width: 200px;
