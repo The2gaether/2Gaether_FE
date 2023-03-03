@@ -25,10 +25,10 @@ const EditInfo = () => {
           주소변경하기
         </StOneInfoWhite>
         {/* 보류 */}
-        {/* <StOneInfoBlack onClick={() => navigate("/mypage/adddog")}>
+        <StOneInfoBlack onClick={() => navigate("/mypage/adddog")}>
           <AddCircleIcon />
           강아지 추가하기
-        </StOneInfoBlack> */}
+        </StOneInfoBlack>
       </StForm>
     </>
   );

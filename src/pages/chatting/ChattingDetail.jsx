@@ -80,6 +80,7 @@ const ChattingDetail = () => {
   }, [roomId]);
 
   //메시지 보내기
+  //여기에 있는 값을 모아야합니다 / 정기
   const myChat = () => {
     const message = chatRef.current.value;
 
@@ -110,57 +111,58 @@ const ChattingDetail = () => {
     <Layout>
       <StyledChatWindow>
         <Header />
-        <BeforeChatHistory>
-          {chatcollect[0]?.chats?.map((list, index) =>
-            list.userNickname === Myname ? (
-              <div key={index}>
-                <MessageList
-                  messageLength={list.message.length}
-                  isMine={true} // 내가 보내는 메시지
-                >
-                  <span>{list?.message}</span>
-                </MessageList>
-              </div>
-            ) : (
-              <ReceivedMessage>
-                <h4>{list?.userNickname}님</h4>
-                <MessageList
-                  messageLength={list.message.length}
-                  isMine={false} // 상대방이 보내는 메시지
-                >
-                  <span>{list?.message}</span>
-                </MessageList>
-              </ReceivedMessage>
-            )
-          )}
-        </BeforeChatHistory>
-        <ChatHistory>
-          {roomId && (
-            <div ref={scrollRef}>
-              {messages.map((message) =>
-                message.userNickname === Myname ? (
+        <div>
+          <BeforeChatHistory>
+            {chatcollect[0]?.chats?.map((list, index) =>
+              list.userNickname === Myname ? (
+                <div key={index}>
                   <MessageList
-                    messageLength={message.message.length}
+                    messageLength={list.message.length}
                     isMine={true} // 내가 보내는 메시지
                   >
-                    <span>{message.message}</span>
+                    <span>{list?.message}</span>
                   </MessageList>
-                ) : (
-                  <ReceivedMessage>
-                    <h4>{message.userNickname}님</h4>
+                </div>
+              ) : (
+                <ReceivedMessage>
+                  <h4>{list?.userNickname}님</h4>
+                  <MessageList
+                    messageLength={list.message.length}
+                    isMine={false} // 상대방이 보내는 메시지
+                  >
+                    <span>{list?.message}</span>
+                  </MessageList>
+                </ReceivedMessage>
+              )
+            )}
+          </BeforeChatHistory>
+          <ChatHistory>
+            {roomId && (
+              <div ref={scrollRef}>
+                {messages.map((message) =>
+                  message.userNickname === Myname ? (
                     <MessageList
                       messageLength={message.message.length}
-                      isMine={false} // 상대방이 보내는 메시지
+                      isMine={true} // 내가 보내는 메시지
                     >
                       <span>{message.message}</span>
                     </MessageList>
-                  </ReceivedMessage>
-                )
-              )}
-            </div>
-          )}
-        </ChatHistory>
-
+                  ) : (
+                    <ReceivedMessage>
+                      <h4>{message.userNickname}님</h4>
+                      <MessageList
+                        messageLength={message.message.length}
+                        isMine={false} // 상대방이 보내는 메시지
+                      >
+                        <span>{message.message}</span>
+                      </MessageList>
+                    </ReceivedMessage>
+                  )
+                )}
+              </div>
+            )}
+          </ChatHistory>
+        </div>
         <ChatInput>
           <form onSubmit={(e) => e.preventDefault()}>
             <Input type="text" ref={chatRef} onKeyDown={handleEnterPress} />
@@ -179,8 +181,8 @@ const StyledChatWindow = styled.div`
   flex-direction: column;
   background-color: white;
   border-radius: 10px;
-  width: 370px;
-  height: 629px;
+  width: 355px;
+  height: 609px;
 `;
 
 const Header = styled.header`
@@ -261,9 +263,10 @@ const ReceivedMessage = styled.div`
 
 const BeforeChatHistory = styled.div`
   display: flex;
-  width: 100%;
+  width: 300px;
+  /* height: 600px; */
   flex-direction: column;
-  height: calc(100% - 200px);
-  overflow-y: scroll;
+  height: calc(100% - 20%);
+  /* overflow-y: scroll; */
   padding: 10px;
 `;
