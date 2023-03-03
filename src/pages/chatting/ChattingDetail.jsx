@@ -5,10 +5,7 @@ import SockJS from "sockjs-client";
 import styled from "styled-components";
 import { subMessage } from "../../redux/modules/socketSlice";
 import Stomp from "stompjs";
-import {
-  __getChatListThunk,
-  __postChatopenThunk,
-} from "../../redux/modules/chattingSlice";
+import { __getChatListThunk, __postChatopenThunk } from "../../redux/modules/chattingSlice";
 import Layout from "../../components/Layout";
 
 const ChattingDetail = () => {
@@ -58,7 +55,6 @@ const ChattingDetail = () => {
     const headers = {
       Authorization: sessionStorage.getItem("accessToken"),
     };
-
     try {
       client.connect({}, () => {
         console.log(roomId);
@@ -115,9 +111,9 @@ const ChattingDetail = () => {
       <StyledChatWindow>
         <Header />
         <BeforeChatHistory>
-          {chatcollect[0]?.chats?.map((list) =>
+          {chatcollect[0]?.chats?.map((list, index) =>
             list.userNickname === Myname ? (
-              <div key={list.roomId}>
+              <div key={index}>
                 <MessageList
                   messageLength={list.message.length}
                   isMine={true} // 내가 보내는 메시지
