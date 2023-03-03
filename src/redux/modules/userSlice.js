@@ -45,7 +45,7 @@ export const __postUser = createAsyncThunk("signup", async (payload, thunkAPI) =
   try {
     console.log(payload);
     const { data } = await axios.post("https://midcon.shop/users/signup", payload);
-    return thunkAPI.fulfillWithValue(data);
+    thunkAPI.fulfillWithValue(data);
   } catch (error) {
     if (400 < error.status < 500) {
       alert(error.response.data.message);
