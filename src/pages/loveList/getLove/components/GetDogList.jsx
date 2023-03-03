@@ -66,6 +66,24 @@ const InfiniteScroll = () => {
       }
     );
   };
+  const onLoveSubmitHandler = (id) => {
+    axios.post(
+      `${process.env.REACT_APP_DOG}/loves/accept/${id}`,
+
+      //`${process.env.REACT_APP_DOG}/chat/rooms`,
+      { userId: id },
+      {
+        headers: {
+          Authorization,
+        },
+      }
+    );
+  };
+
+  function handleButtonClick() {
+    onSubmitHandler();
+    onLoveSubmitHandler();
+  }
   const onRejectHandler = (id) => {
     axios.post(
       `${process.env.REACT_APP_DOG}//match/reject/${id}`,
@@ -99,7 +117,7 @@ const InfiniteScroll = () => {
                     <div>
                       <button
                         onClick={() => {
-                          onSubmitHandler(userId);
+                          handleButtonClick(userId);
                         }}
                       >
                         수락
