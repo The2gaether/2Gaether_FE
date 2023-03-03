@@ -4,6 +4,7 @@ import styled from "styled-components";
 import MainHeader from "../../shared/MainHeader";
 import axios from "axios";
 import EditDog from "./editDog/EditDog";
+import Layout from "../../components/Layout";
 
 const MyDog = () => {
   const [edit, setEdit] = useState(false);
@@ -38,19 +39,26 @@ const MyDog = () => {
     fetchList();
   }, []);
 
+  // props 끌어올리기 용!!!
+  const onChangeTrue = () => {
+    setEdit(false);
+  };
+
   return (
-    <div>
-      <MainHeader />
+    <Layout title="설정">
       <Container>
         {!edit ? (
           <StBefore>
             <StBox>이름</StBox>
-            <br />
             <StName>{dog.dogName}</StName>
             <Space />
             <StBox>성별</StBox>
             <br />
             <StName>{dog.dogSex}</StName>
+            <Space />
+            <StBox>설명</StBox>
+            <br />
+            <StName>{dog.dogDetails}</StName>
             <Space />
             <StBox>사진</StBox>
             <br />
@@ -63,18 +71,18 @@ const MyDog = () => {
             </div>
             <br />
             <StBtnGroup>
-              {/* 아직 페이지 수정 안함 */}
-              {/* <button onClick={() => setEdit(true)}>변경</button> */}
-              <button onClick={() => onDeleteDog()}>삭제</button>
+              <StButton onClick={() => setEdit(true)}>강아지 수정</StButton>
+              {/* 보류 */}
+              {/* <StButton onClick={() => onDeleteDog()}>강아지 삭제</StButton> */}
             </StBtnGroup>
           </StBefore>
         ) : (
-          <div>
-            <EditDog />
-          </div>
+          <StBefore>
+            <EditDog dog={dog} images={images} edit={edit} onChangeTrue={onChangeTrue} />
+          </StBefore>
         )}
       </Container>
-    </div>
+    </Layout>
   );
 };
 export default MyDog;
@@ -100,10 +108,10 @@ const StBox = styled.div`
   display: flex;
   justify-content: center;
   align-items: center;
-  width: 6vh;
-  height: 3vh;
-  margin-top: 2vh;
-  margin-bottom: 1vh;
+  width: 100px;
+  height: 30px;
+  margin-top: 20px;
+  margin-bottom: 5px;
   background: #ffffff;
   border: 1px solid #4269b4;
   border-radius: 20px;
@@ -111,10 +119,9 @@ const StBox = styled.div`
 
 const StPeople = styled.div`
   position: relative;
-  width: 100px;
+  width: 70px;
   padding: 30px;
-  max-width: 85vw;
-  height: 18vh;
+  height: 100px;
   border-radius: 20px;
   background-size: cover;
   background-position: center;
@@ -126,8 +133,22 @@ const StName = styled.h3`
   color: black;
 `;
 
+const StButton = styled.div`
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100px;
+  height: 30px;
+  margin-top: 20px;
+  margin-bottom: 5px;
+  color: white;
+  background: #4269b4;
+  border: 1px solid white;
+  border-radius: 20px;
+`;
+
 const Space = styled.div`
-  height: 4vh;
+  height: 20px;
 `;
 
 const StBtnGroup = styled.div`

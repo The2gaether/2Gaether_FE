@@ -24,10 +24,11 @@ const EditInfo = () => {
           <EditLocationIcon />
           주소변경하기
         </StOneInfoWhite>
-        <StOneInfoBlack onClick={() => navigate("/mypage/adddog")}>
+        {/* 보류 */}
+        {/* <StOneInfoBlack onClick={() => navigate("/mypage/adddog")}>
           <AddCircleIcon />
           강아지 추가하기
-        </StOneInfoBlack>
+        </StOneInfoBlack> */}
       </StForm>
     </>
   );
@@ -45,9 +46,8 @@ const StForm = styled.form`
 `;
 
 const StOneInfoWhite = styled.div`
-  width: 100vh;
-  max-width: 85vw;
-  height: 5vh;
+  width: 300px;
+  height: 50px;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -55,9 +55,8 @@ const StOneInfoWhite = styled.div`
 `;
 
 const StOneInfoBlack = styled.div`
-  width: 100vh;
-  max-width: 85vw;
-  height: 5vh;
+  width: 300px;
+  height: 50px;
   display: flex;
   align-items: center;
   justify-content: center;

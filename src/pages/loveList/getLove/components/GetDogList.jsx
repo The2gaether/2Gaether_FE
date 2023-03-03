@@ -23,7 +23,6 @@ const InfiniteScroll = () => {
     );
     // setData((prevData) => [...prevData, ...data]);
     setData(data);
-    console.log(data);
     setLoading(false);
     setHasMore(data.length !== 0);
     if (data.length !== 0) {
@@ -66,7 +65,6 @@ const InfiniteScroll = () => {
         },
       }
     );
-    console.log(id);
   };
   const onRejectHandler = (id) => {
     axios.post(
@@ -89,11 +87,8 @@ const InfiniteScroll = () => {
             return (
               <OneDog key={id}>
                 {group.map(({ imageUrl, dogName, userId, dogSex }) => (
-                  <Stgroup>
-                    <StDog
-                      style={{ backgroundImage: `url(${imageUrl})` }}
-                      key={userId}
-                    >
+                  <Stgroup key={userId}>
+                    <StDog style={{ backgroundImage: `url(${imageUrl})` }}>
                       {dogSex === "female" ? (
                         <StName> {dogName} (여)</StName>
                       ) : (
@@ -133,7 +128,7 @@ const InfiniteScroll = () => {
 export default InfiniteScroll;
 
 const Container = styled.div`
-  margin-top: 5vh;
+  margin-top: 30px;
 `;
 
 const StOnePage = styled.div`
@@ -151,8 +146,8 @@ const Stgroup = styled.div`
 
 const StDog = styled.div`
   position: relative;
-  width: 14vh;
-  height: 20vh;
+  width: 100px;
+  height: 100px;
   padding: 10px;
   margin: 10px 10px 10px 10px;
   border-radius: 20px;
@@ -173,5 +168,5 @@ const OneDog = styled.div`
   display: flex;
   justify-content: center;
   flex-wrap: wrap;
-  width: 80vh;
+  width: 375px;
 `;
