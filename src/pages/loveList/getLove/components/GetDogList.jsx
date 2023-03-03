@@ -23,6 +23,7 @@ const InfiniteScroll = () => {
     );
     // setData((prevData) => [...prevData, ...data]);
     setData(data);
+    console.log(data);
     setLoading(false);
     setHasMore(data.length !== 0);
     if (data.length !== 0) {
@@ -55,9 +56,8 @@ const InfiniteScroll = () => {
   //chatroom 으로 가야하는지 좋아요로 가야하는지?
   const onSubmitHandler = (id) => {
     axios.post(
-      // `${process.env.REACT_APP_DOG}/loves/accept/${id}`,
       `${process.env.REACT_APP_DOG}/chat/rooms`,
-      //`${process.env.REACT_APP_DOG}/chat/rooms`,
+      //`${process.env.REACT_APP_DOGS}/chat/rooms`,
       { userId: id },
       {
         headers: {
@@ -69,9 +69,7 @@ const InfiniteScroll = () => {
   const onLoveSubmitHandler = (id) => {
     axios.post(
       `${process.env.REACT_APP_DOG}/loves/accept/${id}`,
-
-      //`${process.env.REACT_APP_DOG}/chat/rooms`,
-      { userId: id },
+      {},
       {
         headers: {
           Authorization,
@@ -80,13 +78,14 @@ const InfiniteScroll = () => {
     );
   };
 
-  function handleButtonClick() {
-    onSubmitHandler();
-    onLoveSubmitHandler();
+  function handleButtonClick(userId, dogId) {
+    onSubmitHandler(dogId);
+    onLoveSubmitHandler(userId);
   }
-  const onRejectHandler = (id) => {
+
+  const onRejectHandler = (dogId) => {
     axios.post(
-      `${process.env.REACT_APP_DOG}//match/reject/${id}`,
+      `${process.env.REACT_APP_DOG}/loves/reject/${dogId}`,
       {},
       {
         headers: {
@@ -94,6 +93,7 @@ const InfiniteScroll = () => {
         },
       }
     );
+    console.log(dogId);
   };
 
   return (
@@ -104,7 +104,7 @@ const InfiniteScroll = () => {
             const group = sliceData.slice(id, id + 2);
             return (
               <OneDog key={id}>
-                {group.map(({ imageUrl, dogName, userId, dogSex }) => (
+                {group.map(({ imageUrl, dogName, userId, dogSex, dogId }) => (
                   <Stgroup key={userId}>
                     <StDog style={{ backgroundImage: `url(${imageUrl})` }}>
                       {dogSex === "female" ? (
@@ -117,14 +117,14 @@ const InfiniteScroll = () => {
                     <div>
                       <button
                         onClick={() => {
-                          handleButtonClick(userId);
+                          handleButtonClick(dogId, userId);
                         }}
                       >
                         수락
                       </button>
                       <button
                         onClick={() => {
-                          onRejectHandler(id);
+                          onRejectHandler(dogId);
                         }}
                       >
                         거절
