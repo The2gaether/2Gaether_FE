@@ -1,6 +1,7 @@
 import React, { useState, useEffect, useRef, useCallback } from "react";
 import axios from "axios";
 import styled from "styled-components";
+import ChattingDetail from "../../../chatting/ChattingDetail";
 
 const InfiniteScroll = () => {
   const [data, setData] = useState([]);

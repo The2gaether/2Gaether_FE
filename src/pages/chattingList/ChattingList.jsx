@@ -10,6 +10,7 @@ const ChatList = () => {
 
   const chatList = useSelector((state) => state.chatList.chatList);
   console.log(12345, chatList);
+  console.log(12345555555555, chatList[0]?.roomId);
 
   useEffect(() => {
     dispatch(__getChatList());
@@ -34,7 +35,7 @@ const ChatList = () => {
             isLast={index === chatList.length - 1}
           >
             <StMsDiv>
-              {list.nickname}님 {list.message}
+              {list?.nickname}님 {list?.message}
             </StMsDiv>
           </StDiv>
         </div>
