@@ -15,17 +15,17 @@ export const __getChatList = createAsyncThunk(
   "getChatList",
   async (_, thunkAPI) => {
     try {
-      const token = sessionStorage.getItem("accessToken"); // 세션 스토리지에서 토큰 가져오기
+      const Authorization = sessionStorage.getItem("accessToken"); // 세션 스토리지에서 토큰 가져오기
       const { data } = await axios.get(
         `${process.env.REACT_APP_DOG}/chat/rooms`,
-
+        //`${process.env.REACT_APP_DOGS}/chat/rooms`,
         {
           headers: {
-            Authorization: token,
+            Authorization,
           },
         }
       );
-      console.log(123, data);
+      console.log(123456789, data);
       return thunkAPI.fulfillWithValue(data);
     } catch (error) {
       return thunkAPI.rejectWithValue(error);
@@ -37,7 +37,7 @@ export const __deleteTodo = createAsyncThunk(
   "delete_todo",
   async (id, thunkAPI) => {
     try {
-      axios.delete(`http://localhost:3001/todos/${id}`);
+      axios.delete(`http://localhost:3000/todos/${id}`);
       return;
     } catch (error) {
       return thunkAPI.rejectWithValue(error);
@@ -49,7 +49,7 @@ export const __updateTodo = createAsyncThunk(
   "update_todo",
   async (id, thunkAPI) => {
     try {
-      axios.patch(`http://localhost:3001/todos/${id}`);
+      axios.patch(`http://localhost:3000/todos/${id}`);
       return;
     } catch (error) {
       return thunkAPI.rejectWithValue(error);

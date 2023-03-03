@@ -55,18 +55,29 @@ const InfiniteScroll = () => {
 
   //chatroom 으로 가야하는지 좋아요로 가야하는지?
   const onSubmitHandler = (id) => {
-    axios.post(`${process.env.REACT_APP_DOG}/chat/room`, id, {
-      headers: {
-        Authorization,
-      },
-    });
+    axios.post(
+      // `${process.env.REACT_APP_DOG}/loves/accept/${id}`,
+      `${process.env.REACT_APP_DOG}/chat/rooms`,
+      //`${process.env.REACT_APP_DOG}/chat/rooms`,
+      { userId: id },
+      {
+        headers: {
+          Authorization,
+        },
+      }
+    );
+    console.log(id);
   };
   const onRejectHandler = (id) => {
-    axios.post(`${process.env.REACT_APP_DOG}//match/reject/${id}`, {
-      headers: {
-        Authorization,
-      },
-    });
+    axios.post(
+      `${process.env.REACT_APP_DOG}//match/reject/${id}`,
+      {},
+      {
+        headers: {
+          Authorization,
+        },
+      }
+    );
   };
 
   return (
@@ -93,7 +104,7 @@ const InfiniteScroll = () => {
                     <div>
                       <button
                         onClick={() => {
-                          onSubmitHandler(id);
+                          onSubmitHandler(userId);
                         }}
                       >
                         수락
