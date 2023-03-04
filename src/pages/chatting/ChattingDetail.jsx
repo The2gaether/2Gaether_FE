@@ -125,7 +125,7 @@ const ChattingDetail = () => {
                 </div>
               ) : (
                 <ReceivedMessage>
-                  <h4>{list?.userNickname}님</h4>
+                  <h4>{list?.userNickname}</h4>
                   <MessageList
                     messageLength={list.message.length}
                     isMine={false} // 상대방이 보내는 메시지
@@ -149,7 +149,7 @@ const ChattingDetail = () => {
                     </MessageList>
                   ) : (
                     <ReceivedMessage>
-                      <h4>{message.userNickname}님</h4>
+                      <h4>{message.userNickname}</h4>
                       <MessageList
                         messageLength={message.message.length}
                         isMine={false} // 상대방이 보내는 메시지
@@ -182,7 +182,7 @@ const StyledChatWindow = styled.div`
   background-color: white;
   border-radius: 10px;
   width: 355px;
-  height: 609px;
+  max-height: 620px;
 `;
 
 const Header = styled.header`
@@ -264,9 +264,9 @@ const ReceivedMessage = styled.div`
 const BeforeChatHistory = styled.div`
   display: flex;
   width: 300px;
-  /* height: 600px; */
+  max-height: 6000px;
   flex-direction: column;
-  height: calc(100% - 20%);
+  /* height: calc(100% - 200px); */
   /* overflow-y: scroll; */
   padding: 10px;
 `;
