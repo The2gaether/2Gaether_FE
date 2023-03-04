@@ -5,7 +5,10 @@ import SockJS from "sockjs-client";
 import styled from "styled-components";
 import { subMessage } from "../../redux/modules/socketSlice";
 import Stomp from "stompjs";
-import { __getChatListThunk, __postChatopenThunk } from "../../redux/modules/chattingSlice";
+import {
+  __getChatListThunk,
+  __postChatopenThunk,
+} from "../../redux/modules/chattingSlice";
 import Layout from "../../components/Layout";
 
 const ChattingDetail = () => {
