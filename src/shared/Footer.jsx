@@ -8,6 +8,7 @@ import { useNavigate } from "react-router-dom";
 
 function Footer() {
   const navigate = useNavigate();
+
   return (
     <StButtons>
       <StImg
