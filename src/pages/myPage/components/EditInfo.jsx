@@ -1,10 +1,10 @@
 import React, { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import styled from "styled-components";
-import EditIcon from "@mui/icons-material/Edit";
-import LockIcon from "@mui/icons-material/Lock";
-import EditLocationIcon from "@mui/icons-material/EditLocation";
-import AddCircleIcon from "@mui/icons-material/AddCircle";
+import Edit from "../../../assets/img/edit.png";
+import Lock from "../../../assets/img/lock.png";
+import Map from "../../../assets/img/map-pin.png";
+import Plus from "../../../assets/img/plus-circle.png";
 
 const EditInfo = () => {
   const navigate = useNavigate();
@@ -13,22 +13,22 @@ const EditInfo = () => {
     <>
       <StForm>
         <StOneInfoWhite onClick={() => navigate("/mypage/editnick")}>
-          <EditIcon />
+          <img src={Edit} />
           닉네임 변경하기
         </StOneInfoWhite>
         <StOneInfoBlack onClick={() => navigate("/mypage/editpsw")}>
-          <LockIcon />
+          <img src={Lock} />
           비밀번호 변경
         </StOneInfoBlack>
         <StOneInfoWhite onClick={() => navigate("/newaddress")}>
-          <EditLocationIcon />
+          <img src={Map} />
           주소변경하기
         </StOneInfoWhite>
         {/* 보류 */}
-        <StOneInfoBlack onClick={() => navigate("/mypage/adddog")}>
-          <AddCircleIcon />
+        {/* <StOneInfoBlack onClick={() => navigate("/mypage/adddog")}>
+          <img src={Plus} />
           강아지 추가하기
-        </StOneInfoBlack>
+        </StOneInfoBlack> */}
       </StForm>
     </>
   );
@@ -52,6 +52,11 @@ const StOneInfoWhite = styled.div`
   align-items: center;
   justify-content: center;
   background-color: #eaeef6;
+  border-color: black;
+  border-top-style: none;
+  border-left-style: none;
+  border-right-style: none;
+  border-bottom-style: 1px;
 `;
 
 const StOneInfoBlack = styled.div`

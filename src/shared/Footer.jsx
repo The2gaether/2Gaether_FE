@@ -50,7 +50,7 @@ export default Footer;
 
 const StButtons = styled.div`
   width: 375px;
-  height: 83px;
+  height: 63px;
   bottom: 0;
   box-shadow: 0px -1px 0px 0px #000000; /* box-shadow 속성을 사용해 그림자를 만듭니다 */
   display: flex;
@@ -65,6 +65,7 @@ const StImgWrapper = styled.div`
 `;
 
 const StImg = styled.img`
+  border-radius: 20px;
   width: 30px;
   height: 30px;
 
