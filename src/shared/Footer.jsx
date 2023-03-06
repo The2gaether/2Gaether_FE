@@ -53,16 +53,17 @@ const StButtons = styled.div`
   align-items: center;
 `;
 const StImg = styled.img`
-  border-radius: 20px;
+  /* border-radius: 10px; */
   width: 30px;
   height: 30px;
   left: 38px;
   top: 18px;
   cursor: pointer;
+  border-bottom: 3px solid transparent;
   &:hover {
-    background: #2f58ac;
+    /* background: #2f58ac; */
     transition: 0.3s ease-out;
-    /* transform: scaleX(0);
-    transform-origin: bottom right; */
+    /* transform: scale(1); */
+    border-bottom: 3px solid black;
   }
 `;

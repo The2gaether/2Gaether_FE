@@ -37,7 +37,7 @@ const Container = styled.div`
   flex-direction: column;
   border: 1px solid black;
   border-radius: 20px;
-  /* margin-top: 10px; */
+  margin-top: 30px;
 `;
 
 const StDog = styled.div`
@@ -45,7 +45,7 @@ const StDog = styled.div`
   align-items: center;
   justify-content: center;
   width: 340px;
-  height: 450px;
+  height: 400px;
   border-radius: 20px 20px 0 0;
   background-size: cover;
   background-position: center;

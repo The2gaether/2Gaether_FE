@@ -66,7 +66,9 @@ const CardList = () => {
 
   return (
     <Container>
-      {modalOpen && <ModalBasic dogId={dogs.dogId} setModalOpen={setModalOpen} />}
+      {modalOpen && (
+        <ModalBasic dogId={dogs.dogId} dogName={dogs.dogName} setModalOpen={setModalOpen} />
+      )}
       <Image key={dogs.dogId} images={mainImage} data={dogs} />
       <StBtnGroup>
         <StImg src={YES} onClick={showModal}></StImg>
@@ -82,14 +84,14 @@ const Container = styled.div`
   display: flex;
   flex-direction: column;
   justify-content: center;
-  padding-bottom: 15px;
+  padding-bottom: 20px;
 `;
 
 const StBtnGroup = styled.div`
   z-index: 1;
   display: flex;
   justify-content: center;
-  margin-top: 5px;
+  margin-top: 20px;
 `;
 
 const StImg = styled.img`
