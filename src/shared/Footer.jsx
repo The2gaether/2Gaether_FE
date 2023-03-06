@@ -45,7 +45,7 @@ export default Footer;
 
 const StButtons = styled.div`
   width: 375px;
-  height: 83px;
+  height: 63px;
   bottom: 0;
   box-shadow: 0px -1px 0px 0px #000000; /* box-shadow 속성을 사용해 그림자를 만듭니다 */
   display: flex;
@@ -53,8 +53,16 @@ const StButtons = styled.div`
   align-items: center;
 `;
 const StImg = styled.img`
+  border-radius: 20px;
   width: 30px;
   height: 30px;
   left: 38px;
   top: 18px;
+  cursor: pointer;
+  &:hover {
+    background: #2f58ac;
+    transition: 0.3s ease-out;
+    /* transform: scaleX(0);
+    transform-origin: bottom right; */
+  }
 `;
