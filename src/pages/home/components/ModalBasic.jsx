@@ -101,6 +101,7 @@ const StButton = styled.button`
   margin-right: 10px;
   border-radius: 10px;
   border: 1px solid;
+  cursor: pointer;
   &:hover {
     background-color: #2f58ac;
     color: white;

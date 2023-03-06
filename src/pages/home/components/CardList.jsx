@@ -43,7 +43,7 @@ const CardList = () => {
       }
     );
     alert("좋아요를 눌렀습니다.");
-    // window.location.reload();
+    window.location.reload();
   };
   //싫어요 클릭
   const handleHateClick = () => {
@@ -57,7 +57,7 @@ const CardList = () => {
       }
     );
     alert("싫어요를 눌렀습니다.");
-    // window.location.reload();
+    window.location.reload();
   };
 
   useEffect(() => {

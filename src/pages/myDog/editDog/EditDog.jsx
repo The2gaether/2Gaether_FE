@@ -17,7 +17,7 @@ const EditDog = ({ dog, images, onChangeTrue }) => {
       },
     });
     alert("수정이 완료되었습니다.");
-    // window.location.reload();
+    window.location.reload();
   };
 
   return (
@@ -138,6 +138,7 @@ const Stform = styled.form`
   flex-direction: column;
   justify-content: center;
   align-items: center;
+  color: #2f58ac;
 `;
 
 const StBox = styled.div`
@@ -166,10 +167,10 @@ const StPeople = styled.div`
 
 const StName = styled.input`
   font-size: large;
-  color: black;
+  color: #2f58ac;
   text-align: center;
   margin-bottom: 10px;
-  border: 1px solid gray;
+  border: 2px solid #2f58ac;
   border-top-style: none;
   border-left-style: none;
   border-right-style: none;
@@ -177,13 +178,14 @@ const StName = styled.input`
   width: 100px;
 `;
 const StDesc = styled.input`
-  font-size: large;
-  color: black;
+  font-size: 16px;
+  color: #2f58ac;
   text-align: center;
   margin-bottom: 10px;
-  border: 1px solid gray;
+  border: 2px solid #2f58ac;
   border-radius: 10px 10px 10px 10px;
-  width: 100px;
+  width: 250px;
+  height: 60px;
 `;
 
 const StButton = styled.div`
