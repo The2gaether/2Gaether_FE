@@ -11,36 +11,41 @@ function Footer() {
 
   return (
     <StButtons>
-      <StImg
-        src={DogHome}
+      <StImgWrapper
         onClick={() => {
           navigate("/");
         }}
-      />
+      >
+        <StImg src={DogHome} />
+      </StImgWrapper>
 
-      <StImg
-        src={MessageIcon}
+      <StImgWrapper
         onClick={() => {
           navigate("/chattingList");
         }}
-      />
+      >
+        <StImg src={MessageIcon} />
+      </StImgWrapper>
 
-      <StImg
-        src={FootIcon}
+      <StImgWrapper
         onClick={() => {
           navigate("/giveLove");
         }}
-      />
+      >
+        <StImg src={FootIcon} />
+      </StImgWrapper>
 
-      <StImg
-        src={UserIcon}
+      <StImgWrapper
         onClick={() => {
           navigate("/mypage");
         }}
-      />
+      >
+        <StImg src={UserIcon} />
+      </StImgWrapper>
     </StButtons>
   );
 }
+
 export default Footer;
 
 const StButtons = styled.div`
@@ -52,18 +57,22 @@ const StButtons = styled.div`
   justify-content: space-around;
   align-items: center;
 `;
+const StImgWrapper = styled.div`
+  width: 30px;
+  height: 30px;
+  position: relative; /* 자식 요소들이 부모 요소 기준으로 position 속성을 사용할 수 있도록 설정합니다. */
+  cursor: pointer; /* 마우스 커서 모양을 변경합니다 */
+`;
+
 const StImg = styled.img`
   /* border-radius: 10px; */
   width: 30px;
   height: 30px;
-  left: 38px;
-  top: 18px;
   cursor: pointer;
-  border-bottom: 3px solid transparent;
+  border-bottom: 2px solid transparent;
   &:hover {
-    /* background: #2f58ac; */
     transition: 0.3s ease-out;
-    /* transform: scale(1); */
-    border-bottom: 3px solid black;
+    border-bottom: 2px solid black;
+    padding-bottom: 5px;
   }
 `;
