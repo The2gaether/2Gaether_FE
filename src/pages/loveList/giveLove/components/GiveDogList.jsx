@@ -1,6 +1,7 @@
 import React, { useEffect, useState, useRef, useCallback } from "react";
 import styled from "styled-components";
 import axios from "axios";
+import Profile from "../../Profile";
 
 const GiveDogList = () => {
   const [dogs, setDogs] = useState([]);
@@ -45,21 +46,25 @@ const GiveDogList = () => {
     return () => window.removeEventListener("scroll", handleScroll);
   }, [handleScroll]);
 
-  const onWatchProfile = (userId) => {};
+  //좋아요 모달
+  const [modalOpen, setModalOpen] = useState(false);
+  const [myDogId, setMyDogId] = useState(0);
+
+  const showModal = (dogId) => {
+    setModalOpen(true);
+    setMyDogId(dogId);
+  };
 
   return (
     <Container>
       <StOnePage>
         <OneDog>
-          {dogs.map(({ userId, dogName, dogSex, imageUrl }) => (
+          {dogs.map(({ userId, dogId, dogName, dogSex, imageUrl }) => (
             <Stgroup key={userId}>
               <StDog style={{ backgroundImage: `url(${imageUrl})` }} />
-              {dogSex === "female" ? (
-                <StName> {dogName} (여)</StName>
-              ) : (
-                <StName> {dogName} (남)</StName>
-              )}
-              <StProfile onClick={() => onWatchProfile(userId)}>프로필</StProfile>
+              {dogSex === "female" ? <StName> {dogName}</StName> : <StName> {dogName}</StName>}
+              <StProfile onClick={() => showModal(dogId)}>프로필</StProfile>
+              {modalOpen && <Profile myDogId={myDogId} setModalOpen={setModalOpen} />}
             </Stgroup>
           ))}
         </OneDog>
@@ -94,7 +99,7 @@ const StDog = styled.div`
   border-radius: 30px;
   background-size: cover;
   background-position: center;
-  box-shadow: 0px 18px 53px 0px rgba(0, 0, 0, 0.3);
+  /* box-shadow: 0px 18px 53px 0px rgba(0, 0, 0, 0.3); */
 `;
 
 const StName = styled.h3`
@@ -102,21 +107,21 @@ const StName = styled.h3`
   display: flex;
   /* justify-content: center; */
   align-items: center;
-  font-size: 20px;
-  font-weight: 600;
+  font-size: 16px;
+  font-weight: 500;
   color: black;
 `;
 
 const StProfile = styled.button`
   width: 80px;
   height: 30px;
+  font-weight: 700;
   background-color: transparent;
   /* border-radius: 4px; */
   border: 2px solid gray;
-  filter: drop-shadow(0px 4px 4px rgba(0, 0, 0, 0.25));
   cursor: pointer;
   &:hover {
-    background-color: green;
+    background-color: #eea400;
     transition: 0.2s;
     color: white;
   }

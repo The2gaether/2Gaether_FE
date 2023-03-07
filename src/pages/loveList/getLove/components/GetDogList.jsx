@@ -3,6 +3,7 @@ import axios from "axios";
 import styled from "styled-components";
 import Like from "../../../../assets/img/LoveLike.png";
 import Reject from "../../../../assets/img/LoveReject.png";
+import Profile from "../../Profile";
 
 const InfiniteScroll = () => {
   const [data, setData] = useState([]);
@@ -88,7 +89,15 @@ const InfiniteScroll = () => {
         },
       }
     );
-    console.log(dogId);
+  };
+
+  //좋아요 모달
+  const [modalOpen, setModalOpen] = useState(false);
+  const [myDogId, setMyDogId] = useState(0);
+
+  const showModal = (dogId) => {
+    setModalOpen(true);
+    setMyDogId(dogId);
   };
 
   const onWatchProfile = (userId) => {};
@@ -101,7 +110,7 @@ const InfiniteScroll = () => {
               <StDog style={{ backgroundImage: `url(${imageUrl})` }}></StDog>
               {dogSex === "female" ? <StName> {dogName}</StName> : <StName> {dogName}</StName>}
               <StBtnGroup>
-                <StProfile onClick={() => onWatchProfile(userId)}>프로필</StProfile>
+                <StProfile onClick={() => showModal(dogId)}>프로필</StProfile>
                 <StBtn
                   src={Like}
                   onClick={() => {
@@ -115,6 +124,8 @@ const InfiniteScroll = () => {
                   }}
                 />
               </StBtnGroup>
+              <div ref={observer} />
+              {modalOpen && <Profile myDogId={myDogId} setModalOpen={setModalOpen} />}
             </Stgroup>
           ))}
         </OneDog>
@@ -151,7 +162,7 @@ const StDog = styled.div`
   border-radius: 30px;
   background-size: cover;
   background-position: center;
-  box-shadow: 0px 18px 53px 0px rgba(0, 0, 0, 0.3);
+  /* box-shadow: 0px 18px 53px 0px rgba(0, 0, 0, 0.3); */
 `;
 
 const StName = styled.h3`
@@ -159,8 +170,8 @@ const StName = styled.h3`
   display: flex;
   /* justify-content: center; */
   align-items: center;
-  font-size: 20px;
-  font-weight: 600;
+  font-size: 16px;
+  font-weight: 500;
   color: black;
 `;
 
@@ -173,12 +184,12 @@ const StProfile = styled.button`
   width: 80px;
   height: 30px;
   background-color: transparent;
+  font-weight: 700;
   /* border-radius: 4px; */
   border: 2px solid gray;
-  filter: drop-shadow(0px 4px 4px rgba(0, 0, 0, 0.25));
   cursor: pointer;
   &:hover {
-    background-color: green;
+    background-color: #eea400;
     transition: 0.2s;
     color: white;
   }
@@ -186,10 +197,11 @@ const StProfile = styled.button`
 const StBtn = styled.img`
   width: 30px;
   height: 30px;
+  font-weight: 700;
   margin-left: 10px;
   cursor: pointer;
   &:hover {
-    background-color: green;
+    background-color: #e1e1e1;
     transition: 0.2s;
     color: white;
   }

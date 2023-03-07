@@ -37,7 +37,6 @@ const StImg = styled.div`
   border-radius: 20px;
   background-size: cover;
   background-position: center;
-  box-shadow: 0px 18px 53px 0px rgba(0, 0, 0, 0.3);
   margin-bottom: 20px;
 `;
 
@@ -54,11 +53,12 @@ const StEditBtn = styled.button`
 `;
 
 const StName = styled.div`
-  font-size: 24px;
+  font-size: 20px;
   color: black;
 `;
 
 const StImoticon = styled.img`
+  margin-right: 5px;
   width: 20px;
   height: 20px;
 `;

@@ -32,10 +32,8 @@ const EditUser = () => {
           <div className="div" style={{ fontSize: "20px", fontWeight: "bold" }}>
             안녕하세요 {user?.username}님!
           </div>
-          <div className="div">{user?.address.split(" ").slice(0, 3).join(" ")}</div>
-          <div className="div" style={{ fontSize: "15px" }}>
-            {user?.email}
-          </div>
+          <div className="address">{user?.address.split(" ").slice(0, 3).join(" ")}</div>
+          <div className="address">{user?.email}</div>
         </StTopGroup>
         <StImgGroup>
           {dogs.map((dog) => (
@@ -64,7 +62,11 @@ const StTopGroup = styled.div`
   margin-top: 20px;
   margin-left: -140px;
   .div {
+    margin-bottom: 20px;
+  }
+  .address {
     margin-bottom: 10px;
+    font-size: 13px;
   }
 `;
 
