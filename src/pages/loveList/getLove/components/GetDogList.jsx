@@ -16,14 +16,11 @@ const InfiniteScroll = () => {
   const fetchData = useCallback(async () => {
     setLoading(true);
 
-    const { data } = await axios.get(
-      `${process.env.REACT_APP_DOG}/loves/received`,
-      {
-        headers: {
-          Authorization,
-        },
-      }
-    );
+    const { data } = await axios.get(`${process.env.REACT_APP_DOG}/loves/received`, {
+      headers: {
+        Authorization,
+      },
+    });
 
     setData(data);
     setLoading(false);
@@ -53,18 +50,6 @@ const InfiniteScroll = () => {
     return () => window.removeEventListener("scroll", handleScroll);
   }, [handleScroll]);
 
-  //chatroom 으로 가야하는지 좋아요로 가야하는지?
-  const onSubmitHandler = (id) => {
-    axios.post(
-      `${process.env.REACT_APP_DOG}/chat/rooms`,
-      { userId: id },
-      {
-        headers: {
-          Authorization,
-        },
-      }
-    );
-  };
   const onLoveSubmitHandler = (id) => {
     axios.post(
       `${process.env.REACT_APP_DOG}/loves/accept/${id}`,
@@ -78,8 +63,7 @@ const InfiniteScroll = () => {
   };
 
   //통합 코드
-  function handleButtonClick(userId, dogId) {
-    onSubmitHandler(dogId);
+  function handleButtonClick(userId) {
     onLoveSubmitHandler(userId);
     window.location.reload();
   }
@@ -113,11 +97,7 @@ const InfiniteScroll = () => {
           {data.map(({ imageUrl, dogName, userId, dogSex, dogId }) => (
             <Stgroup key={userId}>
               <StDog style={{ backgroundImage: `url(${imageUrl})` }}></StDog>
-              {dogSex === "female" ? (
-                <StName> {dogName}</StName>
-              ) : (
-                <StName> {dogName}</StName>
-              )}
+              {dogSex === "female" ? <StName> {dogName}</StName> : <StName> {dogName}</StName>}
               <StBtnGroup>
                 <StProfile onClick={() => showModal(dogId)}>프로필</StProfile>
                 <StBtn
@@ -134,9 +114,7 @@ const InfiniteScroll = () => {
                 />
               </StBtnGroup>
               <div ref={observer} />
-              {modalOpen && (
-                <Profile myDogId={myDogId} setModalOpen={setModalOpen} />
-              )}
+              {modalOpen && <Profile myDogId={myDogId} setModalOpen={setModalOpen} />}
             </Stgroup>
           ))}
         </OneDog>
