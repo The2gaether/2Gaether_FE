@@ -17,7 +17,7 @@ const ChatList = () => {
   }, []);
 
   return (
-    <Layout>
+    <Layout title="채팅 리스트">
       <StWrDiv>
         상대방이 부적절한 메시지를 전송하는 경우
         <br />

@@ -1,6 +1,6 @@
-import React, { useState, useEffect, useRef } from "react";
+import React, { useEffect, useRef } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { useLocation, useNavigate, useParams } from "react-router-dom";
+import { useParams } from "react-router-dom";
 import SockJS from "sockjs-client";
 import styled from "styled-components";
 import { subMessage } from "../../redux/modules/socketSlice";
@@ -10,6 +10,7 @@ import {
   __postChatopenThunk,
 } from "../../redux/modules/chattingSlice";
 import Layout from "../../components/Layout";
+import ArrowIcon from "../../assets/svg/ArrowIcon.svg";
 
 const ChattingDetail = () => {
   const { roomId } = useParams();
@@ -36,7 +37,7 @@ const ChattingDetail = () => {
   const { chatcollect } = useSelector((state) => state.chatcollect);
   const Myname = chatcollect[0]?.informDto?.nickname;
   const MyEmail = chatcollect[0]?.informDto?.email;
-
+  console.log(chatcollect[0]?.informDto);
   const { messages } = useSelector((state) => state.messages);
 
   // 채팅 엔터키/shif+enter 막기
@@ -111,7 +112,7 @@ const ChattingDetail = () => {
   }, [messages]);
 
   return (
-    <Layout>
+    <Layout title={chatcollect[0]?.informDto?.opponentNickname}>
       <StyledChatWindow>
         <Header />
         <div>
@@ -128,7 +129,7 @@ const ChattingDetail = () => {
                 </div>
               ) : (
                 <ReceivedMessage>
-                  <h4>{list?.userNickname}</h4>
+                  <StH4>{list?.userNickname}님</StH4>
                   <MessageList
                     messageLength={list.message.length}
                     isMine={false} // 상대방이 보내는 메시지
@@ -157,7 +158,7 @@ const ChattingDetail = () => {
                         </MessageList>
                       ) : (
                         <ReceivedMessages key={message.id}>
-                          <h4>{message.userNickname}님</h4>
+                          <StH4>{message.userNickname}님</StH4>
                           <MessageList
                             messageLength={message.message.length}
                             isMine={false} // 상대방이 보내는 메시지
@@ -179,7 +180,7 @@ const ChattingDetail = () => {
         <ChatInput>
           <form onSubmit={(e) => e.preventDefault()}>
             <Input type="text" ref={chatRef} onKeyDown={handleEnterPress} />
-            <button onClick={myChat}>전송</button>
+            <Stimg src={ArrowIcon} onClick={myChat}></Stimg>
           </form>
         </ChatInput>
       </StDiv>
@@ -198,6 +199,9 @@ const StyledChatWindow = styled.div`
   width: 365px;
   max-height: 620px;
   margin-left: 10px;
+  position: relative;
+  height: calc(100vh - 80px);
+
   //스크롤 없애기
   overflow: auto;
   &::-webkit-scrollbar {
@@ -211,6 +215,9 @@ const Header = styled.header`
   justify-content: center;
   margin-bottom: 20px;
 `;
+const StH4 = styled.div`
+  font-size: 12px;
+`;
 
 const MessageList = styled.div`
   margin: 5px 0;
@@ -220,16 +227,8 @@ const MessageList = styled.div`
   word-break: break-all;
   display: flex;
   text-align: left;
-
-  /* 글자 수에 따라 스타일 조정 */
-  ${({ messageLength }) => {
-    if (messageLength <= 10) {
-      return `width: ${messageLength * 12}px;`;
-    } else {
-      return `width: 60%;`;
-    }
-  }}
-
+  max-width: 60%;
+  width: fit-content;
   /* 내가 보내는 메시지 스타일 */
   ${({ isMine }) =>
     isMine
@@ -261,21 +260,19 @@ const ChatHistory = styled.div`
 `;
 
 const Input = styled.input`
-  font-size: 8px;
+  font-size: 12px;
   padding: 10px;
   width: 210px;
   height: 8px;
   border-radius: 20px;
   border: 1px solid #333;
-  margin-right: 10px;
   transition: height 0.2s;
-  margin: 12px 10px 12px 25px;
+  margin: 12px 25px 12px 35px;
 `;
 
 const ReceivedMessage = styled.div`
   display: inline-block;
   width: 100%;
-  margin-top: 10px;
   margin-bottom: 10px;
   text-align: left;
   div {
@@ -307,4 +304,11 @@ const StDiv = styled.div`
   margin-right: 20px;
   background-color: #e9e9e9;
   padding-right: 8px;
+`;
+
+const Stimg = styled.img`
+  width: 24px;
+  height: 24px;
+  position: relative;
+  margin-bottom: -9px;
 `;
