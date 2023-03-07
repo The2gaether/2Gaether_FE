@@ -103,7 +103,7 @@ const EditNick = () => {
           <StButton>변경하기</StButton>
         </StForm>
         <UnderLine />
-        <StDeleteUser onClick={() => onDeleteUserHandler()}>
+        {/* <StDeleteUser onClick={() => onDeleteUserHandler()}>
           <div style={{ fontSize: "20px", fontWeight: "bold" }} onClick={onDeleteUserHandler}>
             회원탈퇴
           </div>
@@ -111,7 +111,7 @@ const EditNick = () => {
           <div style={{ fontSize: "15px", color: "#c6c6c6" }}>
             개인정보 및 설정이 모두 삭제됩니다.
           </div>
-        </StDeleteUser>
+        </StDeleteUser> */}
       </Container>
     </Layout>
   );

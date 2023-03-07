@@ -123,7 +123,10 @@ function SignUp() {
             {emailInput}
           </StP3>
         </StDiv>
-        <StDogButton onClick={onSubmitUserCheckHandler}>중복확인</StDogButton>
+        <StCheckGroup>
+          <div style={{ fontSize: "8px" }}>오른쪽의 이메일 중복확인 버튼을 클릭해주세요.</div>
+          <StDogButton onClick={onSubmitUserCheckHandler}>중복확인</StDogButton>
+        </StCheckGroup>
         <StDiv>
           <StP2>비밀번호</StP2>
           <StInput
@@ -151,7 +154,6 @@ function SignUp() {
             {checkpassInput}
           </StP3>
         </StDiv>
-
         <StLdButton>강아지 설정하기</StLdButton>
       </form>
     </StartLayout>
@@ -188,23 +190,36 @@ const TopBox = styled.div`
   text-align: center;
 `;
 
+const StCheckGroup = styled.div`
+  color: gray;
+  display: flex;
+  flex-direction: center;
+  justify-content: center;
+  align-items: center;
+  margin-top: -13px;
+  margin-bottom: 15px;
+  margin-left: 10px;
+`;
+
 const StDogButton = styled.button`
-  position: absolute;
   display: flex;
   flex-direction: row;
   justify-content: center;
   align-items: center;
   color: black;
-  width: 70px;
-  height: 21px;
-  margin-left: 200px;
-  margin-top: -287px;
-  top: 700px;
+  margin-left: 3px;
+  width: 60px;
+  height: 18px;
   font-size: 10px;
   font-weight: 600;
   background: #d9d9d9;
   border-radius: 60px;
   border: transparent;
+  cursor: pointer;
+  &:hover {
+    background: #2f58ac;
+    color: white;
+  }
 `;
 const StLdButton = styled.button`
   display: flex;
@@ -217,6 +232,7 @@ const StLdButton = styled.button`
   margin-left: 12px;
   top: 700px;
   font-size: 16px;
+  cursor: pointer;
   /* Main/main */
   font-weight: 600;
   margin-top: 130px;

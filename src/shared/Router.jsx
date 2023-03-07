@@ -15,6 +15,7 @@ import ChattingDetail from "../pages/chatting/ChattingDetail";
 import EditNick from "../pages/myPage/components/eachForm/EditNick";
 import EditPsw from "../pages/myPage/components/eachForm/EditPsw";
 import AddDog from "../pages/myPage/components/eachForm/AddDog";
+import EditAddress from "../pages/myPage/components/eachForm/EditAddress";
 import SelectPage from "../pages/selectPage/SelectPage";
 import NewAddress from "../pages/dogSignup/NewAddress";
 
@@ -45,6 +46,7 @@ const Router = () => {
             <Route path="/mypage/editnick" element={<EditNick />} />
             <Route path="/mypage/editpsw" element={<EditPsw />} />
             <Route path="/mypage/adddog" element={<AddDog />} />
+            <Route path="/mypage/editaddress" element={<EditAddress />} />
             <Route path="/myDog/:id" element={<MyDog />} />
           </>
         )}

@@ -149,6 +149,7 @@ const SignUpBtn = styled.button`
   align-items: center;
   padding: 13px 100px;
   gap: 10px;
+  cursor: pointer;
 
   height: 46px;
   width: 285px;
@@ -173,7 +174,7 @@ const LogInBtn = styled.button`
   height: 46px;
   width: 285px;
   margin-left: 48px;
-
+  cursor: pointer;
   /* Main/main */
   font-weight: 700;
   font-size: 16px;

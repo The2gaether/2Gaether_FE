@@ -1,7 +1,7 @@
 import React from "react";
 import { useNavigate } from "react-router";
 import styled from "styled-components";
-import Award from "../../../assets/img/award.png";
+import Award from "../../../assets/svg/award.svg";
 
 const MyDogList = ({ dog }) => {
   const navigate = useNavigate();
