@@ -43,7 +43,7 @@ const CardList = () => {
       }
     );
     alert("싫어요를 눌렀습니다.");
-    // window.location.reload();
+    window.location.reload();
   };
 
   useEffect(() => {

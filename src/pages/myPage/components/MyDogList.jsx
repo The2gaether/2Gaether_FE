@@ -4,7 +4,7 @@ import styled from "styled-components";
 import Award from "../../../assets/svg/award.svg";
 
 const MyDogList = ({ dog }) => {
-  const navigate = useNavigate();
+  // const navigate = useNavigate();
 
   return (
     <>

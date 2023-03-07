@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import styled from "styled-components";
-import CardlistPagination from "./CardlistPagination";
+// import CardlistPagination from "./CardlistPagination";
 
 const Image = ({ images, data }) => {
   const [limit, setLimit] = useState(1);

@@ -15,6 +15,7 @@ const InfiniteScroll = () => {
 
   const fetchData = useCallback(async () => {
     setLoading(true);
+
     const { data } = await axios.get(
       `${process.env.REACT_APP_DOG}/loves/received`,
       {
@@ -23,7 +24,7 @@ const InfiniteScroll = () => {
         },
       }
     );
-    // setData((prevData) => [...prevData, ...data]);
+
     setData(data);
     setLoading(false);
     setHasMore(data.length !== 0);
@@ -56,7 +57,6 @@ const InfiniteScroll = () => {
   const onSubmitHandler = (id) => {
     axios.post(
       `${process.env.REACT_APP_DOG}/chat/rooms`,
-      //`${process.env.REACT_APP_DOGS}/chat/rooms`,
       { userId: id },
       {
         headers: {
