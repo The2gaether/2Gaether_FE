@@ -9,7 +9,7 @@ import { useEffect } from "react";
 function WelcomePage() {
   const navigate = useNavigate();
   const Authorization = sessionStorage.getItem("accessToken");
-  const [isTrue, setIsTrue] = useState();
+  // const [isTrue, setIsTrue] = useState();
 
   const fetchTrue = () => {
     axios

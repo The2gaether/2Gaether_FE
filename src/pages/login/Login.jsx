@@ -5,7 +5,7 @@ import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { __postLogin } from "../../redux/modules/userSlice";
 import { KAKAO_AUTH_URL } from "../../shared/OAuth";
-import smlogo from "../../assets/img/smlogo.png";
+import smlogo from "../../assets/svg/logo.svg";
 import StartLayout from "../../components/StartLayout";
 
 function Login() {

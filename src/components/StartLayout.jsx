@@ -1,6 +1,6 @@
 import React from "react";
 import styled from "styled-components";
-import background from "../assets/img/background.png";
+import background from "../assets/svg/background.svg";
 
 const StartLayout = (props) => {
   return (

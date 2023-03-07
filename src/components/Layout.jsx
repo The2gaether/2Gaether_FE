@@ -2,7 +2,7 @@ import React from "react";
 import styled from "styled-components";
 import Header from "../shared/MainHeader";
 import Footer from "../shared/Footer";
-import background from "../assets/img/background.png";
+import background from "../assets/svg/background.svg";
 
 function Layout({ children, title }) {
   return (
