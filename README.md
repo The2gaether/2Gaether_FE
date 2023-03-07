@@ -1,6 +1,6 @@
 # 투개더 📺
 
-(https://raw.githubusercontent.com/The2gaether/2Gaether_FE/dev/src/readme/2.png)
+[](https://raw.githubusercontent.com/The2gaether/2Gaether_FE/dev/src/readme/2.png)
 현재 반려동물(강아지)와 함께 살고 있는 20대~40대 남녀가 사용자의 위치 기반을 이용하여 반경 3km 내 반려인&반려동물과 함께 산책을 할 수 있다.
 
 <br>
