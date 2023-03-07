@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import styled from "styled-components";
-// import CardlistPagination from "./CardlistPagination";
+import CardlistPagination from "./CardlistPagination";
 
 const Image = ({ images, data }) => {
   const [limit, setLimit] = useState(1);
@@ -10,8 +10,7 @@ const Image = ({ images, data }) => {
     <Container>
       {images.slice(offset, offset + limit).map(({ imageUrl, id }) => (
         <StDog key={id} style={{ backgroundImage: `url(${imageUrl})` }}>
-          {/* 보류 */}
-          {/* <CardlistPagination total={images.length} limit={limit} page={page} setPage={setPage} /> */}
+          <CardlistPagination total={images.length} limit={limit} page={page} setPage={setPage} />
         </StDog>
       ))}
       <StName>

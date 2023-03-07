@@ -53,8 +53,6 @@ const InfiniteScroll = () => {
     return () => window.removeEventListener("scroll", handleScroll);
   }, [handleScroll]);
 
-  //chatroom 으로 가야하는지 좋아요로 가야하는지?
-
   const onLoveSubmitHandler = (id) => {
     axios.post(
       `${process.env.REACT_APP_DOG}/loves/accept/${id}`,
