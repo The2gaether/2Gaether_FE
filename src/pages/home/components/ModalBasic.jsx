@@ -18,26 +18,12 @@ function ModalBasic({ setModalOpen, dogId, dogName, userId }) {
         },
       }
     );
-    window.location.reload();
-  };
-
-  const onLoveSubmitHandler = (id) => {
-    axios.post(
-      `${process.env.REACT_APP_DOG}/loves/accept/${userId}`,
-      {},
-      {
-        headers: {
-          Authorization,
-        },
-      }
-    );
-    window.location.reload();
   };
 
   //통합코드
   function handleButtonClick() {
     handleFavoriteClick();
-    onLoveSubmitHandler();
+    // window.location.reload();
   }
 
   return (
