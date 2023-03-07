@@ -28,23 +28,10 @@ const CardList = () => {
   const [modalOpen, setModalOpen] = useState(false);
 
   const showModal = () => {
+    console.log(dogs.createdBy);
     setModalOpen(true);
   };
 
-  // 수락하기
-  const handleFavoriteClick = () => {
-    axios.post(
-      `${process.env.REACT_APP_DOG}/match/love/${dogs.dogId}`,
-      {},
-      {
-        headers: {
-          Authorization,
-        },
-      }
-    );
-    alert("좋아요를 눌렀습니다.");
-    window.location.reload();
-  };
   //싫어요 클릭
   const handleHateClick = () => {
     axios.post(
@@ -57,7 +44,7 @@ const CardList = () => {
       }
     );
     alert("싫어요를 눌렀습니다.");
-    window.location.reload();
+    // window.location.reload();
   };
 
   useEffect(() => {
@@ -67,7 +54,12 @@ const CardList = () => {
   return (
     <Container>
       {modalOpen && (
-        <ModalBasic dogId={dogs.dogId} dogName={dogs.dogName} setModalOpen={setModalOpen} />
+        <ModalBasic
+          dogId={dogs.dogId}
+          dogName={dogs.dogName}
+          setModalOpen={setModalOpen}
+          userId={dogs.createdBy}
+        />
       )}
       <Image key={dogs.dogId} images={mainImage} data={dogs} />
       <StBtnGroup>

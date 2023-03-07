@@ -1,11 +1,12 @@
 import styled from "styled-components";
 import axios from "axios";
 
-function ModalBasic({ setModalOpen, dogId, dogName, content, writer }) {
+function ModalBasic({ setModalOpen, dogId, dogName, userId }) {
   const Authorization = sessionStorage.getItem("accessToken");
   // 모달 끄기
   const closeModal = () => {
     setModalOpen(false);
+    console.log(dogId);
   };
 
   const handleFavoriteClick = () => {
@@ -19,8 +20,27 @@ function ModalBasic({ setModalOpen, dogId, dogName, content, writer }) {
       }
     );
     // alert("좋아요를 눌렀습니다.");
-    window.location.reload();
+    // window.location.reload();
   };
+
+  const onLoveSubmitHandler = (id) => {
+    axios.post(
+      `${process.env.REACT_APP_DOG}/loves/accept/${userId}`,
+      {},
+      {
+        headers: {
+          Authorization,
+        },
+      }
+    );
+    // window.location.reload();
+  };
+
+  //통합코드
+  function handleButtonClick() {
+    handleFavoriteClick();
+    onLoveSubmitHandler();
+  }
 
   return (
     <BackGround>
@@ -30,7 +50,7 @@ function ModalBasic({ setModalOpen, dogId, dogName, content, writer }) {
           <One>투게더 하시겠어요?</One>
         </Desc>
         <BtnGroup>
-          <StButton onClick={() => handleFavoriteClick()}>네, 할래요!</StButton>
+          <StButton onClick={() => handleButtonClick()}>네, 할래요!</StButton>
           <StButton onClick={closeModal}>좀 더 볼게요.</StButton>
         </BtnGroup>
       </Container>

@@ -19,6 +19,7 @@ const GiveDogList = () => {
       },
     });
     setDogs(data);
+    console.log(dogs);
     setLoading(false);
     setHasMore(data.length !== 0);
     if (data.length !== 0) {

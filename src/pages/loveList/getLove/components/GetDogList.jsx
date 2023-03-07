@@ -22,6 +22,7 @@ const InfiniteScroll = () => {
     });
     // setData((prevData) => [...prevData, ...data]);
     setData(data);
+    console.log(data);
     setLoading(false);
     setHasMore(data.length !== 0);
     if (data.length !== 0) {
@@ -74,9 +75,11 @@ const InfiniteScroll = () => {
     );
   };
 
+  //통합 코드
   function handleButtonClick(userId, dogId) {
     onSubmitHandler(dogId);
     onLoveSubmitHandler(userId);
+    window.location.reload();
   }
 
   const onRejectHandler = (dogId) => {
@@ -89,6 +92,7 @@ const InfiniteScroll = () => {
         },
       }
     );
+    window.location.reload();
   };
 
   //좋아요 모달
@@ -100,7 +104,6 @@ const InfiniteScroll = () => {
     setMyDogId(dogId);
   };
 
-  const onWatchProfile = (userId) => {};
   return (
     <Container>
       <StOnePage>
