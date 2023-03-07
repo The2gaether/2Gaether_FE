@@ -1,9 +1,9 @@
 import React from "react";
 import styled from "styled-components";
-import DogHome from "../assets/img/DogHome.png";
-import MessageIcon from "../assets/img/MessageIcon.png";
-import FootIcon from "../assets/img/FootIcon.png";
-import UserIcon from "../assets/img/UserIcon.png";
+import DogHome from "../assets/svg/mainIcon.svg";
+import DogChat from "../assets/svg/chatIcon.svg";
+import FootIcon from "../assets/svg/loveIcon.svg";
+import UserIcon from "../assets/svg/userIcon.svg";
 import { useNavigate } from "react-router-dom";
 
 function Footer() {
@@ -24,7 +24,7 @@ function Footer() {
           navigate("/chattingList");
         }}
       >
-        <StImg src={MessageIcon} />
+        <StImg src={DogChat} />
       </StImgWrapper>
 
       <StImgWrapper
@@ -65,10 +65,14 @@ const StImgWrapper = styled.div`
 `;
 
 const StImg = styled.img`
+  /* border-radius: 10px; */
+
   width: 30px;
   height: 30px;
-
+  cursor: pointer;
+  border-bottom: 2px solid transparent;
   &:hover {
+    transition: 0.3s ease-out;
     border-bottom: 2px solid black;
     padding-bottom: 5px;
   }

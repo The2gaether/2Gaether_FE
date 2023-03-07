@@ -1,7 +1,7 @@
 import styled from "styled-components";
 import axios from "axios";
 
-function ModalBasic({ setModalOpen, dogId, title, content, writer }) {
+function ModalBasic({ setModalOpen, dogId, dogName, content, writer }) {
   const Authorization = sessionStorage.getItem("accessToken");
   // 모달 끄기
   const closeModal = () => {
@@ -26,12 +26,12 @@ function ModalBasic({ setModalOpen, dogId, title, content, writer }) {
     <BackGround>
       <Container>
         <Desc>
-          <One>겸둥이와</One>
+          <One>{dogName}와</One>
           <One>투게더 하시겠어요?</One>
         </Desc>
         <BtnGroup>
-          <StButton onClick={closeModal}>좀 더 볼게요.</StButton>
           <StButton onClick={() => handleFavoriteClick()}>네, 할래요!</StButton>
+          <StButton onClick={closeModal}>좀 더 볼게요.</StButton>
         </BtnGroup>
       </Container>
     </BackGround>
@@ -101,6 +101,7 @@ const StButton = styled.button`
   margin-right: 10px;
   border-radius: 10px;
   border: 1px solid;
+  cursor: pointer;
   &:hover {
     background-color: #2f58ac;
     color: white;
