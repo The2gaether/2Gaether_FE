@@ -9,8 +9,6 @@ const ChatList = () => {
   const navigate = useNavigate();
 
   const chatList = useSelector((state) => state.chatList.chatList);
-  console.log(12345, chatList);
-  console.log(12345555555555, chatList[0]?.roomId);
 
   useEffect(() => {
     dispatch(__getChatList());

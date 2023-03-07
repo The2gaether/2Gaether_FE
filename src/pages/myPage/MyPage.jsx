@@ -11,13 +11,15 @@ const EditUser = () => {
 
   const Authorization = sessionStorage.getItem("accessToken");
   const fetchList = async () => {
-    const { data } = await axios.get(`${process.env.REACT_APP_DOG}/users/mypage`, {
-      headers: {
-        Authorization,
-      },
-    });
+    const { data } = await axios.get(
+      `${process.env.REACT_APP_DOG}/users/mypage`,
+      {
+        headers: {
+          Authorization,
+        },
+      }
+    );
     setUser(data);
-    console.log(data);
     setDogs(data.myDogs);
   };
 
@@ -32,7 +34,9 @@ const EditUser = () => {
           <div className="div" style={{ fontSize: "20px", fontWeight: "bold" }}>
             안녕하세요 {user?.username}님!
           </div>
-          <div className="address">{user?.address.split(" ").slice(0, 3).join(" ")}</div>
+          <div className="address">
+            {user?.address.split(" ").slice(0, 3).join(" ")}
+          </div>
           <div className="address">{user?.email}</div>
         </StTopGroup>
         <StImgGroup>

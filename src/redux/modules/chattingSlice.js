@@ -21,10 +21,9 @@ export const __postChatopenThunk = createAsyncThunk(
       const Request = await axios.post(
         `${process.env.REACT_APP_DOG}/chat/rooms`
       );
-      console.log(1234, Request.data);
       return thunkAPI.fulfillWithValue(Request.data);
     } catch (e) {
-      return console.log(e);
+      return;
     }
   }
 );
@@ -45,7 +44,6 @@ export const __getChatListThunk = createAsyncThunk(
           },
         }
       );
-      console.log(12333333, data);
       return thunkAPI.fulfillWithValue(data);
     } catch (error) {
       return thunkAPI.rejectWithValue(error);
@@ -59,7 +57,7 @@ export const __removeChatListThunk = createAsyncThunk(
   async (payload, thunkAPI) => {
     try {
       const chatRoomId = payload;
-      console.log(1111, chatRoomId);
+
       const Request = axios.delete(`/chats/${chatRoomId}`, config);
       if (Request.status === 200) {
         thunkAPI.dispatch(__getChatListThunk());
@@ -67,7 +65,6 @@ export const __removeChatListThunk = createAsyncThunk(
       return thunkAPI.fulfillWithValue(payload);
     } catch (e) {
       return thunkAPI.rejectWithValue(e.code);
-      // return console.log(e)
     }
   }
 );
@@ -83,7 +80,6 @@ export const chatSlice = createSlice({
     [__getChatListThunk.fulfilled]: (state, action) => {
       state.isLoading = false;
       state.chatcollect = [action.payload];
-      console.log("전체게시물 가져오기123", action.payload);
     },
     [__getChatListThunk.rejected]: (state, action) => {
       state.isLoading = false;

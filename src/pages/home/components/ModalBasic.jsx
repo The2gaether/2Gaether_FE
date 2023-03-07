@@ -6,7 +6,6 @@ function ModalBasic({ setModalOpen, dogId, dogName, userId }) {
   // 모달 끄기
   const closeModal = () => {
     setModalOpen(false);
-    console.log(dogId);
   };
 
   const handleFavoriteClick = () => {

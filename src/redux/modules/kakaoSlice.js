@@ -22,10 +22,10 @@ export const __kakaoLogin = createAsyncThunk(
         .then((res) => {
           const accessToken = res.headers.authorization;
           sessionStorage.setItem("accessToken", accessToken);
-          console.log(res);
+
           return res;
         });
-      console.log(data);
+
       return thunkAPI.fulfillWithValue(data.data);
     } catch (error) {
       return thunkAPI.rejectWithValue(error);

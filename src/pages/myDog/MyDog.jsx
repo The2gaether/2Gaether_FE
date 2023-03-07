@@ -16,14 +16,16 @@ const MyDog = () => {
   const [images, setImages] = useState([]);
 
   const fetchList = async () => {
-    const { data } = await axios.get(`${process.env.REACT_APP_DOG}/dogs/${id}`, {
-      headers: {
-        Authorization,
-      },
-    });
+    const { data } = await axios.get(
+      `${process.env.REACT_APP_DOG}/dogs/${id}`,
+      {
+        headers: {
+          Authorization,
+        },
+      }
+    );
     setDog(data);
     setImages(data.images);
-    console.log(dog);
   };
 
   const onDeleteDog = () => {

@@ -14,7 +14,6 @@ import ArrowIcon from "../../assets/svg/ArrowIcon.svg";
 
 const ChattingDetail = () => {
   const { roomId } = useParams();
-  console.log(roomId);
   const dispatch = useDispatch();
 
   //이전채팅 불러오기 및 채팅필요데이터
@@ -37,7 +36,6 @@ const ChattingDetail = () => {
   const { chatcollect } = useSelector((state) => state.chatcollect);
   const Myname = chatcollect[0]?.informDto?.nickname;
   const MyEmail = chatcollect[0]?.informDto?.email;
-  console.log(chatcollect[0]?.informDto);
   const { messages } = useSelector((state) => state.messages);
 
   // 채팅 엔터키/shif+enter 막기
@@ -61,16 +59,13 @@ const ChattingDetail = () => {
     };
     try {
       client.connect({}, () => {
-        console.log(roomId);
         // 채팅방 구독
         subscription = client.subscribe(`/sub/chat/rooms/${roomId}`, (res) => {
           const receive = JSON.parse(res.body);
           dispatch(subMessage(receive));
         });
       });
-    } catch (e) {
-      console.log(e);
-    }
+    } catch (e) {}
 
     return () => {
       // 소켓 연결 종료 및 구독해제

@@ -11,14 +11,16 @@ const Profile = ({ setModalOpen, myDogId }) => {
   const [images, setImages] = useState([]);
 
   const fetchList = async () => {
-    const { data } = await axios.get(`${process.env.REACT_APP_DOG}/dogs/${myDogId}`, {
-      headers: {
-        Authorization,
-      },
-    });
+    const { data } = await axios.get(
+      `${process.env.REACT_APP_DOG}/dogs/${myDogId}`,
+      {
+        headers: {
+          Authorization,
+        },
+      }
+    );
     setDog(data);
     setImages(data.images);
-    console.log(dog);
   };
 
   const closeModal = () => {
@@ -35,7 +37,11 @@ const Profile = ({ setModalOpen, myDogId }) => {
           <StBox>이름</StBox>
           <StName>{dog.dogName}</StName>
           <StBox>성별</StBox>
-          {dog.dogSex === "Male" ? <StImg src={male} /> : <StImg src={female} />}
+          {dog.dogSex === "Male" ? (
+            <StImg src={male} />
+          ) : (
+            <StImg src={female} />
+          )}
           <StBox>사진</StBox>
           <StImgGroup>
             {images?.map((e) => (

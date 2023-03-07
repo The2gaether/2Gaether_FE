@@ -28,7 +28,6 @@ const CardList = () => {
   const [modalOpen, setModalOpen] = useState(false);
 
   const showModal = () => {
-    console.log(dogs.createdBy);
     setModalOpen(true);
   };
 
