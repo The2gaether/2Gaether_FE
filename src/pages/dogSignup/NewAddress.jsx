@@ -74,7 +74,7 @@ const NewAddress = () => {
   };
 
   return (
-    <Layout title="설정">
+    <StartLayout>
       <StContainer>
         {signNumber === 0 && (
           <Wrapper>
@@ -113,7 +113,7 @@ const NewAddress = () => {
           </Container>
         )}
       </StContainer>
-    </Layout>
+    </StartLayout>
   );
 };
 
@@ -125,6 +125,8 @@ const StBtnDiv = styled.div`
   justify-content: center;
   // 요소들을 컨테이너의 가운데로 정렬
   align-items: center;
+  margin-top: 80px;
+  margin-left: 10px;
 `;
 
 const StNum = styled.div`
@@ -141,7 +143,6 @@ const StContainer = styled.div`
   display: flex;
   justify-content: center;
   /* align-items: center; */
-  margin-top: -80px;
 `;
 
 const Wrapper = styled.div`
@@ -150,15 +151,15 @@ const Wrapper = styled.div`
 
 const AddressInput = styled.input`
   border-radius: 50px;
-  margin-top: 30px;
+  margin-top: 40px;
   background-color: white;
   color: black;
   text-align: center;
-  padding: 8px 0px;
   font-size: 10px;
   width: 200px;
   height: 30px;
   opacity: gray;
+  margin-left: 20px;
   padding: 5px 15px 5px 15px;
 `;
 const AddForm = styled.form`
@@ -177,10 +178,10 @@ const StBackBtn = styled.button`
   text-align: center;
   padding: 8px 0px;
   font-size: 15px;
-  margin-left: 5%;
-  width: 90%;
+  width: 80%;
   height: 45px;
   opacity: gray;
+  margin-left: -3px;
 `;
 const StBtn = styled.button`
   border: none;
@@ -193,6 +194,7 @@ const StBtn = styled.button`
   width: 200px;
   height: 45px;
   opacity: gray;
+  margin-left: 30px;
 `;
 const StBtn2 = styled.button`
   border: none;

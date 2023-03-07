@@ -195,23 +195,22 @@ function SignUpForm() {
           <div>
             <StNum> ({signNumber + 1}/5)</StNum>
             <DogSignUpSex />
-
             <StDiv4>
               <ImgBox>
                 <StImg2 src={male} />
               </ImgBox>
-              <input
-                type="radio"
-                name="dogSexRadio"
-                value="Male"
-                defaultChecked
-              />
+
               <ImgBox>
                 <StImg src={female} />
               </ImgBox>
-              <input type="radio" name="dogSexRadio" value="Female" />
             </StDiv4>
-
+            <StRadio
+              type="radio"
+              name="dogSexRadio"
+              value="Male"
+              defaultChecked
+            />
+            <StRadio type="radio" name="dogSexRadio" value="Female" />
             <StBtnDiv>
               <StBackBtn onClick={() => setSignup(!signup)}>뒤로</StBackBtn>
               <StBtn className="on" onClick={next}>
@@ -309,15 +308,14 @@ export default SignUpForm;
 
 const StDiv4 = styled.div`
   display: flex;
-  justify-content: center;
-  flex-direction: column;
-  float: left;
-  margin-left: 20px;
+  margin-left: 17px;
+  margin-bottom: 10px;
 `;
 
 const StDivImg = styled.div`
   display: flex;
   flex-direction: row;
+  margin-left: 20px;
 `;
 
 const ImagePreview = styled.img`
@@ -342,7 +340,7 @@ const InputContainer = styled.div`
   border-radius: 25px;
   align-items: center;
   display: ${(props) => (props.hasImage ? "none" : "flex")};
-  margin-bottom: 30%;
+  margin-bottom: 20%;
   &:hover {
     cursor: pointer;
   }
@@ -371,18 +369,17 @@ const ImgBox = styled.div`
   border-radius: 20px;
   float: left;
   border: 2px solid #000000;
+  margin: 10px;
 `;
 const StImg = styled.img`
   width: 52px;
   height: 52px;
+  margin: 25px 25px 25px 28px;
 `;
 const StImg2 = styled.img`
   width: 52px;
   height: 52px;
-  display: flex;
-  justify-content: center;
-  flex-direction: center;
-  align-items: center;
+  margin: 25px 25px 25px 28px;
 `;
 const StImg1 = styled.img`
   width: 30px;
@@ -390,6 +387,12 @@ const StImg1 = styled.img`
   position: relative;
   margin-left: 80px;
   margin-top: 120px;
+`;
+
+const StRadio = styled.input`
+  width: 100px;
+  height: 10px;
+  margin-left: 35px;
 `;
 const StInput = styled.input`
   display: block;
@@ -457,7 +460,7 @@ const StBackBtn = styled.button`
 `;
 const StBtnDiv = styled.div`
   margin-top: 52px;
-  margin-right: 11px;
+  margin-right: 15px;
 `;
 
 const StForm = styled.form`
