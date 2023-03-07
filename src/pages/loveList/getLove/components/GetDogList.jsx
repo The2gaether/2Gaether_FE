@@ -54,17 +54,7 @@ const InfiniteScroll = () => {
   }, [handleScroll]);
 
   //chatroom 으로 가야하는지 좋아요로 가야하는지?
-  const onSubmitHandler = (id) => {
-    axios.post(
-      `${process.env.REACT_APP_DOG}/chat/rooms`,
-      { userId: id },
-      {
-        headers: {
-          Authorization,
-        },
-      }
-    );
-  };
+
   const onLoveSubmitHandler = (id) => {
     axios.post(
       `${process.env.REACT_APP_DOG}/loves/accept/${id}`,
@@ -78,8 +68,7 @@ const InfiniteScroll = () => {
   };
 
   //통합 코드
-  function handleButtonClick(userId, dogId) {
-    onSubmitHandler(dogId);
+  function handleButtonClick(userId) {
     onLoveSubmitHandler(userId);
     window.location.reload();
   }
