@@ -37,15 +37,15 @@ const Container = styled.div`
   flex-direction: column;
   border: 1px solid black;
   border-radius: 20px;
-  margin-top: 30px;
+  margin-top: 10px;
 `;
 
 const StDog = styled.div`
   display: flex;
   align-items: center;
   justify-content: center;
-  width: 340px;
-  height: 400px;
+  width: 330px;
+  height: 350px;
   border-radius: 20px 20px 0 0;
   background-size: cover;
   background-position: center;

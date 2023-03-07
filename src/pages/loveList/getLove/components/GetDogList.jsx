@@ -16,14 +16,11 @@ const InfiniteScroll = () => {
   const fetchData = useCallback(async () => {
     setLoading(true);
 
-    const { data } = await axios.get(
-      `${process.env.REACT_APP_DOG}/loves/received`,
-      {
-        headers: {
-          Authorization,
-        },
-      }
-    );
+    const { data } = await axios.get(`${process.env.REACT_APP_DOG}/loves/received`, {
+      headers: {
+        Authorization,
+      },
+    });
 
     setData(data);
     setLoading(false);
@@ -113,11 +110,7 @@ const InfiniteScroll = () => {
           {data.map(({ imageUrl, dogName, userId, dogSex, dogId }) => (
             <Stgroup key={userId}>
               <StDog style={{ backgroundImage: `url(${imageUrl})` }}></StDog>
-              {dogSex === "female" ? (
-                <StName> {dogName}</StName>
-              ) : (
-                <StName> {dogName}</StName>
-              )}
+              {dogSex === "female" ? <StName> {dogName}</StName> : <StName> {dogName}</StName>}
               <StBtnGroup>
                 <StProfile onClick={() => showModal(dogId)}>프로필</StProfile>
                 <StBtn
@@ -134,9 +127,7 @@ const InfiniteScroll = () => {
                 />
               </StBtnGroup>
               <div ref={observer} />
-              {modalOpen && (
-                <Profile myDogId={myDogId} setModalOpen={setModalOpen} />
-              )}
+              {modalOpen && <Profile myDogId={myDogId} setModalOpen={setModalOpen} />}
             </Stgroup>
           ))}
         </OneDog>

@@ -26,7 +26,7 @@ const Container = styled.div`
   margin-top: 10px;
 `;
 const StLogo = styled.img`
-  margin-top: 7px;
-  width: 162px;
-  height: 107px;
+  margin-top: 20px;
+  width: 144px;
+  height: 94px;
 `;

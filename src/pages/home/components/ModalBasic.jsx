@@ -74,6 +74,7 @@ const Container = styled.div`
   /* 모달창 크기 */
   width: 300px;
   height: 180px;
+  margin-top: -40px;
   /* 최상단 위치 */
   z-index: 999;
   /* 중앙 배치 */

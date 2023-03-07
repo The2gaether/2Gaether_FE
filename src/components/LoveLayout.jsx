@@ -2,7 +2,7 @@ import React from "react";
 import styled from "styled-components";
 import Header from "../shared/MainHeader";
 import Footer from "../shared/Footer";
-import background from "../assets/img/background.png";
+import background from "../assets/svg/background.svg";
 
 function Layout({ children, title }) {
   return (
@@ -10,9 +10,7 @@ function Layout({ children, title }) {
       <ContainerDiv>
         <Header title={title} />
         <Content>{children}</Content>
-        <FooterWrapper>
-          <Footer />
-        </FooterWrapper>
+        <Footer />
       </ContainerDiv>
     </Container>
   );
@@ -50,10 +48,4 @@ const Content = styled.div`
   width: 100%;
   height: 100%;
   overflow: auto;
-`;
-
-const FooterWrapper = styled.div`
-  width: 100%;
-  display: flex;
-  justify-content: flex-end;
 `;
