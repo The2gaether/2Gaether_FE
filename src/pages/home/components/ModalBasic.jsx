@@ -19,8 +19,7 @@ function ModalBasic({ setModalOpen, dogId, dogName, userId }) {
         },
       }
     );
-    // alert("좋아요를 눌렀습니다.");
-    // window.location.reload();
+    window.location.reload();
   };
 
   const onLoveSubmitHandler = (id) => {
@@ -33,7 +32,7 @@ function ModalBasic({ setModalOpen, dogId, dogName, userId }) {
         },
       }
     );
-    // window.location.reload();
+    window.location.reload();
   };
 
   //통합코드

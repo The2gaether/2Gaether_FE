@@ -20,7 +20,6 @@ const InfiniteScroll = () => {
         Authorization,
       },
     });
-    // setData((prevData) => [...prevData, ...data]);
     setData(data);
     console.log(data);
     setLoading(false);
@@ -54,7 +53,6 @@ const InfiniteScroll = () => {
   const onSubmitHandler = (id) => {
     axios.post(
       `${process.env.REACT_APP_DOG}/chat/rooms`,
-      //`${process.env.REACT_APP_DOGS}/chat/rooms`,
       { userId: id },
       {
         headers: {
