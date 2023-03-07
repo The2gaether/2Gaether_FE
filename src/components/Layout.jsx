@@ -45,8 +45,6 @@ const ContainerDiv = styled.div`
   background-color: white;
   width: 375px;
   height: 750px;
-  border-radius: 30px;
-  position: relative;
 `;
 
 const Content = styled.div`

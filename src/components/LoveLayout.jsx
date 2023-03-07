@@ -38,7 +38,7 @@ const ContainerDiv = styled.div`
   justify-content: space-between;
   background-color: white;
   width: 375px;
-  height: 763px;
+  height: 750px;
   border-radius: 30px;
   position: relative;
 `;
