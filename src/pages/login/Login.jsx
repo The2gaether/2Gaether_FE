@@ -82,7 +82,7 @@ function Login() {
             navigate("/signup");
           }}
         >
-          회 원 가 입
+          회원가입
         </SignUpBtn>
         <KakaoSignIn>
           <a href={KAKAO_AUTH_URL}> 카카오로그인 </a>
@@ -96,7 +96,7 @@ export default Login;
 
 const Container = styled.div`
   width: 375px;
-  height: 812px;
+  height: 750px;
   border-radius: 30px;
 `;
 const StLogo = styled.img`
@@ -107,7 +107,7 @@ const StLogo = styled.img`
 `;
 const StDiv = styled.div`
   width: 260px;
-  height: 70px;
+  height: 60px;
   margin-left: 55px;
   margin-top: 23.84px;
   text-align: center;
@@ -151,12 +151,12 @@ const SignUpBtn = styled.button`
   gap: 10px;
   cursor: pointer;
 
-  height: 46px;
+  height: 40px;
   width: 285px;
   margin-left: 48px;
   margin-top: 12px;
   background: #1c3467;
-  border-radius: 60px;
+  border-radius: 40px;
   font-weight: 700;
   font-size: 16px;
   line-height: 23px;
@@ -171,7 +171,7 @@ const LogInBtn = styled.button`
   align-items: center;
   padding: 13px 100px;
   gap: 10px;
-  height: 46px;
+  height: 40px;
   width: 285px;
   margin-left: 48px;
   cursor: pointer;
@@ -183,7 +183,7 @@ const LogInBtn = styled.button`
 
   color: #ffffff;
   background: #2f58ac;
-  border-radius: 60px;
+  border-radius: 40px;
 `;
 const KakaoSignIn = styled.button`
   display: flex;
@@ -192,7 +192,7 @@ const KakaoSignIn = styled.button`
   align-items: center;
   padding: 13px 100px;
   gap: 10px;
-  height: 46px;
+  height: 40px;
   width: 285px;
   margin-left: 48px;
 
@@ -203,7 +203,7 @@ const KakaoSignIn = styled.button`
   text-align: center;
 
   background: #fee500;
-  border-radius: 60px;
+  border-radius: 40px;
 `;
 const StInput = styled.input`
   margin-top: 6px;

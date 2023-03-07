@@ -71,7 +71,7 @@ const CardList = () => {
 export default CardList;
 
 const Container = styled.div`
-  height: 605px;
+  height: 530px;
   display: flex;
   flex-direction: column;
   justify-content: center;
