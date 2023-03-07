@@ -156,7 +156,7 @@ const ChattingDetail = () => {
                           <span>{message.message}</span>
                         </MessageList>
                       ) : (
-                        <ReceivedMessage key={message.id}>
+                        <ReceivedMessages key={message.id}>
                           <h4>{message.userNickname}님</h4>
                           <MessageList
                             messageLength={message.message.length}
@@ -164,7 +164,7 @@ const ChattingDetail = () => {
                           >
                             <span>{message.message}</span>
                           </MessageList>
-                        </ReceivedMessage>
+                        </ReceivedMessages>
                       );
                     }
                     return null;
@@ -174,13 +174,15 @@ const ChattingDetail = () => {
             )}
           </ChatHistory>
         </div>
+      </StyledChatWindow>
+      <StDiv>
         <ChatInput>
           <form onSubmit={(e) => e.preventDefault()}>
             <Input type="text" ref={chatRef} onKeyDown={handleEnterPress} />
             <button onClick={myChat}>전송</button>
           </form>
         </ChatInput>
-      </StyledChatWindow>
+      </StDiv>
     </Layout>
   );
 };
@@ -190,10 +192,17 @@ export default ChattingDetail;
 const StyledChatWindow = styled.div`
   display: flex;
   flex-direction: column;
+  align-items: center;
   background-color: white;
   border-radius: 10px;
-  width: 355px;
+  width: 365px;
   max-height: 620px;
+  margin-left: 10px;
+  //스크롤 없애기
+  overflow: auto;
+  &::-webkit-scrollbar {
+    display: none;
+  }
 `;
 
 const Header = styled.header`
@@ -205,36 +214,36 @@ const Header = styled.header`
 
 const MessageList = styled.div`
   margin: 5px 0;
-  padding: 10px;
-  border-radius: 5px;
-  max-width: 40%;
+  padding: 8px;
+  font-size: 12px;
+  border-radius: 10px;
   word-break: break-all;
   display: flex;
   text-align: left;
 
   /* 글자 수에 따라 스타일 조정 */
-  ${({ messageLength }) =>
-    messageLength > 10 &&
-    `
-    height: auto;
-    padding: 10px;
-    white-space: pre-wrap;
-  `}
+  ${({ messageLength }) => {
+    if (messageLength <= 10) {
+      return `width: ${messageLength * 12}px;`;
+    } else {
+      return `width: 60%;`;
+    }
+  }}
 
   /* 내가 보내는 메시지 스타일 */
   ${({ isMine }) =>
     isMine
       ? `
       align-self: flex-end;
-      background-color: #b2d8ff;
-      color: #333;
+      background-color: #2F58AC;
+      color: #D9D9D9;
       margin-left: auto;
     `
       : `
       /* 상대방이 보내는 메시지 스타일 */
       align-self: flex-start;
-      background-color: #f5f5f5;
-      color: #333;
+      background-color: #D9D9D9;
+      color: black;
       margin-right: auto;
     `}
 `;
@@ -246,19 +255,21 @@ const ChatInput = styled.div`
 `;
 const ChatHistory = styled.div`
   display: flex;
-  width: 100%;
+  width: 97%;
   flex-direction: column-reverse;
-  height: calc(100% - 200px);
-  overflow-y: scroll;
-  padding: 10px;
+  margin-right: 50px;
 `;
+
 const Input = styled.input`
-  font-size: 18px;
+  font-size: 8px;
   padding: 10px;
-  border-radius: 10px;
+  width: 210px;
+  height: 8px;
+  border-radius: 20px;
   border: 1px solid #333;
   margin-right: 10px;
   transition: height 0.2s;
+  margin: 12px 10px 12px 25px;
 `;
 
 const ReceivedMessage = styled.div`
@@ -272,12 +283,28 @@ const ReceivedMessage = styled.div`
   }
 `;
 
+const ReceivedMessages = styled.div`
+  display: inline-block;
+  width: 100%;
+  margin-top: 10px;
+  margin-bottom: 10px;
+  margin-left: 10px;
+  text-align: left;
+  div {
+    display: flex;
+  }
+`;
+
 const BeforeChatHistory = styled.div`
   display: flex;
   width: 300px;
   max-height: 6000px;
   flex-direction: column;
-  /* height: calc(100% - 200px); */
-  /* overflow-y: scroll; */
   padding: 10px;
+`;
+const StDiv = styled.div`
+  width: 370px;
+  margin-right: 20px;
+  background-color: #e9e9e9;
+  padding-right: 8px;
 `;

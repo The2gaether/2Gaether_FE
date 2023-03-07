@@ -55,6 +55,9 @@ const Content = styled.div`
   width: 100%;
   height: 100%;
   overflow: auto;
+  &::-webkit-scrollbar {
+    display: none;
+  }
 `;
 
 const FooterWrapper = styled.div`

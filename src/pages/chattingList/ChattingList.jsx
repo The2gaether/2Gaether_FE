@@ -30,7 +30,10 @@ const ChatList = () => {
               navigate(`/chattingdetail/${list.roomId}`);
             }}
           >
-            <StDiv isGray={index % 2 === 1} isLast={index === chatList.length - 1}>
+            <StDiv
+              isGray={index % 2 === 1}
+              isLast={index === chatList.length - 1}
+            >
               <StMsDiv>
                 {list?.nickname} {list?.message}
               </StMsDiv>
@@ -61,11 +64,11 @@ const StDiv = styled.div`
   display: flex;
   flex-direction: column;
   align-items: flex-start;
-  padding: 12px 0px 12px 20px;
+  padding: 12px 0px 22px 20px;
   gap: 10px;
   background: ${(props) => (props.isGray ? "#dbdbdb" : "#ffffff")};
   width: 355px;
-  height: 72px;
+  height: 40px;
   border-bottom: ${(props) => (props.isLast ? "none" : "1px solid #dbdbdb")};
 `;
 

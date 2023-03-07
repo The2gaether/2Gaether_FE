@@ -65,7 +65,6 @@ const StImgWrapper = styled.div`
 `;
 
 const StImg = styled.img`
-  border-radius: 20px;
   width: 30px;
   height: 30px;
 
