@@ -9,7 +9,6 @@ import Plus from "../../../assets/svg/plus.svg";
 const EditInfo = ({ user }) => {
   const navigate = useNavigate();
   const dog = user?.myDogs[0].dogId;
-  console.log(user?.myDogs[0].dogId);
 
   return (
     <>

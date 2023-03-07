@@ -13,11 +13,14 @@ const GiveDogList = () => {
 
   const fetchList = useCallback(async () => {
     setLoading(true);
-    const { data } = await axios.get(`${process.env.REACT_APP_DOG}/loves/sent`, {
-      headers: {
-        Authorization,
-      },
-    });
+    const { data } = await axios.get(
+      `${process.env.REACT_APP_DOG}/loves/sent`,
+      {
+        headers: {
+          Authorization,
+        },
+      }
+    );
     setDogs(data);
     setLoading(false);
     setHasMore(data.length !== 0);
@@ -62,9 +65,15 @@ const GiveDogList = () => {
           {dogs.map(({ userId, dogId, dogName, dogSex, imageUrl }) => (
             <Stgroup key={userId}>
               <StDog style={{ backgroundImage: `url(${imageUrl})` }} />
-              {dogSex === "female" ? <StName> {dogName}</StName> : <StName> {dogName}</StName>}
+              {dogSex === "female" ? (
+                <StName> {dogName}</StName>
+              ) : (
+                <StName> {dogName}</StName>
+              )}
               <StProfile onClick={() => showModal(dogId)}>프로필</StProfile>
-              {modalOpen && <Profile myDogId={myDogId} setModalOpen={setModalOpen} />}
+              {modalOpen && (
+                <Profile myDogId={myDogId} setModalOpen={setModalOpen} />
+              )}
             </Stgroup>
           ))}
         </OneDog>

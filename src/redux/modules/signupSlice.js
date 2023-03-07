@@ -21,7 +21,6 @@ const initialState = {
 export const __postDog = createAsyncThunk(
   "signup",
   async (payload, thunkAPI) => {
-    console.log(payload);
     const Authorization = sessionStorage.getItem("accessToken");
 
     const frm = new FormData();
@@ -32,7 +31,6 @@ export const __postDog = createAsyncThunk(
     frm.append("dogDetails", payload.dogDetails);
 
     try {
-      console.log(Authorization);
       var config = {
         method: "post",
         maxBodyLength: Infinity,
@@ -44,7 +42,6 @@ export const __postDog = createAsyncThunk(
         data: frm,
       };
       const { data } = await axios(config);
-      console.log(data);
       return thunkAPI.fulfillWithValue(data);
     } catch (error) {
       return thunkAPI.rejectWithValue(error);
@@ -64,7 +61,7 @@ const dogInfo = createSlice({
     [__postDog.fulfilled]: (state, action) => {
       state.isSuccess = true;
       state.isLoading = false;
-      console.log(action.meta.arg);
+
       state.posts.push(action.payload);
     },
     [__postDog.rejected]: (state, action) => {

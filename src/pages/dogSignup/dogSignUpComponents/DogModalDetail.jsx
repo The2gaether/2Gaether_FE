@@ -2,8 +2,6 @@ import React from "react";
 import styled from "styled-components";
 
 function DogModalDetail() {
-  const handleBack = () => {};
-
   return (
     <div>
       <St1>"뒤로가기"를 누르셨군요!</St1>

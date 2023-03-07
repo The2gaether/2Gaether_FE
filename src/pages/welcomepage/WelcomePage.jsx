@@ -32,19 +32,15 @@ const StContainer = styled.div`
   position: fixed;
   width: 375px;
   background-color: transparent;
-  border: 1px solid #ecf3ff;
   display: flex;
   align-items: center;
   flex-direction: column;
   margin: 0 auto;
-  height: 812px;
+  height: 760px;
   background-image: url(${welecome});
   background-repeat: no-repeat;
   background-size: cover;
   background-position: center;
-  border: 3px solid black;
-  border-radius: 30px;
-  /* box-shadow: 0px 18px 53px 0px rgba(0, 0, 0, 0.3); */
 `;
 const StP1 = styled.p`
   width: 200px;
@@ -69,8 +65,7 @@ const StP1 = styled.p`
 const StImg = styled.img`
   width: 196.65px;
   height: 107.16px;
-
-  margin-bottom: 308px;
+  margin-bottom: 270px;
 `;
 
 const StH1 = styled.h1`
@@ -81,7 +76,7 @@ const StH1 = styled.h1`
   color: #ffffff;
   font-weight: 200;
   text-align: center;
-  margin-bottom: 185px;
+  margin-bottom: 180px;
   span {
     font-size: 24px;
     font-weight: 700;
@@ -128,6 +123,7 @@ const fadeOut = keyframes`
   }
 `;
 const Fade = styled.div`
-  ${(props) => (props.out ? `display: inline-block;` : `display: inline-block;`)}
+  ${(props) =>
+    props.out ? `display: inline-block;` : `display: inline-block;`}
   animation: ${(props) => (props.out ? fadeOut : fadeIn)} 3s linear;
 `;

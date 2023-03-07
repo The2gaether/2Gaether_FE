@@ -3,8 +3,8 @@ import styled from "styled-components";
 import { useDispatch } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import { __postDog } from "../../redux/modules/signupSlice";
-import male from "../../assets/img/male.PNG";
-import female from "../../assets/img/female.PNG";
+import male from "../../assets/svg/male.svg";
+import female from "../../assets/svg/female.svg";
 import plusbutton from "../../assets/img/plusbutton.PNG";
 
 import DogSignUpModal from "./dogSignUpComponents/DogSignUpModal";
@@ -195,23 +195,23 @@ function SignUpForm() {
           <div>
             <StNum> ({signNumber + 1}/5)</StNum>
             <DogSignUpSex />
-            <div>
-              <StImg2 src={male} />
-              <StImg src={female} />
-              <StDiv4>
-                <StDiv5>
-                  <input
-                    type="radio"
-                    name="dogSexRadio"
-                    value="Male"
-                    defaultChecked
-                  />
-                </StDiv5>
-                <StDiv6>
-                  <input type="radio" name="dogSexRadio" value="Female" />
-                </StDiv6>
-              </StDiv4>
-            </div>
+
+            <StDiv4>
+              <ImgBox>
+                <StImg2 src={male} />
+              </ImgBox>
+              <input
+                type="radio"
+                name="dogSexRadio"
+                value="Male"
+                defaultChecked
+              />
+              <ImgBox>
+                <StImg src={female} />
+              </ImgBox>
+              <input type="radio" name="dogSexRadio" value="Female" />
+            </StDiv4>
+
             <StBtnDiv>
               <StBackBtn onClick={() => setSignup(!signup)}>뒤로</StBackBtn>
               <StBtn className="on" onClick={next}>
@@ -306,18 +306,15 @@ function SignUpForm() {
 }
 
 export default SignUpForm;
-const Sbtn = styled.button``;
 
 const StDiv4 = styled.div`
   display: flex;
-  flex-direction: row;
+  justify-content: center;
+  flex-direction: column;
+  float: left;
+  margin-left: 20px;
 `;
-const StDiv5 = styled.div`
-  margin-left: 65px;
-`;
-const StDiv6 = styled.div`
-  margin-left: 118px;
-`;
+
 const StDivImg = styled.div`
   display: flex;
   flex-direction: row;
@@ -367,15 +364,25 @@ const StNum = styled.div`
   flex-direction: column;
   margin-bottom: 36px;
 `;
-const StImg = styled.img`
-  width: 120px;
+
+const ImgBox = styled.div`
+  width: 110px;
   height: 100px;
-  margin-left: 17px;
+  border-radius: 20px;
+  float: left;
+  border: 2px solid #000000;
+`;
+const StImg = styled.img`
+  width: 52px;
+  height: 52px;
 `;
 const StImg2 = styled.img`
-  width: 123px;
-  height: 104px;
-  margin-left: 15px;
+  width: 52px;
+  height: 52px;
+  display: flex;
+  justify-content: center;
+  flex-direction: center;
+  align-items: center;
 `;
 const StImg1 = styled.img`
   width: 30px;

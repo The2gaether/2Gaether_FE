@@ -21,9 +21,7 @@ export const __patchAddress = createAsyncThunk(
   "address",
   async (payload, thunkAPI) => {
     try {
-      console.log(payload);
       const Authorization = sessionStorage.getItem("accessToken");
-      console.log(Authorization);
       const { data } = await axios.patch(
         `${process.env.REACT_APP_DOG}/users/mypage`,
         payload,

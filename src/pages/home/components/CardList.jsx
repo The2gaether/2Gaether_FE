@@ -28,7 +28,6 @@ const CardList = () => {
   const [modalOpen, setModalOpen] = useState(false);
 
   const showModal = () => {
-    console.log(dogs.createdBy);
     setModalOpen(true);
   };
 
@@ -72,7 +71,7 @@ const CardList = () => {
 export default CardList;
 
 const Container = styled.div`
-  height: 605px;
+  height: 530px;
   display: flex;
   flex-direction: column;
   justify-content: center;

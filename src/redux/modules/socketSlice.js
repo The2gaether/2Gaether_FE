@@ -8,12 +8,6 @@ const initialState = {
   error: null,
 };
 
-const config = {
-  headers: {
-    Authorization: localStorage.getItem("token"),
-  },
-};
-
 //메시지 불러오기
 export const getMessage = createAsyncThunk(
   "get/chat",
