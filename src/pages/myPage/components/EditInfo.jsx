@@ -1,10 +1,10 @@
 import React, { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import styled from "styled-components";
-import Edit from "../../../assets/img/edit.png";
-import Lock from "../../../assets/img/lock.png";
-import Map from "../../../assets/img/map-pin.png";
-import Plus from "../../../assets/img/plus-circle.png";
+import Edit from "../../../assets/svg/editnick.svg";
+import Lock from "../../../assets/svg/lock.svg";
+import Map from "../../../assets/svg/map.svg";
+import Plus from "../../../assets/svg/plus.svg";
 
 const EditInfo = ({ user }) => {
   const navigate = useNavigate();
@@ -22,7 +22,7 @@ const EditInfo = ({ user }) => {
           <Stimg src={Lock} />
           비밀번호 변경
         </StOneInfo>
-        <StOneInfo onClick={() => navigate("/newaddress")}>
+        <StOneInfo onClick={() => navigate("/mypage/editaddress")}>
           <Stimg src={Map} />
           주소 변경
         </StOneInfo>

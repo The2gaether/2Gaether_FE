@@ -2,8 +2,8 @@ import React, { useEffect, useState } from "react";
 import styled from "styled-components";
 import axios from "axios";
 import Image from "./Image";
-import YES from "../../../assets/img/YES.png";
-import NO from "../../../assets/img/NO.png";
+import YES from "../../../assets/svg/yes.svg";
+import NO from "../../../assets/svg/no.svg";
 import ModalBasic from "./ModalBasic";
 
 const CardList = () => {
