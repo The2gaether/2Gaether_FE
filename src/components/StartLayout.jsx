@@ -36,5 +36,4 @@ const ContainerDiv = styled.div`
   background-color: white;
   width: 375px;
   height: 750px;
-  position: relative;
 `;
