@@ -133,7 +133,7 @@ const StEmBox = styled.div`
 `;
 
 const StPwBox = styled.div`
-  width: 259px;
+  width: 258px;
   height: 52px;
   margin-left: 57px;
   margin-top: 22px;
