@@ -19,10 +19,10 @@ const Kakao = () => {
     })
   );
 
-  // useEffect(() => {
-  //   loginCheck && navigate("/selectpage");
-  // }, [loginCheck, navigate]);
-  console.log(loginCheck);
+  useEffect(() => {
+    loginCheck && navigate("/selectpage");
+  }, [loginCheck, navigate]);
+
   return (
     <div>
       <h1>Loading</h1>
