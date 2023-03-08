@@ -37,7 +37,7 @@ const ChattingDetail = () => {
 
   // 채팅 엔터키/shif+enter 막기
   const handleEnterPress = (e) => {
-    if (e.keyCode === 13 && e.shiftKey == false) {
+    if (e.keyCode === 13 && e.shiftKey === false && e.target.value !== null) {
       e.preventDefault();
       window.scrollTo(0, 0);
       // sendMessage();
