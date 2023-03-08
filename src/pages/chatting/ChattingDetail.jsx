@@ -174,7 +174,12 @@ const ChattingDetail = () => {
       <StDiv>
         <ChatInput>
           <form onSubmit={(e) => e.preventDefault()}>
-            <Input type="text" ref={chatRef} onKeyDown={handleEnterPress} />
+            <Input
+              placeholder="200글자 이내로 작성해주세요"
+              type="text"
+              ref={chatRef}
+              onKeyDown={handleEnterPress}
+            />
             <Stimg src={ArrowIcon} onClick={myChat}></Stimg>
           </form>
         </ChatInput>
@@ -263,6 +268,10 @@ const Input = styled.input`
   border: 1px solid #333;
   transition: height 0.2s;
   margin: 12px 25px 12px 35px;
+  &::placeholder {
+    font-size: 8px;
+    padding-left: 3px;
+  }
 `;
 
 const ReceivedMessage = styled.div`

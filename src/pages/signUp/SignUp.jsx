@@ -30,12 +30,13 @@ function SignUp() {
   const [emailInput, setEmailInput] = useState("");
   const [passInput, setPassInput] = useState("");
   const [checkpassInput, setcheckpassInput] = useState("");
-
+  const [match, setMatch] = useState(false);
   //정규식
   const regusername = /^[^a-z|A-Z|0-9|ㄱ-ㅎ|가-힣]{1,20}$/;
   const regEmail =
     /^[0-9a-zA-Z]([-_.]?[0-9a-zA-Z])*@[0-9a-zA-Z]([-_.]?[0-9a-zA-Z])*.[a-zA-Z]{2,3}$/;
-  const regPassword = /^(?=.[A-Za-z])(?=.\\d)[A-Za-z\\d@$!%*#?&]{8,15}$/;
+  const regPassword =
+    /^(?=.*[a-z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,}$/;
 
   //유효성 검사 및 유저 스테이트 작성
   const onChangeUserHandler = (e) => {
@@ -57,10 +58,11 @@ function SignUp() {
              특수문자(!@#$%^&*)를 입력해주세요.`
           )
         : setPassInput("");
-    if (name === "check_password")
-      password !== value
-        ? setcheckpassInput("비밀번호가 불일치합니다")
-        : setcheckpassInput("");
+    if (name === "check_password") {
+      const match = password === value;
+      setMatch(match);
+      setcheckpassInput(match ? "일치합니다" : "비밀번호가 불일치합니다");
+    }
   };
   // 회원가입 POST요청 및 공백 존재 시 경고창 생성
   const onSubmitUserHandler = (e) => {
@@ -161,7 +163,7 @@ function SignUp() {
             placeholder="비밀번호 확인해주세요"
             onChange={onChangeUserHandler}
           ></StInput>
-          <StP3 id="help-password2" className="help">
+          <StP3 id="help-password2" className="help" match={match}>
             {checkpassInput}
           </StP3>
         </StDiv>
@@ -184,6 +186,7 @@ const StP3 = styled.div`
   font-size: 12px;
   margin-top: 10px;
   width: 250px;
+  color: ${(props) => (props.match ? "green" : "red")};
 `;
 const StDiv = styled.div`
   margin-left: 12px;
