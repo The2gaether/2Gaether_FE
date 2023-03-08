@@ -6,6 +6,7 @@ import { __kakaoLogin } from "../../redux/modules/kakaoSlice";
 const Kakao = () => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
+  const loginCheck = useSelector((state) => state.kakaoList.isLogin);
 
   //현재 url의 파라미터를 가져옴
   let params = new URL(window.location.href).searchParams;
@@ -19,9 +20,9 @@ const Kakao = () => {
   );
 
   useEffect(() => {
-    navigate("/selectpage");
-  });
-
+    loginCheck && navigate("/selectpage");
+  }, [loginCheck, navigate]);
+  console.log(loginCheck);
   return (
     <div>
       <h1>Loading</h1>

@@ -19,7 +19,7 @@ function WelcomePage() {
         },
       })
       .then((res) => {
-        if (res.data === true) {
+        if (res?.data === true) {
           console.log(Authorization);
           navigate("/");
           window.location.reload();
