@@ -59,7 +59,7 @@ const StName = styled.div`
   margin-top: -10px;
   margin-left: 10px;
   color: beige;
-  z-index: 2;
+
   /* border: 1px solid black; */
 `;
 

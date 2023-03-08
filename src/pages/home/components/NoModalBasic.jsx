@@ -1,16 +1,17 @@
 import styled from "styled-components";
 import axios from "axios";
 
-function ModalBasic({ setModalOpen, dogId, dogName, userId }) {
+function ModalBasic({ setNoModalOpen, dogId, dogName, userId }) {
   const Authorization = sessionStorage.getItem("accessToken");
   // 모달 끄기
   const closeModal = () => {
-    setModalOpen(false);
+    setNoModalOpen(false);
   };
 
-  const handleFavoriteClick = () => {
+  //싫어요 클릭
+  const handleHateClick = () => {
     axios.post(
-      `${process.env.REACT_APP_DOG}/match/love/${dogId}`,
+      `${process.env.REACT_APP_DOG}/match/reject/${dogId}`,
       {},
       {
         headers: {
@@ -18,27 +19,22 @@ function ModalBasic({ setModalOpen, dogId, dogName, userId }) {
         },
       }
     );
-  };
-
-  //통합코드
-  function handleButtonClick() {
-    handleFavoriteClick();
     window.location.reload();
-  }
+  };
 
   return (
     <BackGround>
       <Container>
         <TopSpace />
         <Bold>{dogName}, 이 친구랑</Bold>
-        <Bold>투게더 하시겠어요?</Bold>
+        <Bold>함께 할 수 없는 건가요..</Bold>
         {/* <Regular>강아지 등록을 안하시면</Regular>
         <Regular>투개더 이용이 어렵답니다.😂 </Regular> */}
         <Garo />
         <St3>
-          <StTrueButton onClick={() => handleButtonClick()}>네, 좋아요!</StTrueButton>
+          <StTrueButton onClick={() => handleHateClick()}>네, 맞아요😭</StTrueButton>
           <Sero />
-          <StFalseButton onClick={closeModal}>다시 볼게요.</StFalseButton>
+          <StFalseButton onClick={closeModal}>앗,취소!</StFalseButton>
         </St3>
       </Container>
     </BackGround>
@@ -76,7 +72,6 @@ const Container = styled.div`
   border: 1px solid black;
   border-radius: 12px;
 `;
-
 const TopSpace = styled.div`
   width: 10px;
   height: 100px;

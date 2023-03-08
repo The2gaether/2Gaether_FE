@@ -9,7 +9,6 @@ import { useEffect } from "react";
 function WelcomePage() {
   const navigate = useNavigate();
   const Authorization = sessionStorage.getItem("accessToken");
-  console.log(Authorization);
   // const [isTrue, setIsTrue] = useState();
 
   const fetchTrue = () => {

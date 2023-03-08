@@ -29,6 +29,7 @@ export default GiveLove;
 const StSelects = styled.div`
   display: flex;
   justify-content: space-around;
+  margin-top: 15px;
 `;
 
 const OneSelect = styled.div`
