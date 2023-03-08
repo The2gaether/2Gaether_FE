@@ -7,6 +7,8 @@ import { __postLogin } from "../../redux/modules/userSlice";
 import { KAKAO_AUTH_URL } from "../../shared/OAuth";
 import smlogo from "../../assets/svg/logo.svg";
 import StartLayout from "../../components/StartLayout";
+import kakao from "../../assets/svg/kakao.svg";
+import google from "../../assets/svg/google.svg";
 
 function Login() {
   const navigate = useNavigate();
@@ -76,17 +78,28 @@ function Login() {
           </div>
           <LogInBtn onClick={onSubmitLoginHandler}>로그인</LogInBtn>
         </form>
-
-        <SignUpBtn
-          onClick={() => {
-            navigate("/signup");
-          }}
-        >
-          회원가입
-        </SignUpBtn>
-        <KakaoSignIn>
-          <a href={KAKAO_AUTH_URL}> 카카오로그인 </a>
-        </KakaoSignIn>
+        <StNotUserGroup>
+          <StNotUset>아직 투개더 회원이 아니라면?</StNotUset>
+          <SignUpBtn
+            onClick={() => {
+              navigate("/signup");
+            }}
+          >
+            회원가입하기
+          </SignUpBtn>
+        </StNotUserGroup>
+        <StUnderGroup>
+          <StLine />
+          <StSnsStart>SNS로 간편하게 시작하기</StSnsStart>
+          <StSocialGroup>
+            <a href={KAKAO_AUTH_URL}>
+              <KakaoSignIn src={kakao} />
+            </a>
+            <div>
+              <KakaoSignIn src={google} />
+            </div>
+          </StSocialGroup>
+        </StUnderGroup>
       </Container>
     </StartLayout>
   );
@@ -124,7 +137,7 @@ const StPwBox = styled.div`
   height: 52px;
   margin-left: 57px;
   margin-top: 22px;
-  margin-bottom: 52px;
+  margin-bottom: 32px;
 `;
 const StEmText = styled.p`
   width: 100px;
@@ -143,26 +156,17 @@ const StBoldText = styled.p`
   font-size: 24px;
 `;
 const SignUpBtn = styled.button`
-  display: flex;
-  flex-direction: row;
-  justify-content: center;
-  align-items: center;
-  padding: 13px 100px;
-  gap: 10px;
   cursor: pointer;
-
-  height: 40px;
-  width: 285px;
-  margin-left: 48px;
-  margin-top: 12px;
-  background: #1c3467;
-  border-radius: 40px;
-  font-weight: 700;
-  font-size: 16px;
-  line-height: 23px;
+  height: 25px;
+  width: 84px;
+  background: transparent;
+  font-weight: 900;
+  font-size: 12px;
   text-align: center;
-  color: #ffffff;
-  margin-bottom: 61.5px;
+  color: black;
+  border: none;
+  text-decoration-line: underline;
+  margin-left: 30px;
 `;
 const LogInBtn = styled.button`
   display: flex;
@@ -180,31 +184,12 @@ const LogInBtn = styled.button`
   font-size: 16px;
   line-height: 23px;
   text-align: center;
-
   color: #ffffff;
   background: #2f58ac;
   border-radius: 40px;
+  border: none;
 `;
-const KakaoSignIn = styled.button`
-  display: flex;
-  flex-direction: row;
-  justify-content: center;
-  align-items: center;
-  padding: 13px 100px;
-  gap: 10px;
-  height: 40px;
-  width: 285px;
-  margin-left: 48px;
 
-  /* Main/main */
-  font-weight: 700;
-  font-size: 13px;
-  line-height: 23px;
-  text-align: center;
-
-  background: #fee500;
-  border-radius: 40px;
-`;
 const StInput = styled.input`
   margin-top: 6px;
   width: 259px;
@@ -225,4 +210,53 @@ const StInput = styled.input`
       border-color: rgb(38, 38, 38);
     }
   }
+`;
+
+const StNotUset = styled.div`
+  font-size: 12px;
+  color: gray;
+`;
+
+const StNotUserGroup = styled.div`
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-top: 40px;
+  margin-bottom: 30px;
+  border-top-style: none;
+  border-left-style: none;
+  border-right-style: none;
+  border: 0 0 10px 0;
+`;
+
+const StUnderGroup = styled.div`
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+`;
+const StLine = styled.div`
+  width: 270px;
+  height: 2px;
+  background-color: gray;
+  margin-bottom: 40px;
+`;
+
+const StSnsStart = styled.div`
+  font-size: 14px;
+  font-weight: 600;
+`;
+
+const StSocialGroup = styled.div`
+  margin-top: 20px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100px;
+  justify-content: space-between;
+  margin-bottom: 10px;
+`;
+
+const KakaoSignIn = styled.img`
+  width: 40px;
+  height: 40px;
 `;

@@ -39,8 +39,7 @@ const NewAddress = () => {
         extraAddress += data.bname;
       }
       if (data.buildingName !== "") {
-        extraAddress +=
-          extraAddress !== "" ? `, ${data.buildingName}` : data.buildingName;
+        extraAddress += extraAddress !== "" ? `, ${data.buildingName}` : data.buildingName;
       }
       newAddress += extraAddress !== "" ? ` (${extraAddress})` : "";
     }
@@ -87,14 +86,10 @@ const NewAddress = () => {
               {<DaumPostCode onComplete={handleComplete} />}
               {!modalState && (
                 <div>
-                  <AddressInput
-                    onClick={() => setIsOpen(true)}
-                    value={address}
-                  />
+                  <AddressInput onClick={() => setIsOpen(true)} value={address} />
+                  <StNum>(상세주소는 안주셔도 됩니다)</StNum>
                   <StBtnDiv>
-                    <StBackBtn onClick={() => setSignNumber(signNumber - 1)}>
-                      뒤로
-                    </StBackBtn>
+                    <StBackBtn onClick={() => setSignNumber(signNumber - 1)}>뒤로</StBackBtn>
                     <StBtn type="submit" onClick={next}>
                       다음
                     </StBtn>
