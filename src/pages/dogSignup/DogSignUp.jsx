@@ -135,7 +135,7 @@ function SignUpForm() {
   const combinedHandler = async (event) => {
     event.preventDefault();
     if (signNumber === 3) {
-      if (signData.dogDetails.length === 0 || signData.dogDetails.length > 20) {
+      if (signData.dogDetails.length === 0 || signData.dogDetails.length > 40) {
         return;
       }
     }
@@ -203,7 +203,12 @@ function SignUpForm() {
               <ImgBox>
               </ImgBox> */}
             </StDiv4>
-            <StRadio type="radio" name="dogSexRadio" value="Male" defaultChecked />
+            <StRadio
+              type="radio"
+              name="dogSexRadio"
+              value="Male"
+              defaultChecked
+            />
             <StRadio type="radio" name="dogSexRadio" value="Female" />
             <StBtnDiv>
               <StBackBtn onClick={() => setSignup(!signup)}>뒤로</StBackBtn>
@@ -254,7 +259,9 @@ function SignUpForm() {
           </div>
 
           <StBtnDiv>
-            <StBackBtn onClick={() => setSignNumber(signNumber - 1)}>뒤로</StBackBtn>
+            <StBackBtn onClick={() => setSignNumber(signNumber - 1)}>
+              뒤로
+            </StBackBtn>
             <StBtn onClick={next} disabled={!imageSrcs}>
               다음
             </StBtn>
@@ -277,8 +284,14 @@ function SignUpForm() {
             }}
           />
           <StBtnDiv>
-            <StBackBtn onClick={() => setSignNumber(signNumber - 1)}>뒤로</StBackBtn>
-            <StBtn className="on" onClick={combinedHandler} disabled={!dogDetailsState}>
+            <StBackBtn onClick={() => setSignNumber(signNumber - 1)}>
+              뒤로
+            </StBackBtn>
+            <StBtn
+              className="on"
+              onClick={combinedHandler}
+              disabled={!dogDetailsState}
+            >
               다음
             </StBtn>
           </StBtnDiv>
