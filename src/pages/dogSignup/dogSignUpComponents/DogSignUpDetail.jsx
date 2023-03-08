@@ -5,7 +5,7 @@ function DogSignUpDetail() {
   return (
     <StDiv3>
       <StP3> 강아지의</StP3>
-      <StP2>성격을 20자 이하로 적어주세요.</StP2>
+      <StP2>성격을 40자 이하로 적어주세요.</StP2>
     </StDiv3>
   );
 }
