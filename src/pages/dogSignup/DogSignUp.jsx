@@ -198,10 +198,12 @@ function SignUpForm() {
             <StDiv4>
               <ImgBox>
                 <StImg2 src={male} />
+                <StH4>남</StH4>
               </ImgBox>
 
               <ImgBox>
                 <StImg src={female} />
+                <StH4>녀</StH4>
               </ImgBox>
             </StDiv4>
             <StRadio
@@ -391,8 +393,16 @@ const StImg1 = styled.img`
 
 const StRadio = styled.input`
   width: 100px;
-  height: 10px;
-  margin-left: 35px;
+  height: 15px;
+  margin-top: 25px;
+  margin-left: 33px;
+  margin-bottom: 2px;
+`;
+const StH4 = styled.h4`
+  width: 100px;
+  height: 15px;
+  margin-top: 10px;
+  margin-left: 48px;
 `;
 const StInput = styled.input`
   display: block;
