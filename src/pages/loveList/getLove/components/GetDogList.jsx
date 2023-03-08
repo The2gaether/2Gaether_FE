@@ -16,14 +16,11 @@ const InfiniteScroll = () => {
   const fetchData = useCallback(async () => {
     setLoading(true);
 
-    const { data } = await axios.get(
-      `${process.env.REACT_APP_DOG}/loves/received`,
-      {
-        headers: {
-          Authorization,
-        },
-      }
-    );
+    const { data } = await axios.get(`${process.env.REACT_APP_DOG}/loves/received`, {
+      headers: {
+        Authorization,
+      },
+    });
 
     setData(data);
     setLoading(false);
@@ -97,33 +94,29 @@ const InfiniteScroll = () => {
     <Container>
       <StOnePage>
         <OneDog>
-          {data.map(({ imageUrl, dogName, userId, dogSex, dogId }) => (
+          {data.map(({ imageUrl, dogName, userId, dogSex, dogId }, index) => (
             <Stgroup key={userId}>
-              <StDog style={{ backgroundImage: `url(${imageUrl})` }}></StDog>
-              {dogSex === "female" ? (
-                <StName> {dogName}</StName>
-              ) : (
-                <StName> {dogName}</StName>
-              )}
-              <StBtnGroup>
-                <StProfile onClick={() => showModal(dogId)}>프로필</StProfile>
-                <StBtn
-                  src={Like}
-                  onClick={() => {
-                    handleButtonClick(dogId, userId);
-                  }}
-                />
-                <StBtn
-                  src={Reject}
-                  onClick={() => {
-                    onRejectHandler(dogId);
-                  }}
-                />
-              </StBtnGroup>
+              <StDiv isGray={index % 2 === 1}>
+                <StDog style={{ backgroundImage: `url(${imageUrl})` }}></StDog>
+                {dogSex === "female" ? <StName> {dogName}</StName> : <StName> {dogName}</StName>}
+                <StBtnGroup>
+                  <StProfile onClick={() => showModal(dogId)}>프로필</StProfile>
+                  <StBtn
+                    src={Like}
+                    onClick={() => {
+                      handleButtonClick(dogId, userId);
+                    }}
+                  />
+                  <StBtn
+                    src={Reject}
+                    onClick={() => {
+                      onRejectHandler(dogId);
+                    }}
+                  />
+                </StBtnGroup>
+              </StDiv>
               <div ref={observer} />
-              {modalOpen && (
-                <Profile myDogId={myDogId} setModalOpen={setModalOpen} />
-              )}
+              {modalOpen && <Profile myDogId={myDogId} setModalOpen={setModalOpen} />}
             </Stgroup>
           ))}
         </OneDog>
@@ -150,6 +143,18 @@ const OneDog = styled.div`
 const Stgroup = styled.div`
   display: flex;
   align-items: center;
+`;
+
+const StDiv = styled.div`
+  /* display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  padding: 12px 0px 22px 20px;
+  gap: 10px;
+  background: ${(props) => (props.isGray ? "black" : "#ffffff")};
+  width: 355px;
+  height: 40px;
+  border-bottom: ${(props) => (props.isLast ? "none" : "1px solid #dbdbdb")}; */
 `;
 
 const StDog = styled.div`

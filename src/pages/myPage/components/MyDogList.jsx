@@ -33,7 +33,7 @@ const Container = styled.div`
 const StImg = styled.div`
   position: relative;
   width: 330px;
-  height: 180px;
+  height: 260px;
   border-radius: 20px;
   background-size: cover;
   background-position: center;
