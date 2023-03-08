@@ -196,12 +196,15 @@ function SignUpForm() {
             <StNum> ({signNumber + 1}/5)</StNum>
             <DogSignUpSex />
             <StDiv4>
-              <StImg src={male} />
-              <StImg src={female} />
-              {/* <ImgBox>
-              </ImgBox>
               <ImgBox>
-              </ImgBox> */}
+                <StImg2 src={male} />
+                <StH4>남</StH4>
+              </ImgBox>
+
+              <ImgBox>
+                <StImg src={female} />
+                <StH4>녀</StH4>
+              </ImgBox>
             </StDiv4>
             <StRadio
               type="radio"
@@ -305,6 +308,7 @@ export default SignUpForm;
 
 const StDiv4 = styled.div`
   display: flex;
+  margin-left: 17px;
   margin-bottom: 10px;
 `;
 
@@ -332,7 +336,7 @@ const InputContainer = styled.div`
   display: flex;
   margin-right: 15px;
   justify-content: center;
-  margin-left: 15px;
+  margin-left: 10px;
   border-radius: 25px;
   align-items: center;
   display: ${(props) => (props.hasImage ? "none" : "flex")};
@@ -368,9 +372,14 @@ const ImgBox = styled.div`
   margin: 10px;
 `;
 const StImg = styled.img`
-  width: 100px;
-  height: 100px;
-  margin-left: 36px;
+  width: 52px;
+  height: 52px;
+  margin: 25px 25px 25px 28px;
+`;
+const StImg2 = styled.img`
+  width: 52px;
+  height: 52px;
+  margin: 25px 25px 25px 28px;
 `;
 const StImg1 = styled.img`
   width: 30px;
