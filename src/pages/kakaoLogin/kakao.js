@@ -19,7 +19,7 @@ const Kakao = () => {
   );
 
   useEffect(() => {
-    navigate("/selectpage");
+    navigate("/dogSignUp");
   });
 
   return (
