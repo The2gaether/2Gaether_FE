@@ -10,28 +10,24 @@ const initialState = {
 };
 
 //로그인 POST요청
-export const __kakaoLogin = createAsyncThunk(
-  "login",
-  async (payload, thunkAPI) => {
-    try {
-      const { data } = await axios
-        .post(`https://midcon.shop/login/oauth/kakao`, payload, {
-          withCredentials: true,
-        })
+export const __kakaoLogin = createAsyncThunk("login", async (payload, thunkAPI) => {
+  try {
+    const { data } = await axios
+      .post(`https://midcon.shop/login/oauth/kakao`, payload, {
+        withCredentials: true,
+      })
 
-        .then((res) => {
-          const accessToken = res.headers.authorization;
-          sessionStorage.setItem("accessToken", accessToken);
+      .then((res) => {
+        const accessToken = res.headers.authorization;
+        sessionStorage.setItem("accessToken", accessToken);
+        return res;
+      });
 
-          return res;
-        });
-
-      return thunkAPI.fulfillWithValue(data.data);
-    } catch (error) {
-      return thunkAPI.rejectWithValue(error);
-    }
+    return thunkAPI.fulfillWithValue(data.data);
+  } catch (error) {
+    return thunkAPI.rejectWithValue(error);
   }
-);
+});
 
 const kakaoList = createSlice({
   name: "kakaoList",

@@ -95,7 +95,10 @@ function Login() {
             <a href={KAKAO_AUTH_URL}>
               <KakaoSignIn src={kakao} />
             </a>
-            <div>
+            {/* <div onClick={() => alert("준비중입니다")}>
+              <KakaoSignIn src={kakao} />
+            </div> */}
+            <div onClick={() => alert("준비중입니다")}>
               <KakaoSignIn src={google} />
             </div>
           </StSocialGroup>
