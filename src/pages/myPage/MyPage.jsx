@@ -29,7 +29,7 @@ const EditUser = () => {
       <Container>
         <StTopGroup>
           <div className="div" style={{ fontSize: "20px", fontWeight: "bold" }}>
-            <div> 안녕하세요 {user?.username}님!</div>
+            <div> 안녕하세요 {user?.username.slice(0, 5)}님!</div>
             <StSurvey href="https://forms.gle/Ud6S9QmUgCY8Pedx8" target="_blank">
               설문조사
             </StSurvey>
@@ -90,7 +90,7 @@ const StSurvey = styled.a`
   align-items: center;
   width: 100px;
   height: 20px;
-  margin-left: 80px;
+  margin-left: 40px;
   text-decoration: none;
   background-color: #2f58ac;
   color: white;

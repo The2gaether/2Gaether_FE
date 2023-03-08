@@ -35,21 +35,17 @@ function SignUp() {
   const regusername = /^[^a-z|A-Z|0-9|ㄱ-ㅎ|가-힣]{1,20}$/;
   const regEmail =
     /^[0-9a-zA-Z]([-_.]?[0-9a-zA-Z])*@[0-9a-zA-Z]([-_.]?[0-9a-zA-Z])*.[a-zA-Z]{2,3}$/;
-  const regPassword =
-    /^(?=.*[a-z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,}$/;
+  const regPassword = /^(?=.*[a-z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,}$/;
 
   //유효성 검사 및 유저 스테이트 작성
   const onChangeUserHandler = (e) => {
     const { name, value } = e.target;
     setUser({ ...user, [name]: value });
 
-    if (name === "username")
-      !regusername.test(value) ? setusernameInput("") : setusernameInput("");
+    if (name === "username") !regusername.test(value) ? setusernameInput("") : setusernameInput("");
 
     if (name === "email")
-      !regEmail.test(value)
-        ? setEmailInput("이메일 형식으로 입력해주세요.")
-        : setEmailInput("");
+      !regEmail.test(value) ? setEmailInput("이메일 형식으로 입력해주세요.") : setEmailInput("");
 
     if (name === "password")
       !regPassword.test(value)
@@ -67,11 +63,7 @@ function SignUp() {
   // 회원가입 POST요청 및 공백 존재 시 경고창 생성
   const onSubmitUserHandler = (e) => {
     e.preventDefault();
-    if (
-      username.trim() === "" ||
-      email.trim() === "" ||
-      password.trim() === ""
-    ) {
+    if (username.trim() === "" || email.trim() === "" || password.trim() === "") {
       return alert("아이디랑 비밀번호를 입력해주세요!");
     }
     if (password !== check_password) {
@@ -85,7 +77,7 @@ function SignUp() {
         password,
       })
     );
-    alert("회원가입이 완료 되었습니다");
+    alert("이메일이 전송되었습니다! 이메일을 확인해주세요!");
     navigate("/login");
   };
   const onSubmitUserCheckHandler = (e) => {
