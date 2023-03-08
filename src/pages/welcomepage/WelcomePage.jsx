@@ -13,15 +13,16 @@ function WelcomePage() {
         <StP1>
           우리 강아지의<span>산책 매칭</span>
         </StP1>
+
         <StImg src={whitetogather} />
+        <Fade>
+          <StBtn onClick={() => navigate("/login")}>시작하기</StBtn>
+        </Fade>
         <StH1>
           인근의 <span>강아지 친구와 매칭</span>되어
           <Space />
           <span>산책도, 교류도</span> 해요!
         </StH1>
-        <Fade>
-          <StBtn onClick={() => navigate("/login")}>시작하기</StBtn>
-        </Fade>
       </StContainer>
     </StartLayout>
   );
@@ -69,6 +70,7 @@ const StImg = styled.img`
 `;
 
 const StH1 = styled.h1`
+  margin-top: 30px;
   width: 100%;
   max-width: 375px;
   height: 23px;
@@ -76,7 +78,6 @@ const StH1 = styled.h1`
   color: #ffffff;
   font-weight: 200;
   text-align: center;
-  margin-bottom: 180px;
   span {
     font-size: 24px;
     font-weight: 700;
@@ -123,7 +124,6 @@ const fadeOut = keyframes`
   }
 `;
 const Fade = styled.div`
-  ${(props) =>
-    props.out ? `display: inline-block;` : `display: inline-block;`}
+  ${(props) => (props.out ? `display: inline-block;` : `display: inline-block;`)}
   animation: ${(props) => (props.out ? fadeOut : fadeIn)} 3s linear;
 `;
