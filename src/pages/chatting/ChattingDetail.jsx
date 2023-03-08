@@ -39,13 +39,6 @@ const ChattingDetail = () => {
   const { messages } = useSelector((state) => state.messages);
 
   // 채팅 엔터키/shif+enter 막기
-  const handleEnterPress = (e) => {
-    if (e.keyCode === 13 && e.shiftKey === false && e.target.value !== null) {
-      e.preventDefault();
-      window.scrollTo(0, 0);
-      // sendMessage();
-    }
-  };
 
   useEffect(() => {
     let subscription;
@@ -82,7 +75,9 @@ const ChattingDetail = () => {
   //여기에 있는 값을 모아야합니다 / 정기
   const myChat = () => {
     const message = chatRef.current.value;
-
+    if (message === "") {
+      return;
+    }
     client.send(
       `/pub/chat/message`,
       headers,
@@ -178,9 +173,8 @@ const ChattingDetail = () => {
               placeholder="200글자 이내로 작성해주세요"
               type="text"
               ref={chatRef}
-              onKeyDown={handleEnterPress}
             />
-            <Stimg src={ArrowIcon} onClick={myChat}></Stimg>
+            <StButton onClick={myChat}>전송</StButton>
           </form>
         </ChatInput>
       </StDiv>
@@ -197,11 +191,9 @@ const StyledChatWindow = styled.div`
   background-color: white;
   border-radius: 10px;
   max-width: 365px;
-  //이부분 고치기
-  max-height: 560px;
+  height: calc(100% - 80px); // 변경된 부분
   margin-left: 10px;
   position: relative;
-  height: calc(100vh - 80px);
 
   //스크롤 없애기
   overflow: auto;
@@ -209,7 +201,6 @@ const StyledChatWindow = styled.div`
     display: none;
   }
 `;
-
 const Header = styled.header`
   display: flex;
   align-items: center;
@@ -229,6 +220,7 @@ const MessageList = styled.div`
   display: flex;
   text-align: left;
   max-width: 160px;
+
   width: fit-content;
   /* 내가 보내는 메시지 스타일 */
   ${({ isMine }) =>
@@ -299,20 +291,27 @@ const ReceivedMessages = styled.div`
 const BeforeChatHistory = styled.div`
   display: flex;
   width: 300px;
-  max-height: 6000px;
+  height: 160px;
   flex-direction: column;
   padding: 10px;
+  height: calc(100% - 1%); // 변경된 부분
 `;
 const StDiv = styled.div`
   width: 370px;
   margin-right: 20px;
   background-color: #e9e9e9;
   padding-right: 8px;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, 478%);
 `;
-
-const Stimg = styled.img`
-  width: 24px;
-  height: 24px;
-  position: relative;
-  margin-bottom: -9px;
+const StButton = styled.button`
+  width: 50px;
+  height: 30px;
+  border-radius: 13px;
+  padding-bottom: 3px;
+  margin-top: 5px;
+  background-color: #2f58ac;
+  color: white;
 `;
