@@ -203,7 +203,12 @@ function SignUpForm() {
               <ImgBox>
               </ImgBox> */}
             </StDiv4>
-            <StRadio type="radio" name="dogSexRadio" value="Male" defaultChecked />
+            <StRadio
+              type="radio"
+              name="dogSexRadio"
+              value="Male"
+              defaultChecked
+            />
             <StRadio type="radio" name="dogSexRadio" value="Female" />
             <StBtnDiv>
               <StBackBtn onClick={() => setSignup(!signup)}>뒤로</StBackBtn>
@@ -233,7 +238,6 @@ function SignUpForm() {
                   type="file"
                   accept="image/jpeg, image/jpg, image/png"
                   onChange={handleChangeFile}
-                  multiple
                 />
                 <StImg1 src={plusbutton} />
               </InputContainer>
@@ -248,7 +252,6 @@ function SignUpForm() {
                   type="file"
                   accept="image/jpeg, image/jpg, image/png"
                   onChange={handleChangeFile1}
-                  multiple
                 />
                 <StImg1 src={plusbutton} />
               </InputContainer>
@@ -256,7 +259,9 @@ function SignUpForm() {
           </div>
 
           <StBtnDiv>
-            <StBackBtn onClick={() => setSignNumber(signNumber - 1)}>뒤로</StBackBtn>
+            <StBackBtn onClick={() => setSignNumber(signNumber - 1)}>
+              뒤로
+            </StBackBtn>
             <StBtn onClick={next} disabled={!imageSrcs}>
               다음
             </StBtn>
@@ -279,8 +284,14 @@ function SignUpForm() {
             }}
           />
           <StBtnDiv>
-            <StBackBtn onClick={() => setSignNumber(signNumber - 1)}>뒤로</StBackBtn>
-            <StBtn className="on" onClick={combinedHandler} disabled={!dogDetailsState}>
+            <StBackBtn onClick={() => setSignNumber(signNumber - 1)}>
+              뒤로
+            </StBackBtn>
+            <StBtn
+              className="on"
+              onClick={combinedHandler}
+              disabled={!dogDetailsState}
+            >
               다음
             </StBtn>
           </StBtnDiv>
