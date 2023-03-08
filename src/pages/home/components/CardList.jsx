@@ -5,6 +5,7 @@ import Image from "./Image";
 import YES from "../../../assets/svg/yes.svg";
 import NO from "../../../assets/svg/no.svg";
 import ModalBasic from "./ModalBasic";
+import NoModalBasic from "./NoModalBasic";
 
 const CardList = () => {
   const Authorization = sessionStorage.getItem("accessToken");
@@ -29,6 +30,13 @@ const CardList = () => {
 
   const showModal = () => {
     setModalOpen(true);
+  };
+
+  //싫어요 모달
+  const [noModalOpen, setNoModalOpen] = useState(false);
+
+  const showNoModal = () => {
+    setNoModalOpen(true);
   };
 
   //싫어요 클릭
@@ -60,10 +68,18 @@ const CardList = () => {
           userId={dogs.createdBy}
         />
       )}
+      {noModalOpen && (
+        <NoModalBasic
+          dogId={dogs.dogId}
+          dogName={dogs.dogName}
+          setModalOpen={setModalOpen}
+          userId={dogs.createdBy}
+        />
+      )}
       <Image key={dogs.dogId} images={mainImage} data={dogs} />
       <StBtnGroup>
         <StImg src={YES} onClick={showModal}></StImg>
-        <StImg src={NO} onClick={() => handleHateClick()}></StImg>
+        <StImg src={NO} onClick={showNoModal}></StImg>
       </StBtnGroup>
     </Container>
   );
@@ -79,7 +95,7 @@ const Container = styled.div`
 `;
 
 const StBtnGroup = styled.div`
-  z-index: 1;
+  /* z-index: 1; */
   display: flex;
   justify-content: center;
   margin-top: 20px;

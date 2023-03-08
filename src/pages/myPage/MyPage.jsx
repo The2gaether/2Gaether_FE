@@ -34,7 +34,7 @@ const EditUser = () => {
               설문조사
             </StSurvey>
           </div>
-          <div className="address">{user?.address.split(" ").slice(0, 3).join(" ")}</div>
+          {/* <div className="address">{user?.address.split(" ").slice(0, 3).join(" ")}</div> */}
           <div className="address">{user?.email}</div>
         </StTopGroup>
         <StImgGroup>

@@ -29,14 +29,16 @@ function ModalBasic({ setModalOpen, dogId, dogName, userId }) {
   return (
     <BackGround>
       <Container>
-        <Desc>
-          <One>{dogName}와</One>
-          <One>투게더 하시겠어요?</One>
-        </Desc>
-        <BtnGroup>
-          <StButton onClick={() => handleButtonClick()}>네, 할래요!</StButton>
-          <StButton onClick={closeModal}>좀 더 볼게요.</StButton>
-        </BtnGroup>
+        <Bold>{dogName}와</Bold>
+        <Bold>함께 하고 싶지 않으신가요..</Bold>
+        {/* <Regular>강아지 등록을 안하시면</Regular>
+        <Regular>투개더 이용이 어렵답니다.😂 </Regular> */}
+        <Garo />
+        <St3>
+          <StTrueButton>네, 맞아요😭</StTrueButton>
+          <Sero />
+          <StFalseButton>앗,취소!</StFalseButton>
+        </St3>
       </Container>
     </BackGround>
   );
@@ -58,8 +60,8 @@ const Container = styled.div`
   justify-content: center;
   align-items: center;
   /* 모달창 크기 */
-  width: 300px;
-  height: 180px;
+  width: 260px;
+  height: 150px;
   /* 최상단 위치 */
   z-index: 1;
   /* 중앙 배치 */
@@ -74,40 +76,68 @@ const Container = styled.div`
   border-radius: 12px;
 `;
 
-const Desc = styled.div`
+const Bold = styled.div`
+  margin-top: 10px;
+  margin-bottom: 15px;
+  font-size: 16px;
+  font-weight: 800;
   display: flex;
+  justify-content: center;
   flex-direction: column;
-  justify-content: center;
-  align-items: center;
-  margin-bottom: 20px;
-  font-size: 18px;
-  font-weight: 700;
 `;
 
-const BtnGroup = styled.div`
-  display: flex;
-  /* width: 200px; */
-  justify-content: space-between;
-  align-items: center;
+const Regular = styled.div`
+  margin-top: 7px;
+  font-size: 12px;
+  font-weight: 400;
+  margin-bottom: 2px;
 `;
 
-const One = styled.div`
-  margin-bottom: 10px;
-`;
-
-const StButton = styled.button`
+const St3 = styled.div`
   display: flex;
   justify-content: center;
-  align-items: center;
-  width: 130px;
-  height: 40px;
-  margin-left: 10px;
-  margin-right: 10px;
-  border-radius: 10px;
-  border: 1px solid;
+  font-size: 10px;
+  font-weight: 600;
+`;
+
+const StTrueButton = styled.button`
   cursor: pointer;
+  background-color: transparent;
+  border: none;
+  color: #2f58ac;
+  width: 130px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
   &:hover {
-    background-color: #2f58ac;
-    color: white;
+    font-weight: 700;
   }
+`;
+const StFalseButton = styled.button`
+  cursor: pointer;
+  background-color: transparent;
+  border: none;
+  color: #cf0000;
+  width: 130px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  &:hover {
+    font-weight: 700;
+  }
+`;
+
+const Sero = styled.div`
+  height: 32px;
+  width: 0.5px;
+  background-color: rgba(60, 60, 67, 0.29);
+`;
+
+const Garo = styled.div`
+  width: 100%;
+  height: 0.5px;
+  background-color: rgba(60, 60, 67, 0.29);
+  margin-top: 30px;
 `;

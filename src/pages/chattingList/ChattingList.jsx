@@ -17,9 +17,9 @@ const ChatList = () => {
   return (
     <Layout title="채팅 리스트">
       <StWrDiv>
-        상대방이 부적절한 메시지를 전송하는 경우
+        매칭된 상대방과 함께
         <br />
-        아랫쪽 신고 버튼을 이용해주세요.
+        채팅방에서 이야기를 나누어 보세요 !
       </StWrDiv>
       {chatList?.map((list, index) => (
         <div key={list.roomId}>
@@ -28,10 +28,7 @@ const ChatList = () => {
               navigate(`/chattingdetail/${list.roomId}`);
             }}
           >
-            <StDiv
-              isGray={index % 2 === 1}
-              isLast={index === chatList.length - 1}
-            >
+            <StDiv isGray={index % 2 === 1} isLast={index === chatList.length - 1}>
               <StMsDiv>
                 <StImg src={list?.dogImageUrl}></StImg> {list?.nickname}
               </StMsDiv>
