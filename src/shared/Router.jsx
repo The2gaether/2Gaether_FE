@@ -41,7 +41,10 @@ const Router = () => {
             <Route path="/giveLove" element={<GiveLove />} />
             <Route path="/getLove" element={<GetLove />} />
             <Route path="/chattingList" element={<ChattingList />} />
-            <Route path="/chattingdetail/:roomId" element={<ChattingDetail />} />
+            <Route
+              path="/chattingdetail/:roomId"
+              element={<ChattingDetail />}
+            />
             <Route path="/mypage" element={<EditUser />} />
             <Route path="/mypage/editnick" element={<EditNick />} />
             <Route path="/mypage/editpsw" element={<EditPsw />} />

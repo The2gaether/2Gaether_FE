@@ -33,7 +33,7 @@ const ChatList = () => {
               isLast={index === chatList.length - 1}
             >
               <StMsDiv>
-                {list?.nickname} {list?.message}
+                <StImg src={list?.dogImageUrl}></StImg> {list?.nickname}
               </StMsDiv>
             </StDiv>
           </div>
@@ -73,10 +73,19 @@ const StDiv = styled.div`
 const StMsDiv = styled.div`
   display: flex;
   flex-direction: row;
-  margin-top: 12px;
+
   align-items: center;
   padding: 0px;
   gap: 19px;
   width: 310px;
   height: 48px;
+`;
+const StImg = styled.img`
+  display: flex;
+  position: relative;
+  background-size: cover;
+  background-position: center;
+  width: 50px;
+  height: 50px;
+  border-radius: 100px;
 `;

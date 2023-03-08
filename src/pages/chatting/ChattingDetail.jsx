@@ -101,7 +101,7 @@ const ChattingDetail = () => {
     // 메시지 초기화시 스크롤 이동
     scrollRef.current.scrollIntoView({
       behavior: "smooth",
-      block: "start",
+      block: "end",
       inline: "nearest",
     });
   }, [messages]);
@@ -191,8 +191,9 @@ const StyledChatWindow = styled.div`
   align-items: center;
   background-color: white;
   border-radius: 10px;
-  width: 365px;
-  max-height: 620px;
+  max-width: 365px;
+  //이부분 고치기
+  max-height: 560px;
   margin-left: 10px;
   position: relative;
   height: calc(100vh - 80px);
@@ -222,7 +223,7 @@ const MessageList = styled.div`
   word-break: break-all;
   display: flex;
   text-align: left;
-  max-width: 60%;
+  max-width: 160px;
   width: fit-content;
   /* 내가 보내는 메시지 스타일 */
   ${({ isMine }) =>
@@ -245,7 +246,6 @@ const ChatInput = styled.div`
   display: flex;
   align-items: center;
   justify-content: center;
-  margin-top: 20px;
 `;
 const ChatHistory = styled.div`
   display: flex;
