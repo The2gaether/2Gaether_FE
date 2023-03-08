@@ -39,21 +39,6 @@ const CardList = () => {
     setNoModalOpen(true);
   };
 
-  //싫어요 클릭
-  const handleHateClick = () => {
-    axios.post(
-      `${process.env.REACT_APP_DOG}/match/reject/${dogs.dogId}`,
-      {},
-      {
-        headers: {
-          Authorization,
-        },
-      }
-    );
-    alert("싫어요를 눌렀습니다.");
-    window.location.reload();
-  };
-
   useEffect(() => {
     fetchList();
   }, []);
@@ -72,13 +57,14 @@ const CardList = () => {
         <NoModalBasic
           dogId={dogs.dogId}
           dogName={dogs.dogName}
-          setModalOpen={setModalOpen}
+          setNoModalOpen={setNoModalOpen}
           userId={dogs.createdBy}
         />
       )}
       <Image key={dogs.dogId} images={mainImage} data={dogs} />
       <StBtnGroup>
         <StImg src={YES} onClick={showModal}></StImg>
+        {/* <StImg src={NO} onClick={() => handleHateClick()}></StImg> */}
         <StImg src={NO} onClick={showNoModal}></StImg>
       </StBtnGroup>
     </Container>
