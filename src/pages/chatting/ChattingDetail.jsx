@@ -5,7 +5,10 @@ import SockJS from "sockjs-client";
 import styled from "styled-components";
 import { subMessage } from "../../redux/modules/socketSlice";
 import Stomp from "stompjs";
-import { __getChatListThunk, __postChatopenThunk } from "../../redux/modules/chattingSlice";
+import {
+  __getChatListThunk,
+  __postChatopenThunk,
+} from "../../redux/modules/chattingSlice";
 import Layout from "../../components/Layout";
 import ArrowIcon from "../../assets/svg/ArrowIcon.svg";
 
@@ -291,7 +294,7 @@ const BeforeChatHistory = styled.div`
   height: 160px;
   flex-direction: column;
   padding: 10px;
-  height: calc(100% - 1%); // 변경된 부분
+  height: calc(100% - 1.2%); // 변경된 부분
 `;
 const StDiv = styled.div`
   width: 370px;

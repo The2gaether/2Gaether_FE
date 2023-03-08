@@ -9,6 +9,7 @@ import { useEffect } from "react";
 function WelcomePage() {
   const navigate = useNavigate();
   const Authorization = sessionStorage.getItem("accessToken");
+  console.log(Authorization);
   // const [isTrue, setIsTrue] = useState();
 
   const fetchTrue = () => {
@@ -20,9 +21,11 @@ function WelcomePage() {
       })
       .then((res) => {
         if (res.data === true) {
+          console.log(Authorization);
           navigate("/");
           window.location.reload();
         } else {
+          console.log(Authorization);
           navigate("/dogSignup");
           window.location.reload();
         }
