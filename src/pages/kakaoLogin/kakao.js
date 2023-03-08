@@ -22,7 +22,7 @@ const Kakao = () => {
   useEffect(() => {
     loginCheck && navigate("/selectpage");
   }, [loginCheck, navigate]);
-  console.log(loginCheck);
+
   return (
     <div>
       <h1>Loading</h1>

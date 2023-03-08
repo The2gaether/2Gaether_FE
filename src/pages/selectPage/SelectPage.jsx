@@ -20,11 +20,9 @@ function WelcomePage() {
       })
       .then((res) => {
         if (res?.data === true) {
-          console.log(Authorization);
           navigate("/");
           window.location.reload();
         } else {
-          console.log(Authorization);
           navigate("/dogSignup");
           window.location.reload();
         }
