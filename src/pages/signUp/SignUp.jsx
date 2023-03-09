@@ -2,9 +2,10 @@ import React from "react";
 import styled from "styled-components";
 import { useNavigate } from "react-router-dom";
 import { useState } from "react";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { __postUser, __checkId } from "../../redux/modules/userSlice";
 import StartLayout from "../../components/StartLayout";
+import { useEffect } from "react";
 
 function SignUp() {
   const navigate = useNavigate();
@@ -33,6 +34,8 @@ function SignUp() {
   const [checkpassInput, setcheckpassInput] = useState("");
   const [match, setMatch] = useState(false);
   //정규식
+  const isLogin = useSelector((state) => state.userList.isLogin);
+
   const regusername = /^[^a-z|A-Z|0-9|ㄱ-ㅎ|가-힣]{1,20}$/;
   const regEmail =
     /^[0-9a-zA-Z]([-_.]?[0-9a-zA-Z])*@[0-9a-zA-Z]([-_.]?[0-9a-zA-Z])*.[a-zA-Z]{2,3}$/;
@@ -56,7 +59,7 @@ function SignUp() {
       !regPassword.test(value)
         ? setPassInput(
             `8~15자의 영문과 숫자 그리고 
-             특수문자(!@#$%^&*)를 입력해주세요.`
+             특수문자(!@#$%^&*)로 입력해주세요.`
           )
         : setPassInput("");
     if (name === "check_password") {
@@ -111,6 +114,12 @@ function SignUp() {
       );
     }
   };
+  useEffect(() => {
+    if (isLogin) {
+      setIsModalOpen(true);
+      setModalMessage("중복확인이 되었습니다.");
+    }
+  }, [isLogin]);
 
   return (
     <StartLayout>
@@ -139,6 +148,10 @@ function SignUp() {
             name="username"
             value={username}
             placeholder="닉네임을 입력하세요(강아지 이름X)"
+            onFocus={(e) => (e.target.placeholder = "")}
+            onBlur={(e) =>
+              (e.target.placeholder = "닉네임을 입력하세요(강아지 이름X)")
+            }
             onChange={onChangeUserHandler}
           ></StInput>
         </StDiv>
@@ -152,6 +165,8 @@ function SignUp() {
             name="email"
             value={email}
             placeholder="이메일을 입력해주세요"
+            onFocus={(e) => (e.target.placeholder = "")}
+            onBlur={(e) => (e.target.placeholder = "이메일을 입력해주세요")}
             onChange={onChangeUserHandler}
           />
           <StP3 id="help-user" className="help">
@@ -162,7 +177,9 @@ function SignUp() {
           <StChDiv style={{ fontSize: "8px" }}>
             오른쪽의 이메일 중복확인 버튼을 클릭해주세요.
           </StChDiv>
-          <StDogButton onClick={onSubmitUserCheckHandler}>중복확인</StDogButton>
+          <StDogButton disabled={emailInput} onClick={onSubmitUserCheckHandler}>
+            중복확인
+          </StDogButton>
         </StCheckGroup>
         <StDiv>
           <StP2>비밀번호</StP2>
@@ -171,6 +188,8 @@ function SignUp() {
             name="password"
             value={password}
             placeholder="비밀번호를 입력하세요"
+            onFocus={(e) => (e.target.placeholder = "")}
+            onBlur={(e) => (e.target.placeholder = "비밀번호를 입력하세요")}
             onChange={onChangeUserHandler}
           ></StInput>
           <StP3 id="help-password1" className="help">
@@ -185,6 +204,8 @@ function SignUp() {
             name="check_password"
             value={check_password}
             placeholder="비밀번호 확인해주세요"
+            onFocus={(e) => (e.target.placeholder = "")}
+            onBlur={(e) => (e.target.placeholder = "비밀번호 확인해주세요")}
             onChange={onChangeUserHandler}
           ></StInput>
           <StP3 id="help-password2" className="help" match={match}>
