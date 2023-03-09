@@ -59,8 +59,8 @@ const GiveDogList = () => {
     <Container>
       <StOnePage>
         <OneDog>
-          {dogs.map(({ userId, dogId, dogName, dogSex, imageUrl }) => (
-            <Stgroup key={userId}>
+          {dogs.map(({ userId, dogId, dogName, dogSex, imageUrl }, index) => (
+            <Stgroup key={userId} isGray={index % 2 === 0}>
               <StDog style={{ backgroundImage: `url(${imageUrl})` }} />
               {dogSex === "female" ? <StName> {dogName}</StName> : <StName> {dogName}</StName>}
               <StProfile onClick={() => showModal(dogId)}>프로필</StProfile>
@@ -84,18 +84,19 @@ const OneDog = styled.div`
   display: flex;
   flex-direction: column;
   justify-content: center;
-  margin-left: 20px;
+  /* margin-left: 20px; */
 `;
 const Stgroup = styled.div`
   display: flex;
   align-items: center;
+  background: ${(props) => (props.isGray ? "#C6C6C6" : "#ffffff")};
 `;
 
 const StDog = styled.div`
   width: 30px;
   height: 30px;
   padding: 10px;
-  margin: 10px 10px 10px 10px;
+  margin: 10px 10px 10px 30px;
   border-radius: 30px;
   background-size: cover;
   background-position: center;

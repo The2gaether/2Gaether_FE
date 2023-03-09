@@ -67,9 +67,9 @@ function SignUp() {
       return alert("아이디랑 비밀번호를 입력해주세요!");
     }
     if (password !== check_password) {
-      return alert("다시 비번좀!");
+      return alert("다시 비밀번호를 입력해주세요!");
     }
-
+    //회원가입 중복 이메일이면 로그인창으로 아가지게 해야할것 같고 회원가입이 안되게 짜야할것 같습니다.
     dispatch(
       __postUser({
         username,
@@ -77,9 +77,10 @@ function SignUp() {
         password,
       })
     );
-    alert("이메일이 전송되었습니다! 이메일을 확인해주세요!");
+    alert(" 가입하신 이메일로 인증메일이 갔다멍! \n 인증확인 하고와라멍!");
     navigate("/login");
   };
+
   const onSubmitUserCheckHandler = (e) => {
     e.preventDefault();
     if (email.trim() === "") {

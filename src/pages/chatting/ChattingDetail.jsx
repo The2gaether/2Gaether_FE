@@ -5,10 +5,7 @@ import SockJS from "sockjs-client";
 import styled from "styled-components";
 import { subMessage } from "../../redux/modules/socketSlice";
 import Stomp from "stompjs";
-import {
-  __getChatListThunk,
-  __postChatopenThunk,
-} from "../../redux/modules/chattingSlice";
+import { __getChatListThunk, __postChatopenThunk } from "../../redux/modules/chattingSlice";
 import Layout from "../../components/Layout";
 import ArrowIcon from "../../assets/svg/ArrowIcon.svg";
 
@@ -103,6 +100,10 @@ const ChattingDetail = () => {
 
   return (
     <Layout title={chatcollect[0]?.informDto?.opponentNickname}>
+      <StWrDiv>
+        <div>매칭된 상대방과 함께</div>
+        <div>채팅방에서 이야기를 나누어 보세요 !</div>
+      </StWrDiv>
       <StyledChatWindow>
         <Header />
         <div>
@@ -169,11 +170,7 @@ const ChattingDetail = () => {
       <StDiv>
         <ChatInput>
           <form onSubmit={(e) => e.preventDefault()}>
-            <Input
-              placeholder="200글자 이내로 작성해주세요"
-              type="text"
-              ref={chatRef}
-            />
+            <Input placeholder="200글자 이내로 작성해주세요" type="text" ref={chatRef} />
             <StButton onClick={myChat}>전송</StButton>
           </form>
         </ChatInput>
@@ -314,4 +311,18 @@ const StButton = styled.button`
   margin-top: 5px;
   background-color: #2f58ac;
   color: white;
+`;
+
+const StWrDiv = styled.div`
+  width: 374px;
+  height: 50px;
+  font-size: 12px;
+  line-height: 17px;
+  text-align: center;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  color: white;
+  background: #172c56;
 `;

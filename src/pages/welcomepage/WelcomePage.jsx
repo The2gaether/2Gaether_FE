@@ -4,8 +4,21 @@ import { useNavigate } from "react-router-dom";
 import StartLayout from "../../components/StartLayout";
 import welecome from "../../assets/img/welecome.jpg";
 import whitetogather from "../../assets/img/whitetogather.png";
+import { useEffect } from "react";
 function WelcomePage() {
   const navigate = useNavigate();
+
+  const myAlert = () => {
+    alert(
+      // "1차 업데이트 (03/09 02:16) \n 1. 채팅방에서 엔터키 가.능. \n 2. 매치 오류와 로그인 불가기능 수정!\n 3. 피드백이 아직 부족합니다 더더 말해주세요!"
+      "2차 업데이트 (03/09 17:36) \n 1. 카카오톡 로그인기능 가능 \n 2. 받은 좋아요 페이지 깨짐 수정\n 3. 좋아요 리스트 음영처리 및 CSS꺠지는 현상 수정 \n 4. 채팅 리스트 안내문구 수정 5. 업데이트 알림창 다시등장 방지"
+    );
+  };
+
+  const mix = () => {
+    myAlert();
+    navigate("/login");
+  };
 
   return (
     <StartLayout>
@@ -13,10 +26,9 @@ function WelcomePage() {
         <StP1>
           우리 강아지의<span>산책 매칭</span>
         </StP1>
-
         <StImg src={whitetogather} />
         <Fade>
-          <StBtn onClick={() => navigate("/login")}>시작하기</StBtn>
+          <StBtn onClick={() => mix()}>시작하기</StBtn>
         </Fade>
         <StH1>
           인근의 <span>강아지 친구와 매칭</span>되어
