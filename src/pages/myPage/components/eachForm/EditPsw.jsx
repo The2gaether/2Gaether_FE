@@ -26,7 +26,7 @@ const EditNick = () => {
   const onChangeUserHandler = (e) => {
     const { name, value } = e.target;
     setPsw({ ...psw, [name]: value });
-    if (name === "password")
+    if (name === "newPassword")
       !regPassword.test(value)
         ? setPassInput(`8~16자의 영문, 특수문자, 숫자를 조합하여 입력해주세요.`)
         : setPassInput("");
@@ -62,7 +62,7 @@ const EditNick = () => {
             onSubmitHadler();
           }}
         >
-          <div style={{ fontSize: "20px", fontWeight: "bold" }}>비밀번호 변경</div>
+          {/* <div style={{ fontSize: "20px", fontWeight: "bold" }}>현재 비밀번호</div>
           <StInput
             placeholder="현재 비밀번호를 입력해주세요"
             required
@@ -70,7 +70,7 @@ const EditNick = () => {
             value={password}
             onChange={onChangeUserHandler}
           />
-          <Space />
+          <Space /> */}
           <div style={{ fontSize: "20px", fontWeight: "bold" }}>새 비밀번호</div>
           <StInput
             type="password"
@@ -133,7 +133,7 @@ const StForm = styled.form`
 `;
 
 const StInput = styled.input`
-  margin-top: 20px;
+  margin-top: 40px;
   border-top-style: none;
   border-left-style: none;
   border-right-style: none;
