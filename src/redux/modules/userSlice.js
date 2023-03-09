@@ -110,7 +110,7 @@ const userList = createSlice({
       //연결후
       state.isLoading = false;
 
-      alert("사용가능 이메일입니다! 이메일인증을 진행해주세요!");
+      alert("중복확인이 완료되었습니다!");
     },
     [__checkId.rejected]: (state, action) => {
       state.isLoading = false;
