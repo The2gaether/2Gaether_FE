@@ -36,7 +36,9 @@ function ModalBasic({ setModalOpen, dogId, dogName, userId }) {
         <Regular>투개더 이용이 어렵답니다.😂 </Regular> */}
         <Garo />
         <St3>
-          <StTrueButton onClick={() => handleButtonClick()}>네, 좋아요!</StTrueButton>
+          <StTrueButton onClick={() => handleButtonClick()}>
+            네, 좋아요!
+          </StTrueButton>
           <Sero />
           <StFalseButton onClick={closeModal}>다시 볼게요.</StFalseButton>
         </St3>
