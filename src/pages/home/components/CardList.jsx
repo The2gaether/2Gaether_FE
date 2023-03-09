@@ -16,13 +16,17 @@ const CardList = () => {
   const offset = (page - 1) * limit;
 
   const fetchList = async () => {
-    const { data } = await axios.get(`${process.env.REACT_APP_DOG}/match`, {
-      headers: {
-        Authorization,
-      },
-    });
-    setDogs(data);
-    setMainImage(data.images);
+    try {
+      const { data } = await axios.get(`${process.env.REACT_APP_DOG}/match`, {
+        headers: {
+          Authorization,
+        },
+      });
+      setDogs(data);
+      setMainImage(data.images);
+    } catch (error) {
+      console.log(error);
+    }
   };
 
   //좋아요 모달

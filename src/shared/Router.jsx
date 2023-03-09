@@ -18,6 +18,7 @@ import AddDog from "../pages/myPage/components/eachForm/AddDog";
 import EditAddress from "../pages/myPage/components/eachForm/EditAddress";
 import SelectPage from "../pages/selectPage/SelectPage";
 import NewAddress from "../pages/dogSignup/NewAddress";
+import Outofusers from "../pages/myPage/components/eachForm/Outofusers";
 
 const Router = () => {
   const Authorization = sessionStorage.getItem("accessToken");
@@ -48,6 +49,7 @@ const Router = () => {
             <Route path="/mypage" element={<EditUser />} />
             <Route path="/mypage/editnick" element={<EditNick />} />
             <Route path="/mypage/editpsw" element={<EditPsw />} />
+            <Route path="/mypage/outofusers" element={<Outofusers />} />
             <Route path="/mypage/adddog" element={<AddDog />} />
             <Route path="/mypage/editaddress" element={<EditAddress />} />
             <Route path="/myDog/:id" element={<MyDog />} />

@@ -68,7 +68,7 @@ const StTopGroup = styled.div`
   }
   .address {
     margin-bottom: 10px;
-    font-size: 13px;
+    font-size: 12px;
   }
   .div2 {
     /* padding-left: 100px; */
@@ -88,7 +88,9 @@ const StSurvey = styled.a`
   justify-content: center;
   // 요소들을 컨테이너의 가운데로 정렬
   align-items: center;
-  width: 100px;
+  font-size: 12px;
+  font-weight: 200;
+  width: 80px;
   height: 20px;
   margin-left: 40px;
   text-decoration: none;

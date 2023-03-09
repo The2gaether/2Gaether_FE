@@ -28,16 +28,11 @@ const EditNick = () => {
     setPsw({ ...psw, [name]: value });
     if (name === "password")
       !regPassword.test(value)
-        ? setPassInput(
-            `8~16자의 영문 대소문자와 숫자로 입력해주세요.
-                         특수문자(!@#$%^&*)도 사용 가능합니다.`
-          )
+        ? setPassInput(`8~16자의 영문, 특수문자, 숫자를 조합하여 입력해주세요.`)
         : setPassInput("");
 
     if (name === "check_password")
-      newPassword !== value
-        ? setcheckpassInput("비밀번호가 불일치합니다")
-        : setcheckpassInput("");
+      newPassword !== value ? setcheckpassInput("비밀번호가 불일치합니다") : setcheckpassInput("");
   };
 
   const onSubmitHadler = async () => {
@@ -55,7 +50,7 @@ const EditNick = () => {
   };
 
   const onDeleteUserHandler = () => {
-    alert("진짜 삭제할거예요?");
+    navigate("/mypage/outofusers");
   };
 
   return (
@@ -67,9 +62,7 @@ const EditNick = () => {
             onSubmitHadler();
           }}
         >
-          <div style={{ fontSize: "20px", fontWeight: "bold" }}>
-            비밀번호 변경
-          </div>
+          <div style={{ fontSize: "20px", fontWeight: "bold" }}>비밀번호 변경</div>
           <StInput
             placeholder="현재 비밀번호를 입력해주세요"
             required
@@ -78,9 +71,7 @@ const EditNick = () => {
             onChange={onChangeUserHandler}
           />
           <Space />
-          <div style={{ fontSize: "20px", fontWeight: "bold" }}>
-            새 비밀번호
-          </div>
+          <div style={{ fontSize: "20px", fontWeight: "bold" }}>새 비밀번호</div>
           <StInput
             type="password"
             placeholder="영문, 숫자, 특수문자 포함 8자 이상 입력해주세요"
@@ -89,11 +80,7 @@ const EditNick = () => {
             value={newPassword}
             onChange={onChangeUserHandler}
           />
-          <p
-            style={{ fontSize: "10px", fontWeight: "bold" }}
-            id="help-password1"
-            className="help"
-          >
+          <p style={{ fontSize: "10px", fontWeight: "bold" }} id="help-password1" className="help">
             {passInput}
           </p>
           <br />
@@ -112,7 +99,7 @@ const EditNick = () => {
           <StButton>변경하기</StButton>
         </StForm>
         <UnderLine />
-        {/* <StDeleteUser onClick={() => onDeleteUserHandler()}>
+        <StDeleteUser onClick={() => onDeleteUserHandler()}>
           <div style={{ fontSize: "20px", fontWeight: "bold" }} onClick={onDeleteUserHandler}>
             회원탈퇴
           </div>
@@ -120,7 +107,7 @@ const EditNick = () => {
           <div style={{ fontSize: "15px", color: "#c6c6c6" }}>
             개인정보 및 설정이 모두 삭제됩니다.
           </div>
-        </StDeleteUser> */}
+        </StDeleteUser>
       </Container>
     </Layout>
   );
@@ -162,6 +149,7 @@ const StButton = styled.button`
   background-color: #2f58ac;
   color: white;
   margin-bottom: 30px;
+  cursor: pointer;
 `;
 
 const UnderLine = styled.div`
@@ -177,6 +165,7 @@ const StDeleteUser = styled.div`
   // 요소들 배열 방식의 방향
   flex-direction: column;
   margin-left: -50px;
+  cursor: pointer;
 `;
 const Space = styled.div`
   height: 80px;

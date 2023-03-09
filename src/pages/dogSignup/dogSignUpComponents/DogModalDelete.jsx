@@ -1,23 +1,30 @@
 import React from "react";
 import styled from "styled-components";
+import { useNavigate } from "react-router";
 
-function DogModalDetail() {
+function DogModalDelete() {
+  const navigate = useNavigate();
+
+  function onsubmitdelete() {
+    sessionStorage.removeItem("accessToken");
+    navigate("/login");
+  }
   return (
     <Wrapper>
-      <St1>"뒤로가기"를 누르셨군요!</St1>
+      <St1>고객님의 탈퇴요청이 정상적으로 접수되었습니다.</St1>
       <br></br>
-      <St2>강아지 등록을 안하시면</St2>
-      <St2>투개더 이용이 어렵답니다.😂 </St2>
-      <br></br>
-      <Separator />
+      <St2>투개더는 언제든지 여러분을 기다릴게요.</St2>
+      <Separator>
+        <div></div>
+      </Separator>
       <St3>
-        <St4>네,알겠습니다</St4>
+        <St4 onClick={onsubmitdelete}>네 알겠습니다.</St4>
       </St3>
     </Wrapper>
   );
 }
 
-export default DogModalDetail;
+export default DogModalDelete;
 
 const St1 = styled.div`
   font-size: 16px;
@@ -31,6 +38,7 @@ const St2 = styled.div`
   margin: 5px 0px 5px 0px;
   font-size: 12px;
   font-weight: 400;
+  margin-bottom: 15px;
 `;
 
 const Separator = styled.div`
@@ -39,7 +47,6 @@ const Separator = styled.div`
   text-transform: uppercase;
   display: flex;
   justify-content: center;
-  width: 100%;
   align-items: center;
   div {
     width: 100%;

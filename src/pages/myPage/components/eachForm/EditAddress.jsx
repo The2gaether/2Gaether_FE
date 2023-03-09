@@ -34,8 +34,7 @@ const NewAddress = () => {
         extraAddress += data.bname;
       }
       if (data.buildingName !== "") {
-        extraAddress +=
-          extraAddress !== "" ? `, ${data.buildingName}` : data.buildingName;
+        extraAddress += extraAddress !== "" ? `, ${data.buildingName}` : data.buildingName;
       }
       newAddress += extraAddress !== "" ? ` (${extraAddress})` : "";
     }
@@ -77,9 +76,7 @@ const NewAddress = () => {
               <div>
                 <AddressInput onClick={() => setIsOpen(true)} value={address} />
                 <StBtnDiv>
-                  <StBackBtn onClick={() => setSignNumber(signNumber - 1)}>
-                    뒤로
-                  </StBackBtn>
+                  <StBackBtn onClick={() => setSignNumber(signNumber - 1)}>뒤로</StBackBtn>
                   <StBtn type="submit" onClick={next}>
                     다음
                   </StBtn>
@@ -121,7 +118,7 @@ const AddressInput = styled.input`
   color: black;
   text-align: center;
   padding: 8px 0px;
-  font-size: 10px;
+  font-size: 12px;
   width: 200px;
   height: 30px;
   opacity: gray;
@@ -142,7 +139,7 @@ const StBackBtn = styled.button`
   color: white;
   text-align: center;
   padding: 8px 0px;
-  font-size: 15px;
+  font-size: 14px;
   margin-left: 5%;
   width: 90%;
   height: 45px;
@@ -155,7 +152,7 @@ const StBtn = styled.button`
   background-color: #2f58ac;
   color: white;
   text-align: center;
-  font-size: 15px;
+  font-size: 14px;
   width: 200px;
   height: 45px;
   opacity: gray;

@@ -83,6 +83,7 @@ function SignUp() {
       setModalMessage("비밀번호가 다릅니다!");
       return;
     }
+
     dispatch(
       __postUser({
         username,
@@ -90,8 +91,10 @@ function SignUp() {
         password,
       })
     );
+
     setIsModalOpen(true);
     setModalMessage("가입이 완료되었습니다. 전송한 메일을 확인해주세요!");
+
     navigate("/login");
   };
 
@@ -248,7 +251,7 @@ const StDogButton = styled.button`
   margin-left: 3px;
   width: 60px;
   height: 18px;
-  font-size: 10px;
+  font-size: 12px;
   font-weight: 600;
   background: #d9d9d9;
   margin-top: -25px;

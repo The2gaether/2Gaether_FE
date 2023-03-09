@@ -180,6 +180,7 @@ function SignUpForm() {
                 다음
               </StBtn>
             </StBtnDiv>
+
             {signup && (
               <DogSignUpModal closeModal={() => setSignup(!signup)}>
                 <DogModalDetail />

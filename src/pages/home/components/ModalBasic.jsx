@@ -36,7 +36,9 @@ function ModalBasic({ setModalOpen, dogId, dogName, userId }) {
         <Regular>투개더 이용이 어렵답니다.😂 </Regular> */}
         <Garo />
         <St3>
-          <StTrueButton onClick={() => handleButtonClick()}>네, 좋아요!</StTrueButton>
+          <StTrueButton onClick={() => handleButtonClick()}>
+            네, 좋아요!
+          </StTrueButton>
           <Sero />
           <StFalseButton onClick={closeModal}>다시 볼게요.</StFalseButton>
         </St3>
@@ -101,7 +103,7 @@ const Regular = styled.div`
 const St3 = styled.div`
   display: flex;
   justify-content: center;
-  font-size: 10px;
+  font-size: 12px;
   font-weight: 600;
 `;
 

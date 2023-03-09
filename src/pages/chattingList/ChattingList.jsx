@@ -17,9 +17,8 @@ const ChatList = () => {
   return (
     <Layout title="채팅 리스트">
       <StWrDiv>
-        매칭된 상대방과 함께
-        <br />
-        채팅방에서 이야기를 나누어 보세요 !
+        <div style={{ fontSize: "12px", fontWeight: 400 }}>매칭된 상대방과 함께</div>
+        <div style={{ fontSize: "12px", fontWeight: 700 }}>채팅방에서 이야기를 나누어 보세요 !</div>
       </StWrDiv>
       {chatList?.map((list, index) => (
         <div key={list.roomId}>
@@ -50,9 +49,10 @@ const StWrDiv = styled.div`
   text-align: center;
   display: flex;
   align-items: center;
-  color: #868686;
   justify-content: center;
-  background: #f2f2f2;
+  flex-direction: column;
+  color: white;
+  background: #172c56;
 `;
 
 const StDiv = styled.div`
