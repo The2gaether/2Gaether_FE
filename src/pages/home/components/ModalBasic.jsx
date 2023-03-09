@@ -103,7 +103,7 @@ const Regular = styled.div`
 const St3 = styled.div`
   display: flex;
   justify-content: center;
-  font-size: 10px;
+  font-size: 12px;
   font-weight: 600;
 `;
 

@@ -95,26 +95,25 @@ const InfiniteScroll = () => {
       <StOnePage>
         <OneDog>
           {data.map(({ imageUrl, dogName, userId, dogSex, dogId }, index) => (
-            <Stgroup key={userId}>
-              <StDiv isGray={index % 2 === 1}>
-                <StDog style={{ backgroundImage: `url(${imageUrl})` }}></StDog>
-                {dogSex === "female" ? <StName> {dogName}</StName> : <StName> {dogName}</StName>}
-                <StBtnGroup>
-                  <StProfile onClick={() => showModal(dogId)}>프로필</StProfile>
-                  <StBtn
-                    src={Like}
-                    onClick={() => {
-                      handleButtonClick(dogId, userId);
-                    }}
-                  />
-                  <StBtn
-                    src={Reject}
-                    onClick={() => {
-                      onRejectHandler(dogId);
-                    }}
-                  />
-                </StBtnGroup>
-              </StDiv>
+            <Stgroup key={userId} isGray={index % 2 === 0}>
+              <StDog style={{ backgroundImage: `url(${imageUrl})` }}></StDog>
+              {dogSex === "female" ? <StName> {dogName}</StName> : <StName> {dogName}</StName>}
+              <StBtnGroup>
+                <StProfile onClick={() => showModal(dogId)}>프로필</StProfile>
+                <StBtn
+                  src={Like}
+                  onClick={() => {
+                    handleButtonClick(dogId, userId);
+                  }}
+                />
+                <StBtn
+                  src={Reject}
+                  onClick={() => {
+                    onRejectHandler(dogId);
+                  }}
+                />
+              </StBtnGroup>
+
               <div ref={observer} />
               {modalOpen && <Profile myDogId={myDogId} setModalOpen={setModalOpen} />}
             </Stgroup>
@@ -138,30 +137,19 @@ const OneDog = styled.div`
   display: flex;
   flex-direction: column;
   justify-content: center;
-  margin-left: 20px;
+  /* margin-left: 20px; */
 `;
 const Stgroup = styled.div`
   display: flex;
   align-items: center;
-`;
-
-const StDiv = styled.div`
-  /* display: flex;
-  flex-direction: column;
-  align-items: flex-start;
-  padding: 12px 0px 22px 20px;
-  gap: 10px;
-  background: ${(props) => (props.isGray ? "black" : "#ffffff")};
-  width: 355px;
-  height: 40px;
-  border-bottom: ${(props) => (props.isLast ? "none" : "1px solid #dbdbdb")}; */
+  background: ${(props) => (props.isGray ? "#C6C6C6" : "#ffffff")};
 `;
 
 const StDog = styled.div`
   width: 30px;
   height: 30px;
   padding: 10px;
-  margin: 10px 10px 10px 10px;
+  margin: 10px 10px 10px 30px;
   border-radius: 30px;
   background-size: cover;
   background-position: center;

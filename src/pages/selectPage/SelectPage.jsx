@@ -85,7 +85,7 @@ const SignUpBtn = styled.button`
   color: white;
   text-align: center;
   padding: 8px 0px;
-  font-size: 15px;
+  font-size: 14px;
   margin-top: 25%;
   margin-left: 5%;
   width: 90%;
