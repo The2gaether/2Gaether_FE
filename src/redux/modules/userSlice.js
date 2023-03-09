@@ -23,12 +23,10 @@ export const __postLogin = createAsyncThunk(
     try {
       const res = await axios.post(
         `${process.env.REACT_APP_DOG}/users/login`,
-        // `${process.env.REACT_APP_DOGS}/users/login`,
         payload
       );
 
       sessionStorage.setItem("accessToken", res.headers.authorization);
-      // sessionStorage.setItem("refresh_token", res.headers.authorization);
 
       return thunkAPI.fulfillWithValue();
     } catch (error) {
@@ -109,8 +107,7 @@ const userList = createSlice({
     [__checkId.fulfilled]: (state, action) => {
       //연결후
       state.isLoading = false;
-
-      alert("중복확인이 완료되었습니다!");
+      state.isLogin = true;
     },
     [__checkId.rejected]: (state, action) => {
       state.isLoading = false;

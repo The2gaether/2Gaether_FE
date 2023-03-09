@@ -66,6 +66,8 @@ function Login() {
                 type="text"
                 name="email"
                 placeholder="이메일을 입력하세요"
+                onFocus={(e) => (e.target.placeholder = "")}
+                onBlur={(e) => (e.target.placeholder = "이메일을 입력하세요")}
                 onChange={onChangeLoginHandler}
               ></StInput>
             </StEmBox>
@@ -76,6 +78,8 @@ function Login() {
                 type="password"
                 name="password"
                 placeholder="패스워드를 입력하세요"
+                onFocus={(e) => (e.target.placeholder = "")}
+                onBlur={(e) => (e.target.placeholder = "패스워드를 입력하세요")}
                 onChange={onChangeLoginHandler}
               ></StInput>
             </StPwBox>
@@ -99,9 +103,7 @@ function Login() {
             <a href={KAKAO_AUTH_URL}>
               <KakaoSignIn src={kakao} />
             </a>
-            {/* <div onClick={() => alert("준비중입니다")}>
-              <KakaoSignIn src={kakao} />
-            </div> */}
+
             <div onClick={() => alert("준비중입니다")}>
               <KakaoSignIn src={google} />
             </div>

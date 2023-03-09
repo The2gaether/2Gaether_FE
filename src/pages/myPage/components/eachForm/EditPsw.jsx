@@ -32,7 +32,9 @@ const EditNick = () => {
         : setPassInput("");
 
     if (name === "check_password")
-      newPassword !== value ? setcheckpassInput("비밀번호가 불일치합니다") : setcheckpassInput("");
+      newPassword !== value
+        ? setcheckpassInput("비밀번호가 불일치합니다")
+        : setcheckpassInput("");
   };
 
   const onSubmitHadler = async () => {
@@ -63,6 +65,7 @@ const EditNick = () => {
           }}
         >
           {/* <div style={{ fontSize: "20px", fontWeight: "bold" }}>현재 비밀번호</div>
+
           <StInput
             placeholder="현재 비밀번호를 입력해주세요"
             required
@@ -70,8 +73,12 @@ const EditNick = () => {
             value={password}
             onChange={onChangeUserHandler}
           />
+
           <Space /> */}
-          <div style={{ fontSize: "20px", fontWeight: "bold" }}>새 비밀번호</div>
+          <div style={{ fontSize: "20px", fontWeight: "bold" }}>
+            새 비밀번호
+          </div>
+
           <StInput
             type="password"
             placeholder="영문, 숫자, 특수문자 포함 8자 이상 입력해주세요"
@@ -80,7 +87,11 @@ const EditNick = () => {
             value={newPassword}
             onChange={onChangeUserHandler}
           />
-          <p style={{ fontSize: "10px", fontWeight: "bold" }} id="help-password1" className="help">
+          <p
+            style={{ fontSize: "10px", fontWeight: "bold" }}
+            id="help-password1"
+            className="help"
+          >
             {passInput}
           </p>
           <br />
@@ -100,7 +111,10 @@ const EditNick = () => {
         </StForm>
         <UnderLine />
         <StDeleteUser onClick={() => onDeleteUserHandler()}>
-          <div style={{ fontSize: "20px", fontWeight: "bold" }} onClick={onDeleteUserHandler}>
+          <div
+            style={{ fontSize: "20px", fontWeight: "bold" }}
+            onClick={onDeleteUserHandler}
+          >
             회원탈퇴
           </div>
           <br />
