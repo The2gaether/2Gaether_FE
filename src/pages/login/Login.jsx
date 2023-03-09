@@ -44,6 +44,10 @@ function Login() {
     loginCheck && navigate("/selectpage");
   }, [loginCheck, navigate]);
 
+  const [edit, onEdit] = useState({
+    here: "",
+  });
+
   return (
     <StartLayout>
       <Container>
