@@ -101,8 +101,8 @@ const ChattingDetail = () => {
   return (
     <Layout title={chatcollect[0]?.informDto?.opponentNickname}>
       <StWrDiv>
-        <div>매칭된 상대방과 함께</div>
-        <div>채팅방에서 이야기를 나누어 보세요 !</div>
+        <div style={{ fontSize: "12px", fontWeight: 400 }}>매칭된 상대방과 함께</div>
+        <div style={{ fontSize: "12px", fontWeight: 700 }}>채팅방에서 이야기를 나누어 보세요 !</div>
       </StWrDiv>
       <StyledChatWindow>
         <Header />

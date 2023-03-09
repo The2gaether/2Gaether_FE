@@ -68,7 +68,7 @@ const StTopGroup = styled.div`
   }
   .address {
     margin-bottom: 10px;
-    font-size: 13px;
+    font-size: 12px;
   }
   .div2 {
     /* padding-left: 100px; */

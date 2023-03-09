@@ -75,7 +75,7 @@ const StDistance = styled.div`
   border: 1px solid black;
   width: 80px;
   height: 20px;
-  font-size: 15px;
+  font-size: 16px;
   font-weight: 700;
 `;
 const StNameSex = styled.div`

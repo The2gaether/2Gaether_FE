@@ -1,18 +1,20 @@
 import styled from "styled-components";
+import Left from "../../../assets/svg/left_arrow.svg";
+import Right from "../../../assets/svg/right_arrow.svg";
 
 const CardlistPagination = ({ total, limit, page, setPage }) => {
   const numPages = Math.ceil(total / limit);
 
   return (
     <Nav>
-      <Button onClick={() => setPage(page - 1)} disabled={page === 1}>
-        {/* &lt; => 왼쪽꺽새를 의미합니다 */}
+      {/* <Button src={Left} onClick={() => setPage(page - 1)} disabled={page === 1}>
         &lt;
-      </Button>
-      <Button onClick={() => setPage(page + 1)} disabled={page === numPages}>
-        {/* &gt; => 오른쪽꺽새를 의미합니다 */}
+      </Button> */}
+      <StImg src={Left} />
+      <StImg src={Right} />
+      {/* <Button onClick={() => setPage(page + 1)} disabled={page === numPages}>
         &gt;
-      </Button>
+      </Button> */}
     </Nav>
   );
 };
@@ -23,6 +25,11 @@ const Nav = styled.nav`
   display: flex;
   justify-content: space-between;
   gap: 4px;
+`;
+
+const StImg = styled.img`
+  width: 50px;
+  height: 50px;
 `;
 
 const Button = styled.button`

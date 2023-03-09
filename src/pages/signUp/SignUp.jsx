@@ -220,7 +220,7 @@ const StDogButton = styled.button`
   margin-left: 3px;
   width: 60px;
   height: 18px;
-  font-size: 10px;
+  font-size: 12px;
   font-weight: 600;
   background: #d9d9d9;
   margin-top: -25px;
