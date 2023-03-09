@@ -20,14 +20,11 @@ const Outofusers = () => {
       <Container>
         <StForm>
           <Stdelete>투개더 탈퇴 전 확인해주세요!</Stdelete>
-          <br />
-          <br />
           <Stword>
             <div>• 채팅,매칭내역등 모든 정보가 삭제됩니다.</div>
+            <br />
             <div>• 데이터는 복구가 불가능합니다.</div>
           </Stword>
-          <br />
-          <br />
         </StForm>
         <StButton onClick={() => setSignup(!signup)}>탈퇴하기</StButton>
         {signup && (
@@ -70,9 +67,9 @@ const StLogo = styled.img`
 const StButton = styled.button`
   border-radius: 20px 20px 20px 20px;
   border-style: none;
-  width: 280px;
+  width: 200px;
   height: 40px;
-  background-color: gray;
+  background-color: #48484a;
   color: white;
   margin-bottom: 30px;
 `;
@@ -81,6 +78,16 @@ const Stdelete = styled.h1`
   text-decoration: underline;
   font-size: 20px;
   font-weight: 700;
+  margin-bottom: 20px;
 `;
 
-const Stword = styled.div``;
+const Stword = styled.div`
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  background-color: #f4f4f4;
+  width: 350px;
+  height: 80px;
+  margin-bottom: 40px;
+`;

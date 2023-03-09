@@ -99,12 +99,8 @@ const EditNick = () => {
           <StButton>변경하기</StButton>
         </StForm>
         <UnderLine />
-
         <StDeleteUser onClick={() => onDeleteUserHandler()}>
-          <div
-            style={{ fontSize: "20px", fontWeight: "bold" }}
-            onClick={onDeleteUserHandler}
-          >
+          <div style={{ fontSize: "20px", fontWeight: "bold" }} onClick={onDeleteUserHandler}>
             회원탈퇴
           </div>
           <br />
@@ -153,6 +149,7 @@ const StButton = styled.button`
   background-color: #2f58ac;
   color: white;
   margin-bottom: 30px;
+  cursor: pointer;
 `;
 
 const UnderLine = styled.div`
@@ -168,6 +165,7 @@ const StDeleteUser = styled.div`
   // 요소들 배열 방식의 방향
   flex-direction: column;
   margin-left: -50px;
+  cursor: pointer;
 `;
 const Space = styled.div`
   height: 80px;
