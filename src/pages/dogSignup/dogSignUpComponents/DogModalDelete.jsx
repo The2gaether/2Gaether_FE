@@ -8,6 +8,7 @@ function DogModalDelete() {
   function onsubmitdelete() {
     sessionStorage.removeItem("accessToken");
     navigate("/login");
+    window.location.reload();
   }
   return (
     <Wrapper>

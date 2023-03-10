@@ -2,9 +2,10 @@ import React from "react";
 import styled from "styled-components";
 import { useNavigate } from "react-router-dom";
 import { useState } from "react";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { __postUser, __checkId } from "../../redux/modules/userSlice";
 import StartLayout from "../../components/StartLayout";
+import { useEffect } from "react";
 
 function SignUp() {
   const navigate = useNavigate();
@@ -25,33 +26,40 @@ function SignUp() {
   const { username, email, password, check_password } = user;
 
   //상태관리 위해 초기값 세팅
-
+  const [isModalOpen, setIsModalOpen] = useState(false); // 모달 오픈 여부를 관리하는 state
+  const [modalMessage, setModalMessage] = useState(""); // 모달에 띄울 메세지를 관리하는 state
   const [usernameInput, setusernameInput] = useState("");
   const [emailInput, setEmailInput] = useState("");
   const [passInput, setPassInput] = useState("");
   const [checkpassInput, setcheckpassInput] = useState("");
   const [match, setMatch] = useState(false);
   //정규식
+  const isLogin = useSelector((state) => state.userList.isLogin);
+
   const regusername = /^[^a-z|A-Z|0-9|ㄱ-ㅎ|가-힣]{1,20}$/;
   const regEmail =
     /^[0-9a-zA-Z]([-_.]?[0-9a-zA-Z])*@[0-9a-zA-Z]([-_.]?[0-9a-zA-Z])*.[a-zA-Z]{2,3}$/;
-  const regPassword = /^(?=.*[a-z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,}$/;
+  const regPassword =
+    /^(?=.*[a-z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,}$/;
 
   //유효성 검사 및 유저 스테이트 작성
   const onChangeUserHandler = (e) => {
     const { name, value } = e.target;
     setUser({ ...user, [name]: value });
 
-    if (name === "username") !regusername.test(value) ? setusernameInput("") : setusernameInput("");
+    if (name === "username")
+      !regusername.test(value) ? setusernameInput("") : setusernameInput("");
 
     if (name === "email")
-      !regEmail.test(value) ? setEmailInput("이메일 형식으로 입력해주세요.") : setEmailInput("");
+      !regEmail.test(value)
+        ? setEmailInput("이메일 형식으로 입력해주세요.")
+        : setEmailInput("");
 
     if (name === "password")
       !regPassword.test(value)
         ? setPassInput(
             `8~15자의 영문과 숫자 그리고 
-             특수문자(!@#$%^&*)를 입력해주세요.`
+             특수문자(!@#$%^&*)로 입력해주세요.`
           )
         : setPassInput("");
     if (name === "check_password") {
@@ -63,13 +71,22 @@ function SignUp() {
   // 회원가입 POST요청 및 공백 존재 시 경고창 생성
   const onSubmitUserHandler = (e) => {
     e.preventDefault();
-    if (username.trim() === "" || email.trim() === "" || password.trim() === "") {
-      return alert("아이디랑 비밀번호를 입력해주세요!");
+    if (username.trim() === "" || password.trim() === "") {
+      setIsModalOpen(true); // 모달 오픈
+      setModalMessage("아이디랑 비밀번호를 입력해주세요!"); // 모달에 띄울 메세지 설정
+      return;
+    }
+    if (!regPassword.test(password)) {
+      setIsModalOpen(true);
+      setModalMessage("비밀번호를 다시 확인해주세요.");
+      return;
     }
     if (password !== check_password) {
-      return alert("다시 비밀번호를 입력해주세요!");
+      setIsModalOpen(true);
+      setModalMessage("비밀번호가 다릅니다!");
+      return;
     }
-    //회원가입 중복 이메일이면 로그인창으로 아가지게 해야할것 같고 회원가입이 안되게 짜야할것 같습니다.
+
     dispatch(
       __postUser({
         username,
@@ -77,21 +94,32 @@ function SignUp() {
         password,
       })
     );
-    alert(" 가입하신 이메일로 인증메일이 갔다멍! \n 인증확인 하고와라멍!");
+
+    setIsModalOpen(true);
+    setModalMessage("가입이 완료되었습니다. 전송한 메일을 확인해주세요!");
+
     navigate("/login");
   };
 
   const onSubmitUserCheckHandler = (e) => {
     e.preventDefault();
     if (email.trim() === "") {
-      return alert("이메일 입력스!");
+      setIsModalOpen(true);
+      setModalMessage("이메일 입력해주세요!");
+    } else {
+      dispatch(
+        __checkId({
+          email,
+        })
+      );
     }
-    dispatch(
-      __checkId({
-        email,
-      })
-    );
   };
+  useEffect(() => {
+    if (isLogin) {
+      setIsModalOpen(true);
+      setModalMessage("중복확인이 되었습니다.");
+    }
+  }, [isLogin]);
 
   return (
     <StartLayout>
@@ -101,6 +129,18 @@ function SignUp() {
           <br />
           <StP1>투개더를 이용해보세요</StP1>
         </TopBox>
+        {isModalOpen && (
+          <ModalBackground>
+            <ModalContent>
+              <Modalbox>
+                <div>{modalMessage}</div>
+              </Modalbox>
+              <ModalButton onClick={() => setIsModalOpen(false)}>
+                확인
+              </ModalButton>
+            </ModalContent>
+          </ModalBackground>
+        )}
         <StDiv>
           <StP2>닉네임</StP2>
           <StInput
@@ -108,6 +148,10 @@ function SignUp() {
             name="username"
             value={username}
             placeholder="닉네임을 입력하세요(강아지 이름X)"
+            onFocus={(e) => (e.target.placeholder = "")}
+            onBlur={(e) =>
+              (e.target.placeholder = "닉네임을 입력하세요(강아지 이름X)")
+            }
             onChange={onChangeUserHandler}
           ></StInput>
         </StDiv>
@@ -121,6 +165,8 @@ function SignUp() {
             name="email"
             value={email}
             placeholder="이메일을 입력해주세요"
+            onFocus={(e) => (e.target.placeholder = "")}
+            onBlur={(e) => (e.target.placeholder = "이메일을 입력해주세요")}
             onChange={onChangeUserHandler}
           />
           <StP3 id="help-user" className="help">
@@ -131,7 +177,9 @@ function SignUp() {
           <StChDiv style={{ fontSize: "8px" }}>
             오른쪽의 이메일 중복확인 버튼을 클릭해주세요.
           </StChDiv>
-          <StDogButton onClick={onSubmitUserCheckHandler}>중복확인</StDogButton>
+          <StDogButton disabled={emailInput} onClick={onSubmitUserCheckHandler}>
+            중복확인
+          </StDogButton>
         </StCheckGroup>
         <StDiv>
           <StP2>비밀번호</StP2>
@@ -140,6 +188,8 @@ function SignUp() {
             name="password"
             value={password}
             placeholder="비밀번호를 입력하세요"
+            onFocus={(e) => (e.target.placeholder = "")}
+            onBlur={(e) => (e.target.placeholder = "비밀번호를 입력하세요")}
             onChange={onChangeUserHandler}
           ></StInput>
           <StP3 id="help-password1" className="help">
@@ -154,6 +204,8 @@ function SignUp() {
             name="check_password"
             value={check_password}
             placeholder="비밀번호 확인해주세요"
+            onFocus={(e) => (e.target.placeholder = "")}
+            onBlur={(e) => (e.target.placeholder = "비밀번호 확인해주세요")}
             onChange={onChangeUserHandler}
           ></StInput>
           <StP3 id="help-password2" className="help" match={match}>
@@ -274,4 +326,46 @@ const StInput = styled.input`
       border-color: rgb(38, 38, 38);
     }
   }
+`;
+
+const ModalBackground = styled.div`
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.4);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+`;
+
+const ModalContent = styled.div`
+  background-color: white;
+  width: 240px;
+  height: 130px;
+  padding: 24px;
+  border-radius: 8px;
+  font-weight: 700;
+  font-size: 17px;
+  text-align: center;
+`;
+const Modalbox = styled.div`
+  border: 1px solid black;
+  height: 100px;
+  width: 288px;
+  border-top: none;
+  border-right: none;
+  border-left: none;
+  margin-left: -25px;
+`;
+const ModalButton = styled.button`
+  color: #007aff;
+  font-weight: 700;
+  font-size: 17px;
+  padding: 8px 16px;
+  border: none;
+  background-color: white;
+  margin-top: 5px;
+  cursor: pointer;
 `;
