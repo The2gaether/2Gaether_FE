@@ -5,7 +5,10 @@ import SockJS from "sockjs-client";
 import styled from "styled-components";
 import { subMessage } from "../../redux/modules/socketSlice";
 import Stomp from "stompjs";
-import { __getChatListThunk, __postChatopenThunk } from "../../redux/modules/chattingSlice";
+import {
+  __getChatListThunk,
+  __postChatopenThunk,
+} from "../../redux/modules/chattingSlice";
 import Layout from "../../components/Layout";
 import ArrowIcon from "../../assets/svg/ArrowIcon.svg";
 
@@ -101,8 +104,12 @@ const ChattingDetail = () => {
   return (
     <Layout title={chatcollect[0]?.informDto?.opponentNickname}>
       <StWrDiv>
-        <div style={{ fontSize: "12px", fontWeight: 400 }}>매칭된 상대방과 함께</div>
-        <div style={{ fontSize: "12px", fontWeight: 700 }}>채팅방에서 이야기를 나누어 보세요 !</div>
+        <div style={{ fontSize: "12px", fontWeight: 400 }}>
+          매칭된 상대방과 함께
+        </div>
+        <div style={{ fontSize: "12px", fontWeight: 700 }}>
+          채팅방에서 이야기를 나누어 보세요 !
+        </div>
       </StWrDiv>
       <StyledChatWindow>
         <Header />
@@ -170,7 +177,11 @@ const ChattingDetail = () => {
       <StDiv>
         <ChatInput>
           <form onSubmit={(e) => e.preventDefault()}>
-            <Input placeholder="200글자 이내로 작성해주세요" type="text" ref={chatRef} />
+            <Input
+              placeholder="200글자 이내로 작성해주세요"
+              type="text"
+              ref={chatRef}
+            />
             <StButton onClick={myChat}>전송</StButton>
           </form>
         </ChatInput>
@@ -217,7 +228,6 @@ const MessageList = styled.div`
   display: flex;
   text-align: left;
   max-width: 160px;
-
   width: fit-content;
   /* 내가 보내는 메시지 스타일 */
   ${({ isMine }) =>
@@ -291,7 +301,7 @@ const BeforeChatHistory = styled.div`
   height: 160px;
   flex-direction: column;
   padding: 10px;
-  height: calc(100% - 1.2%); // 변경된 부분
+  height: calc(100% - 1%); // 변경된 부분
 `;
 const StDiv = styled.div`
   width: 370px;

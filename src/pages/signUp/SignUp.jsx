@@ -40,7 +40,7 @@ function SignUp() {
   const regEmail =
     /^[0-9a-zA-Z]([-_.]?[0-9a-zA-Z])*@[0-9a-zA-Z]([-_.]?[0-9a-zA-Z])*.[a-zA-Z]{2,3}$/;
   const regPassword =
-    /^(?=.*[a-z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,}$/;
+    /^(?=.*[A-Za-z])(?=.*\d)(?=.*[@$!%*#?&])[A-Za-z\d@$!%*#?&]{8,16}$/; //유효성 검사 및 유저 스테이트 작성
 
   //유효성 검사 및 유저 스테이트 작성
   const onChangeUserHandler = (e) => {
@@ -59,7 +59,7 @@ function SignUp() {
       !regPassword.test(value)
         ? setPassInput(
             `8~15자의 영문과 숫자 그리고 
-             특수문자(!@#$%^&*)로 입력해주세요.`
+             특수문자(!@#$%&*)로 입력해주세요.`
           )
         : setPassInput("");
     if (name === "check_password") {
@@ -78,7 +78,7 @@ function SignUp() {
     }
     if (!regPassword.test(password)) {
       setIsModalOpen(true);
-      setModalMessage("비밀번호를 다시 확인해주세요.");
+      setModalMessage("비밀번호를 정확히 입력해주세요!");
       return;
     }
     if (password !== check_password) {
@@ -203,7 +203,7 @@ function SignUp() {
             type="password"
             name="check_password"
             value={check_password}
-            placeholder="비밀번호 확인해주세요"
+            placeholder="비밀번호를 재입력해주세요"
             onFocus={(e) => (e.target.placeholder = "")}
             onBlur={(e) => (e.target.placeholder = "비밀번호 확인해주세요")}
             onChange={onChangeUserHandler}
