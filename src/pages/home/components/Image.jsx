@@ -6,6 +6,7 @@ const Image = ({ images, data }) => {
   const [limit, setLimit] = useState(1);
   const [page, setPage] = useState(1);
   const offset = (page - 1) * limit;
+  console.log(data);
   return (
     <Container>
       {images.slice(offset, offset + limit).map(({ imageUrl, id }) => (
@@ -16,7 +17,7 @@ const Image = ({ images, data }) => {
       <StName>
         <StDistance> 약 {data.distance} KM </StDistance>
         <br />
-        {data.dogSex === "female" ? (
+        {data.dogSex === "Female" ? (
           <StNameSex> {data.dogName} (여)</StNameSex>
         ) : (
           <StNameSex>{data.dogName} (남)</StNameSex>

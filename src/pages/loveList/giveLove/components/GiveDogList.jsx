@@ -89,7 +89,7 @@ const OneDog = styled.div`
 const Stgroup = styled.div`
   display: flex;
   align-items: center;
-  background: ${(props) => (props.isGray ? "#C6C6C6" : "#ffffff")};
+  background: ${(props) => (props.isGray ? "#F4F4F4" : "#ffffff")};
 `;
 
 const StDog = styled.div`
