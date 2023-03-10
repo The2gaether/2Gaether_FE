@@ -105,13 +105,13 @@ const EditDog = ({ dog, images }) => {
         </div>
         <StBox>사진</StBox>
         <br />
-        <div>
+        <StImageGroup>
           {images.map((image) => (
             <div key={image.id}>
               <StPeople style={{ backgroundImage: `url(${image.imageUrl})` }} />
             </div>
           ))}
-        </div>
+        </StImageGroup>
         <StBox>설명</StBox>
         <StDesc
           type="text"
@@ -150,7 +150,7 @@ const StBox = styled.div`
   font-size: 14px;
   width: 80px;
   height: 25px;
-  margin-top: 10px;
+  margin-top: 7px;
   margin-bottom: 7px;
   background: #ffffff;
   border: 1px solid #4269b4;
@@ -166,6 +166,8 @@ const StPeople = styled.div`
   background-size: cover;
   background-position: center;
   box-shadow: 0px 5px 5px 0px rgba(0, 0, 0, 0.3);
+  margin-left: 10px;
+  margin-right: 10px;
 `;
 
 const StName = styled.input`
@@ -248,4 +250,11 @@ const StDiv5 = styled.div`
 `;
 const StDiv6 = styled.div`
   margin-left: 83px;
+`;
+
+const StImageGroup = styled.div`
+  display: flex;
+  justify-content: space-between;
+  margin-top: -10px;
+  margin-bottom: 10px;
 `;
