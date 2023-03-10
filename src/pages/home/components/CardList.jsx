@@ -14,6 +14,7 @@ const CardList = () => {
   const [page, setPage] = useState(1);
   const [mainImage, setMainImage] = useState([]);
   const offset = (page - 1) * limit;
+  const [count, setCount] = useState(0);
 
   const fetchList = async () => {
     try {
@@ -45,12 +46,14 @@ const CardList = () => {
 
   useEffect(() => {
     fetchList();
-  }, []);
+  }, [count]);
 
   return (
     <Container>
       {modalOpen && (
         <ModalBasic
+          count={count}
+          setCount={setCount}
           dogId={dogs.dogId}
           dogName={dogs.dogName}
           setModalOpen={setModalOpen}
@@ -59,6 +62,8 @@ const CardList = () => {
       )}
       {noModalOpen && (
         <NoModalBasic
+          count={count}
+          setCount={setCount}
           dogId={dogs.dogId}
           dogName={dogs.dogName}
           setNoModalOpen={setNoModalOpen}

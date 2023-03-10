@@ -1,7 +1,7 @@
 import styled from "styled-components";
 import axios from "axios";
 
-function ModalBasic({ setNoModalOpen, dogId, dogName, userId }) {
+function ModalBasic({ setNoModalOpen, dogId, dogName, count, setCount }) {
   const Authorization = sessionStorage.getItem("accessToken");
   // 모달 끄기
   const closeModal = () => {
@@ -19,7 +19,9 @@ function ModalBasic({ setNoModalOpen, dogId, dogName, userId }) {
         },
       }
     );
-    window.location.reload();
+    setCount(count + 1);
+    setNoModalOpen(false);
+    // window.location.reload();
   };
 
   return (

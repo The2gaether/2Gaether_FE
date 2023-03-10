@@ -1,7 +1,7 @@
 import styled from "styled-components";
 import axios from "axios";
 
-function ModalBasic({ setModalOpen, dogId, dogName, userId }) {
+function ModalBasic({ setModalOpen, dogId, dogName, count, setCount }) {
   const Authorization = sessionStorage.getItem("accessToken");
   // 모달 끄기
   const closeModal = () => {
@@ -18,12 +18,14 @@ function ModalBasic({ setModalOpen, dogId, dogName, userId }) {
         },
       }
     );
+    setCount(count + 1);
+    setModalOpen(false);
   };
 
   //통합코드
   function handleButtonClick() {
     handleFavoriteClick();
-    window.location.reload();
+    // window.location.reload();
   }
 
   return (
@@ -36,9 +38,7 @@ function ModalBasic({ setModalOpen, dogId, dogName, userId }) {
         <Regular>투개더 이용이 어렵답니다.😂 </Regular> */}
         <Garo />
         <St3>
-          <StTrueButton onClick={() => handleButtonClick()}>
-            네, 좋아요!
-          </StTrueButton>
+          <StTrueButton onClick={() => handleButtonClick()}>네, 좋아요!</StTrueButton>
           <Sero />
           <StFalseButton onClick={closeModal}>다시 볼게요.</StFalseButton>
         </St3>

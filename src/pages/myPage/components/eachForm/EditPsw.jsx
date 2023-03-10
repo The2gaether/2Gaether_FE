@@ -24,8 +24,7 @@ const EditNick = () => {
   const [match, setMatch] = useState(false);
 
   //정규식
-  const regPassword =
-    /^(?=.*[A-Za-z])(?=.*\d)(?=.*[@$!%*#?&])[A-Za-z\d@$!%*#?&]{8,16}$/; //유효성 검사 및 유저 스테이트 작성
+  const regPassword = /^(?=.*[A-Za-z])(?=.*\d)(?=.*[@$!%*#?&])[A-Za-z\d@$!%*#?&]{8,16}$/; //유효성 검사 및 유저 스테이트 작성
   const onChangeUserHandler = (e) => {
     const { name, value } = e.target;
     setPsw({ ...psw, [name]: value });
@@ -33,7 +32,6 @@ const EditNick = () => {
       !regPassword.test(value)
         ? setPassInput(`8~16자의 영문, 특수문자, 숫자를 조합하여 입력해주세요.`)
         : setPassInput("");
-
     if (name === "check_password") {
       const match = newPassword === value;
       setMatch(match);
@@ -85,17 +83,12 @@ const EditNick = () => {
                 <Modalbox>
                   <div>{modalMessage}</div>
                 </Modalbox>
-                <ModalButton onClick={() => setIsModalOpen(false)}>
-                  확인
-                </ModalButton>
+                <ModalButton onClick={() => setIsModalOpen(false)}>확인</ModalButton>
               </ModalContent>
             </ModalBackground>
           )}
-
           <Space />
-          <div style={{ fontSize: "20px", fontWeight: "bold" }}>
-            새 비밀번호
-          </div>
+          <div style={{ fontSize: "20px", fontWeight: "bold" }}>새 비밀번호</div>
           <StInput
             type="password"
             placeholder="영문, 숫자, 특수문자 포함 8자 이상 입력해주세요"
@@ -128,10 +121,7 @@ const EditNick = () => {
         </StForm>
         <UnderLine />
         <StDeleteUser onClick={() => onDeleteUserHandler()}>
-          <div
-            style={{ fontSize: "20px", fontWeight: "bold" }}
-            onClick={onDeleteUserHandler}
-          >
+          <div style={{ fontSize: "20px", fontWeight: "bold" }} onClick={onDeleteUserHandler}>
             회원탈퇴
           </div>
           <br />
