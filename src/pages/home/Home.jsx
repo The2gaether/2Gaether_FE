@@ -1,4 +1,5 @@
-import React from "react";
+import React, { useEffect } from "react";
+import { useHistory } from "react-router-dom";
 import CardList from "./components/CardList";
 import Footer from "../../shared/Footer";
 import Logo from "../../assets/img/logo.png";
