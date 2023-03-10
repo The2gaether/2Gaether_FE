@@ -199,7 +199,7 @@ const StyledChatWindow = styled.div`
   background-color: white;
   border-radius: 10px;
   max-width: 365px;
-  height: calc(100% - 80px); // 변경된 부분
+  height: calc(96% - 80px); // 변경된 부분
   margin-left: 10px;
   position: relative;
 
@@ -228,6 +228,7 @@ const MessageList = styled.div`
   display: flex;
   text-align: left;
   max-width: 160px;
+
   width: fit-content;
   /* 내가 보내는 메시지 스타일 */
   ${({ isMine }) =>
@@ -301,7 +302,7 @@ const BeforeChatHistory = styled.div`
   height: 160px;
   flex-direction: column;
   padding: 10px;
-  height: calc(100% - 1%); // 변경된 부분
+  height: calc(100% - 1.2%); // 변경된 부분
 `;
 const StDiv = styled.div`
   width: 370px;
