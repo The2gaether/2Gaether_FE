@@ -124,5 +124,5 @@ const StMsg = styled.div`
   display: flex;
   overflow: hidden;
   text-overflow: ellipsis;
-  margin-left: 20px;
+  margin-left: 19px;
 `;
