@@ -11,7 +11,12 @@ const Image = ({ images, data }) => {
     <Container>
       {images.slice(offset, offset + limit).map(({ imageUrl, id }) => (
         <StDog key={id} style={{ backgroundImage: `url(${imageUrl})` }}>
-          <CardlistPagination total={images.length} limit={limit} page={page} setPage={setPage} />
+          <CardlistPagination
+            total={images.length}
+            limit={limit}
+            page={page}
+            setPage={setPage}
+          />
         </StDog>
       ))}
       <StName>
@@ -74,9 +79,10 @@ const StDistance = styled.div`
   margin-left: 10px;
   border-radius: 10px 10px 10px 10px;
   border: 1px solid black;
-  width: 80px;
+  width: 100px;
+
   height: 20px;
-  font-size: 16px;
+  font-size: 14px;
   font-weight: 700;
 `;
 const StNameSex = styled.div`
