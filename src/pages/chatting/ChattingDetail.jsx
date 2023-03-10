@@ -198,8 +198,8 @@ const StyledChatWindow = styled.div`
   align-items: center;
   background-color: white;
   border-radius: 10px;
-  max-width: 100%; // 변경된 부분
-  height: calc(100% - 100px); // 변경된 부분
+  max-width: 365px;
+  height: calc(96% - 80px); // 변경된 부분
   margin-left: 10px;
   position: relative;
 
@@ -309,6 +309,10 @@ const StDiv = styled.div`
   margin-right: 20px;
   background-color: #e9e9e9;
   padding-right: 8px;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, 478%);
 `;
 const StButton = styled.button`
   width: 50px;
