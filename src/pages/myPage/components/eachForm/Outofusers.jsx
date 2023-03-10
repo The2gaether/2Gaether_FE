@@ -10,10 +10,6 @@ const Outofusers = () => {
   //모달창 띄우기
   const [signup, setSignup] = useState(false);
 
-  const [isChecked, setIsChecked] = useState(false);
-
-  function ondeletehandler() {}
-
   return (
     <Layout title="회원탈퇴">
       <StLogo src={smlogo} />
