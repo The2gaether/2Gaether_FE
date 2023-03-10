@@ -10,19 +10,22 @@ const EditNick = () => {
   //기초 데이터 생성
   const initialState = {
     newPassword: "",
-    password: "",
     check_password: "",
   };
   //유저 스테이트 생성
   const [psw, setPsw] = useState(initialState);
   //유저 스테이트 구조분해 할당
-  const { password, check_password, newPassword } = psw;
+  const { check_password, newPassword } = psw;
   //상태관리 위해 초기값 세팅
+  const [isModalOpen, setIsModalOpen] = useState(false); // 모달 오픈 여부를 관리하는 state
+  const [modalMessage, setModalMessage] = useState("");
   const [passInput, setPassInput] = useState("");
   const [checkpassInput, setcheckpassInput] = useState("");
+  const [match, setMatch] = useState(false);
+
   //정규식
-  const regPassword = /^(?=.[A-Za-z])(?=.\\d)[A-Za-z\\d@$!%*#?&]{8,16}$/;
-  //유효성 검사 및 유저 스테이트 작성
+  const regPassword =
+    /^(?=.*[A-Za-z])(?=.*\d)(?=.*[@$!%*#?&])[A-Za-z\d@$!%*#?&]{8,16}$/; //유효성 검사 및 유저 스테이트 작성
   const onChangeUserHandler = (e) => {
     const { name, value } = e.target;
     setPsw({ ...psw, [name]: value });
@@ -31,30 +34,42 @@ const EditNick = () => {
         ? setPassInput(`8~16자의 영문, 특수문자, 숫자를 조합하여 입력해주세요.`)
         : setPassInput("");
 
-    if (name === "check_password")
-      newPassword !== value
-        ? setcheckpassInput("비밀번호가 불일치합니다")
-        : setcheckpassInput("");
+    if (name === "check_password") {
+      const match = newPassword === value;
+      setMatch(match);
+      setcheckpassInput(match ? "일치합니다" : "비밀번호가 불일치합니다");
+    }
   };
-
   const onSubmitHadler = async () => {
-    await axios
-      .patch(`${process.env.REACT_APP_DOG}/users/mypage`, psw, {
+    if (!regPassword.test(newPassword)) {
+      setIsModalOpen(true);
+      setModalMessage("비밀번호를 정확히 입력해주세요!");
+      return;
+    }
+
+    if (newPassword !== check_password) {
+      setIsModalOpen(true);
+      setModalMessage(`비밀번호가 일치하지 않습니다.`);
+      return;
+    }
+
+    try {
+      await axios.patch(`${process.env.REACT_APP_DOG}/users/mypage`, psw, {
         headers: {
           Authorization,
         },
-      })
-      .then((res) => {
-        return res;
       });
-    alert("성공적으로 변경되었습니다!");
-    // navigate(-1);
+      alert("성공적으로 변경되었습니다!");
+      navigate(-1);
+    } catch (error) {
+      setIsModalOpen(true);
+      setModalMessage(`비밀번호 변경에 실패했습니다.`);
+    }
   };
 
   const onDeleteUserHandler = () => {
     navigate("/mypage/outofusers");
   };
-
   return (
     <Layout title="설정">
       <Container>
@@ -64,21 +79,23 @@ const EditNick = () => {
             onSubmitHadler();
           }}
         >
-          {/* <div style={{ fontSize: "20px", fontWeight: "bold" }}>현재 비밀번호</div>
+          {isModalOpen && (
+            <ModalBackground>
+              <ModalContent>
+                <Modalbox>
+                  <div>{modalMessage}</div>
+                </Modalbox>
+                <ModalButton onClick={() => setIsModalOpen(false)}>
+                  확인
+                </ModalButton>
+              </ModalContent>
+            </ModalBackground>
+          )}
 
-          <StInput
-            placeholder="현재 비밀번호를 입력해주세요"
-            required
-            name="password"
-            value={password}
-            onChange={onChangeUserHandler}
-          />
-
-          <Space /> */}
+          <Space />
           <div style={{ fontSize: "20px", fontWeight: "bold" }}>
             새 비밀번호
           </div>
-
           <StInput
             type="password"
             placeholder="영문, 숫자, 특수문자 포함 8자 이상 입력해주세요"
@@ -87,13 +104,13 @@ const EditNick = () => {
             value={newPassword}
             onChange={onChangeUserHandler}
           />
-          <p
+          <StP3
             style={{ fontSize: "10px", fontWeight: "bold" }}
             id="help-password1"
             className="help"
           >
             {passInput}
-          </p>
+          </StP3>
           <br />
           <StInput
             type="password"
@@ -103,9 +120,9 @@ const EditNick = () => {
             value={check_password}
             onChange={onChangeUserHandler}
           />
-          <p id="help-password2" className="help">
+          <StP3 id="help-password2" className="help" match={match}>
             {checkpassInput}
-          </p>
+          </StP3>
           <Space />
           <StButton>변경하기</StButton>
         </StForm>
@@ -145,9 +162,14 @@ const StForm = styled.form`
   justify-content: center;
   align-items: center;
 `;
-
+const StP3 = styled.div`
+  font-size: 12px;
+  margin-top: 10px;
+  width: 250px;
+  color: ${(props) => (props.match ? "green" : "red")};
+`;
 const StInput = styled.input`
-  margin-top: 40px;
+  margin-top: 20px;
   border-top-style: none;
   border-left-style: none;
   border-right-style: none;
@@ -183,4 +205,45 @@ const StDeleteUser = styled.div`
 `;
 const Space = styled.div`
   height: 80px;
+`;
+const ModalBackground = styled.div`
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.4);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+`;
+
+const ModalContent = styled.div`
+  background-color: white;
+  width: 240px;
+  height: 130px;
+  padding: 24px;
+  border-radius: 8px;
+  font-weight: 700;
+  font-size: 17px;
+  text-align: center;
+`;
+const Modalbox = styled.div`
+  border: 1px solid black;
+  height: 100px;
+  width: 288px;
+  border-top: none;
+  border-right: none;
+  border-left: none;
+  margin-left: -25px;
+`;
+const ModalButton = styled.button`
+  color: #007aff;
+  font-weight: 700;
+  font-size: 17px;
+  padding: 8px 16px;
+  border: none;
+  background-color: white;
+  margin-top: 5px;
+  cursor: pointer;
 `;
