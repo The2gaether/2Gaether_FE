@@ -39,21 +39,17 @@ function SignUp() {
   const regusername = /^[^a-z|A-Z|0-9|ㄱ-ㅎ|가-힣]{1,20}$/;
   const regEmail =
     /^[0-9a-zA-Z]([-_.]?[0-9a-zA-Z])*@[0-9a-zA-Z]([-_.]?[0-9a-zA-Z])*.[a-zA-Z]{2,3}$/;
-  const regPassword =
-    /^(?=.*[A-Za-z])(?=.*\d)(?=.*[@$!%*#?&])[A-Za-z\d@$!%*#?&]{8,16}$/; //유효성 검사 및 유저 스테이트 작성
+  const regPassword = /^(?=.*[A-Za-z])(?=.*\d)(?=.*[@$!%*#?&])[A-Za-z\d@$!%*#?&]{8,16}$/; //유효성 검사 및 유저 스테이트 작성
 
   //유효성 검사 및 유저 스테이트 작성
   const onChangeUserHandler = (e) => {
     const { name, value } = e.target;
     setUser({ ...user, [name]: value });
 
-    if (name === "username")
-      !regusername.test(value) ? setusernameInput("") : setusernameInput("");
+    if (name === "username") !regusername.test(value) ? setusernameInput("") : setusernameInput("");
 
     if (name === "email")
-      !regEmail.test(value)
-        ? setEmailInput("이메일 형식으로 입력해주세요.")
-        : setEmailInput("");
+      !regEmail.test(value) ? setEmailInput("이메일 형식으로 입력해주세요.") : setEmailInput("");
 
     if (name === "password")
       !regPassword.test(value)
@@ -132,9 +128,7 @@ function SignUp() {
               <Modalbox>
                 <div>{modalMessage}</div>
               </Modalbox>
-              <ModalButton onClick={() => setIsModalOpen(false)}>
-                확인
-              </ModalButton>
+              <ModalButton onClick={() => setIsModalOpen(false)}>확인</ModalButton>
             </ModalContent>
           </ModalBackground>
         )}
@@ -146,9 +140,7 @@ function SignUp() {
             value={username}
             placeholder="닉네임을 입력하세요(강아지 이름X)"
             onFocus={(e) => (e.target.placeholder = "")}
-            onBlur={(e) =>
-              (e.target.placeholder = "닉네임을 입력하세요(강아지 이름X)")
-            }
+            onBlur={(e) => (e.target.placeholder = "닉네임을 입력하세요(강아지 이름X)")}
             onChange={onChangeUserHandler}
           ></StInput>
         </StDiv>
