@@ -34,8 +34,8 @@ function SignUp() {
   const [checkpassInput, setcheckpassInput] = useState("");
   const [match, setMatch] = useState(false);
   //정규식
-  const isLogin = useSelector((state) => state.userList.isLogin);
-
+  const isCheck = useSelector((state) => state.userList.isCheck);
+  console.log(isCheck);
   const regusername = /^[^a-z|A-Z|0-9|ㄱ-ㅎ|가-힣]{1,20}$/;
   const regEmail =
     /^[0-9a-zA-Z]([-_.]?[0-9a-zA-Z])*@[0-9a-zA-Z]([-_.]?[0-9a-zA-Z])*.[a-zA-Z]{2,3}$/;
@@ -64,6 +64,27 @@ function SignUp() {
       setcheckpassInput(match ? "일치합니다" : "비밀번호가 불일치합니다");
     }
   };
+
+  const onSubmitUserCheckHandler = (e) => {
+    e.preventDefault();
+    if (email.trim() === "") {
+      setIsModalOpen(true);
+      setModalMessage("이메일 입력해주세요!");
+    } else {
+      dispatch(
+        __checkId({
+          email,
+        })
+      );
+    }
+  };
+  useEffect(() => {
+    if (isCheck) {
+      setIsModalOpen(true);
+      setModalMessage("중복확인이 되었습니다.");
+    }
+  }, [isCheck]);
+
   // 회원가입 POST요청 및 공백 존재 시 경고창 생성
   const onSubmitUserHandler = (e) => {
     e.preventDefault();
@@ -90,30 +111,8 @@ function SignUp() {
         password,
       })
     );
-    setIsModalOpen(true);
-    setModalMessage("가입이 완료되었습니다. 전송한 메일을 확인해주세요!");
     navigate("/login");
   };
-
-  const onSubmitUserCheckHandler = (e) => {
-    e.preventDefault();
-    if (email.trim() === "") {
-      setIsModalOpen(true);
-      setModalMessage("이메일 입력해주세요!");
-    } else {
-      dispatch(
-        __checkId({
-          email,
-        })
-      );
-    }
-  };
-  useEffect(() => {
-    if (isLogin) {
-      setIsModalOpen(true);
-      setModalMessage("중복확인이 되었습니다.");
-    }
-  }, [isLogin]);
 
   return (
     <StartLayout>
