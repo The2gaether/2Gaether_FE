@@ -18,12 +18,12 @@ const Image = ({ images, data }) => {
         <StDistance> 약 {data.distance} KM </StDistance>
         <br />
         {data.dogSex === "Female" ? (
-          <StNameSex> {data.dogName} (여)</StNameSex>
+          <StNameSex> {data.dogName?.slice(0, 5)} (여)</StNameSex>
         ) : (
-          <StNameSex>{data.dogName} (남)</StNameSex>
+          <StNameSex>{data.dogName?.slice(0, 5)} (남)</StNameSex>
         )}
         <br />
-        <StDecs>{data.dogDetails}</StDecs>
+        <StDecs>{data.dogDetails?.slice(0, 56)}</StDecs>
       </StName>
     </Container>
   );
