@@ -57,6 +57,7 @@ export const __postUser = createAsyncThunk(
     }
   }
 );
+
 //이메일 중복체크
 export const __checkId = createAsyncThunk(
   "account/checkId",
@@ -89,6 +90,7 @@ const userList = createSlice({
     [__postUser.pending]: (state) => {
       //보내는 도중, 진행중
       state.isLoading = true;
+      state.isCertification = true;
     },
     [__postUser.fulfilled]: (state, action) => {
       //연결후

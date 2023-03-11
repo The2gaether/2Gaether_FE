@@ -22,9 +22,13 @@ function Login() {
 
   //유저 스테이트 생성
   const [user, setUser] = useState(initialState);
-
+  const [isModalOpen, setIsModalOpen] = useState(false); // 모달 오픈 여부를 관리하는 state
+  const [modalMessage, setModalMessage] = useState("");
   //로그인 체크 전역변수 불러오기
   const loginCheck = useSelector((state) => state.userList.isLogin);
+  const IsCertification = useSelector(
+    (state) => state.userList.isCertification
+  );
 
   //로그인 핸들러
   const onChangeLoginHandler = (e) => {
@@ -41,12 +45,15 @@ function Login() {
   };
 
   useEffect(() => {
+    if (IsCertification) {
+      setIsModalOpen(true);
+      setModalMessage("이메일 인증을 부탁드려요!");
+    }
+  }, [IsCertification]);
+
+  useEffect(() => {
     loginCheck && navigate("/selectpage");
   }, [loginCheck, navigate]);
-
-  const [edit, onEdit] = useState({
-    here: "",
-  });
 
   return (
     <StartLayout>
@@ -59,6 +66,18 @@ function Login() {
             <StBoldText>투개더를 이용해보세요</StBoldText>
           </StDiv>
           <div>
+            {isModalOpen && (
+              <ModalBackground>
+                <ModalContent>
+                  <Modalbox>
+                    <div>{modalMessage}</div>
+                  </Modalbox>
+                  <ModalButton onClick={() => setIsModalOpen(false)}>
+                    확인
+                  </ModalButton>
+                </ModalContent>
+              </ModalBackground>
+            )}
             <StEmBox>
               <StEmText>이메일</StEmText>
               <StInput
@@ -268,4 +287,45 @@ const StSocialGroup = styled.div`
 const KakaoSignIn = styled.img`
   width: 40px;
   height: 40px;
+`;
+const ModalBackground = styled.div`
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.4);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+`;
+
+const ModalContent = styled.div`
+  background-color: white;
+  width: 240px;
+  height: 130px;
+  padding: 24px;
+  border-radius: 8px;
+  font-weight: 700;
+  font-size: 17px;
+  text-align: center;
+`;
+const Modalbox = styled.div`
+  border: 1px solid black;
+  height: 100px;
+  width: 288px;
+  border-top: none;
+  border-right: none;
+  border-left: none;
+  margin-left: -25px;
+`;
+const ModalButton = styled.button`
+  color: #007aff;
+  font-weight: 700;
+  font-size: 17px;
+  padding: 8px 16px;
+  border: none;
+  background-color: white;
+  margin-top: 5px;
+  cursor: pointer;
 `;
