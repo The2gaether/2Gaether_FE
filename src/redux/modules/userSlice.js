@@ -107,7 +107,7 @@ const userList = createSlice({
     [__checkId.fulfilled]: (state, action) => {
       //연결후
       state.isLoading = false;
-      state.isLogin = true;
+      state.isCheck = true;
     },
     [__checkId.rejected]: (state, action) => {
       state.isLoading = false;

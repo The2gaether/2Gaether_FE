@@ -199,7 +199,7 @@ const StyledChatWindow = styled.div`
   background-color: white;
   border-radius: 10px;
   max-width: 365px;
-  height: calc(96% - 80px); // 변경된 부분
+  height: calc(95% - 80px); // 변경된 부분
   margin-left: 10px;
   position: relative;
 
