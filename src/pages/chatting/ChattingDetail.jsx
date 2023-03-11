@@ -181,6 +181,7 @@ const ChattingDetail = () => {
               placeholder="200글자 이내로 작성해주세요"
               type="text"
               ref={chatRef}
+              maxLength={200}
             />
             <StButton onClick={myChat}>전송</StButton>
           </form>
