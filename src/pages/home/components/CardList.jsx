@@ -27,6 +27,7 @@ const CardList = () => {
       setMainImage(data.images);
     } catch (error) {
       console.log(error);
+      alert("더 이상 만날 친구가 없어요...ㅠㅠ \n 내일 다시 새로운 친구를 찾아볼께요");
     }
   };
 

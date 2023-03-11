@@ -28,7 +28,7 @@ function ModalBasic({ setNoModalOpen, dogId, dogName, count, setCount }) {
     <BackGround>
       <Container>
         <TopSpace />
-        <Bold>{dogName}, 이 친구랑</Bold>
+        <Bold>{dogName?.slice(0, 5)}, 이 친구랑</Bold>
         <Bold>함께 할 수 없는 건가요..</Bold>
         {/* <Regular>강아지 등록을 안하시면</Regular>
         <Regular>투개더 이용이 어렵답니다.😂 </Regular> */}
