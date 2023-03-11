@@ -181,6 +181,7 @@ const ChattingDetail = () => {
               placeholder="200글자 이내로 작성해주세요"
               type="text"
               ref={chatRef}
+              maxLength={200}
             />
             <StButton onClick={myChat}>전송</StButton>
           </form>
@@ -199,7 +200,7 @@ const StyledChatWindow = styled.div`
   background-color: white;
   border-radius: 10px;
   max-width: 365px;
-  height: calc(95% - 80px); // 변경된 부분
+  height: calc(100% - 110px); // 변경된 부분
   margin-left: 10px;
   position: relative;
 
