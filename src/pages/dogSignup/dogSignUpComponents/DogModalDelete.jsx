@@ -11,17 +11,15 @@ function DogModalDelete() {
     window.location.reload();
   }
   return (
-    <Wrapper>
-      <St1>고객님의 탈퇴요청이 정상적으로 접수되었습니다.</St1>
-      <br></br>
+    <div>
+      <St1>고객님의 탈퇴요청이 </St1>
+      <St1>정상적으로 접수되었습니다. </St1>
       <St2>투개더는 언제든지 여러분을 기다릴게요.</St2>
-      <Separator>
-        <div></div>
-      </Separator>
+      <Garo />
       <St3>
         <St4 onClick={onsubmitdelete}>네 알겠습니다.</St4>
       </St3>
-    </Wrapper>
+    </div>
   );
 }
 
@@ -29,31 +27,17 @@ export default DogModalDelete;
 
 const St1 = styled.div`
   font-size: 16px;
-  font-weight: 800;
+  font-weight: 600;
   display: flex;
   justify-content: center;
   flex-direction: column;
+  margin-bottom: 3px;
 `;
 
 const St2 = styled.div`
-  margin: 5px 0px 5px 0px;
-  font-size: 12px;
+  margin: 25px 0px 0px 0px;
+  font-size: 10px;
   font-weight: 400;
-  margin-bottom: 15px;
-`;
-
-const Separator = styled.div`
-  width: 100%;
-  margin: 1px 0px 13px 0px;
-  text-transform: uppercase;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  div {
-    width: 100%;
-    height: 1px;
-    background-color: rgb(100, 99, 99);
-  }
 `;
 
 const St3 = styled.div`
@@ -67,11 +51,18 @@ const St3 = styled.div`
 
 const St4 = styled.div`
   color: #2f58ac;
-  font-size: 18px;
+  font-size: 12px;
   font-weight: 600;
   display: flex;
   justify-content: center;
   flex-direction: column;
+  cursor: pointer;
 `;
 
-const Wrapper = styled.div``;
+const Garo = styled.div`
+  width: 100%;
+  height: 0.5px;
+  background-color: rgba(60, 60, 67, 0.29);
+  margin-top: 30px;
+  margin-bottom: 13px;
+`;

@@ -6,22 +6,18 @@ const Image = ({ images, data }) => {
   const [limit, setLimit] = useState(1);
   const [page, setPage] = useState(1);
   const offset = (page - 1) * limit;
+
   return (
     <Container>
       {images.slice(offset, offset + limit).map(({ imageUrl, id }) => (
         <StDog key={id} style={{ backgroundImage: `url(${imageUrl})` }}>
-          <CardlistPagination
-            total={images.length}
-            limit={limit}
-            page={page}
-            setPage={setPage}
-          />
+          <CardlistPagination total={images.length} limit={limit} page={page} setPage={setPage} />
         </StDog>
       ))}
       <StName>
         <StDistance> 약 {data.distance} KM </StDistance>
         <br />
-        {data.dogSex === "female" ? (
+        {data.dogSex === "Female" ? (
           <StNameSex> {data.dogName} (여)</StNameSex>
         ) : (
           <StNameSex>{data.dogName} (남)</StNameSex>
@@ -101,4 +97,5 @@ const StDecs = styled.div`
   width: 300px;
   height: 30px;
   margin-left: 10px;
+  margin-bottom: 3px;
 `;

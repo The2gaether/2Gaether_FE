@@ -5,10 +5,25 @@ import Layout from "../../../../components/Layout";
 import smlogo from "../../../../assets/svg/logo.svg";
 import DogSignUpModal from "../../../dogSignup/dogSignUpComponents/DogSignUpModal";
 import DogModalDelete from "../../../dogSignup/dogSignUpComponents/DogModalDelete";
+import axios from "axios";
 
 const Outofusers = () => {
+  const Authorization = sessionStorage.getItem("accessToken");
   //모달창 띄우기
   const [signup, setSignup] = useState(false);
+
+  const deleteUserHandler = () => {
+    axios.delete(`${process.env.REACT_APP_DOG}/match`, {
+      headers: {
+        Authorization,
+      },
+    });
+  };
+
+  const deleteId = () => {
+    setSignup(!signup);
+    deleteUserHandler();
+  };
 
   return (
     <Layout title="회원탈퇴">
@@ -22,7 +37,7 @@ const Outofusers = () => {
             <div>• 데이터는 복구가 불가능합니다.</div>
           </Stword>
         </StForm>
-        <StButton onClick={() => setSignup(!signup)}>탈퇴하기</StButton>
+        <StButton onClick={() => deleteId()}>탈퇴하기</StButton>
         {signup && (
           <DogSignUpModal closeModal={() => setSignup(!signup)}>
             <DogModalDelete />
@@ -68,16 +83,23 @@ const StButton = styled.button`
   background-color: #48484a;
   color: white;
   margin-bottom: 30px;
+  cursor: pointer;
+
+  &:hover {
+    background-color: #2a4f9b;
+    transition: 0.3s;
+  }
 `;
 
 const Stdelete = styled.h1`
   text-decoration: underline;
-  font-size: 20px;
+  font-size: 14px;
   font-weight: 700;
   margin-bottom: 20px;
 `;
 
 const Stword = styled.div`
+  font-size: 14px;
   display: flex;
   justify-content: center;
   align-items: center;

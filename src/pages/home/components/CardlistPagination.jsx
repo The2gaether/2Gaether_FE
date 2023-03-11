@@ -1,20 +1,18 @@
 import styled from "styled-components";
-import Left from "../../../assets/svg/left_arrow.svg";
-import Right from "../../../assets/svg/right_arrow.svg";
+import Left from "../../../assets/svg/left_default.svg";
+import LeftH from "../../../assets/svg/left_hover.svg";
+import LeftP from "../../../assets/svg/left_press.svg";
+import Right from "../../../assets/svg/right_default.svg";
+import RightH from "../../../assets/svg/right_hover.svg";
+import RightP from "../../../assets/svg/right_press.svg";
 
 const CardlistPagination = ({ total, limit, page, setPage }) => {
   const numPages = Math.ceil(total / limit);
 
   return (
     <Nav>
-      {/* <Button src={Left} onClick={() => setPage(page - 1)} disabled={page === 1}>
-        &lt;
-      </Button> */}
-      <StImg src={Left} />
-      <StImg src={Right} />
-      {/* <Button onClick={() => setPage(page + 1)} disabled={page === numPages}>
-        &gt;
-      </Button> */}
+      <ButtonL onClick={() => setPage(page - 1)} disabled={page === 1} />
+      <ButtonR onClick={() => setPage(page + 1)} disabled={page === numPages} />
     </Nav>
   );
 };
@@ -27,40 +25,61 @@ const Nav = styled.nav`
   gap: 4px;
 `;
 
-const StImg = styled.img`
-  width: 50px;
-  height: 50px;
-`;
-
-const Button = styled.button`
+const ButtonL = styled.button`
+  background-image: url(${Left});
+  background-size: cover;
   display: flex;
   align-items: center;
   justify-content: center;
-  height: 80px;
-  width: 10px;
+  height: 50px;
+  width: 50px;
   border: none;
-  border-radius: 8px;
+  border-radius: 30px;
   padding: 8px;
   margin: 0;
-  background: black;
-  color: white;
-  font-size: 1rem;
 
   &:hover {
-    background: tomato;
+    background-image: url(${LeftH});
+    background-size: cover;
     cursor: pointer;
-    transform: translateY(-2px);
+    /* transform: translateY(-2px); */
+  }
+  &:active {
+    background-image: url(${LeftP});
+    background-size: cover;
   }
 
   &[disabled] {
-    background: grey;
+    background-image: url(${Left});
     cursor: revert;
     transform: revert;
   }
+`;
 
-  &[aria-current] {
-    background: deeppink;
-    font-weight: bold;
+const ButtonR = styled.button`
+  background-image: url(${Right});
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 50px;
+  width: 50px;
+  border: none;
+  border-radius: 30px;
+  padding: 8px;
+  margin: 0;
+
+  &:hover {
+    background-image: url(${RightH});
+    background-size: cover;
+    cursor: pointer;
+  }
+  &:active {
+    background-image: url(${RightP});
+    background-size: cover;
+  }
+
+  &[disabled] {
+    background-image: url(${Right});
     cursor: revert;
     transform: revert;
   }
