@@ -15,7 +15,7 @@ export const __kakaoLogin = createAsyncThunk(
   async (payload, thunkAPI) => {
     try {
       const { data } = await axios
-        .post(`http://34.227.111.137/login/oauth/kakao`, payload, {
+        .post(`https://midcon.shop/login/oauth/kakao`, payload, {
           withCredentials: true,
         })
 
@@ -42,7 +42,7 @@ const kakaoList = createSlice({
     },
     [__kakaoLogin.fulfilled]: (state, action) => {
       state.isLoading = false;
-      state.iskakaoLogin = true;
+      state.isLogin = true;
     },
   },
 });

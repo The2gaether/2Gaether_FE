@@ -32,9 +32,7 @@ export const __postLogin = createAsyncThunk(
       return thunkAPI.fulfillWithValue();
     } catch (error) {
       if (400 < error.status < 500) {
-        thunkAPI.dispatch(
-          userList.actions.setError("이메일과 비밀번호를 확인해주세요")
-        );
+        alert(error.response.data.message);
       }
       return thunkAPI.rejectWithValue(error);
     }
