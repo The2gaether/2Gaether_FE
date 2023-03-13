@@ -26,7 +26,9 @@ function Login() {
   const [modalMessage, setModalMessage] = useState("");
   //로그인 체크 전역변수 불러오기
   const loginCheck = useSelector((state) => state.userList.isLogin);
-  const IsCertification = useSelector((state) => state.userList.isCertification);
+  const IsCertification = useSelector(
+    (state) => state.userList.isCertification
+  );
 
   //로그인 핸들러
   const onChangeLoginHandler = (e) => {
@@ -46,7 +48,9 @@ function Login() {
   useEffect(() => {
     if (IsCertification) {
       setIsModalOpen(true);
-      setModalMessage("회원가입이 완료 되었습니다. \n 이메일 인증을 부탁드려요!");
+      setModalMessage(
+        "회원가입이 완료 되었습니다. \n 이메일 인증을 부탁드려요!"
+      );
     }
   }, [IsCertification]);
 
@@ -71,7 +75,9 @@ function Login() {
                   <Modalbox>
                     <div>{modalMessage}</div>
                   </Modalbox>
-                  <ModalButton onClick={() => setIsModalOpen(false)}>확인</ModalButton>
+                  <ModalButton onClick={() => setIsModalOpen(false)}>
+                    확인
+                  </ModalButton>
                 </ModalContent>
               </ModalBackground>
             )}
@@ -279,6 +285,7 @@ const StSocialGroup = styled.div`
   width: 100px;
   justify-content: space-between;
   margin-bottom: 10px;
+  margin-left: 60px;
 `;
 
 const KakaoSignIn = styled.img`
