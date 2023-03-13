@@ -115,6 +115,7 @@ const EditDog = ({ dog, images }) => {
         <StBox>설명</StBox>
         <StDesc
           type="text"
+          maxLength={40}
           placeholder={dog.dogDetails}
           onChange={(ev) => {
             setEditData({
