@@ -39,7 +39,8 @@ function Login() {
   const onSubmitLoginHandler = (e) => {
     e.preventDefault();
     if (user.email.trim() === "" || user.password.trim() === "") {
-      alert("이메일/아이디를 입력하세요");
+      setIsModalOpen(true);
+      setModalMessage("이메일 아이디를 입력하세요!");
     }
     dispatch(__postLogin(user));
   };
@@ -122,10 +123,10 @@ function Login() {
             <a href={KAKAO_AUTH_URL}>
               <KakaoSignIn src={kakao} />
             </a>
-
+            {/* 
             <div onClick={() => alert("준비중입니다")}>
               <KakaoSignIn src={google} />
-            </div>
+            </div> */}
           </StSocialGroup>
         </StUnderGroup>
       </Container>

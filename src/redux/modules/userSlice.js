@@ -2,6 +2,7 @@ import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
 import axios from "axios";
 
 axios.defaults.withCredentials = true;
+
 const initialState = {
   userList: [
     {
@@ -31,7 +32,9 @@ export const __postLogin = createAsyncThunk(
       return thunkAPI.fulfillWithValue();
     } catch (error) {
       if (400 < error.status < 500) {
-        alert(error.response.data.message);
+        thunkAPI.dispatch(
+          userList.actions.setError("이메일과 비밀번호를 확인해주세요")
+        );
       }
       return thunkAPI.rejectWithValue(error);
     }
@@ -84,7 +87,11 @@ export const __checkId = createAsyncThunk(
 const userList = createSlice({
   name: "userList",
   initialState,
-  reducers: {},
+  reducers: {
+    setError: (state, action) => {
+      state.error = action.payload;
+    },
+  },
   extraReducers: {
     //post
     [__postUser.pending]: (state) => {
