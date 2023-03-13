@@ -6,12 +6,9 @@ import { __kakaoLogin } from "../../redux/modules/kakaoSlice";
 const Kakao = () => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
-  const loginCheck = useSelector((state) => state.kakaoList.isLogin);
+  const iskakaoLogin = useSelector((state) => state.kakaoList.isLogin);
 
-  //현재 url의 파라미터를 가져옴
-  let params = new URL(window.location.href).searchParams;
-  //params에 저장된 파라미터 안에서 'code'의 값을 가져옴
-  let code = params.get("code");
+  let code = new URLSearchParams(window.location.search).get("code");
 
   dispatch(
     __kakaoLogin({
@@ -20,12 +17,12 @@ const Kakao = () => {
   );
 
   useEffect(() => {
-    loginCheck && navigate("/selectpage");
-  }, [loginCheck, navigate]);
+    iskakaoLogin && navigate("/selectpage");
+  }, [iskakaoLogin, navigate]);
 
   return (
     <div>
-      <h1>Loading</h1>
+      <h1>로딩중입니다....</h1>
     </div>
   );
 };
