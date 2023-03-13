@@ -26,9 +26,7 @@ function Login() {
   const [modalMessage, setModalMessage] = useState("");
   //로그인 체크 전역변수 불러오기
   const loginCheck = useSelector((state) => state.userList.isLogin);
-  const IsCertification = useSelector(
-    (state) => state.userList.isCertification
-  );
+  const IsCertification = useSelector((state) => state.userList.isCertification);
 
   //로그인 핸들러
   const onChangeLoginHandler = (e) => {
@@ -48,7 +46,7 @@ function Login() {
   useEffect(() => {
     if (IsCertification) {
       setIsModalOpen(true);
-      setModalMessage("이메일 인증을 부탁드려요!");
+      setModalMessage("회원가입이 완료 되었습니다. \n 이메일 인증을 부탁드려요!");
     }
   }, [IsCertification]);
 
@@ -73,9 +71,7 @@ function Login() {
                   <Modalbox>
                     <div>{modalMessage}</div>
                   </Modalbox>
-                  <ModalButton onClick={() => setIsModalOpen(false)}>
-                    확인
-                  </ModalButton>
+                  <ModalButton onClick={() => setIsModalOpen(false)}>확인</ModalButton>
                 </ModalContent>
               </ModalBackground>
             )}
@@ -302,28 +298,31 @@ const ModalBackground = styled.div`
 `;
 
 const ModalContent = styled.div`
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
   background-color: white;
   width: 240px;
   height: 130px;
   padding: 24px;
   border-radius: 8px;
   font-weight: 700;
-  font-size: 17px;
+  font-size: 16px;
   text-align: center;
 `;
 const Modalbox = styled.div`
   border: 1px solid black;
   height: 100px;
-  width: 288px;
+  width: 200px;
   border-top: none;
   border-right: none;
   border-left: none;
-  margin-left: -25px;
 `;
 const ModalButton = styled.button`
   color: #007aff;
   font-weight: 700;
-  font-size: 17px;
+  font-size: 16px;
   padding: 8px 16px;
   border: none;
   background-color: white;
