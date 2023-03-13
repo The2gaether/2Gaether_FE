@@ -18,71 +18,50 @@ const initialState = {
 
 //로그인 POST요청
 
-export const __postLogin = createAsyncThunk(
-  "login",
-  async (payload, thunkAPI) => {
-    try {
-      const res = await axios.post(
-        `${process.env.REACT_APP_DOG}/users/login`,
-        payload
-      );
+export const __postLogin = createAsyncThunk("login", async (payload, thunkAPI) => {
+  try {
+    const res = await axios.post(`${process.env.REACT_APP_DOG}/users/login`, payload);
 
-      sessionStorage.setItem("accessToken", res.headers.authorization);
+    sessionStorage.setItem("accessToken", res.headers.authorization);
 
-      return thunkAPI.fulfillWithValue();
-    } catch (error) {
-      if (400 < error.status < 500) {
-        thunkAPI.dispatch(
-          userList.actions.setError("이메일과 비밀번호를 확인해주세요")
-        );
-      }
-      return thunkAPI.rejectWithValue(error);
+    return thunkAPI.fulfillWithValue();
+  } catch (error) {
+    if (400 < error.status < 500) {
+      thunkAPI.dispatch(userList.actions.setError("이메일과 비밀번호를 확인해주세요"));
     }
+    return thunkAPI.rejectWithValue(error);
   }
-);
+});
 
 //회원가입 post 요청
 
-export const __postUser = createAsyncThunk(
-  "signup",
-  async (payload, thunkAPI) => {
-    try {
-      const { data } = await axios.post(
-        `${process.env.REACT_APP_DOG}/users/signup`,
-        payload
-      );
-      return thunkAPI.fulfillWithValue(data);
-    } catch (error) {
-      if (400 < error.status < 500) {
-        alert(error.response.data.message);
-      }
-      return thunkAPI.rejectWithValue(error);
+export const __postUser = createAsyncThunk("signup", async (payload, thunkAPI) => {
+  try {
+    const { data } = await axios.post(`${process.env.REACT_APP_DOG}/users/signup`, payload);
+    return thunkAPI.fulfillWithValue(data);
+  } catch (error) {
+    if (400 < error.status < 500) {
+      alert(error.response.data.message);
     }
+    return thunkAPI.rejectWithValue(error);
   }
-);
+});
 
 //이메일 중복체크
-export const __checkId = createAsyncThunk(
-  "account/checkId",
-  async (payload, thunkAPI) => {
-    try {
-      const { data } = await axios.post(
-        `${process.env.REACT_APP_DOG}/users/dupcheck`,
-        payload,
-        {
-          withCredentials: true,
-        }
-      );
+export const __checkId = createAsyncThunk("account/checkId", async (payload, thunkAPI) => {
+  try {
+    const { data } = await axios.post(`${process.env.REACT_APP_DOG}/users/dupcheck`, payload, {
+      withCredentials: true,
+    });
 
-      return thunkAPI.fulfillWithValue(data);
-    } catch (error) {
-      if (400 < error.status < 500) {
-        alert(error.response.data.message);
-      }
-      return thunkAPI.rejectWithValue(error);
+    return thunkAPI.fulfillWithValue(data);
+  } catch (error) {
+    if (400 < error.status < 500) {
+      alert(error.response.data.message);
     }
+    return thunkAPI.rejectWithValue(error);
   }
-);
+});
 
 const userList = createSlice({
   name: "userList",
