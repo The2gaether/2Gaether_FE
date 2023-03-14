@@ -6,9 +6,11 @@ import YES from "../../../assets/svg/yes.svg";
 import NO from "../../../assets/svg/no.svg";
 import ModalBasic from "./ModalBasic";
 import NoModalBasic from "./NoModalBasic";
+import { useNavigate } from "react-router";
 
 const CardList = () => {
   const Authorization = sessionStorage.getItem("accessToken");
+  const navigate = useNavigate();
   const [dogs, setDogs] = useState([]);
   const [limit, setLimit] = useState(1);
   const [page, setPage] = useState(1);
