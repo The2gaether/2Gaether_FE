@@ -8,9 +8,6 @@
 
 ### 📎 [노션 페이지](https://pineapple-wrist-347.notion.site/02141ecad68845c1a3839dbf62489a8f)
 
-### 📎 [시연영상]
-[![IU(아이유) _ Into the I-LAND](http://img.youtube.com/vi/yiDJVx1S8TU/0.jpg)](https://www.youtube.com/watch?v=yiDJVx1S8TU) 
-
 <br>
 
 ## 1. 제작 기간 & 팀원 소개
@@ -35,7 +32,7 @@
 ![styledComponents](https://camo.githubusercontent.com/8d29f15964b1cb2254deccb293a2c444eee52078b3d448b6149c17c5ab40d2ce/68747470733a2f2f696d672e736869656c64732e696f2f62616467652f7374796c65642d636f6d706f6e656e74732d4442373039333f7374796c653d266c6f676f3d7374796c65642d636f6d706f6e656e7473266c6f676f436f6c6f723d7768697465)
 
 ## 3. 실행화면
-
+[![투개더](http://img.youtube.com/vi/yiDJVx1S8TU/0.jpg)](https://www.youtube.com/watch?v=yiDJVx1S8TU) 
 ## 4. 핵심기능
 
 1. 로그인 기능 구현 ( 기본 회원가입 )
