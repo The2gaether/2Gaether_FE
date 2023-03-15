@@ -30,11 +30,8 @@ const EditUser = () => {
         <StTopGroup>
           <div className="div" style={{ fontSize: "20px", fontWeight: "bold" }}>
             <div> 안녕하세요 {user?.username.slice(0, 5)}님!</div>
-            <StSurvey href="https://forms.gle/Ud6S9QmUgCY8Pedx8" target="_blank">
-              설문조사
-            </StSurvey>
           </div>
-          {/* <div className="address">{user?.address.split(" ").slice(0, 3).join(" ")}</div> */}
+          <div className="address">{user?.address.split(" ").slice(0, 3).join(" ")}</div>
           <div className="address">{user?.email}</div>
         </StTopGroup>
         <StImgGroup>
@@ -61,6 +58,7 @@ const Container = styled.div`
 `;
 
 const StTopGroup = styled.div`
+  margin-left: -100px;
   margin-top: 20px;
   .div {
     margin-bottom: 15px;
@@ -76,7 +74,6 @@ const StTopGroup = styled.div`
 `;
 
 const StImgGroup = styled.div`
-  margin-top: 17px;
   margin-bottom: 8px;
   display: flex;
   justify-content: center;
