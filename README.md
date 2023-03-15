@@ -4,6 +4,12 @@
 
 현재 반려동물(강아지)와 함께 살고 있는 20대~40대 남녀가 사용자의 위치 기반을 이용하여 반경 3km 내 반려인&반려동물과 함께 산책을 할 수 있다.
 
+### 📎 [투개더 서비스 이용하기](https://twogaether.site/)
+
+### 📎 [노션 페이지](https://pineapple-wrist-347.notion.site/02141ecad68845c1a3839dbf62489a8f)
+
+[![IU(아이유) _ Into the I-LAND](http://img.youtube.com/vi/yiDJVx1S8TU/0.jpg)](https://www.youtube.com/watch?v=yiDJVx1S8TU) 
+
 <br>
 
 ## 1. 제작 기간 & 팀원 소개
