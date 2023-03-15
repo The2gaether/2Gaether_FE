@@ -8,6 +8,7 @@
 
 ### 📎 [노션 페이지](https://pineapple-wrist-347.notion.site/02141ecad68845c1a3839dbf62489a8f)
 
+### 📎 [시연영상]
 [![IU(아이유) _ Into the I-LAND](http://img.youtube.com/vi/yiDJVx1S8TU/0.jpg)](https://www.youtube.com/watch?v=yiDJVx1S8TU) 
 
 <br>
