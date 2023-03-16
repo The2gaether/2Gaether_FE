@@ -9,11 +9,26 @@ const Image = ({ images, data }) => {
 
   return (
     <Container>
-      {images.slice(offset, offset + limit).map(({ imageUrl, id }) => (
-        <StDog key={id} style={{ backgroundImage: `url(${imageUrl})` }}>
-          <CardlistPagination total={images.length} limit={limit} page={page} setPage={setPage} />
-        </StDog>
-      ))}
+      {images.length === 1 ? (
+        <>
+          {images.slice(offset, offset + limit).map(({ imageUrl, id }) => (
+            <StDog key={id} style={{ backgroundImage: `url(${imageUrl})` }}></StDog>
+          ))}
+        </>
+      ) : (
+        <>
+          {images.slice(offset, offset + limit).map(({ imageUrl, id }) => (
+            <StDog key={id} style={{ backgroundImage: `url(${imageUrl})` }}>
+              <CardlistPagination
+                total={images.length}
+                limit={limit}
+                page={page}
+                setPage={setPage}
+              />
+            </StDog>
+          ))}
+        </>
+      )}
       <StName>
         <StDistance> 약 {data.distance} KM </StDistance>
         <br />

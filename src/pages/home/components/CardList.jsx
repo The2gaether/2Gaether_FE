@@ -6,15 +6,18 @@ import YES from "../../../assets/svg/yes.svg";
 import NO from "../../../assets/svg/no.svg";
 import ModalBasic from "./ModalBasic";
 import NoModalBasic from "./NoModalBasic";
+import { useNavigate } from "react-router";
 
 const CardList = () => {
   const Authorization = sessionStorage.getItem("accessToken");
+  const navigate = useNavigate();
   const [dogs, setDogs] = useState([]);
   const [limit, setLimit] = useState(1);
   const [page, setPage] = useState(1);
   const [mainImage, setMainImage] = useState([]);
   const offset = (page - 1) * limit;
   const [count, setCount] = useState(0);
+  const [isError, setIsError] = useState(false);
 
   const fetchList = async () => {
     try {
@@ -27,6 +30,7 @@ const CardList = () => {
       setMainImage(data.images);
     } catch (error) {
       console.log(error);
+      setIsError(true);
       alert("더 이상 만날 친구가 없어요...ㅠㅠ \n 내일 다시 새로운 친구를 찾아볼께요");
     }
   };
@@ -45,6 +49,21 @@ const CardList = () => {
     setNoModalOpen(true);
   };
 
+  //싫어요 클릭
+  const handleHateClick = () => {
+    axios.post(
+      `${process.env.REACT_APP_DOG}/match/reject/${dogs.dogId}`,
+      {},
+      {
+        headers: {
+          Authorization,
+        },
+      }
+    );
+    setCount(count + 1);
+    setNoModalOpen(false);
+  };
+
   useEffect(() => {
     fetchList();
   }, [count]);
@@ -61,7 +80,7 @@ const CardList = () => {
           userId={dogs.createdBy}
         />
       )}
-      {noModalOpen && (
+      {/* {noModalOpen && (
         <NoModalBasic
           count={count}
           setCount={setCount}
@@ -70,13 +89,25 @@ const CardList = () => {
           setNoModalOpen={setNoModalOpen}
           userId={dogs.createdBy}
         />
+      )} */}
+      {isError ? (
+        <StNoFriends>
+          <div>오늘은 더 이상 불러올 친구가 없어요</div>
+          <br />
+          <div>페이지를 새로고침 해주세요!</div>
+          <br />
+          <StImg src={NO} onClick={() => window.location.reload()} />
+        </StNoFriends>
+      ) : (
+        <>
+          <Image key={dogs.dogId} images={mainImage} data={dogs} />
+          <StBtnGroup>
+            <StImg src={YES} onClick={showModal}></StImg>
+            {/* <StImg src={NO} onClick={() => handleHateClick()}></StImg> */}
+            <StImg src={NO} onClick={() => handleHateClick()}></StImg>
+          </StBtnGroup>
+        </>
       )}
-      <Image key={dogs.dogId} images={mainImage} data={dogs} />
-      <StBtnGroup>
-        <StImg src={YES} onClick={showModal}></StImg>
-        {/* <StImg src={NO} onClick={() => handleHateClick()}></StImg> */}
-        <StImg src={NO} onClick={showNoModal}></StImg>
-      </StBtnGroup>
     </Container>
   );
 };
@@ -103,4 +134,14 @@ const StImg = styled.img`
   cursor: pointer;
   margin-left: 30px;
   margin-right: 30px;
+`;
+
+const StNoFriends = styled.div`
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  font-size: 20px;
+  /* font-weight: 700; */
+  margin-bottom: 30px;
 `;

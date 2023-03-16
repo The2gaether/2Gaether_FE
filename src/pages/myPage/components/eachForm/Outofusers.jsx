@@ -13,7 +13,7 @@ const Outofusers = () => {
   const [signup, setSignup] = useState(false);
 
   const deleteUserHandler = () => {
-    axios.delete(`${process.env.REACT_APP_DOG}/match`, {
+    axios.delete(`${process.env.REACT_APP_DOG}/users/delete`, {
       headers: {
         Authorization,
       },
