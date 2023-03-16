@@ -10,7 +10,6 @@ import {
   __postChatopenThunk,
 } from "../../redux/modules/chattingSlice";
 import Layout from "../../components/Layout";
-import ArrowIcon from "../../assets/svg/ArrowIcon.svg";
 
 const ChattingDetail = () => {
   const { roomId } = useParams();
@@ -43,13 +42,6 @@ const ChattingDetail = () => {
   useEffect(() => {
     let subscription;
 
-    // 소켓 연결
-    const socket = new SockJS(`${process.env.REACT_APP_DOG}/ws-stomp`);
-    const client = Stomp.over(socket);
-
-    const headers = {
-      Authorization: sessionStorage.getItem("accessToken"),
-    };
     try {
       client.connect({}, () => {
         // 채팅방 구독
@@ -72,7 +64,7 @@ const ChattingDetail = () => {
   }, [roomId]);
 
   //메시지 보내기
-  //여기에 있는 값을 모아야합니다 / 정기
+
   const myChat = () => {
     const message = chatRef.current.value;
     if (message === "") {

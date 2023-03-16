@@ -1,14 +1,16 @@
 import React, { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { __getChatList } from "../../redux/modules/chatListSlice";
-import { useNavigate, useParams } from "react-router";
+import { useNavigate } from "react-router";
 import Layout from "../../components/Layout";
 import styled from "styled-components";
 const ChatList = () => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
 
-  const chatList = useSelector((state) => state.chatList.chatList);
+  const chatList = useSelector((state) => state?.chatList?.chatList);
+  console.log(chatList);
+
   useEffect(() => {
     dispatch(__getChatList());
   }, []);
