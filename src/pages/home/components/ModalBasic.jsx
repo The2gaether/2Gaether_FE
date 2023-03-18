@@ -25,7 +25,6 @@ function ModalBasic({ setModalOpen, dogId, dogName, count, setCount }) {
   //통합코드
   function handleButtonClick() {
     handleFavoriteClick();
-    // window.location.reload();
   }
 
   return (
