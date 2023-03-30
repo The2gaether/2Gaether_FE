@@ -116,9 +116,9 @@ function Login() {
           <StLine />
           {/* <StSnsStart>SNS로 간편하게 시작하기</StSnsStart> */}
           <StSocialGroup>
-            {/* <a href={KAKAO_AUTH_URL}>
+            <a href={KAKAO_AUTH_URL}>
               <KakaoSignIn src={kakao} />
-            </a> */}
+            </a>
             {/* 
             <div onClick={() => alert("준비중입니다")}>
               <KakaoSignIn src={google} />
