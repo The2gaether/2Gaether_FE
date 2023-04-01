@@ -8,6 +8,7 @@ import RightP from "../../../assets/svg/right_press.svg";
 
 const CardlistPagination = ({ total, limit, page, setPage }) => {
   const numPages = Math.ceil(total / limit);
+  console.log(total);
 
   return (
     <Nav>
