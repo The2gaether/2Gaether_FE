@@ -10,6 +10,7 @@ import ChattingList from "../pages/chattingList/ChattingList";
 import EditUser from "../pages/myPage/MyPage";
 import MyDog from "../pages/myDog/MyDog";
 import Kakao from "../pages/kakaoLogin/kakao";
+import Google from "../pages/googleLogin/google";
 import WelcomePage from "../pages/welcomepage/WelcomePage";
 import ChattingDetail from "../pages/chatting/ChattingDetail";
 import EditNick from "../pages/myPage/components/eachForm/EditNick";
@@ -31,6 +32,7 @@ const Router = () => {
             <Route path="/login" element={<Login />} />
             <Route path="/signUp" element={<SignUp />} />
             <Route path="/oauth/callback/kakao" element={<Kakao />} />
+            <Route path="/oauth/callback/google" element={<Google />} />
             <Route path="/selectpage" element={<SelectPage />} />
           </>
         ) : (
@@ -42,7 +44,10 @@ const Router = () => {
             <Route path="/giveLove" element={<GiveLove />} />
             <Route path="/getLove" element={<GetLove />} />
             <Route path="/chattingList" element={<ChattingList />} />
-            <Route path="/chattingdetail/:roomId" element={<ChattingDetail />} />
+            <Route
+              path="/chattingdetail/:roomId"
+              element={<ChattingDetail />}
+            />
             <Route path="/mypage" element={<EditUser />} />
             <Route path="/mypage/editnick" element={<EditNick />} />
             <Route path="/mypage/editpsw" element={<EditPsw />} />
