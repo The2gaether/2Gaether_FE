@@ -38,9 +38,13 @@ const EditNick = () => {
           }}
         >
           <Space />
-          <div style={{ fontSize: "20px", fontWeight: "bold" }}>닉네임 변경</div>
+          <div style={{ fontSize: "20px", fontWeight: "bold" }}>
+            닉네임 변경
+          </div>
           <br />
-          <div style={{ fontSize: "16px" }}>(닉네임은 5글자 까지만 노출 될 수있습니다!)</div>
+          <div style={{ fontSize: "16px" }}>
+            (닉네임은 5글자 까지만 노출 될 수있습니다!)
+          </div>
           <br />
           <StInput
             placeholder="변경할 닉네임을 입력해주세요"

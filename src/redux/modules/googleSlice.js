@@ -3,19 +3,20 @@ import axios from "axios";
 
 axios.defaults.withCredentials = true;
 const initialState = {
-  kakaoList: {},
+  googleList: {},
   isLoading: false,
   error: null,
   isLogin: false,
 };
 
-//카카오 로그인 POST요청
-export const __kakaoLogin = createAsyncThunk(
+//구글 로그인 POST요청
+export const __googleLogin = createAsyncThunk(
   "login",
   async (payload, thunkAPI) => {
+    console.log(payload);
     try {
       const { data } = await axios
-        .post(`https://midcon.shop/login/oauth/kakao`, payload, {
+        .post(`https://midcon.shop/login/oauth/google`, payload, {
           withCredentials: true,
         })
 
@@ -24,7 +25,7 @@ export const __kakaoLogin = createAsyncThunk(
           sessionStorage.setItem("accessToken", Authorization);
           return res;
         });
-
+      console.log(data);
       return thunkAPI.fulfillWithValue(data.data);
     } catch (error) {
       return thunkAPI.rejectWithValue(error);
@@ -32,19 +33,19 @@ export const __kakaoLogin = createAsyncThunk(
   }
 );
 
-const kakaoList = createSlice({
-  name: "kakaoList",
+const googleList = createSlice({
+  name: "googleList",
   initialState,
   reducers: {},
   extraReducers: {
-    [__kakaoLogin.pending]: (state) => {
+    [__googleLogin.pending]: (state) => {
       state.isLoading = true;
     },
-    [__kakaoLogin.fulfilled]: (state, action) => {
+    [__googleLogin.fulfilled]: (state, action) => {
       state.isLoading = false;
       state.isLogin = true;
     },
   },
 });
 
-export default kakaoList.reducer;
+export default googleList.reducer;

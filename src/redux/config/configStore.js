@@ -6,6 +6,7 @@ import messages from "../modules/socketSlice";
 import userList from "../modules/userSlice";
 import dogInfo from "../modules/signupSlice";
 import chatList from "../modules/chatListSlice";
+import googleList from "../modules/googleSlice";
 /**
  * import 해온 것은 slice.reducer 입니다.
  */
@@ -19,6 +20,7 @@ const store = configureStore({
     userList,
     dogInfo,
     chatcollect,
+    googleList,
     socket,
     messages,
     chatList,
