@@ -114,7 +114,7 @@ const InfiniteScroll = () => {
                 />
               </StBtnGroup>
 
-              <div ref={observer} />
+              {/* <div ref={observer} /> */}
               {modalOpen && <Profile myDogId={myDogId} setModalOpen={setModalOpen} />}
             </Stgroup>
           ))}
