@@ -13,7 +13,6 @@ const initialState = {
 export const __googleLogin = createAsyncThunk(
   "login",
   async (payload, thunkAPI) => {
-    console.log(payload);
     try {
       const { data } = await axios
         .post(`https://midcon.shop/login/oauth/google`, payload, {
@@ -25,7 +24,6 @@ export const __googleLogin = createAsyncThunk(
           sessionStorage.setItem("accessToken", Authorization);
           return res;
         });
-      console.log(data);
       return thunkAPI.fulfillWithValue(data.data);
     } catch (error) {
       return thunkAPI.rejectWithValue(error);

@@ -283,10 +283,9 @@ const StSocialGroup = styled.div`
   display: flex;
   align-items: center;
   justify-content: center;
-  width: 100px;
+  width: 140px;
   justify-content: space-between;
   margin-bottom: 10px;
-  margin-left: 60px;
 `;
 
 const KakaoSignIn = styled.img`

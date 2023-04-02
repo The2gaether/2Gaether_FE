@@ -6,7 +6,7 @@ import { __postDog } from "../../redux/modules/signupSlice";
 import male from "../../assets/svg/male.svg";
 import female from "../../assets/svg/female.svg";
 import plusbutton from "../../assets/img/plusbutton.PNG";
-
+import Resizer from "react-image-file-resizer";
 import DogSignUpModal from "./dogSignUpComponents/DogSignUpModal";
 import DogModalDetail from "./dogSignUpComponents/DogModalDetail";
 import DogSignUpTop from "./dogSignUpComponents/DogSignUpTop";
@@ -80,12 +80,42 @@ function SignUpForm() {
     setSignNumber((prevNumber) => prevNumber + 1);
   };
 
+  const resizeFile = (file) => {
+    return new Promise((resolve) => {
+      Resizer.imageFileResizer(
+        file,
+        300, // 새로운 가로 크기
+        300, // 새로운 세로 크기
+        file.type.split("/")[1], // 파일 확장자
+        100, // 이미지 품질
+        0, // 회전 각도
+        (uri) => {
+          resolve(dataURItoBlob(uri));
+        },
+        "base64"
+      );
+    });
+  };
+
+  const dataURItoBlob = (dataURI) => {
+    const byteString = atob(dataURI.split(",")[1]);
+    const mimeString = dataURI.split(",")[0].split(":")[1].split(";")[0];
+    const ab = new ArrayBuffer(byteString.length);
+    const ia = new Uint8Array(ab);
+    for (let i = 0; i < byteString.length; i++) {
+      ia[i] = byteString.charCodeAt(i);
+    }
+    return new Blob([ab], { type: mimeString });
+  };
+
   //이미지파일 업로드 핸들러
-  const handleChangeFile = (event) => {
+  const handleChangeFile = async (event) => {
     let imageSrcTemp = imageSrcs;
     let readers = [];
     for (let i = 0; i < event.target.files.length; i++) {
-      readers.push(readFileAsText(event.target.files[i]));
+      const resizedImage = await resizeFile(event.target.files[i]); // 이미지 리사이징
+
+      readers.push(readFileAsText(resizedImage));
       imageSrcTemp.push(event.target.files[i]);
     }
     Promise.all(readers).then((values) => {
@@ -98,11 +128,12 @@ function SignUpForm() {
     setImageSrcs(imageSrcTemp);
   };
 
-  const handleChangeFile1 = (event) => {
-    let imageSrcTemp = imageSrcs;
+  const handleChangeFile1 = async (event) => {
+    let imageSrcTemp = imageSrcs1; // imageSrcs1 배열 사용
     let readers = [];
     for (let i = 0; i < event.target.files.length; i++) {
-      readers.push(readFileAsText(event.target.files[i]));
+      const resizedImage = await resizeFile(event.target.files[i]);
+      readers.push(readFileAsText(resizedImage));
       imageSrcTemp.push(event.target.files[i]);
     }
     Promise.all(readers).then((values) => {
@@ -114,9 +145,13 @@ function SignUpForm() {
     });
     setImageSrcs1(imageSrcTemp);
   };
-
+  // 파일 읽기 함수
   const readFileAsText = (fileBlob) => {
     return new Promise(function (resolve, reject) {
+      if (!(fileBlob instanceof Blob)) {
+        reject(new Error("Invalid file"));
+      }
+
       let fr = new FileReader();
 
       fr.onload = function () {
@@ -130,7 +165,6 @@ function SignUpForm() {
       fr.readAsDataURL(fileBlob);
     });
   };
-
   //합치는 코드(address로가는온클릭, 서브밋코드)
   const combinedHandler = async (event) => {
     event.preventDefault();
@@ -323,6 +357,7 @@ const ImagePreview = styled.img`
   margin-bottom: 20%;
   border-radius: 25px;
   border: 3px solid black;
+  object-fit: contain;
 `;
 const InputContainer = styled.div`
   position: relative;

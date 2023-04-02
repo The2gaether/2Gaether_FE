@@ -9,7 +9,6 @@ const Kakao = () => {
   const iskakaoLogin = useSelector((state) => state.kakaoList.isLogin);
 
   let code = new URLSearchParams(window.location.search).get("code");
-  console.log(code);
 
   dispatch(
     __kakaoLogin({
