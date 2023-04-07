@@ -15,7 +15,7 @@ export const __googleLogin = createAsyncThunk(
   async (payload, thunkAPI) => {
     try {
       const { data } = await axios
-        .post(`https://midcon.shop/login/oauth/google`, payload, {
+        .post(`${process.env.REACT_APP_DOG}/login/oauth/google`, payload, {
           withCredentials: true,
         })
 

@@ -114,7 +114,7 @@ function SignUpForm() {
     let readers = [];
     for (let i = 0; i < event.target.files.length; i++) {
       const resizedImage = await resizeFile(event.target.files[i]); // 이미지 리사이징
-
+      console.log(resizedImage);
       readers.push(readFileAsText(resizedImage));
       imageSrcTemp.push(event.target.files[i]);
     }
@@ -133,6 +133,7 @@ function SignUpForm() {
     let readers = [];
     for (let i = 0; i < event.target.files.length; i++) {
       const resizedImage = await resizeFile(event.target.files[i]);
+      console.log(resizedImage);
       readers.push(readFileAsText(resizedImage));
       imageSrcTemp.push(event.target.files[i]);
     }

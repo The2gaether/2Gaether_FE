@@ -15,7 +15,7 @@ export const __kakaoLogin = createAsyncThunk(
   async (payload, thunkAPI) => {
     try {
       const { data } = await axios
-        .post(`https://midcon.shop/login/oauth/kakao`, payload, {
+        .post(`${process.env.REACT_APP_DOG}/login/oauth/kakao`, payload, {
           withCredentials: true,
         })
 
